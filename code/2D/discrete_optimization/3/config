@@ -1,0 +1,10 @@
+for i=2:5
+nx = 4;
+ny = 3;
+tic;
+E = [4.25e9 20e9];
+rho = [1000 2000];
+sigma = 5*10e6;
+strain = 2*10^(-4);
+force = i*1e6;
+

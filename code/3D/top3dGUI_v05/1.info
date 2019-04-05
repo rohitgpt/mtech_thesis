@@ -1,0 +1,5 @@
+top3dnew(20,60,30,0.7,2,2)
+all dof fixed at x=0
+at y=0 and y=ymax only y dofs are fixed
+at z=0 and z=zmax only z dofs are fixed
+
