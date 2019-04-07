@@ -10,8 +10,11 @@ strain = 2*10^(-4);
 force = iter*1e6;
 
 syms xa ya;
-alpha = 0.5/nx;
-beta = 0.5/ny;
+%size of each element is such that the overall size is one unit (one meter)
+%across and one unit wide
+
+alpha = 0.5e-2/nx;
+beta = 0.5e-2/ny;
 n = 1/(4*alpha*beta)*[(alpha-xa)*(beta-ya) (alpha+xa)*(beta-ya) (alpha+xa)*(beta+ya) (alpha-xa)*(beta+ya)];
 B = sym('b', [3 8]);
 for i=1:4
