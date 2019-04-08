@@ -1,13 +1,13 @@
 function main(Problem)
-for iter=5:7
+for iter=4:7
 nx = 4;
 ny = 3;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 5*10e6;
+sigma = 10^(iter);
 strain = 2*10^(-4);
-force = 10^(iter);
+force = 10^7;
 
 syms xa ya;
 %size of each element is such that the overall size is one unit (one centimeter)
