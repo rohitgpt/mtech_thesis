@@ -1,13 +1,13 @@
 function main(Problem)
-for iter=2:5
-nx = 4;
-ny = 3;
+for iter=4:7
+nx = 2*i;
+ny = i+2;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 5*10e6;
+sigma = 10^(5);
 strain = 2*10^(-4);
-force = iter*1e6;
+force = 10^7;
 
 syms xa ya;
 %size of each element is such that the overall size is one unit (one centimeter)
@@ -39,7 +39,6 @@ subs(subs(B, xa, -alpha*gauss), ya, beta*gauss));
 IntCon = 1:nx*ny;
 options = optimoptions('ga','UseParallel', true, 'UseVectorized', false);
 options.FunctionTolerance = 1e-6;
-
 
 [X, ~] = ga(@(X) M{1}(X),nx*ny,[],[],[],[],min_x,max_x,@(X) mycon(X, M),IntCon);
 X

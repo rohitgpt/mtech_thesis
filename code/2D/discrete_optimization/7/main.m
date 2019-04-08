@@ -1,11 +1,12 @@
+%finding best sigma
 function main(Problem)
 for iter=4:7
-nx = 2*iter;
-ny = iter+2;
+nx = 4;
+ny = 3;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 10^(5);
+sigma = 10^(iter);
 strain = 2*10^(-4);
 force = 10^7;
 
