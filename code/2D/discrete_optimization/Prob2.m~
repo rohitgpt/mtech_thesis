@@ -8,17 +8,27 @@ for ely = 1:ny
   for elx = 1:nx
     n1 = (ny+1)*(elx-1)+ely; 
     n2 = (ny+1)* elx   +ely;
-    Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1)/elx*nx;
+    Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1);
 %     M{(ely-1)*nx+elx+1} = @(X) max(Ue(X)) - max_strain;
-    M{(ely-1)*2*nx+2*elx} = @(X) max(Ue(X)) - max_strain;
-    M{(ely-1)*2*nx+2*elx+1} = @(X) max(index(Emat(X), elx, ely)*Edash*B*Ue(X)) - max_stress;
+%     M{(ely-1)*2*nx+2*elx} = @(X) max(Ue(X)) - max_strain;
+    max_principle_stress = @(X) stress_cal(index(Emat(X), elx, ely)*Edash*B*Ue(X));
+    M{(ely-1)*nx+elx+1} = @(X) max_principle_stress - max_stress;
+    
+    %     M{(ely-1)*2*nx+2*elx+1} = @(X) max(index(Emat(X), elx, ely)*Edash*B*Ue(X)) - max_stress;
   end
 end
-
+n1 = (ny+1)*(nx-1)+ny;
+n2 = (ny+1)*nx+ny;
+Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1)/elx*nx;
+strn = @(X) 
 M{1} = @(X) sum(sum(rhomat(X)));
 % /sum(sum(Emat(X)));
 min_x = zeros(1, nx*ny);
 max_x = 2*ones(1, nx*ny);
+end
+
+function strs = stress_cal(s)
+strs = (s(1)+s(2))/2+sqrt(0.25*(s(1)-s(2))^2+s(3)^2);
 end
 
 function Mat = funct(X, mat, nx, ny)
@@ -52,7 +62,6 @@ for elx = 1:nx
     K(edof,edof) = K(edof,edof) + Emat(ely, elx)*KE;
   end
 end
-% DEFINE LOADS AND SUPPORTS (HALF MBB-BEAM)
 F([1+2*(ny+1)*nx, 2*(ny+1)*(nx+1)-1], 1) = force/(2*ny);
 F([3+2*(ny+1)*nx:2:2*(ny+1)*(nx+1)-2],1) = force/(ny);
 % F([1+2*(ny+1)*nx:2:2*(ny+1)*(nx+1)],1) = force/ny;

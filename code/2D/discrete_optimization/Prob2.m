@@ -1,5 +1,6 @@
 function [M, min_x, max_x] = Prob2(nx, ny, E, Edash, B, rho, max_strain, max_stress, force, KE)
 subindex = @(A, a, b) A(a, b);
+sindex = @(A,a) A(a);
 Emat = @(X) funct(X, E, nx, ny);
 rhomat = @(X) funct(X, rho, nx, ny);
 [U] = @(X) finite_element(nx, ny, Emat(X), force, KE);
@@ -8,17 +9,27 @@ for ely = 1:ny
   for elx = 1:nx
     n1 = (ny+1)*(elx-1)+ely; 
     n2 = (ny+1)* elx   +ely;
-    Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1)/elx*nx;
+    Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1);
 %     M{(ely-1)*nx+elx+1} = @(X) max(Ue(X)) - max_strain;
-    M{(ely-1)*2*nx+2*elx} = @(X) max(Ue(X)) - max_strain;
-    M{(ely-1)*2*nx+2*elx+1} = @(X) max(index(Emat(X), elx, ely)*Edash*B*Ue(X)) - max_stress;
+%     M{(ely-1)*2*nx+2*elx} = @(X) max(Ue(X)) - max_strain;
+    max_principle_stress = @(X) stress_cal(index(Emat(X), elx, ely)*Edash*B*Ue(X));
+    M{(ely-1)*nx+elx+1} = @(X) max_principle_stress(X) - max_stress;
+    
+    %     M{(ely-1)*2*nx+2*elx+1} = @(X) max(index(Emat(X), elx, ely)*Edash*B*Ue(X)) - max_stress;
   end
 end
-
-M{1} = @(X) sum(sum(rhomat(X)));
+n1 = (ny+1)*(nx-1)+ny;
+n2 = (ny+1)*nx+ny;
+Ue = @(X) subindex(U(X), [2*n1-1;2*n1; 2*n2-1;2*n2; 2*n2+1;2*n2+2; 2*n1+1;2*n1+2],1)/elx*nx;
+strn = @(X) B*Ue(X);
+M{1} = @(X) sindex(strn(X), 1)*sum(sum(rhomat(X)));
 % /sum(sum(Emat(X)));
 min_x = zeros(1, nx*ny);
 max_x = 2*ones(1, nx*ny);
+end
+
+function strs = stress_cal(s)
+strs = (s(1)+s(2))/2+sqrt(0.25*(s(1)-s(2))^2+s(3)^2);
 end
 
 function Mat = funct(X, mat, nx, ny)
