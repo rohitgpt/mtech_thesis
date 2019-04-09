@@ -1,11 +1,11 @@
 function main(Problem)
-for iter=3:7
-nx = 7;
-ny = 5;
+for iter=4:7
+nx = 2*iter;
+ny = iter+2;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 5*10^(7);
+sigma = 10^(5);
 strain = 2*10^(-4);
 force = 10^7;
 
