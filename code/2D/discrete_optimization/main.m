@@ -1,20 +1,23 @@
 function main(Problem)
-for iter=3:7
+for iter1=5:7
+  for iter=4:7
 nx = 7;
 ny = 5;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 5*10^(7);
+sigma = 10^(iter);
 strain = 2*10^(-4);
-force = 10^7;
+force = 10^(iter);
 
 syms xa ya;
 %size of each element is such that the overall size is one unit (one centimeter)
 %across and one unit wide
 
-alpha = (0.5e-2)/nx;
-beta = (0.5e-2)/ny;
+alpha = 25e-6;
+beta = 25e-6;
+% alpha = (0.5e-2)/nx;
+% beta = (0.5e-2)/ny;
 gauss = 0.57735;
 n = 1/(4*alpha*beta)*[(alpha-xa)*(beta-ya) (alpha+xa)*(beta-ya) (alpha+xa)*(beta+ya) (alpha-xa)*(beta+ya)];
 B = sym('b', [3 8]);
@@ -53,11 +56,11 @@ end
 figure(1)
 colormap(gray);
 imagesc(2-Xd, [0, 2]);
-title(['Material Distribution','varying size', num2str(nx),'x',num2str(ny)])
+title(['Material Distribution', num2str(nx),' x ',num2str(ny)])
 xlabel('X axis')
 ylabel('Y axis')
 % savefig(['varying max stress ', num2str(sigma/1e6),' Mpa']);
-savefig(num2str(iter));
+savefig([num2str(iter1), num2str(iter)]);
 toc
 end
 end
