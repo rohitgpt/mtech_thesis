@@ -56,11 +56,11 @@ end
 figure(1)
 colormap(gray);
 imagesc(2-Xd, [0, 2]);
-title(['Material Distribution','varying size', num2str(nx),'x',num2str(ny)])
+title(['Material Distribution', num2str(nx),' x ',num2str(ny)])
 xlabel('X axis')
 ylabel('Y axis')
 % savefig(['varying max stress ', num2str(sigma/1e6),' Mpa']);
-savefig(num2str(iter));
+savefig([num2str(iter1), num2str(iter)]);
 toc
 end
 end

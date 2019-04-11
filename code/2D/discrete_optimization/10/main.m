@@ -1,12 +1,12 @@
 function main(Problem)
-for iter=4:6
+for iter1=5:13
 %   for iter=5:7
-nx = 2*iter+1;
-ny = 2*iter-1;
+nx = 7;
+ny = 5;
 tic;
 E = [4.25e9 20e9];
 rho = [1000 2000];
-sigma = 10^(9);
+sigma = 10^(iter1);
 strain = 2*10^(-4);
 force = 10^(5);
 
@@ -60,7 +60,7 @@ title(['Material Distribution', num2str(nx),' x ',num2str(ny)])
 xlabel('X axis')
 ylabel('Y axis')
 % savefig(['varying max stress ', num2str(sigma/1e6),' Mpa']);
-savefig([num2str(iter)]);
+savefig([num2str(iter1)]);
 toc
 end
 end
