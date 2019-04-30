@@ -42,11 +42,10 @@ s = sensitivity(L, H, Ddash, b, u, B, U);
 
 s_filtered = apply_filter(s, rmin);
 
-prev_s = [];
 avg_s = 0.5*(s_filtered + prev_s);
 prev_s = avg_s;
 
-v = find_volume(x);
+v = sum(x(:))/(nx*ny);
 if v>Vf
   if v*(1-delta)<Vf
     v = Vf;
@@ -61,13 +60,30 @@ else
   end
 end
 
-%getindex sort by sensitivity for x
-%set x's with v highest sensitivities to 1 and rest to zero
+[~, index] = sort(avg_s(:), 'descend');
+v = v*(nx*ny);
+y = zeros(nx*ny, 1);
+y(index(1:v))=1;
+x = reshape(y, nx, ny);
+
+
 end
 
-function s_filtered = apply_filter(s, rmin)
-
-
+function s_filtered = apply_filter(nx, ny, s, rmin)
+s_filtered = zeros(size(s));
+for i=1:nx
+  for j=1:ny
+    total = 0;
+    for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
+      for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
+        weight = rmin-sqrt((i-k)^2+(j-l)^2);
+        s_filtered(j, i) = s(l, k)*weight;
+        total = total + weight;
+      end
+    end
+    s_filtered(j, i) = s_filtered(j, i)/total;
+  end
+end
 end
 
 function s = sensitivity(L, H, D1, b, u, B, U)
