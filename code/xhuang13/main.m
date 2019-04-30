@@ -2,8 +2,6 @@ function main(L, H, Vf, nx, ny)
 
 delta = 0.02; %change in volume in every iteration
 rmin = 4;     %for mesh independent filter
-D = [];       %initial D
-E = [4.25e9 20e9];
 
 x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 % xinit = design1(nx, ny);
@@ -32,11 +30,15 @@ subs(subs(B, xa, alpha*gauss), ya, -beta*gauss) + ...
 subs(subs(B, xa, alpha*gauss), ya, beta*gauss) + ...
 subs(subs(B, xa, -alpha*gauss), ya, beta*gauss));
 
+prev_C=1e10;
+C = 1e5;
+while (prev_C-C)/C>0.05
+plot_fig(x);
 u = microFEM(nx, ny, x, KE, b, Ddash);
 
 Dh = homogenization(nx, ny, b, u, D);
 
-U = macroFEM(L, H, Dh, B);
+[C, U] = macroFEM(L, H, Dh, B);
 
 s = sensitivity(L, H, Ddash, b, u, B, U);
 
@@ -66,6 +68,7 @@ y = zeros(nx*ny, 1);
 y(index(1:v))=1;
 x = reshape(y, nx, ny);
 
+end
 
 end
 
@@ -121,7 +124,13 @@ end
 
 end
 
-function U = macroFEM(L, H, Dh, B)
+function plot_fig(x)
+figure(1)
+colormap(gray);
+imagesc(1-x);
+end
+
+function [C, U] = macroFEM(L, H, Dh, B)
 U = sparse(2*(L+1)*(H+1), 1);
 K = sparse(2*(L+1)*(H+1),2*(L+1)*(H+1));
 F = sparse(2*(L+1)*(H+1), 1);
@@ -143,6 +152,8 @@ fixed_dofs = [1:2*(H+1)];
 free_dofs = setdiff([1:2*(H+1)*(L+1)], fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
+
+C = 0.5*F'*U;
 end
 
 function Dh = homogenization(nx, ny, b, u, D)
