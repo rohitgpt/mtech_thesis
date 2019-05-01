@@ -163,7 +163,7 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    Dh = Dh + (eye(3)-b*u(dof, 3);
+    Dh = Dh + (eye(3)-b*u(dof, 3));
   end
 end
 
@@ -181,7 +181,7 @@ for i=1:nx
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
     k(dof, dof) = k(dof, dof) + x(j, i)*ke;
-    load(dof, 3) = load(dof, 3) + x(j, i)*le;
+    load(dof, :) = load(dof, :) + x(j, i)*le;
   end
 end
 u = k\load;
@@ -191,8 +191,10 @@ function xinit = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);
 for j=1:ny
   for i=1:nx
-    if(xinit(j,i)>Vf) xinit(j,i)=1;
-    else xinit(j,i)=0;
+    if(xinit(j,i)>Vf) 
+      xinit(j,i)=1;
+    else
+      xinit(j,i)=0;
     end
   end
 end
@@ -206,5 +208,8 @@ end
 
 function xinit = design2(nx, ny)
 xinit(1:ny, 1:nx) = 0;
-xinit(1,1)=xinit(ny,1)=xinit(1,nx)=xinit(ny, nx)=1;
+xinit(1,1)=1;
+xinit(ny,1)=1;
+xinit(1,nx)=1;
+xinit(ny, nx)=1;
 end
