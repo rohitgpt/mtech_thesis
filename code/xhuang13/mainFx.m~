@@ -1,12 +1,11 @@
 function mainFx(L, H, Vf, nx, ny)
-
 delta = 0.1; %change in volume in every iteration
 rmin = 3;     %for mesh independent filter
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 x = design1(nx, ny);
 % x = design2(nx, ny);
-E = [1 0.01];
+E = [1 0.1];
 
 a = 25e-6; b = 25e-6;
 % n = {@(x,y)(a-x)*(b+y)/(4*a*b), @(x,y)(a+x)*(b+y)/(4*a*b), @(x,y)(a+x)*(b-y)/(4*a*b), @(x,y)(a-x)*(b-y)/(4*a*b)};
@@ -22,7 +21,7 @@ vx = @(a,b)[-a  b;
              a  b;
              a -b;
             -a -b];
-b1 = integQuad(@(x,y)B(x,y,a,b), vx(a,b))
+b1 = integQuad(@(x,y)B(x,y,a,b), vx(a,b));
 KE = integQuad(ke, vx(a,b));
 
 prev_C=1e10;
@@ -42,7 +41,7 @@ while (prev_C-C)/C>0.05 || v~=Vf
   disp(C);
 %   disp(prev_C);
   s = sensitivity(nx, ny, x, L, H, D, E, u, B, vx, U);
-%   disp(s);
+  disp(s);
   s_filtered = apply_filter(nx, ny, s, rmin);
 %   disp(s_filtered);
   avg_s = 0.5*(s_filtered + prev_s);
@@ -171,7 +170,8 @@ U = sparse(2*(L+1)*(H+1), 1);
 K = sparse(2*(L+1)*(H+1),2*(L+1)*(H+1));
 F = sparse(2*(L+1)*(H+1), 1);
 a = 1e-2; b = 1e-2;
-disp(Dh);
+syms x y;
+% disp(B(x,y,a,b));
 %KE is calculated every iteration as Dh is changes every iteration
 KE = integQuad(@(x,y)B(x,y,a,b)'*Dh*B(x,y,a,b), vx(a,b));
 % disp(KE);
@@ -229,14 +229,16 @@ for i=1:nx
     %once and for different element it is multiplied by the relative
     %density of element
     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+%     det(k(dof,dof))
     %load is assembly of elemental loads corresponding to the eqn (5) in
     %the paper. le (elemental load) is calculated once and multiplied by
     %relative density for every element.
     load(dof, :) = load(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*le;
   end
 end
-disp(det(k));
-u = k\load;
+% disp(det(ke));
+% disp(det(k));
+u = double(k)\double(load);
 % disp(u);
 end
 %% Initial designs for the micro FEM
