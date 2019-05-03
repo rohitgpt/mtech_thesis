@@ -47,8 +47,9 @@ while abs((prev_C-C)/C)>0.05 || v~=Vf
 %   disp(C);
 %   disp(prev_C);
   s = sensitivity(nx, ny, L, H, Ddash, b, u, B, U);
+  disp(s);
   s_filtered = apply_filter(nx, ny, s, rmin);
-
+  disp(s_filtered);
   avg_s = 0.5*(s_filtered + prev_s);
   prev_s = avg_s;
 
@@ -121,7 +122,7 @@ end
 end
 
 function plot_fig(x)
-disp(x);
+% disp(x);
 figure(1)
 colormap(gray);
 imagesc(1-x);

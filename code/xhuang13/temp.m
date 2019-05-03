@@ -39,6 +39,7 @@
 %     Out{k1} = ColNrs(Idx(RowNrSort == k1));
 % end
 % ot = [Out{1}, Out{2}, Out{3}]
+sf = apply_filter(
 
 function s_filtered = apply_filter(nx, ny, s, rmin)
 s_filtered = zeros(size(s));
