@@ -27,18 +27,18 @@ Ddash = 1/(1-nu^2)*[1   nu  0;
                     nu  1   0;
                     0   0   (1-nu)/2;];
 KE = double(int(int(B'*Ddash*B, xa, -alpha, alpha), ya, -beta, beta));
-b = double(int(int(B, xa, -alpha, alpha), ya, -beta, beta));
-% b = 1/4*(subs(subs(B, xa, -alpha*gauss), ya, -beta*gauss) + ...
-% subs(subs(B, xa, alpha*gauss), ya, -beta*gauss) + ...
-% subs(subs(B, xa, alpha*gauss), ya, beta*gauss) + ...
-% subs(subs(B, xa, -alpha*gauss), ya, beta*gauss));
+b = double(int(int(B'*Ddash*B, xa, -alpha, alpha), ya, -beta, beta))
+b = 1/4*(subs(subs(B, xa, -alpha*gauss), ya, -beta*gauss) + ...
+subs(subs(B, xa, alpha*gauss), ya, -beta*gauss) + ...
+subs(subs(B, xa, alpha*gauss), ya, beta*gauss) + ...
+subs(subs(B, xa, -alpha*gauss), ya, beta*gauss));
 
 prev_C=1e10;
 prev_s = zeros(ny, nx);
 C = 1e5;
 count=0;
 v = sum(x(:))/(nx*ny);
-while (prev_C-C)/C>0.05 || v~=Vf
+while abs((prev_C-C)/C)>0.05 || v~=Vf
   prev_C = C;
   count=count+1;
   plot_fig(x);
@@ -159,13 +159,14 @@ fixed_dofs = 1:2*(H+1);
 free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
-% disp(det(K(free_dofs, free_dofs)));
-disp(U);
+disp(det(K(free_dofs, free_dofs)));
+% disp(max(U));
 C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
 function Dh = homogenization(nx, ny, x, b, u, D, E)
 Dh =  zeros(3,3); %initialising Dh to be 3x3
+b
 for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
@@ -174,6 +175,7 @@ for i=1:nx
     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b*u(dof, :));         %
   end
 end
+D
 Dh = double(Dh*D/(nx*ny));
 end
 %% Perform microFEM
@@ -206,7 +208,7 @@ for i=1:nx
 end
 
 u = k\load;
-% disp(u);
+disp(u);
 end
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)

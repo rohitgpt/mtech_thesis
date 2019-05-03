@@ -39,21 +39,50 @@
 %     Out{k1} = ColNrs(Idx(RowNrSort == k1));
 % end
 % ot = [Out{1}, Out{2}, Out{3}]
-sf = apply_filter(
 
-function s_filtered = apply_filter(nx, ny, s, rmin)
-s_filtered = zeros(size(s));
-for i=1:nx
-  for j=1:ny
-    total = 0;
-    for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
-      for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
-        weight = rmin-sqrt((i-k)^2+(j-l)^2);
-        s_filtered(j, i) = s(l, k)*weight;
-        total = total + weight;
-      end
-    end
-    s_filtered(j, i) = s_filtered(j, i)/total;
-  end
-end
-end
+% syms xa ya;
+% alpha = 25e-6;
+% beta = 25e-6;
+% global gauss;
+% gauss = 0.57735;
+% n = 1/(4*alpha*beta)*[(alpha-xa)*(beta-ya) (alpha+xa)*(beta-ya) (alpha+xa)*(beta+ya) (alpha-xa)*(beta+ya)];
+% % n = 1/(4*alpha*beta)*[(alpha-xa)*(beta+ya) (alpha+xa)*(beta+ya) ...
+% %                       (alpha+xa)*(beta-ya) (alpha-xa)*(beta-ya)];
+% B = sym('b', [3 8]);
+% for i=1:4
+%   B(1:3,i*2-1:i*2) = [diff(n(i), xa)  0;...
+%                       0               diff(n(i), ya);...
+%                       diff(n(i), ya)  diff(n(i),xa);...
+%                       ];
+% end
+% nu=0.3;
+% Ddash = 1/(1-nu^2)*[1   nu  0;
+%                     nu  1   0;
+%                     0   0   (1-nu)/2;];
+% KE = double(int(int(B'*Ddash*B, xa, -alpha, alpha), ya, -beta, beta));
+% b = double(int(int(B, xa, -alpha, alpha), ya, -beta, beta))
+% b = subs(subs(B, xa, -alpha*gauss)+subs(B, xa, alpha*gauss), ya, -beta*gauss) + ...
+%     subs(subs(B, xa, -alpha*gauss)+subs(B, xa, alpha*gauss), ya, beta*gauss)
+  
+  
+F=@(x,y) 2*exp(x+y.^2).*y; %present function
+xmin=0; % rectangle dimensions
+xmax=1;
+ymin=0;
+ymax=1;
+% -----------------------------------------------
+% In order to create a rectangular mesh in Matlab
+% we can make the following procedure
+% -----------------------------------------------
+
+numDiv=4; %number of subdivisions
+hx=(xmax-xmin)/numDiv;
+hy=(ymax-ymin)/numDiv;
+xi=xmin:hx:xmax; %all points in the x-axis
+eta=ymin:hy:ymax; %all points in the y-axis
+[X,Y] = meshgrid(xi,eta); % create a grid of points
+Z = F(X,Y); % function values
+surf(X,Y,Z); % optional: is just to visualize the result
+[elem,vertex] = surf2patch(X,Y,Z); % the main variables
+numElem=size(elem,1) %total number of elements
+numVert= size(vertex,1) % total number of vertices
