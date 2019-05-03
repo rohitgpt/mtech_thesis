@@ -83,7 +83,7 @@ for i=1:nx
     for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
       for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
         weight = rmin-sqrt((i-k)^2+(j-l)^2);
-        s_filtered(j, i) = s(l, k)*weight;
+        s_filtered(j, i) = s_filtered(j, i)+s(l, k)*weight;
         total = total + weight;
       end
     end
