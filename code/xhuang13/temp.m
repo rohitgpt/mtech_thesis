@@ -203,3 +203,4 @@ disp(det(KE))
 %     end
 %     valInteg = suma;
 % end
+

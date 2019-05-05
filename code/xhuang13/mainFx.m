@@ -37,7 +37,7 @@ while (prev_C-C)/C>0.01 || v~=Vf
   tic;
   prev_C = C;
   count=count+1;
-  u = microFEM(nx, ny, x, KE, b1, D, E);
+  u = microFEM(nx, ny, x, KE, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
   [C, U] = macroFEM(L, H, Dh, B, vx);
@@ -217,39 +217,154 @@ end
 Dh = double(Dh*D/(nx*ny));
 end
 %% Perform microFEM
-function u = microFEM(nx, ny, x, ke, b1, D, E)
-le = b1'*D;
-%sparse matrices are causing error
-load = zeros(2*(nx+1)*(ny+1),3);
+function u = microFEM(nx, ny, x, ke, E)
+a = 25e-6; b = 25e-6;
 k = zeros(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
-
-% load = sparse(2*(nx+1)*(ny+1), 3);
-% k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
-% u = sparse(2*(nx+1)*(ny+1), 3);
 
 for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-%     disp(dof);
     %k is the assembly of elemental stiffness matrices
     %every elemental stiffness matrix is identical, i.e. ke is calculated
     %once and for different element it is multiplied by the relative
     %density of element
     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
-%     det(k(dof,dof))
-    %load is assembly of elemental loads corresponding to the eqn (5) in
-    %the paper. le (elemental load) is calculated once and multiplied by
-    %relative density for every element.
-    load(dof, :) = load(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*le;
   end
 end
-% disp(det(ke));
-% disp(det(k));
-u = double(k)\double(load);
-% disp(u);
+
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+vs = (4*(ny+1)):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+ve = (2*(ny+1)*(nx+1)-2*ny+2):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+vn = (2*(ny+1)+2):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+vw = 4:2:2*ny;
+%------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
+C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny), 1);
+Q(1:length(uw), :)        =2*a;
+C(1:length(uw), uw)       =1;     
+C(1:length(uw), ue)       =-1;    l=length(uw);
+Q(l+1:l+length(uw), :)    =0;
+C(l+1:l+length(uw), uw+1) =1;     
+C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+Q(l+1:l+length(un), :)    =0;
+C(l+1:l+length(un), un)   =1;     
+C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+Q(l+1:l+length(un), :)    =0;
+C(l+1:l+length(un), un+1) =1;     
+C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+Q(l+1:l+2, :)             =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=0
+C(l+1:l+2, 1:2)           = 1;    l=l+2;
+Q(l+1)                    =2*a;   %B, uB=2*a*du/dx=a, vB=2*a*dv/dx=0
+Q(l+2)                    =0;
+C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+Q(l+1)                    =2*a;   %C, uC=2*a*du/dx+2*b*du/dy=a, vC=2*a*dv/dx+2*b*dv/dy=0
+Q(l+2)                    =0;
+C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+
+alpha=1e8;
+u1=(k+alpha*C'*C)\(C'*Q);
+%------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
+C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny), 1);
+Q(1:length(uw), :)        =0;
+C(1:length(uw), uw)       =1;     
+C(1:length(uw), ue)       =-1;    l=length(uw);
+Q(l+1:l+length(uw), :)    =0;
+C(l+1:l+length(uw), uw+1) =1;     
+C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+Q(l+1:l+length(un), :)    =0;
+C(l+1:l+length(un), un)   =1;     
+C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+Q(l+1:l+length(un), :)    =2*b;
+C(l+1:l+length(un), un+1) =1;     
+C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+Q(l+1)                    =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=2*b
+Q(l+2)                    =2*b;   
+C(l+1:l+2, 1:2)           = 1;    l=l+2;
+Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=0
+Q(l+2)                    =0;
+C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+Q(l+1)                    =0;   %C, uC=2*a*du/dx+2*b*du/dy=0, vC=2*a*dv/dx+2*b*dv/dy=2*b
+Q(l+2)                    =2*b;
+C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+
+alpha=1e8;
+u2=(k+alpha*C'*C)\(C'*Q);
+%------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
+C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny), 1);
+Q(1:length(uw), :)        =0;
+C(1:length(uw), uw)       =1;     
+C(1:length(uw), ue)       =-1;    l=length(uw);
+Q(l+1:l+length(uw), :)    =a;
+C(l+1:l+length(uw), uw+1) =1;     
+C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+Q(l+1:l+length(un), :)    =b;
+C(l+1:l+length(un), un)   =1;     
+C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+Q(l+1:l+length(un), :)    =2*b;
+C(l+1:l+length(un), un+1) =1;     
+C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+Q(l+1)                    =b;     %D, uD=2*b*du/dy=b, vD=2*b*dv/dy=0
+Q(l+2)                    =0;   
+C(l+1:l+2, 1:2)           = 1;    l=l+2;
+Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=a
+Q(l+2)                    =a;
+C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+Q(l+1)                    =b;     %C, uC=2*a*du/dx+2*b*du/dy=b, vC=2*a*dv/dx+2*b*dv/dy=a
+Q(l+2)                    =a;
+C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+
+alpha=1e8;
+u3=(k+alpha*C'*C)\(C'*Q);
+
+u = [u1 u2 u3];
 end
+% %% Perform microFEM
+% function u = microFEM(nx, ny, x, ke, b1, D, E)
+% le = b1'*D;
+% %sparse matrices are causing error
+% load = zeros(2*(nx+1)*(ny+1),3);
+% k = zeros(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+% 
+% % load = sparse(2*(nx+1)*(ny+1), 3);
+% % k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+% % u = sparse(2*(nx+1)*(ny+1), 3);
+% 
+% for i=1:nx
+%   for j=1:ny
+%     n1 = (ny+1)*(i-1)+j;
+%     n2 = (ny+1)*i+j;
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+% %     disp(dof);
+%     %k is the assembly of elemental stiffness matrices
+%     %every elemental stiffness matrix is identical, i.e. ke is calculated
+%     %once and for different element it is multiplied by the relative
+%     %density of element
+%     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+% %     det(k(dof,dof))
+%     %load is assembly of elemental loads corresponding to the eqn (5) in
+%     %the paper. le (elemental load) is calculated once and multiplied by
+%     %relative density for every element.
+%     load(dof, :) = load(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*le;
+%   end
+% end
+% % disp(det(ke));
+% % disp(det(k));
+% u = double(k)\double(load);
+% % disp(u);
+% end
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);
