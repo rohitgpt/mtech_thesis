@@ -242,6 +242,10 @@ un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
 vn = (2*(ny+1)+2):2*(ny+1):2*(ny+1)*nx;
 uw = 3:2:2*ny;
 vw = 4:2:2*ny;
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+
 %------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny), 1);
@@ -257,22 +261,25 @@ C(l+1:l+length(un), us)   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =0;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-Q(l+1:l+2, :)             =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=0
-C(l+1:l+2, 1:2)           = 1;    l=l+2;
-Q(l+1)                    =2*a;   %B, uB=2*a*du/dx=a, vB=2*a*dv/dx=0
-Q(l+2)                    =0;
-C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-Q(l+1)                    =2*a;   %C, uC=2*a*du/dx+2*b*du/dy=a, vC=2*a*dv/dx+2*b*dv/dy=0
-Q(l+2)                    =0;
-C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-
+% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+% Q(l+1:l+2, :)             =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=0
+% C(l+1:l+2, 1:2)           = 1;    l=l+2;
+% Q(l+1)                    =2*a;   %B, uB=2*a*du/dx=a, vB=2*a*dv/dx=0
+% Q(l+2)                    =0;
+% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+% Q(l+1)                    =2*a;   %C, uC=2*a*du/dx+2*b*du/dy=a, vC=2*a*dv/dx+2*b*dv/dy=0
+% Q(l+2)                    =0;
+% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+u1 = zeros(2*(nx+1)*(ny+1),1);
+u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
 alpha=1e8;
-u1=(k+alpha*C'*C)\(C'*Q);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u1(freedofs, :)=kdash\(C(:, freedofs)'*Q);
+
 %------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
-C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
-Q = zeros(2*(nx+ny), 1);
+C = zeros(2*(nx+ny)-8, 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny)-8, 1);
 Q(1:length(uw), :)        =0;
 C(1:length(uw), uw)       =1;     
 C(1:length(uw), ue)       =-1;    l=length(uw);
@@ -285,20 +292,22 @@ C(l+1:l+length(un), us)   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =2*b;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-Q(l+1)                    =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=2*b
-Q(l+2)                    =2*b;   
-C(l+1:l+2, 1:2)           = 1;    l=l+2;
-Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=0
-Q(l+2)                    =0;
-C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-Q(l+1)                    =0;   %C, uC=2*a*du/dx+2*b*du/dy=0, vC=2*a*dv/dx+2*b*dv/dy=2*b
-Q(l+2)                    =2*b;
-C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-
+% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+% Q(l+1)                    =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=2*b
+% Q(l+2)                    =2*b;   
+% C(l+1:l+2, 1:2)           = 1;    l=l+2;
+% Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=0
+% Q(l+2)                    =0;
+% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+% Q(l+1)                    =0;   %C, uC=2*a*du/dx+2*b*du/dy=0, vC=2*a*dv/dx+2*b*dv/dy=2*b
+% Q(l+2)                    =2*b;
+% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+u2 = zeros(2*(nx+1)*(ny+1),1);
+u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
 alpha=1e8;
-u2=(k+alpha*C'*C)\(C'*Q);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u2(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 %------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny), 1);
@@ -314,20 +323,22 @@ C(l+1:l+length(un), us)   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =2*b;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-Q(l+1)                    =b;     %D, uD=2*b*du/dy=b, vD=2*b*dv/dy=0
-Q(l+2)                    =0;   
-C(l+1:l+2, 1:2)           = 1;    l=l+2;
-Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=a
-Q(l+2)                    =a;
-C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-Q(l+1)                    =b;     %C, uC=2*a*du/dx+2*b*du/dy=b, vC=2*a*dv/dx+2*b*dv/dy=a
-Q(l+2)                    =a;
-C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-
+% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
+% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
+% Q(l+1)                    =b;     %D, uD=2*b*du/dy=b, vD=2*b*dv/dy=0
+% Q(l+2)                    =0;   
+% C(l+1:l+2, 1:2)           = 1;    l=l+2;
+% Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=a
+% Q(l+2)                    =a;
+% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
+% Q(l+1)                    =b;     %C, uC=2*a*du/dx+2*b*du/dy=b, vC=2*a*dv/dx+2*b*dv/dy=a
+% Q(l+2)                    =a;
+% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
+u3 = zeros(2*(nx+1)*(ny+1),1);
+u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
 alpha=1e8;
-u3=(k+alpha*C'*C)\(C'*Q);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u3(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 
 u = [u1 u2 u3];
 end
