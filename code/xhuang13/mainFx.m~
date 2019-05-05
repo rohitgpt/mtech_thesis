@@ -1,14 +1,17 @@
 function mainFx(L, H, Vf, nx, ny)
-delta = 0.1; %change in volume in every iteration
+delta = 0.02; %change in volume in every iteration
 rmin = 3;     %for mesh independent filter
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 x = design1(nx, ny);
 % x = design2(nx, ny);
-E = [1 0.1];
+E = [1 0.01];
 
 a = 25e-6; b = 25e-6;
-% n = {@(x,y)(a-x)*(b+y)/(4*a*b), @(x,y)(a+x)*(b+y)/(4*a*b), @(x,y)(a+x)*(b-y)/(4*a*b), @(x,y)(a-x)*(b-y)/(4*a*b)};
+% n = {@(x,y)(a-x)*(b+y)/(4*a*b);
+%         @(x,y)(a+x)*(b+y)/(4*a*b);
+%         @(x,y)(a+x)*(b-y)/(4*a*b);
+%         @(x,y)(a-x)*(b-y)/(4*a*b)};
 B = @(x,y,a,b)[ - b - y,       0, b + y,     0,   b - y,       0, y - b,     0;
               0,   a - x,     0, a + x,       0, - a - x,     0, x - a;
               a - x, - b - y, a + x, b + y, - a - x,   b - y, x - a, y - b]/(4*a*b);
@@ -26,13 +29,14 @@ KE = integQuad(ke, vx(a,b));
 
 prev_C=1e10;
 prev_s = zeros(ny, nx);
+prev_s1 = zeros(ny, nx);
 C = 1e5;
 count=0;
 v = sum(x(:))/(nx*ny);
-while (prev_C-C)/C>0.05 || v~=Vf
+while (prev_C-C)/C>0.01 || v~=Vf
+  tic;
   prev_C = C;
   count=count+1;
-  plot_fig(x);
   u = microFEM(nx, ny, x, KE, b1, D, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
@@ -41,34 +45,38 @@ while (prev_C-C)/C>0.05 || v~=Vf
   disp(C);
 %   disp(prev_C);
   s = sensitivity(nx, ny, x, L, H, D, E, u, B, vx, U);
-  disp(s);
+%   disp(s);
   s_filtered = apply_filter(nx, ny, s, rmin);
 %   disp(s_filtered);
-  avg_s = 0.5*(s_filtered + prev_s);
+  avg_s = 0.33*(s_filtered + prev_s+prev_s1);
   prev_s = avg_s;
-
+  prev_s1 = prev_s;
+  
   if v>Vf
     if v*(1-delta)<Vf
       v = Vf;
     else
-      v = v*(1-delta);
+      v = v-delta;
     end
   else
     if v*(1+delta)>Vf
       v = Vf;
     else
-      v = v*(1+delta);
+      v = v+delta;
     end
   end
-
+%   disp(avg_s);
   [~, index] = sort(avg_s(:), 'descend');
   y = zeros(nx*ny, 1);
   y(index(1:ceil(v*(nx*ny))))=1;
   x = reshape(y, ny, nx);
+%   disp(x);
+  toc;
 end
+plot_fig(x);
 
 end
-
+%%
 function valInteg = integQuad(F,vertices)
     w = [1 1 1 1];
     ptGaussRef =[-0.5774   -0.5774;
@@ -114,7 +122,7 @@ function valInteg = integQuad(F,vertices)
     end
     valInteg = suma;
 end
-
+%%
 function s_filtered = apply_filter(nx, ny, s, rmin)
 s_filtered = zeros(size(s));
 for i=1:nx
@@ -131,7 +139,7 @@ for i=1:nx
   end
 end
 end
-
+%%
 function s = sensitivity(nx, ny, x, L, H, D, E, u, B, vx, U)
 s(1:ny, 1:nx) = 1;
 for i=1:nx
@@ -152,16 +160,17 @@ for i=1:nx
         temp = temp + U(dof, 1)'*t1*U(dof,1);
       end
     end
-    s(j, i) = x(j, i)*temp;
+    s(j, i) = temp;
   end
 end
 end
 %% Plotting
 function plot_fig(x)
 % disp(x);
-figure(1)
+a = figure(1);
 colormap(gray);
 imagesc(1-x);
+saveas(a,'1');
 pause(1);
 end
 %% Perform macro FEM 
@@ -252,9 +261,9 @@ x = reshape(y, ny, nx);
 end
 
 function xinit = design1(nx, ny)
-xinit(1:ny, 1:nx) = 1;
+xinit(1:ny, 1:nx) = 0;
 xmid = ceil(nx/2); ymid=ceil(ny/2);
-xinit(ymid:ymid+1,xmid:xmid+1) = 0;
+xinit(ymid:ymid+1,xmid:xmid+1) = 1;
 end
 
 function xinit = design2(nx, ny)
