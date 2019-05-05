@@ -1,5 +1,5 @@
 function mainFx(L, H, Vf, nx, ny)
-delta = 0.02; %change in volume in every iteration
+delta = 0.1; %change in volume in every iteration
 rmin = 3;     %for mesh independent filter
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
@@ -56,15 +56,16 @@ while (prev_C-C)/C>0.01 || v~=Vf
     if v*(1-delta)<Vf
       v = Vf;
     else
-      v = v-delta;
+      v = v*(1-delta);
     end
   else
     if v*(1+delta)>Vf
       v = Vf;
     else
-      v = v+delta;
+      v = v*(1+delta);
     end
   end
+  disp(v); 
 %   disp(avg_s);
   [~, index] = sort(avg_s(:), 'descend');
   y = zeros(nx*ny, 1);

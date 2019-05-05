@@ -62,9 +62,10 @@ while (prev_C-C)/C>0.01 || v~=Vf
     if v*(1+delta)>Vf
       v = Vf;
     else
-      v = v+delta;
+      v = v*(1+delta);
     end
   end
+  disp(v); 
 %   disp(avg_s);
   [~, index] = sort(avg_s(:), 'descend');
   y = zeros(nx*ny, 1);
@@ -275,7 +276,7 @@ u1 = zeros(2*(nx+1)*(ny+1),1);
 u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
 alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u1(freedofs, :)=kdash\(C(:, freedofs)'*Q(:, freedofs));
+u1(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 
 %------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
 C = zeros(2*(nx+ny)-8, 2*(nx+1)*(ny+1));
@@ -307,7 +308,7 @@ u2 = zeros(2*(nx+1)*(ny+1),1);
 u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
 alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u2(freedofs, :)=kdash\(C(:, freedofs)'*Q(freedofs,:));
+u2(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 %------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny), 1);
@@ -338,7 +339,7 @@ u3 = zeros(2*(nx+1)*(ny+1),1);
 u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
 alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u3(freedofs, :)=kdash\(C(:, freedofs)'*Q(freedofs, :));
+u3(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 
 u = [u1 u2 u3];
 end
