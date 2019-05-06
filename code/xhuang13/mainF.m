@@ -1,32 +1,31 @@
-function mainFx(L, H, Vf, nx, ny)
-E = [1 0.01];
+function mainF(L, H, Vf, nx, ny)
 delta = 0.1; %change in volume in every iteration
 rmin = 3;     %for mesh independent filter
-a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
-am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 x = design1(nx, ny);
 % x = design2(nx, ny);
+E = [1 0.01];
 
+a = 25e-6; b = 25e-6;
 % n = {@(x,y)(a-x)*(b+y)/(4*a*b);
 %       @(x,y)(a+x)*(b+y)/(4*a*b);
 %       @(x,y)(a+x)*(b-y)/(4*a*b);
 %       @(x,y)(a-x)*(b-y)/(4*a*b)};
-B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
-                0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
-                a - x,    - b - y,a + x,    b + y,  - a - x,  b - y,   x - a,   y - b]/(4*a*b);
+B = @(x,y,a,b)[ - b - y,       0, b + y,     0,   b - y,       0, y - b,     0;
+              0,   a - x,     0, a + x,       0, - a - x,     0, x - a;
+              a - x, - b - y, a + x, b + y, - a - x,   b - y, x - a, y - b]/(4*a*b);
 nu=0.3;
 D = 1/(1-nu^2)*[1   nu  0;
                 nu  1   0;
                 0   0   (1-nu)/2;];
-ke = @(x,y) B(x,y,am,bm)'*D*B(x,y,am,bm);
+ke = @(x,y) B(x,y,a,b)'*D*B(x,y,a,b);
 vx = @(a,b)[-a  b;
              a  b;
              a -b;
             -a -b];
-b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
-KE = integQuad(ke, vx(am,bm));
+b1 = integQuad(@(x,y)B(x,y,a,b), vx(a,b));
+KE = integQuad(ke, vx(a,b));
 
 prev_C=1e10;
 prev_s = zeros(ny, nx);
@@ -38,14 +37,14 @@ while (prev_C-C)/C>0.01 || v~=Vf
   tic;
   prev_C = C;
   count=count+1;
-  u = microFEM(nx, ny, am, bm, x, KE, E);
+  u = microFEM(nx, ny, x, KE, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
-  [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
-
+  [C, U] = macroFEM(L, H, Dh, B, vx);
+%   disp(abs((prev_C-C)/C));
   disp(C);
-
-  s = sensitivity(nx, ny, a, b, L, H, D, E, u, B, vx, U);
+%   disp(prev_C);
+  s = sensitivity(nx, ny, x, L, H, D, E, u, B, vx, U);
 %   disp(s);
   s_filtered = apply_filter(nx, ny, s, rmin);
 %   disp(s_filtered);
@@ -142,15 +141,16 @@ for i=1:nx
 end
 end
 %%
-function s = sensitivity(nx, ny, a, b, L, H, D, E, u, B, vx, U)                %
+function s = sensitivity(nx, ny, x, L, H, D, E, u, B, vx, U)                %
 s(1:ny, 1:nx) = 1;
-am = a/nx; bm = b/ny;
 for i=1:nx
   for j=1:ny
+    a = 25e-6; b = 25e-6;
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+    t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,a,b)*u(dof,:))'*D*(eye(3)-B(x,y,a,b)*u(dof,:)), vx(a,b));
+    a = 1e-2; b = 1e-2;
     t1 = integQuad(@(x,y)B(x,y,a,b)'*t2*B(x,y,a,b), vx(a,b));
     temp = 0;
     for l=1:L
@@ -175,11 +175,12 @@ saveas(a,'1');
 pause(1);
 end
 %% Perform macro FEM 
-function [C, U] = macroFEM(L, H, a, b, Dh, B, vx)
+function [C, U] = macroFEM(L, H, Dh, B, vx)
 U = sparse(2*(L+1)*(H+1), 1);
 K = sparse(2*(L+1)*(H+1),2*(L+1)*(H+1));
 F = sparse(2*(L+1)*(H+1), 1);
-
+a = 1e-2; b = 1e-2;
+syms x y;
 % disp(B(x,y,a,b));
 %KE is calculated every iteration as Dh is changes every iteration
 KE = integQuad(@(x,y)B(x,y,a,b)'*Dh*B(x,y,a,b), vx(a,b));
@@ -217,8 +218,8 @@ end
 Dh = double(Dh*D/(nx*ny));
 end
 %% Perform microFEM
-function u = microFEM(nx, ny, am, bm, x, ke, E)
-a = am; b = bm;
+function u = microFEM(nx, ny, x, ke, E)
+a = 25e-6; b = 25e-6;
 k = zeros(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
 
 for i=1:nx
@@ -245,7 +246,6 @@ vw = 4:2:2*ny;
 fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
             2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
-alpha=1e8;
 
 %------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
@@ -274,10 +274,10 @@ C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
 % C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
 u1 = zeros(2*(nx+1)*(ny+1),1);
 u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
-r = zeros(size(u1));
-r = r - k(:, fixeddofs)*u1(fixeddofs,:);
+alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u1(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u1(freedofs, :)=kdash\(C(:, freedofs)'*Q);
+
 %------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
 C = zeros(2*(nx+ny)-8, 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny)-8, 1);
@@ -306,10 +306,9 @@ C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
 % C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
 u2 = zeros(2*(nx+1)*(ny+1),1);
 u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
-r = zeros(size(u2));
-r = r - k(:, fixeddofs)*u2(fixeddofs,:);
+alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u2(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u2(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 %------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny), 1);
@@ -338,13 +337,46 @@ C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
 % C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
 u3 = zeros(2*(nx+1)*(ny+1),1);
 u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
-r = zeros(size(u3));
-r = r - k(:, fixeddofs)*u3(fixeddofs,:);
+alpha=1e8;
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u3(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u3(freedofs, :)=kdash\(C(:, freedofs)'*Q);
 
 u = [u1 u2 u3];
 end
+% %% Perform microFEM
+% function u = microFEM(nx, ny, x, ke, b1, D, E)
+% le = b1'*D;
+% %sparse matrices are causing error
+% load = zeros(2*(nx+1)*(ny+1),3);
+% k = zeros(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+% 
+% % load = sparse(2*(nx+1)*(ny+1), 3);
+% % k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+% % u = sparse(2*(nx+1)*(ny+1), 3);
+% 
+% for i=1:nx
+%   for j=1:ny
+%     n1 = (ny+1)*(i-1)+j;
+%     n2 = (ny+1)*i+j;
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+% %     disp(dof);
+%     %k is the assembly of elemental stiffness matrices
+%     %every elemental stiffness matrix is identical, i.e. ke is calculated
+%     %once and for different element it is multiplied by the relative
+%     %density of element
+%     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+% %     det(k(dof,dof))
+%     %load is assembly of elemental loads corresponding to the eqn (5) in
+%     %the paper. le (elemental load) is calculated once and multiplied by
+%     %relative density for every element.
+%     load(dof, :) = load(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*le;
+%   end
+% end
+% % disp(det(ke));
+% % disp(det(k));
+% u = double(k)\double(load);
+% % disp(u);
+% end
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);
