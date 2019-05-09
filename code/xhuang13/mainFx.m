@@ -1,7 +1,8 @@
 function mainFx(L, H, Vf, nx, ny)
-E = [1 0.01];
-delta = 0.1; %change in volume in every iteration
-rmin = 3;     %for mesh independent filter
+tic;
+E = [1 1e-4];
+delta = 0.02; %change in volume in every iteration
+rmin = min([7,nx,ny]);     %for mesh independent filter
 a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 
@@ -30,12 +31,10 @@ KE = integQuad(ke, vx(am,bm));
 
 prev_C=1e10;
 prev_s = zeros(ny, nx);
-prev_s1 = zeros(ny, nx);
 C = 1e5;
 count=0;
 v = sum(x(:))/(nx*ny);
 while (prev_C-C)/C>0.01 || v~=Vf
-  tic;
   prev_C = C;
   count=count+1;
   u = microFEM(nx, ny, am, bm, x, KE, E);
@@ -43,15 +42,10 @@ while (prev_C-C)/C>0.01 || v~=Vf
   Dh = homogenization(nx, ny, x, b1, u, D, E);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
 
-  disp(C);
-
-  s = sensitivity(nx, ny, a, b, L, H, D, E, u, B, vx, U);
-%   disp(s);
+  s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
-%   disp(s_filtered);
-  avg_s = 0.33*(s_filtered + prev_s+prev_s1);
+  avg_s = 0.5*(s_filtered + prev_s);
   prev_s = avg_s;
-  prev_s1 = prev_s;
   
   if v>Vf
     if v*(1-delta)<Vf
@@ -66,18 +60,31 @@ while (prev_C-C)/C>0.01 || v~=Vf
       v = v*(1+delta);
     end
   end
-  disp(v); 
-%   disp(avg_s);
+  
   [~, index] = sort(avg_s(:), 'descend');
   y = zeros(nx*ny, 1);
   y(index(1:ceil(v*(nx*ny))))=1;
   x = reshape(y, ny, nx);
-%   disp(x);
   toc;
-end
-plot_fig(x);
+  plot_fig(x, count);
 
 end
+end
+
+function plot_result(nx, ny, x, u)
+[X, Y] = meshgrid(1:nx+1, 1:ny+1);
+Y = flipud(Y);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+% disp(u);
+C = ones(ny+1, nx+1);
+C(1:ny, 1:nx) = x;
+figure(2);
+pcolor(X1, Y1, C);
+colormap(gray);
+% plot(X,Y);
+end
+
 %%
 function valInteg = integQuad(F,vertices)
     w = [1 1 1 1];
@@ -130,9 +137,24 @@ s_filtered = zeros(size(s));
 for i=1:nx
   for j=1:ny
     total = 0;
-    for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
-      for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
-        weight = rmin-sqrt((i-k)^2+(j-l)^2);
+    for p=i-rmin:i+rmin
+      for q=j-rmin:j+rmin
+        if(p<1) 
+          k=nx+p; 
+        elseif p>nx 
+          k=p-nx;
+        else
+          k=p;
+        end
+        if(q<1) 
+          l=ny+q;
+        elseif q>ny 
+          l=q-ny;
+        else
+          l=q;
+        end          
+        weight = rmin-sqrt((i-p)^2+(j-q)^2);
+%         disp([k,l]);
         s_filtered(j, i) = s_filtered(j, i)+s(l, k)*weight;
         total = total + weight;
       end
@@ -142,7 +164,24 @@ for i=1:nx
 end
 end
 %%
-function s = sensitivity(nx, ny, a, b, L, H, D, E, u, B, vx, U)                %
+% function s_filtered = apply_filter(nx, ny, s, rmin)
+% s_filtered = zeros(size(s));
+% for i=1:nx
+%   for j=1:ny
+%     total = 0;
+%     for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
+%       for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
+%         weight = rmin-sqrt((i-k)^2+(j-l)^2);
+%         s_filtered(j, i) = s_filtered(j, i)+s(l, k)*weight;
+%         total = total + weight;
+%       end
+%     end
+%     s_filtered(j, i) = s_filtered(j, i)/total;
+%   end
+% end
+% end
+%%
+function s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U)                %
 s(1:ny, 1:nx) = 1;
 am = a/nx; bm = b/ny;
 for i=1:nx
@@ -161,18 +200,16 @@ for i=1:nx
         temp = temp + U(dof, 1)'*t1*U(dof,1);
       end
     end
-    s(j, i) = temp;
+    s(j, i) = x(j,i)*temp;
   end
 end
 end
 %% Plotting
-function plot_fig(x)
-% disp(x);
-a = figure(1);
+function plot_fig(x, i)
+a = figure('visible', 'off');
 colormap(gray);
 imagesc(1-x);
-saveas(a,'1');
-pause(1);
+saveas(a,[num2str(i), '.jpg']);
 end
 %% Perform macro FEM 
 function [C, U] = macroFEM(L, H, a, b, Dh, B, vx)
@@ -180,10 +217,9 @@ U = sparse(2*(L+1)*(H+1), 1);
 K = sparse(2*(L+1)*(H+1),2*(L+1)*(H+1));
 F = sparse(2*(L+1)*(H+1), 1);
 
-% disp(B(x,y,a,b));
 %KE is calculated every iteration as Dh is changes every iteration
 KE = integQuad(@(x,y)B(x,y,a,b)'*Dh*B(x,y,a,b), vx(a,b));
-% disp(KE);
+
 for i=1:L
   for j=1:H
     n1 = (H+1)*(i-1)+j;
@@ -199,8 +235,7 @@ fixed_dofs = 1:2*(H+1);
 free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
-% disp(det(K(free_dofs, free_dofs)));
-% disp(U);
+
 C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
@@ -219,7 +254,7 @@ end
 %% Perform microFEM
 function u = microFEM(nx, ny, am, bm, x, ke, E)
 a = am; b = bm;
-k = zeros(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
 
 for i=1:nx
   for j=1:ny
@@ -245,66 +280,48 @@ vw = 4:2:2*ny;
 fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
             2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
-alpha=1e8;
+alpha=1e6;
 
 %------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
-C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
-Q = zeros(2*(nx+ny), 1);
+C = sparse(2*(nx+ny), 2*(nx+1)*(ny+1));
+Q = sparse(2*(nx+ny), 1);
 Q(1:length(uw), :)        =2*a;
-C(1:length(uw), uw)       =1;     
-C(1:length(uw), ue)       =-1;    l=length(uw);
+C(1:length(uw), ue)       =1;    
+C(1:length(uw), uw)       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =0;
-C(l+1:l+length(uw), uw+1) =1;     
-C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+C(l+1:l+length(uw), ue+1) =1;     
+C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =0;
 C(l+1:l+length(un), un)   =1;     
 C(l+1:l+length(un), us)   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =0;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-% Q(l+1:l+2, :)             =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=0
-% C(l+1:l+2, 1:2)           = 1;    l=l+2;
-% Q(l+1)                    =2*a;   %B, uB=2*a*du/dx=a, vB=2*a*dv/dx=0
-% Q(l+2)                    =0;
-% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-% Q(l+1)                    =2*a;   %C, uC=2*a*du/dx+2*b*du/dy=a, vC=2*a*dv/dx+2*b*dv/dy=0
-% Q(l+2)                    =0;
-% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-u1 = zeros(2*(nx+1)*(ny+1),1);
+
+u1 = sparse(2*(nx+1)*(ny+1),1);
 u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
 r = zeros(size(u1));
 r = r - k(:, fixeddofs)*u1(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+% disp(det(kdash));
 u1(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
 %------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
 C = zeros(2*(nx+ny)-8, 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny)-8, 1);
 Q(1:length(uw), :)        =0;
-C(1:length(uw), uw)       =1;     
-C(1:length(uw), ue)       =-1;    l=length(uw);
+C(1:length(uw), ue)       =1;    
+C(1:length(uw), uw)       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =0;
-C(l+1:l+length(uw), uw+1) =1;     
-C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+C(l+1:l+length(uw), ue+1) =1;     
+C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =0;
 C(l+1:l+length(un), un)   =1;     
 C(l+1:l+length(un), us)   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =2*b;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-% Q(l+1)                    =0;     %D, uD=2*b*du/dy=0, vD=2*b*dv/dy=2*b
-% Q(l+2)                    =2*b;   
-% C(l+1:l+2, 1:2)           = 1;    l=l+2;
-% Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=0
-% Q(l+2)                    =0;
-% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-% Q(l+1)                    =0;   %C, uC=2*a*du/dx+2*b*du/dy=0, vC=2*a*dv/dx+2*b*dv/dy=2*b
-% Q(l+2)                    =2*b;
-% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-u2 = zeros(2*(nx+1)*(ny+1),1);
+
+u2 = sparse(2*(nx+1)*(ny+1),1);
 u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
 r = zeros(size(u2));
 r = r - k(:, fixeddofs)*u2(fixeddofs,:);
@@ -314,29 +331,19 @@ u2(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
 C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
 Q = zeros(2*(nx+ny), 1);
 Q(1:length(uw), :)        =0;
-C(1:length(uw), uw)       =1;     
-C(1:length(uw), ue)       =-1;    l=length(uw);
+C(1:length(uw), ue)       =1;    
+C(1:length(uw), uw)       =-1;    l=length(uw); 
 Q(l+1:l+length(uw), :)    =a;
-C(l+1:l+length(uw), uw+1) =1;     
-C(l+1:l+length(uw), ue+1) =-1;    l=l+length(uw);
+C(l+1:l+length(uw), ue+1) =1;     
+C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =b;
 C(l+1:l+length(un), un)   =1;     
 C(l+1:l+length(un), us)   =-1;    l=l+length(un);
-Q(l+1:l+length(un), :)    =2*b;
+Q(l+1:l+length(un), :)    =0;
 C(l+1:l+length(un), un+1) =1;     
 C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
-% Q(l+1:l+2, :)             =0;     %A, uA=0, vA=0;
-% C(l+1:l+2, 2*ny+1:2*ny+2) = 1;    l=l+2;
-% Q(l+1)                    =b;     %D, uD=2*b*du/dy=b, vD=2*b*dv/dy=0
-% Q(l+2)                    =0;   
-% C(l+1:l+2, 1:2)           = 1;    l=l+2;
-% Q(l+1)                    =0;     %B, uB=2*a*du/dx=0, vB=2*a*dv/dx=a
-% Q(l+2)                    =a;
-% C(l+1:l+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1)) = 1;    l=l+2;
-% Q(l+1)                    =b;     %C, uC=2*a*du/dx+2*b*du/dy=b, vC=2*a*dv/dx+2*b*dv/dy=a
-% Q(l+2)                    =a;
-% C(l+1:l+2, 2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2) = 1;    l=l+2;
-u3 = zeros(2*(nx+1)*(ny+1),1);
+
+u3 = sparse(2*(nx+1)*(ny+1),1);
 u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
 r = zeros(size(u3));
 r = r - k(:, fixeddofs)*u3(fixeddofs,:);
@@ -344,7 +351,41 @@ kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
 u3(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
 
 u = [u1 u2 u3];
+plot_result(nx, ny, x, u(:,3));
 end
+
+function [C, Q, u, fixeddofs] = pbc(nx, ny, a, b, strain)
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+vs = (4*(ny+1)):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+ve = (2*(ny+1)*(nx+1)-2*ny+2):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+vn = (2*(ny+1)+2):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+vw = 4:2:2*ny;
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
+
+C = sparse(2*(nx+ny), 2*(nx+1)*(ny+1));
+Q = sparse(2*(nx+ny), 1);
+Q(1:length(uw), :)        =2*a*strain(1);
+C(1:length(uw), ue)       =1;    
+C(1:length(uw), uw)       =-1;    l=length(uw);  
+Q(l+1:l+length(uw), :)    =2*a*strain(3)/2;
+C(l+1:l+length(uw), ue+1) =1;     
+C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
+Q(l+1:l+length(un), :)    =2*b*strain(3)/2;
+C(l+1:l+length(un), un)   =1;     
+C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+Q(l+1:l+length(un), :)    =2*b*strain(2);
+C(l+1:l+length(un), un+1) =1;     
+C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+u = [ 0, 0, ...
+      2*a*strain(1), 2*a*strain(3)/2, ...
+      2*a*strain(1)+2*b*strain(3)/2, 2*a*strain(3)/2+2*b*strain(2),...
+      2*b*strain(3)/2, 2*b*strain(2)]; 
+end
+
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);
@@ -356,9 +397,9 @@ x = reshape(y, ny, nx);
 end
 
 function xinit = design1(nx, ny)
-xinit(1:ny, 1:nx) = 0;
+xinit(1:ny, 1:nx) = 1;
 xmid = ceil(nx/2); ymid=ceil(ny/2);
-xinit(ymid:ymid+1,xmid:xmid+1) = 1;
+xinit(ymid:ymid+1,xmid:xmid+1) = 0;
 end
 
 function xinit = design2(nx, ny)
