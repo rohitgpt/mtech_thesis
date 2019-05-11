@@ -10,10 +10,6 @@ am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from
 % x = design1(nx, ny);
 x = design2(nx, ny);
 
-% n = {@(x,y)(a-x)*(b+y)/(4*a*b);
-%       @(x,y)(a+x)*(b+y)/(4*a*b);
-%       @(x,y)(a+x)*(b-y)/(4*a*b);
-%       @(x,y)(a-x)*(b-y)/(4*a*b)};
 B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
                 0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
                 a - x,    - b - y,a + x,    b + y,  - a - x,  b - y,   x - a,   y - b]/(4*a*b);
@@ -164,23 +160,6 @@ for i=1:nx
 end
 end
 %%
-% function s_filtered = apply_filter(nx, ny, s, rmin)
-% s_filtered = zeros(size(s));
-% for i=1:nx
-%   for j=1:ny
-%     total = 0;
-%     for k = max(i-floor(rmin),1):min(i+floor(rmin),nx)
-%       for l = max(j-floor(rmin),1):min(j+floor(rmin),ny)
-%         weight = rmin-sqrt((i-k)^2+(j-l)^2);
-%         s_filtered(j, i) = s_filtered(j, i)+s(l, k)*weight;
-%         total = total + weight;
-%       end
-%     end
-%     s_filtered(j, i) = s_filtered(j, i)/total;
-%   end
-% end
-% end
-%%
 function s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U)                %
 s(1:ny, 1:nx) = 1;
 am = a/nx; bm = b/ny;
@@ -269,84 +248,27 @@ for i=1:nx
   end
 end
 
-us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
-vs = (4*(ny+1)):2*(ny+1):2*(ny+1)*nx;
-ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
-ve = (2*(ny+1)*(nx+1)-2*ny+2):2:(2*(ny+1)*(nx+1)-2);
-un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
-vn = (2*(ny+1)+2):2*(ny+1):2*(ny+1)*nx;
-uw = 3:2:2*ny;
-vw = 4:2:2*ny;
 fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
             2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
 alpha=1e7;
-%------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
-C = sparse(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
-Q = sparse(2*(nx+ny)-4, 1);
-Q(1:length(uw), :)        =2*a;
-C(sub2ind(size(C),1:length(uw), ue))       =1;    
-C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
-Q(l+1:l+length(uw), :)    =0;
-C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
-Q(l+1:l+length(un), :)    =0;
-C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
-C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
-Q(l+1:l+length(un), :)    =0;
-C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
 
 u1 = sparse(2*(nx+1)*(ny+1),1);
-u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
+[C, Q, u1(fixeddofs,:),~]=pbc(nx, ny, a,b,[1 0 0]);
 r = zeros(size(u1));
 r = r - k(:, fixeddofs)*u1(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
 u1(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
-% disp(full(reshape(u2(2:2:2*(nx+1)*(ny+1)), nx+1, ny+1)));
-%------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
-C = sparse(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
-Q = sparse(2*(nx+ny)-4, 1);
-Q(1:length(uw), :)        =0;
-C(sub2ind(size(C),1:length(uw), ue))       =1;    
-C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
-Q(l+1:l+length(uw), :)    =0;
-C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
-Q(l+1:l+length(un), :)    =0;
-C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
-C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
-Q(l+1:l+length(un), :)    =2*b;
-C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
 
 u2 = sparse(2*(nx+1)*(ny+1),1);
-u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
+[C, Q, u2(fixeddofs,:),~]=pbc(nx, ny, a,b,[0 1 0]);
 r = zeros(size(u2));
 r = r - k(:, fixeddofs)*u2(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
 u2(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 
-% disp(full(reshape(u2(2:2:2*(nx+1)*(ny+1)), nx+1, ny+1)));
-% disp((u2(un+1)-u2(us+1))/(2*b));
-%------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
-C = zeros(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
-Q = zeros(2*(nx+ny)-4, 1);
-Q(1:length(uw), :)        =0;
-C(sub2ind(size(C),1:length(uw), ue))       =1;    
-C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
-Q(l+1:l+length(uw), :)    =a;
-C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
-Q(l+1:l+length(un), :)    =b;
-C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
-C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
-Q(l+1:l+length(un), :)    =0;
-C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
-C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
-
 u3 = sparse(2*(nx+1)*(ny+1),1);
-u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
+[C, Q, u3(fixeddofs,:),~]=pbc(nx, ny, a,b,[0 0 1]);
 r = zeros(size(u3));
 r = r - k(:, fixeddofs)*u3(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
@@ -358,34 +280,30 @@ end
 %%
 function [C, Q, u, fixeddofs] = pbc(nx, ny, a, b, strain)
 us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
-vs = (4*(ny+1)):2*(ny+1):2*(ny+1)*nx;
 ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
-ve = (2*(ny+1)*(nx+1)-2*ny+2):2:(2*(ny+1)*(nx+1)-2);
 un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
-vn = (2*(ny+1)+2):2*(ny+1):2*(ny+1)*nx;
 uw = 3:2:2*ny;
-vw = 4:2:2*ny;
 fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
             2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
-
-C = sparse(2*(nx+ny), 2*(nx+1)*(ny+1));
-Q = sparse(2*(nx+ny), 1);
+C = zeros(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny)-4, 1);
 Q(1:length(uw), :)        =2*a*strain(1);
-C(1:length(uw), ue)       =1;    
-C(1:length(uw), uw)       =-1;    l=length(uw);  
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =2*a*strain(3)/2;
-C(l+1:l+length(uw), ue+1) =1;     
-C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
+C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =2*b*strain(3)/2;
-C(l+1:l+length(un), un)   =1;     
-C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =2*b*strain(2);
-C(l+1:l+length(un), un+1) =1;     
-C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
+
 u = [ 0, 0, ...
       2*a*strain(1), 2*a*strain(3)/2, ...
       2*a*strain(1)+2*b*strain(3)/2, 2*a*strain(3)/2+2*b*strain(2),...
-      2*b*strain(3)/2, 2*b*strain(2)]; 
+      2*b*strain(3)/2, 2*b*strain(2)]'; 
 end
 
 %% Initial designs for the micro FEM
