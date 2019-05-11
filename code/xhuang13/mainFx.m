@@ -2,13 +2,13 @@ function mainFx(L, H, Vf, nx, ny)
 tic;
 E = [1 1e-4];
 delta = 0.02; %change in volume in every iteration
-rmin = min([7,nx,ny]);     %for mesh independent filter
+rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
-x = design1(nx, ny);
-% x = design2(nx, ny);
+% x = design1(nx, ny);
+x = design2(nx, ny);
 
 % n = {@(x,y)(a-x)*(b+y)/(4*a*b);
 %       @(x,y)(a+x)*(b+y)/(4*a*b);
@@ -34,7 +34,7 @@ prev_s = zeros(ny, nx);
 C = 1e5;
 count=0;
 v = sum(x(:))/(nx*ny);
-while (prev_C-C)/C>0.01 || v~=Vf
+while (prev_C-C)/C>1e-6 || v~=Vf
   prev_C = C;
   count=count+1;
   u = microFEM(nx, ny, am, bm, x, KE, E);
@@ -74,11 +74,11 @@ end
 function plot_result(nx, ny, x, u)
 [X, Y] = meshgrid(1:nx+1, 1:ny+1);
 Y = flipud(Y);
-X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
-Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+X1 = X + 1000*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1000*reshape(u(2:2:size(u)), ny+1, nx+1);
 % disp(u);
 C = ones(ny+1, nx+1);
-C(1:ny, 1:nx) = x;
+C(1:ny, 1:nx) = 1-x;
 figure(2);
 pcolor(X1, Y1, C);
 colormap(gray);
@@ -280,80 +280,82 @@ vw = 4:2:2*ny;
 fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
             2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
-alpha=1e6;
-
+alpha=1e7;
 %------------strain=[1 0 0]--du/dx=1--dv/dx=0--du/dy=0--dv/dy=0------------
-C = sparse(2*(nx+ny), 2*(nx+1)*(ny+1));
-Q = sparse(2*(nx+ny), 1);
+C = sparse(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
+Q = sparse(2*(nx+ny)-4, 1);
 Q(1:length(uw), :)        =2*a;
-C(1:length(uw), ue)       =1;    
-C(1:length(uw), uw)       =-1;    l=length(uw);  
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =0;
-C(l+1:l+length(uw), ue+1) =1;     
-C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
+C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =0;
-C(l+1:l+length(un), un)   =1;     
-C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =0;
-C(l+1:l+length(un), un+1) =1;     
-C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
 
 u1 = sparse(2*(nx+1)*(ny+1),1);
 u1(fixeddofs, :) = [0,0,2*a,0,2*a,0,0,0]';
 r = zeros(size(u1));
 r = r - k(:, fixeddofs)*u1(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-% disp(det(kdash));
-u1(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u1(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
+% disp(full(reshape(u2(2:2:2*(nx+1)*(ny+1)), nx+1, ny+1)));
 %------------strain=[0 1 0]--du/dx=0--dv/dx=0--du/dy=0--dv/dy=1------------
-C = zeros(2*(nx+ny)-8, 2*(nx+1)*(ny+1));
-Q = zeros(2*(nx+ny)-8, 1);
+C = sparse(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
+Q = sparse(2*(nx+ny)-4, 1);
 Q(1:length(uw), :)        =0;
-C(1:length(uw), ue)       =1;    
-C(1:length(uw), uw)       =-1;    l=length(uw);  
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =0;
-C(l+1:l+length(uw), ue+1) =1;     
-C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
+C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =0;
-C(l+1:l+length(un), un)   =1;     
-C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =2*b;
-C(l+1:l+length(un), un+1) =1;     
-C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
 
 u2 = sparse(2*(nx+1)*(ny+1),1);
 u2(fixeddofs, :) = [0,0,0,0,0,2*b,0,2*b]';
 r = zeros(size(u2));
 r = r - k(:, fixeddofs)*u2(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u2(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u2(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
+
+% disp(full(reshape(u2(2:2:2*(nx+1)*(ny+1)), nx+1, ny+1)));
+% disp((u2(un+1)-u2(us+1))/(2*b));
 %------------strain=[0 0 1]--du/dx=0--dv/dx=0.5--du/dy=0.5--dv/dy=0------------
-C = zeros(2*(nx+ny), 2*(nx+1)*(ny+1));
-Q = zeros(2*(nx+ny), 1);
+C = zeros(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny)-4, 1);
 Q(1:length(uw), :)        =0;
-C(1:length(uw), ue)       =1;    
-C(1:length(uw), uw)       =-1;    l=length(uw); 
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
 Q(l+1:l+length(uw), :)    =a;
-C(l+1:l+length(uw), ue+1) =1;     
-C(l+1:l+length(uw), uw+1) =-1;    l=l+length(uw);
+C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
 Q(l+1:l+length(un), :)    =b;
-C(l+1:l+length(un), un)   =1;     
-C(l+1:l+length(un), us)   =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 Q(l+1:l+length(un), :)    =0;
-C(l+1:l+length(un), un+1) =1;     
-C(l+1:l+length(un), us+1) =-1;    l=l+length(un);
+C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
 
 u3 = sparse(2*(nx+1)*(ny+1),1);
 u3(fixeddofs, :) = [0,0,0,a,b,a,b,0]';
 r = zeros(size(u3));
 r = r - k(:, fixeddofs)*u3(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
-u3(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*Q);
+u3(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 
 u = [u1 u2 u3];
-plot_result(nx, ny, x, u(:,3));
+% plot_result(nx, ny, x, u(:,1));
 end
-
+%%
 function [C, Q, u, fixeddofs] = pbc(nx, ny, a, b, strain)
 us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
 vs = (4*(ny+1)):2*(ny+1):2*(ny+1)*nx;
