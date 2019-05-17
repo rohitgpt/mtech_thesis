@@ -7,8 +7,8 @@ a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
-% x = design1(nx, ny);
-x = design2(nx, ny);
+x = design1(nx, ny);
+% x = design2(nx, ny);
 
 B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
                 0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
@@ -184,7 +184,8 @@ end
 end
 %% Plotting
 function plot_fig(x, i)
-a = figure('visible', 'off');
+a = figure(1);
+% a = figure('visible', 'off');
 colormap(gray);
 imagesc(1-x);
 saveas(a,[num2str(i), '.jpg']);
@@ -217,6 +218,23 @@ U(fixed_dofs, :) = 0;
 C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
+% function Dh = homogenization(nx, ny, x, b1, u, D, E)
+% Dh =  zeros(3,3); %initialising Dh to be 3x3
+% basmb = zeros(3, length(u));
+% 
+% for i=1:nx
+%   for j=1:ny
+%     n1 = (ny+1)*(i-1)+j;
+%     n2 = (ny+1)*i+j;
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     basmb(:, dof) = basmb(:, dof)+(x(j,i)*E(1)+(1-x(j, i))*E(2))*b1;
+% %     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
+%   end
+% end
+% Dh = D*(eye(3)-nx*ny*basmb*u)/(nx*ny);
+% % disp(basmb*u);
+% % Dh = double(Dh*D/(nx*ny));
+% end
 function Dh = homogenization(nx, ny, x, b1, u, D, E)
 Dh =  zeros(3,3); %initialising Dh to be 3x3
 for i=1:nx
@@ -224,7 +242,7 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
+    Dh = Dh + (eye(3)-(x(j, i)*E(1)+(1-x(j, i))*E(2))*b1*u(dof, :));         %
   end
 end
 Dh = double(Dh*D/(nx*ny));

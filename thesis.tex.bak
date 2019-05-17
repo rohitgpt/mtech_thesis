@@ -1,0 +1,117 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{accents}
+\begin{document}
+
+\title{Master's Thesis}
+\author{Rohit Gupta, Sumit Basu}
+
+\maketitle
+
+\begin{abstract}
+Fill it.
+\end{abstract}
+
+\section{Introduction}
+
+\section{Motivation}
+
+\section{Method}
+The idea of asymptotic homogenization.
+In a repeating cell Y,
+\begin{equation}
+	\label{First}
+	\sigma_{ij} = C_{ijkl}\epsilon_{kl}	
+\end{equation}
+where $C_{ijkl}(\underaccent{\tilde}{x}+\underaccent{\tilde}{u}\underaccent{\tilde}{Y})=C_{ijkl}(\underaccent{\tilde}{x})$
+\begin{equation}
+\Rightarrow C_{ijkl}(x_1+n_1Y_1\, x_2+n_2Y_2\,x_3+n_3Y_3) = C_{ijkl}(x_1,x_2,x_3)
+\end{equation}
+$C_{ijkl}(\underaccent{\tilde}{x}) $ is Y-periodic\\
+\begin{eqnarray}
+&\underaccent{\tilde}{y} = \frac{\underaccent{\tilde}{x}}{\epsilon}\\
+&\Rightarrow g = g(\underaccent{\tilde}{x},\frac{\underaccent{\tilde}{x}}{\epsilon}) = g(\underaccent{\tilde}{x} \,\underaccent{\tilde}{y})
+\end{eqnarray}
+$\underaccent{\tilde}{x} = (x_1, x_2, x_3) \in \mathbb{R}^3$ defines the domain of the composite $\Omega$. The domain is composed of base cells of dimensions, $\varepsilon Y_1 , \varepsilon Y_2,\varepsilon Y_3$ where $\underaccent{\tilde}{y}=\frac{\underaccent{\tilde}{x}}{\varepsilon}$
+\subsection{1D Elasticity}
+\begin{eqnarray}
+&\sigma^\varepsilon = E^\varepsilon\frac{\partial u^\varepsilon}{\partial x}\\
+&\frac{\partial \sigma^\varepsilon}{\partial x}+\gamma^\varepsilon=0 & E^\varepsilon \, \gamma^\varepsilon \rightarrow macroscopically uniform
+\end{eqnarray}
+Inside each cell, 
+\begin{eqnarray}
+E^\varepsilon (x, \frac{x}{\varepsilon})&=E(y) \\ 
+\gamma^\varepsilon(x, \frac{x}{\varepsilon})&=\gamma(y)
+\end{eqnarray} 
+Let
+\begin{eqnarray}
+u^\varepsilon(x)=u^0{x,y}+\varepsilon u^1(x,y)+\varepsilon^2 u^2(x,y)+ ...\\
+\sigma^\varepsilon(x)=\sigma^0{x,y}+\varepsilon \sigma^1(x,y)+\varepsilon^2 \sigma^2(x,y)+ ...
+\end{eqnarray}
+
+
+\subsection{Optimal Design of Elastic structures}
+
+\begin{center}
+$\textbf{b} \rightarrow$ body forces\\
+$\textbf{t} \rightarrow$ surface tractions
+\end{center}
+
+Optimal choice of $\mathbb{C}_{ijkl} \in U_{ad} \leftarrow $ admissible set of elasticity ??\\
+$\mathbb{C}_{ijkl}(\textbf{x}) \forall \textbf{x} \in \Omega $ has 21 independent components\\
+$a_E(\textbf{u}, \textbf{v}) = \int_\Omega \mathbb{C}_{ijkl}\,\varepsilon_{kl}(\textbf{u})\,\varepsilon_{kl}(\textbf{v})d\textbf{v} \rightarrow $ energy bilinear form\\
+$L(\textbf{v}) = \int_\Omega \textbf{v}\, d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}ds \rightarrow $ load linear form.\\
+\\
+Minimum compliance problem:
+\begin{eqnarray}
+minimize & L(\textbf{v}),\\
+subject\, to & \mathbb{C}_{ijkl} \in \mathbb{U}_{ad}\\
+		  & a_E(\textbf{u}, \textbf{v}) = L(\textbf{v}) &\forall \textbf{v} \in \mathbb{U} 
+\end{eqnarray}
+where $\mathbb{U}\rightarrow $ kinematically admissible displacements.\\
+For optimal shape design:
+\begin{eqnarray}
+\mathbb{C}_{ijkl}(\textbf{x}) = \chi(\textbf{x})\overline{\mathbb{C}}_{ijkl}, & \textrm{where  } \overline{\mathbb{C}}_{ijkl}\rightarrow\textrm{stiffness matrix of the material}\\
+\chi(\textbf{x}) =
+    \begin{cases}
+        1 & \text{if $\textbf{x}\in \Omega^m$,}\\
+        0 & \text{if $\textbf{x}\in \Omega\backslash\Omega^m$}
+    \end{cases}
+\end{eqnarray}
+where $\Omega^m \rightarrow$ part of the domain occupied by the material.\\
+For sizing problem:
+\begin{eqnarray}
+\mathbb{C}_{ijkl}(\textbf{x}) = h(\textbf{x})\overline{\mathbb{C}}_{ijkl}\\
+& \int_\Omega \chi(\textbf{x})d\textbf{x}=V_f\\
+\& & \int_\Omega h(\textbf{x})d\textbf{x}=V_f.
+\end{eqnarray}
+where $h(x)$ is a sizing function.\\
+\\
+Traditionally shape design problems are initiated in the following manner:
+\begin{eqnarray}
+Ref\, doamin: & \Omega_0\in \mathbb{R}^3\\
+\underline{\phi}:  & \Omega_0 \rightarrow \phi(\Omega_0) \text{is a diffeomorphism.}\\
+L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds\\
+\begin{split}
+a_E &=\int_\Omega \mathbb{C}_{ijkl}(\textbf{x}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})d\textbf{x}\\
+&=\int_{\Omega_0} \mathbb{C}_{ijkl}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})|det(D\underline{\phi}^{-1})|d\textbf{x}
+\end{split}
+\end{eqnarray}
+
+Now,
+\begin{equation}	\label{compliance}
+\begin{split}
+\mathbb{C}_{ijkl} \varepsilon_{kl} &= \mathbb{C}_{ijkl}\frac{1}{2}(u_{k,l}+u_{l,k})\\
+ & =\frac{1}{2}\mathbb{C}_{ijkl}u_{k,l}+\frac{1}{2}\mathbb{C}_{ijlk}u_{l,k}\\
+ & =\mathbb{C}_{ijkl}u_{k,l}
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|det(D\underline{\phi}^{-1}|d\textbf{x}\\
+&= \int_{\Omega_0}\mathbb{C}_{ijkl}\frac{\partial u_k}{\partial\textbf{x}_m}(D\underline{\phi}^{-1}+
+\end{split}
+\end{equation}
+\end{document}
