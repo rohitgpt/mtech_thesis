@@ -90,10 +90,12 @@ For sizing problem:
 where $h(x)$ is a sizing function.\\
 \\
 Traditionally shape design problems are initiated in the following manner:
-\begin{eqnarray}
+\begin{align}
 Ref\, doamin: & \Omega_0\in \mathbb{R}^3\\
 \underline{\phi}:  & \Omega_0 \rightarrow \phi(\Omega_0) \text{is a diffeomorphism.}\\
-L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds\\
+L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds
+\end{align}
+\begin{eqnarray}
 \begin{split}
 a_E &=\int_\Omega \mathbb{C}_{ijkl}(\textbf{x}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})d\textbf{x}\\
 &=\int_{\Omega_0} \mathbb{C}_{ijkl}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})|det(D\underline{\phi}^{-1})|d\textbf{x}
@@ -111,7 +113,43 @@ Now,
 \begin{equation}
 \begin{split}
 a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|det(D\underline{\phi}^{-1}|d\textbf{x}\\
-&= \int_{\Omega_0}\mathbb{C}_{ijkl}\frac{\partial u_k}{\partial\textbf{x}_m}
+&= \int_{\Omega_0}\mathbb{C}_{ijkl}\frac{\partial u_k}{\partial\textbf{x}_m}(D\underline{\phi}^{-1})_{ml}\frac{\partial u_i}{\partial \textbf{x}_p}(D\phi^{-1})_{pj}|det(D\underline{\phi}^{-1})|d\textbf{x}\\
 \end{split}
 \end{equation}
+\begin{eqnarray}
+\Rightarrow \mathbb{C}_{ijkl}(D\underline{\phi}^{-1})_{ml}(D\underline{\phi}^{-1})_{pj}|det(D\underline{\phi}^{-1})| = \bar{\mathbb{C}}_{ipkm}\\
+\bar{\mathbb{C}}_{ijkl} = \mathbb{C}_{ipkm}(D\underline{\phi}^{-1})_{lm}(D\underline{\phi}^{-1})_{jp}|det(D\underline{\phi}^{-1})|
+\end{eqnarray}
+Treating $\underline{\phi}$ as a design variable is tidious.\\
+
+\subsection{Homogenization method}
+\begin{equation}
+E_{ijkl}^\varepsilon (\textbf{x}) = E_{ijkl}(\textbf{x},\textbf{y}), \qquad \textbf{y} = \frac{\textbf{x}}{\varepsilon}
+\end{equation}
+The tensor $E_{ijkl}^\varepsilon$ is a material constant which satisfies the symmetry condition and is assumed to satisfy strong ellipticity condition for every $\textbf{x}$.
+\begin{gather}
+\Rightarrow E_{ijkl}^\varepsilon =E_{jikl}^\varepsilon =E_{ijlk}^\varepsilon =E_{klij}^\varepsilon\\
+E_{ijkl}^\varepsilon(\textbf{x})\textbf{X}_{ij}\textbf{X}_{kl}\geq m\textbf{X}_{ij}\textbf{X}_{ij} \qquad \text{for some } m>0 \text{ \& } \forall \quad \textbf{X}_{ij}=\textbf{X}_{ji}
+\end{gather}
+Let the domain$\Omega$ has a boundary $\Gamma$. Let $\textbf{f}$ be the body force acting on $\Omega$ and $\textbf{t}$ be the traction acting on $\Gamma_t$ part of the boundary $\Gamma$. Also, let $\Gamma_D$ be the part of boundary on which displacement is defined. Then the displacement $\textbf{u}^\varepsilon$ can be obtained as the solution to the following minimization problem
+\begin{align}
+\label{fem}
+\min_{\textbf{v}^\varepsilon\in U} \quad F^\varepsilon(\textbf{v}^\varepsilon),\\
+\end{align} 
+where $F^\varepsilon$ is total potential energy given as	
+\begin{eqnarray}
+F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{v}^\varepsilon)\varepsilon_{ij}(\textbf{v}^\varepsilon)dx-\int_\Omega\textbf{f}\cdot\textbf{v}^\varepsilon dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^\varepsilon ds
+%F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}a^\varepsilon(\textbf{v}^\varepsilon, \textbf{v}^\varepsilon)-L(\textbf{v}^\varepsilon),\\
+%a^\varepsilon(\textbf{u},\textbf{v})=\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{u})\varepsilon_{ij}(\textbf{v})dx,\\
+%L(\textbf{v})=\int_\Omega\textbf{f}\cdot\textbf{v}dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}ds
+\end{eqnarray}
+and $\mathcal{U}$ is the set of admissible displacements defined such that
+\begin{equation}
+\mathcal{U} = \{\textbf{v} = v_i\textbf{e}_i :\, v_i\in H^1(\Omega) \text{ and } \textbf{v}\in\mathcal{G} \text{ on } \Gamma_D\}
+\end{equation}
+where $\mathcal{G}$ is set of displacement defined along the boundary $\Gamma_D$.\\
+Let 
+\begin{align}
+\textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}_0(\textbf{x})+\varepsilon\textbf{v}_1(\textbf{x},\textbf{y}),\qquad y=\frac{\textbf{x}}{\varepsilon}
+\end{align}
 \end{document}
