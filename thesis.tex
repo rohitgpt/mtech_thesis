@@ -2,6 +2,7 @@
 \usepackage{hyperref}
 \usepackage[fleqn]{amsmath}
 \usepackage{amsfonts}
+\usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{accents}
 \begin{document}
@@ -230,4 +231,132 @@ where $E^H_{ijkl}(x)$ is
 \boxed{E^H_{ijkl} = \frac{1}{|Y|}\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg ) dy}
 \end{equation}
 Now, Define
+\begin{eqnarray}
+a_H(\textbf{u},\textbf{v}) = \int_\Omega E^H_{ijkl}(\textbf{x})\frac{\partial u_k}{\partial x_l}\frac{\partial v_i}{\partial	x_j}\, dx,\\
+a_Y(\chi^{kl}, \textbf{v})=\int_Y E_{ijpq}(\textbf{x},\textbf{y})\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial v_i}{\partial y_j}\,dy,\\
+L^{kl}_Y(\textbf{v})=\int_Y E_{ijkl} \frac{\partial v_i}{\partial y_j}\, dy
+\end{eqnarray}
+At microscopic level, we have
+\begin{equation}\label{microscopic}
+a_Y(\chi^{kl}, \textbf{v}) = L_Y^{kl}(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_Y,
+\end{equation}
+At macroscopic level, we have
+\begin{equation}
+a_H(\textbf{u},\textbf{v}) = L(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_0
+\end{equation}
+where $\mathcal{U}_0$ is homogeneous case of $\mathcal{U}$, i.e., $\textbf{g}=0$.
+\subsection{Implementation 2D Homogenization}
+Basic homogenization equation, 
+\begin{equation}
+u_{1i}(\textbf{x},\textbf{y}) = -\chi^{pq}_i\frac{\partial u_{0p}(\textbf{x})}{\partial x_q}
+\end{equation}
+Solve $\chi^{kl}_p$ from:
+\begin{equation}
+\int_Y \bigg ( E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg ) \frac{\partial v_{1i}}{\partial y_j}\,dy = 0
+\end{equation}
+Compute:
+\begin{equation}\label{homoE}
+E_{ijkl}^H=\frac{1}{|Y|}\int_Y\bigg (E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg )\,dy
+\end{equation}
+\subsection{Examples}
+Consider: k=1, l=1
+\begin{equation}\label{2drhs}
+\begin{split}
+\int_Y E_{ijkl}\frac{\partial v_i}{\partial y_j}\, dy &=\int_Y E_{ij11}\frac{\partial v_i}{\partial y_j}\,dy\\
+&=\int_Y\bigg (E_{1111}\frac{\partial v_1}{\partial y_1}+E_{2211}\frac{\partial v_2}{\partial y_2}\bigg )\, dy
+\end{split}
+\end{equation}
+\begin{equation}\label{2dlhs}
+\begin{split}
+\int_Y E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial v_i}{\partial y_j}\,dy &=\int_Y E_{ijpq}\frac{\partial \chi^{11}_p}{\partial y_q}\frac{\partial v_i}{\partial y_j}\,dy\\
+&=\int_Y \bigg \{ E_{11pq}\frac{\partial \chi^{11}_p}{\partial y_q}\frac{\partial v_1}{\partial y_1} + E_{12pq}\frac{\partial \chi^{11}_p}{\partial y_q}\frac{\partial v_1}{\partial y_2}\\
+&\qquad\qquad + E_{21pq}\frac{\partial \chi^{11}_p}{\partial y_q}\frac{\partial v_2}{\partial y_1} + E_{22pq}\frac{\partial \chi^{11}_p}{\partial y_q}\frac{\partial v_2}{\partial y_2}\bigg \}\,dy\\
+&=\int_Y \bigg \{\bigg ( E_{1111}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{1112}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1121}\frac{\partial \chi^{11}_2}{\partial y_1} + E_{1122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_1}\\
+&\qquad + \bigg (E_{1211}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{1212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1221}\frac{\partial \chi^{11}_2}{\partial y_1} + E_{1222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_2}\\
+&\qquad + \bigg (E_{2111}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{2112}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{2121}\frac{\partial \chi^{11}_2}{\partial y_1} + E_{2122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_1}\\
+&\qquad + \bigg (E_{2211}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{2212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{2221}\frac{\partial \chi^{11}_2}{\partial y_1} + E_{2222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_2}\bigg \}\,dy\\
+&=\int_Y \bigg \{\bigg ( E_{1111}\frac{\partial \chi^{11}_1}{\partial y_1} + \cancelto{0}{E_{1112}\frac{\partial \chi^{11}_1}{\partial y_2}} + 
+\cancelto{0}{E_{1121}\frac{\partial \chi^{11}_2}{\partial y_1}} + 
+E_{1122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_1}\\
+&\qquad + \bigg (\cancelto{0}{E_{1211}\frac{\partial \chi^{11}_1}{\partial y_1}} + E_{1212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1221}\frac{\partial \chi^{11}_2}{\partial y_1} + \cancelto{0}{E_{1222}\frac{\partial \chi^{11}_2}{\partial y_2}}\bigg )\bigg (\frac{\partial v_1}{\partial y_2} +\frac{\partial v_2}{\partial y_1}\bigg )\\
+&\qquad + \bigg (E_{2211}\frac{\partial \chi^{11}_1}{\partial y_1} + \cancelto{0}{E_{2212}\frac{\partial \chi^{11}_1}{\partial y_2}} + \cancelto{0}{E_{2221}\frac{\partial \chi^{11}_2}{\partial y_1}} + E_{2222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_2}\bigg \}\,dy\\
+&=\int_Y \bigg \{\bigg ( E_{1111}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{1122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_1}\\
+&\qquad + E_{1212}\bigg (\frac{\partial \chi^{11}_1}{\partial y_2} + \frac{\partial \chi^{11}_2}{\partial y_1}\bigg )\bigg (\frac{\partial v_1}{\partial y_2} +\frac{\partial v_2}{\partial y_1}\bigg )\\
+&\qquad + \bigg (E_{2211}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{2222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_2}\bigg \}\,dy\\
+\end{split}
+\end{equation}
+Therefore, using equations \eqref{microscopic} , \eqref{2dlhs} and \eqref{2drhs} for k=1, l=1 we have:
+\begin{equation}
+\begin{split}
+&\int_Y \bigg \{\bigg ( E_{1111}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{1122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_1}\\
+&\qquad + E_{1212}\bigg (\frac{\partial \chi^{11}_1}{\partial y_2} + \frac{\partial \chi^{11}_2}{\partial y_1}\bigg )\bigg (\frac{\partial v_1}{\partial y_2} +\frac{\partial v_2}{\partial y_1}\bigg )\\
+&\qquad + \bigg (E_{2211}\frac{\partial \chi^{11}_1}{\partial y_1} + E_{2222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_2}\bigg \}\,dy = \\
+&\int_Y\bigg (E_{1111}\frac{\partial v_1}{\partial y_1}+E_{2211}\frac{\partial v_2}{\partial y_2}\bigg )\, dy
+\end{split}
+\end{equation}
+From equation \eqref{homoE}, we can write
+\begin{eqnarray}
+E^H_{1111} = &\frac{1}{|Y|}\int_Y\bigg ( E_{1111} - E_{1111}\frac{\partial \chi^{11}_1}{\partial y_1} - E_{1122}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\,dy\\
+E^H_{2211} = &\frac{1}{|Y|}\int_Y\bigg ( E_{2211} - E_{2211}\frac{\partial \chi^{11}_1}{\partial y_1} - E_{2222}\frac{\partial \chi^{11}_2}{\partial y_2}\bigg )\,dy\\
+E^H_{1211} = &-\frac{1}{|Y|}\int_Y\bigg (E_{1212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1221}\frac{\partial \chi^{11}_2}{\partial y_1}\bigg )\,dy
+\end{eqnarray}
+Let $\chi^{11}_1 = \Phi_1, \chi^{11}_2 = \Phi_2$ and $E_{1111} = D_{11}, E_{2222} = D_{22}, E_{1212} = D_{66}, E_{1122} = E_{2211} = D_{12}$
+\begin{equation}\label{Dformat}
+\begin{split}
+&\int_Y \bigg \{\bigg ( D_{11}\frac{\partial \Phi^{11}_1}{\partial y_1} + D_{12}\frac{\partial \Phi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_1}{\partial y_1}\\
+&\qquad + D_{66}\bigg (\frac{\partial \Phi^{11}_1}{\partial y_2} + \frac{\partial \Phi^{11}_2}{\partial y_1}\bigg )\bigg (\frac{\partial v_1}{\partial y_2} +\frac{\partial v_2}{\partial y_1}\bigg )\\
+&\qquad + \bigg (D_{12}\frac{\partial \Phi^{11}_1}{\partial y_1} + D_{22}\frac{\partial \Phi^{11}_2}{\partial y_2}\bigg )\frac{\partial v_2}{\partial y_2}\bigg \}\,dy = \\
+&\int_Y\bigg (D_{11}\frac{\partial v_1}{\partial y_1}+D_{12}\frac{\partial v_2}{\partial y_2}\bigg )\, dy
+\end{split}
+\end{equation}
+Also, 
+\begin{equation}\label{Dhomo}
+D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-D{11}\frac{\partial\Phi_1}{\partial y_1} - D_{12}\frac{\partial \Phi_2}{\partial y_2}\bigg )\,dy
+\end{equation}
+Rearranging Eq. \eqref{Dformat}
+\begin{equation}
+\begin{split}
+&\int_Y\bigg\{\frac{\partial v_1}{\partial y_1}\quad\frac{\partial v_2}{\partial y_2}\quad\frac{\partial v_1}{\partial y_2}+\frac{\partial v_2}{\partial y_1}\bigg\}
+\begin{bmatrix}
+D_{11}	& D_{12} & 	0 \\
+D_{12}	& D_{22} & 	0 \\
+0		& 0		&	D66
+\end{bmatrix}\\
+&\qquad\times
+\begin{bmatrix}
+\frac{\partial \Phi_1}{\partial y_1}\\
+\frac{\partial \Phi_2}{\partial y_2}\\
+\frac{\partial \Phi_1}{\partial y_2}+\frac{\partial \Phi_2}{\partial y_1}
+\end{bmatrix}\,dY\\
+&=\int_Y\bigg\{\frac{\partial v_1}{\partial y_1}\quad\frac{\partial v_2}{\partial y_2}\quad\frac{\partial v_1}{\partial y_2}+\frac{\partial v_2}{\partial y_1}\bigg\}
+\begin{bmatrix}
+D_{11}\\
+D_{12}\\
+0
+\end{bmatrix}\,dY
+\end{split}
+\end{equation}
+Let us define
+\begin{equation}
+\textbf{b} = \begin{bmatrix}
+\frac{\partial}{\partial y_1} & 0\\
+0 & \frac{\partial}{\partial y_2}\\
+\frac{\partial}{\partial y_1} &\frac{\partial}{\partial y_2}\\
+\end{bmatrix}
+\end{equation}
+and 
+\begin{equation}
+\textbf{D} = \begin{bmatrix}
+\textbf{d}_1 & \textbf{d}_2 & \textbf{d}_3\\
+\end{bmatrix}
+\end{equation}
+Then Eq \eqref{Dformat}, can be written as
+\begin{equation}
+\int_Y \textbf{v}^T \textbf{b}^T \textbf{D} \textbf{b}\Phi\,dY = \int_Y\textbf{v}^T\textbf{b}^T\textbf{d}_1 \qquad \forall \textbf{v}\in\textbf{V}_Y
+\end{equation}
+and eq. \eqref{Dhomo} becomes:
+\begin{equation}
+\boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\Phi\bigg )\,dy
+}
+\end{equation}
 \end{document}
