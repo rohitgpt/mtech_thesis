@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
-\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[fleqn]{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{accents}
@@ -29,7 +30,7 @@ where $C_{ijkl}(\underaccent{\tilde}{x}+\underaccent{\tilde}{u}\underaccent{\til
 \begin{equation}
 \Rightarrow C_{ijkl}(x_1+n_1Y_1\, x_2+n_2Y_2\,x_3+n_3Y_3) = C_{ijkl}(x_1,x_2,x_3)
 \end{equation}
-$C_{ijkl}(\underaccent{\tilde}{x}) $ is Y-periodic\\
+$C_{ijkl}(\underaccent{\tilde}{x}) $ is Y-periodic
 \begin{eqnarray}
 &\underaccent{\tilde}{y} = \frac{\underaccent{\tilde}{x}}{\epsilon}\\
 &\Rightarrow g = g(\underaccent{\tilde}{x},\frac{\underaccent{\tilde}{x}}{\epsilon}) = g(\underaccent{\tilde}{x} \,\underaccent{\tilde}{y})
@@ -59,11 +60,9 @@ $\textbf{b} \rightarrow$ body forces\\
 $\textbf{t} \rightarrow$ surface tractions
 \end{center}
 
-Optimal choice of $\mathbb{C}_{ijkl} \in U_{ad} \leftarrow $ admissible set of elasticity ??\\
-$\mathbb{C}_{ijkl}(\textbf{x}) \forall \textbf{x} \in \Omega $ has 21 independent components\\
-$a_E(\textbf{u}, \textbf{v}) = \int_\Omega \mathbb{C}_{ijkl}\,\varepsilon_{kl}(\textbf{u})\,\varepsilon_{kl}(\textbf{v})d\textbf{v} \rightarrow $ energy bilinear form\\
-$L(\textbf{v}) = \int_\Omega \textbf{v}\, d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}ds \rightarrow $ load linear form.\\
-\\
+Optimal choice of $\mathbb{C}_{ijkl} \in U_{ad} \leftarrow $ admissible set of elasticity \par $\mathbb{C}_{ijkl}(\textbf{x}) \forall \textbf{x} \in \Omega $ has 21 independent components \par $a_E(\textbf{u}, \textbf{v}) = \int_\Omega \mathbb{C}_{ijkl}\,\varepsilon_{kl}(\textbf{u})\,\varepsilon_{kl}(\textbf{v})d\textbf{v} \rightarrow $ energy bilinear form \par
+$L(\textbf{v}) = \int_\Omega \textbf{v}\, d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}ds \rightarrow $ load linear form.\par
+\hfill \break
 Minimum compliance problem:
 \begin{eqnarray}
 minimize & L(\textbf{v}),\\
@@ -87,20 +86,21 @@ For sizing problem:
 & \int_\Omega \chi(\textbf{x})d\textbf{x}=V_f\\
 \& & \int_\Omega h(\textbf{x})d\textbf{x}=V_f.
 \end{eqnarray}
-where $h(x)$ is a sizing function.\\
-\\
+where $h(x)$ is a sizing function. \hfill
+\break
 Traditionally shape design problems are initiated in the following manner:
 \begin{align}
 Ref\, doamin: & \Omega_0\in \mathbb{R}^3\\
 \underline{\phi}:  & \Omega_0 \rightarrow \phi(\Omega_0) \text{is a diffeomorphism.}\\
 L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds
 \end{align}
-\begin{eqnarray}
+
+\begin{equation}
 \begin{split}
 a_E &=\int_\Omega \mathbb{C}_{ijkl}(\textbf{x}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})d\textbf{x}\\
 &=\int_{\Omega_0} \mathbb{C}_{ijkl}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})|det(D\underline{\phi}^{-1})|d\textbf{x}
 \end{split}
-\end{eqnarray}
+\end{equation}
 
 Now,
 \begin{equation}	\label{compliance}
@@ -120,7 +120,7 @@ a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|de
 \Rightarrow \mathbb{C}_{ijkl}(D\underline{\phi}^{-1})_{ml}(D\underline{\phi}^{-1})_{pj}|det(D\underline{\phi}^{-1})| = \bar{\mathbb{C}}_{ipkm}\\
 \bar{\mathbb{C}}_{ijkl} = \mathbb{C}_{ipkm}(D\underline{\phi}^{-1})_{lm}(D\underline{\phi}^{-1})_{jp}|det(D\underline{\phi}^{-1})|
 \end{eqnarray}
-Treating $\underline{\phi}$ as a design variable is tidious.\\
+Treating $\underline{\phi}$ as a design variable is tidious.
 
 \subsection{Homogenization method}
 \begin{equation}
@@ -134,10 +134,10 @@ E_{ijkl}^\varepsilon(\textbf{x})\textbf{X}_{ij}\textbf{X}_{kl}\geq m\textbf{X}_{
 Let the domain$\Omega$ has a boundary $\Gamma$. Let $\textbf{f}$ be the body force acting on $\Omega$ and $\textbf{t}$ be the traction acting on $\Gamma_t$ part of the boundary $\Gamma$. Also, let $\Gamma_D$ be the part of boundary on which displacement is defined. Then the displacement $\textbf{u}^\varepsilon$ can be obtained as the solution to the following minimization problem
 \begin{align}
 \label{fem}
-\min_{\textbf{v}^\varepsilon\in U} \quad F^\varepsilon(\textbf{v}^\varepsilon),\\
+\min_{\textbf{v}^\varepsilon\in U} \quad F^\varepsilon(\textbf{v}^\varepsilon),
 \end{align} 
 where $F^\varepsilon$ is total potential energy given as	
-\begin{eqnarray}
+\begin{eqnarray} \label{tpe}
 F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{v}^\varepsilon)\varepsilon_{ij}(\textbf{v}^\varepsilon)dx-\int_\Omega\textbf{f}\cdot\textbf{v}^\varepsilon dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^\varepsilon ds
 %F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}a^\varepsilon(\textbf{v}^\varepsilon, \textbf{v}^\varepsilon)-L(\textbf{v}^\varepsilon),\\
 %a^\varepsilon(\textbf{u},\textbf{v})=\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{u})\varepsilon_{ij}(\textbf{v})dx,\\
@@ -150,6 +150,84 @@ and $\mathcal{U}$ is the set of admissible displacements defined such that
 where $\mathcal{G}$ is set of displacement defined along the boundary $\Gamma_D$.\\
 Let 
 \begin{align}
-\textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}_0(\textbf{x})+\varepsilon\textbf{v}_1(\textbf{x},\textbf{y}),\qquad y=\frac{\textbf{x}}{\varepsilon}
+\textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}_0(\textbf{x})+\varepsilon\textbf{v}_1(\textbf{x},\textbf{y}),\qquad \textbf{y}=\frac{\textbf{x}}{\varepsilon}.
 \end{align}
+Using chain rule for functions in two variables\\
+\begin{equation}
+\begin{split}
+\frac{\partial f(\textbf{x}, \textbf{y(x)})}{\partial \textbf{x}} &= \frac{\partial f}{\partial \textbf{x}}+\frac{\partial f}{\partial \textbf{y}}\frac{\partial \textbf{y}}{\partial \textbf{x}}\\
+&=\frac{\partial f}{\partial \textbf{x}}+\frac{1}{\varepsilon}\frac{\partial f}{\partial \textbf{y}}
+\end{split}
+\end{equation}
+Using above two equations, we can write the linerized strain as
+\begin{equation}
+\begin{split}
+\epsilon_{ij}(\textbf{v}^\varepsilon(\textbf{x})) &= \frac{\partial (v_{0i}(\textbf{x})+\varepsilon v_{1i}(\textbf{x},\textbf{y}))}{\partial x_j}\\
+&=\frac{\partial v_{0i}}{\partial x_j}+\varepsilon\bigg\{\frac{\partial v_{1i}}{\partial x_j}+\frac{1}{\varepsilon}\frac{\partial v_{1i}}{\partial y_j}\bigg\}\\
+&\approx \frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j} \qquad \leftarrow \{ \varepsilon << 1\}
+\end{split}
+\end{equation}
+Therefore, equation \eqref{tpe} can be written as 
+\begin{multline}
+F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}\bigg (\frac{\partial v_{0k}}{\partial x_l}+\frac{\partial v_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j}\bigg )dx\\
+-\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds + \varepsilon R^\varepsilon(\textbf{v}_0, \textbf{v}_1)
+\end{multline}
+Here, $R^\varepsilon$ is the contribution of $\varepsilon\textbf{v}_1$ in the calculation of energy from body force and traction.
+Using 
+\begin{equation}
+\lim_{\varepsilon\rightarrow 0}\int_\Omega \Phi(x, x/\varepsilon)dx = \frac{1}{|Y|}\int_\Omega\int_Y \Phi(x,y)dydx,
+\end{equation}
+we get,
+\begin{equation}
+\begin{split}
+\lim_{\varepsilon\rightarrow 0}\,F^\varepsilon(\textbf{v}^\varepsilon)&=F(\textbf{v}_0,\textbf{v}_1)\\
+&=\frac{1}{2|Y|}\int_\Omega\int_Y E_{ijkl}(x,y) \bigg (\frac{\partial v_{0k}}{\partial x_l}+\frac{\partial v_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j}\bigg )dy\,dx\\
+&\qquad-\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds 
+\end{split}
+\end{equation}
+A minimizer $\{\textbf{u}_0, \textbf{u}_1\}$ of the functional $F$, follow the following equations:
+
+\begin{equation}\label{first}
+\begin{aligned}
+&\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}\bigg ) dy\,dx\\
+&=\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds \qquad \text{for every } \textbf{v}_0
+\end{aligned}
+\end{equation}
+\begin{equation}
+\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}}{\partial x_j}\bigg ) dy\,dx = 0, \qquad \text{for every } \textbf{v}_1
+\end{equation}
+Now, from localizing $u_{1k}$
+\begin{equation}\label{localization}
+u_{1k}(x,y)=-\chi^{pq}_k(y)\frac{\partial u_{0p}}{\partial x_q}(x),
+\end{equation}
+\begin{align*}
+\Rightarrow &\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}-\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{0p}}{\partial x_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
+&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijkl}\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{0p}}{\partial x_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
+&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{0k}}{\partial x_l}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
+&\int_\Omega\int_Y \frac{\partial u_{0k}}{\partial x_l}\bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
+&\int_\Omega\frac{\partial u_{0k}}{\partial x_l}dx\cdot\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,=0\\
+\end{align*}
+\begin{align}
+\Rightarrow &\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy=0  \qquad \text{for k, l = 1 and 2,}
+\end{align}
+%if $x^{pq}$ satifies
+%\begin{equation}
+%\int_Y \bigg ( E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg ) \frac{\partial v_{1j}}{\partial y_i}\,dy=0 \qquad \text{for k, l = 1 and 2,} 
+%\end{equation}
+Similarly, substituting equation \eqref{localization} in \eqref{first} gives the homogenized equation.
+\begin{align*}
+\text{LHS}&=\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}\bigg ) dy\,dx\\
+&=\frac{1}{|Y|}\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{0k}}{\partial x_l}\bigg )\frac{\partial v_{0i}}{\partial x_j} dy\,dx\\
+&=\frac{1}{|Y|}\int_\Omega\Bigg \{\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )dy\Bigg \}\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}dx\\
+&=\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}\,dx
+\end{align*}
+Homogenized equation
+\begin{equation}
+\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}\,dx = \int_\Omega\textbf{f}\cdot\textbf{v}_0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds \qquad \text{for every } \textbf{v}_0
+\end{equation}
+where $E^H_{ijkl}(x)$ is
+\begin{equation}
+\boxed{E^H_{ijkl} = \frac{1}{|Y|}\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg ) dy}
+\end{equation}
+Now, Define
 \end{document}
