@@ -1,6 +1,6 @@
 function mainFx(L, H, Vf, nx, ny)
 tic;
-E = [1 1e-4];
+E = [1 1e-4]*10^2;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
@@ -26,11 +26,13 @@ b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
 KE = integQuad(ke, vx(am,bm));
 
 prev_C=1e10;
-prev_s = zeros(ny, nx);
+nsteps = 2;
+prev_s = zeros(ny, nx, nsteps);
 C = 1e5;
 count=0;
+f = 1;
 v = sum(x(:))/(nx*ny);
-while (prev_C-C)/C>1e-6 || v~=Vf
+while f>1e-6 || v~=Vf || count<nsteps
   prev_C = C;
   count=count+1;
   u = microFEM(nx, ny, am, bm, x, KE, E);
@@ -40,9 +42,13 @@ while (prev_C-C)/C>1e-6 || v~=Vf
 
   s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
-  avg_s = 0.5*(s_filtered + prev_s);
-  prev_s = avg_s;
-  
+  avg_s = (s_filtered + sum(prev_s,3))/(1+nsteps);
+  prev_s(:,:,1) = avg_s;
+  for i=2:nsteps
+    prev_s(:,:,i) = prev_s(:,:,i-1);
+  end
+  f = abs(sum(avg_s(:)) - sum(sum(prev_s(:,:,nsteps))))...
+        /sum(avg_s(:))*1e15;
   if v>Vf
     if v*(1-delta)<Vf
       v = Vf;
@@ -72,6 +78,20 @@ function plot_result(nx, ny, x, u)
 Y = flipud(Y);
 X1 = X + 1000*reshape(u(1:2:size(u)), ny+1, nx+1);
 Y1 = Y + 1000*reshape(u(2:2:size(u)), ny+1, nx+1);
+% disp(u);
+C = ones(ny+1, nx+1);
+C(1:ny, 1:nx) = 1-x;
+figure(2);
+pcolor(X1, Y1, C);
+colormap(gray);
+% plot(X,Y);
+end
+
+function plot_macro(nx, ny, x, u)
+[X, Y] = meshgrid(1:nx+1, 1:ny+1);
+Y = flipud(Y);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
 % disp(u);
 C = ones(ny+1, nx+1);
 C(1:ny, 1:nx) = 1-x;
@@ -167,8 +187,9 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
-    t1 = integQuad(@(x,y)B(x,y,a,b)'*t2*B(x,y,a,b), vx(a,b));
+%     t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+    t2 = D*(E(1)-E(2))*integQuad(@(x,y) (eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+    t1 = integQuad(@(x,y) B(x,y,a,b)'*t2*B(x,y,a,b), vx(a,b));
     temp = 0;
     for l=1:L
       for h=1:H
@@ -184,8 +205,8 @@ end
 end
 %% Plotting
 function plot_fig(x, i)
-a = figure(1);
-% a = figure('visible', 'off');
+% a = figure(1);
+a = figure('visible', 'off');
 colormap(gray);
 imagesc(1-x);
 saveas(a,[num2str(i), '.jpg']);
@@ -211,10 +232,12 @@ end
 n2 = (H+1)*(L)+ceil(H/2);
 F(2*n2+2, 1) = -1;
 fixed_dofs = 1:2*(H+1);
+% fixed_dofs = 1:2*(H+1):2*(L+1)*(H+1);
+% fixed_dofs = [fixed_dofs, 2:2*(H+1):2*(L+1)*(H+1)];
 free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
-
+% plot_macro(L, H, 0, U);
 C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
@@ -242,7 +265,7 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    Dh = Dh + (eye(3)-(x(j, i)*E(1)+(1-x(j, i))*E(2))*b1*u(dof, :));         %
+    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
   end
 end
 Dh = double(Dh*D/(nx*ny));
