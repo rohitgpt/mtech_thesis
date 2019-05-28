@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{first}
+John Doe.
+\newblock Title.
+\newblock {\em Journal}, 2017.
+
+\bibitem{WEBSITE:1}
+Intel.
+\newblock Example website.
+\newblock \url{http://example.com}, Dec 1988.
+\newblock Accessed on 2012-11-11.
+
+\end{thebibliography}
