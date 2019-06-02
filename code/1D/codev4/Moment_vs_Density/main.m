@@ -1,11 +1,13 @@
 function main(Problem)
 % opengl hardwarebasic
 opengl('save', 'software');
-n=30;
+n=30*2;
 
-% i=10;
+j=25;
+
 for i=1:10
-    for j=1:10
+  tic;
+%     for j=1:10
 % j = 30
 %    for j=2:50
 %        for k=2:10
@@ -20,7 +22,7 @@ M_min = j*40;
 % M_min = 5*j;
 E1 = 20*10^9;
 E2 = 4.25*10^9;
-rho1 = 1000*(1+i/10);
+rho1 = 1000*(3+i/10);
 rho2 = 1000;
 t = 2.5;
 
@@ -47,7 +49,7 @@ t = 2.5;
 %%%        sum((r.^3).*(X(2:n+1)*E1 + X(n+2:2*n+1)*E2))
         dr = (r2/1000-r1/1000)/n;
 %%%       cur*M_min/(dr*pi)
-        f = figure('visible', 'off');
+        f=figure('visible', 'off');
         plot(r*1000, X(2:n+1), 'b');
         axis([0 r2 0 1]);
         hold on;
@@ -60,7 +62,11 @@ t = 2.5;
         saveas(f, sprintf('a%d%d.jpg', i, j), 'jpeg');
         pause(0.1);
         hold off;
-        g = figure('visible', 'off');
+
+
+
+
+        g=figure('visible', 'off');
         ratio = (1-X(2:n+1)-X(n+2:2*n+1))./(X(n+2:2*n+1));
         plot(r*1000, 2*t*ratio);
 %         hold on;
@@ -72,6 +78,7 @@ t = 2.5;
         pause(0.1);
 %         hold off;
     end
-        end
+%         end
+        toc;
     end
 end
