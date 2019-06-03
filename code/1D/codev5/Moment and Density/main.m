@@ -1,3 +1,4 @@
+%Densities 2000 and 2500 are fine
 function main(Problem)
 % opengl hardwarebasic
 opengl('save', 'software');
