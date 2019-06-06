@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{hyperref}
+\usepackage{textcomp, xspace}
 \usepackage[fleqn]{amsmath}
 \usepackage{amsfonts}
 \usepackage{cancel}
@@ -19,6 +20,19 @@ Fill it.
 \section{Introduction}
  
 \section{Motivation}
+
+\section{1D simulation}
+The distribution of material in a plant stem follows axisymmetric distribution. 
+\textlangle Discuss the objective function\textrangle \\
+\textlangle Derive constraints, Euler Bernoulli equation\textrangle
+\subsection{Problem Formulation}
+\begin{equation}
+\begin{split}
+max \quad& \frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}\\
+s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
+& \frac{EI}{R}\leq M_{max}
+\end{split}
+\end{equation}
 
 \section{Method}
 The idea of asymptotic homogenization.
