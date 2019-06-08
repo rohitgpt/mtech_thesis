@@ -22,10 +22,20 @@ Fill it.
 \section{Motivation}
 
 \section{1D simulation}
-The distribution of material in a plant stem follows axisymmetric distribution. 
-\textlangle Discuss the objective function\textrangle \\
-\textlangle Derive constraints, Euler Bernoulli equation\textrangle
-\subsection{Problem Formulation}
+Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin [L.Y.Mwaikambo et al.]. Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction. [Plot showing the distribution of fibers.]\par 
+This can be modeled as the distribution of two materials, and air (capture in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from [Mannan et al., L.Y.Mwaikambo et al.]. \par
+Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\par 
+Therefore, we frame it as a constrained maximization problem, with the objective function being specific strength, optimizing the radial distribution of fibers and parenchyma. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.] 
+\begin{equation*}
+\begin{aligned}
+& \underset{x}{\text{minimize}}
+& & f_0(x) \\
+& \text{subject to}
+& & f_i(x) \leq b_i, \; i = 1, \ldots, m.
+\end{aligned}
+\end{equation*}
+
+\subsection{Optimization Problem}
 \begin{equation}
 \begin{split}
 max \quad& \frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}\\
@@ -33,7 +43,7 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 & \frac{EI}{R}\leq M_{max}
 \end{split}
 \end{equation}
-
+where $E(r) = \nu_1(r) E_1 + \nu_2(r) E_2$, is the Young's Modulus obtained using rule of mixtures[ at a radial distance $r$ from the center. 
 \section{Method}
 The idea of asymptotic homogenization.
 In a repeating cell Y,
@@ -135,7 +145,7 @@ a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|de
 \Rightarrow \mathbb{C}_{ijkl}(D\underline{\phi}^{-1})_{ml}(D\underline{\phi}^{-1})_{pj}|det(D\underline{\phi}^{-1})| = \bar{\mathbb{C}}_{ipkm}\\
 \bar{\mathbb{C}}_{ijkl} = \mathbb{C}_{ipkm}(D\underline{\phi}^{-1})_{lm}(D\underline{\phi}^{-1})_{jp}|det(D\underline{\phi}^{-1})|
 \end{eqnarray}
-Treating $\underline{\phi}$ as a design variable is tidious.
+Treating $\underline{\phi}$ as a design variable is tedious.
 
 \subsection{Homogenization method}
 \begin{equation}

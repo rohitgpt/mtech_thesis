@@ -1,29 +1,32 @@
 function mainFx(L, H, Vf, nx, ny)
 tic;
-E = [1 1e-4]*10^2;
+E = [1 1e-4];
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
-
+% am = .5; bm = .5;
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 x = design1(nx, ny);
 % x = design2(nx, ny);
 
-B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
-                0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
-                a - x,    - b - y,a + x,    b + y,  - a - x,  b - y,   x - a,   y - b]/(4*a*b);
+% B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
+%                 0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
+%                 a - x,    - b - y,a + x,    b + y,  - a - x,  b - y,   x - a,   y - b]/(4*a*b);
+B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0;
+               0, x - a,       0, - a - x,     0, a + x,       0,   a - x;
+               x - a, y - b, - a - x,   b - y, a + x, b + y,   a - x, - b - y]/(4*a*b);
 nu=0.3;
 D = 1/(1-nu^2)*[1   nu  0;
                 nu  1   0;
                 0   0   (1-nu)/2;];
-ke = @(x,y) B(x,y,am,bm)'*D*B(x,y,am,bm);
-vx = @(a,b)[-a  b;
-             a  b;
-             a -b;
-            -a -b];
+KE = @(x,y) B(x,y,am,bm)'*D*B(x,y,am,bm);
+vx = @(a,b)[-a  -b;
+             a  -b;
+             a   b;
+            -a   b];
 b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
-KE = integQuad(ke, vx(am,bm));
+ke = integQuad(KE, vx(am,bm));
 
 prev_C=1e10;
 nsteps = 2;
@@ -35,7 +38,7 @@ v = sum(x(:))/(nx*ny);
 while f>1e-6 || v~=Vf || count<nsteps
   prev_C = C;
   count=count+1;
-  u = microFEM(nx, ny, am, bm, x, KE, E);
+  u = microFEM(nx, ny, am, bm, x, ke, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
@@ -105,9 +108,9 @@ end
 function valInteg = integQuad(F,vertices)
     w = [1 1 1 1];
     ptGaussRef =[-0.5774   -0.5774;
-                 -0.5774    0.5774;
                   0.5774   -0.5774;
-                  0.5774    0.5774];
+                  0.5774    0.5774;
+                 -0.5774    0.5774];
     % Shape functions
     Psi1=@(x,y)(1-x).*(1-y)/4;
     Psi2=@(x,y)(1+x).*(1-y)/4;
@@ -186,7 +189,9 @@ for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
-    dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+    dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
 %     t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
     t2 = D*(E(1)-E(2))*integQuad(@(x,y) (eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
     t1 = integQuad(@(x,y) B(x,y,a,b)'*t2*B(x,y,a,b), vx(a,b));
@@ -195,7 +200,9 @@ for i=1:nx
       for h=1:H
         n1 = (H+1)*(l-1)+h;
         n2 = (H+1)*l+h;
-        dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%         dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%         dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+        dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
         temp = temp + U(dof, 1)'*t1*U(dof,1);
       end
     end
@@ -224,7 +231,8 @@ for i=1:L
   for j=1:H
     n1 = (H+1)*(i-1)+j;
     n2 = (H+1)*i+j;
-    dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+    dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
     %Every element is identical, KE is assembled directly;
     K(dof, dof) = K(dof, dof) + KE;
   end
@@ -264,11 +272,13 @@ for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
-    dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+%     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+    dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
   end
 end
-Dh = double(Dh*D/(nx*ny));
+Dh = double(Dh*D/(nx*ny))
 end
 %% Perform microFEM
 function u = microFEM(nx, ny, am, bm, x, ke, E)
@@ -279,7 +289,8 @@ for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
-    dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+    dof = [2*n1+1; 2*n1+2; 2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;]
     %k is the assembly of elemental stiffness matrices
     %every elemental stiffness matrix is identical, i.e. ke is calculated
     %once and for different element it is multiplied by the relative
@@ -287,7 +298,7 @@ for i=1:nx
     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
   end
 end
-
+% full(k)
 u1=pbc(nx, ny, a,b,k,[1,0,0]);
 u2=pbc(nx, ny, a,b,k,[0,1,0]);
 u3=pbc(nx, ny, a,b,k,[0,0,1]);
