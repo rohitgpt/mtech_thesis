@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  7 JUN 2019 12:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  8 JUN 2019 20:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -405,26 +405,26 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-Overfull \hbox (76.27693pt too wide) detected at line 311
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7]
+Overfull \hbox (76.27693pt too wide) detected at line 319
  $[][]$  
  []
 
-[7] [8] [9] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
+[8] [9] [10] (./thesis.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 395.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 395.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 403.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 26EA41232BA054D130D3226263E29F11;695.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 395.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 403.
  ) 
 Here is how much of TeX's memory you used:
- 6331 strings out of 492982
- 92001 string characters out of 6134896
- 202704 words of memory out of 5000000
+ 6333 strings out of 492982
+ 92020 string characters out of 6134896
+ 199706 words of memory out of 5000000
  9748 multiletter control sequences out of 15000+600000
  13243 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -448,10 +448,10 @@ t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (10 pages, 229078 bytes).
+Output written on thesis.pdf (11 pages, 230360 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 78 named destinations out of 1000 (max. 500000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 236 compressed objects within 3 object streams
+ 80 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 

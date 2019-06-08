@@ -28,14 +28,22 @@ Bamboo, like any other living organism, is a result of an evolutionary process. 
 Therefore, we frame it as a constrained maximization problem, with the objective function being specific strength, optimizing the radial distribution of fibers and parenchyma. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.] 
 \begin{equation*}
 \begin{aligned}
-& \underset{x}{\text{maximize}}
-& & f_0(x) \\
+& \underset{r}{\text{maximize}}
+& & strength(r) \\
 & \text{subject to}
-& & f_i(x) \leq b_i, \; i = 1, \ldots, m.
+& & stress\,at\,every\, point \leq max\, stress\\
+& & & bending\, moment \leq max\, moment
 \end{aligned}
 \end{equation*}
 
-\subsection{Optimization Problem}
+Now, specific flexural rigidity is used as measure of strength which can be written as 
+\begin{equation}
+\begin{split}
+strength(x) =  &\frac{EI}{\rho}\\
+=&\frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}
+\end{split}
+\end{equation}
+\lsubsection{Optimization Problem}
 \begin{equation}
 \begin{split}
 max \quad& \frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}\\
