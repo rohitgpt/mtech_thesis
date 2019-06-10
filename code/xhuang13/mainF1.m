@@ -1,14 +1,14 @@
-function mainFx(L, H, Vf, nx, ny)
+function mainF1(L, H, Vf, nx, ny)
 tic;
-E = [1 1e-4];
+E = [1 1e-4]*1e2;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
-% a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
+% am = .5; bm = .5;
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
-% x = design1(nx, ny);
-x = design2(nx, ny);
+x = design1(nx, ny);
+% x = design2(nx, ny);
 
 % B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
 %                 0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
@@ -190,10 +190,10 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
 %     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
-%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
-    t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
-%     t2 = D*(E(1)-E(2))*integQuad(@(x,y) (eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+%     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+    dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
+%     t2 = (E(1)-E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+    t2 = D*(E(1)-E(2))*integQuad(@(x,y) (B(x,y,am,bm)*u(dof,:)), vx(am,bm));
     t1 = integQuad(@(x,y) B(x,y,a,b)'*t2*B(x,y,a,b), vx(a,b));
     temp = 0;
     for l=1:L
@@ -201,8 +201,8 @@ for i=1:nx
         n1 = (H+1)*(l-1)+h;
         n2 = (H+1)*l+h;
 %         dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-        dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
-%         dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
+%         dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+        dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
         temp = temp + U(dof, 1)'*t1*U(dof,1);
       end
     end
@@ -273,12 +273,12 @@ for i=1:nx
     n1 = (ny+1)*(i-1)+j;
     n2 = (ny+1)*i+j;
 %     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-    dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
-%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
-    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
+%     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+    dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
+    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(b1*u(dof, :));         %
   end
 end
-Dh = double(Dh*D/(nx*ny));
+Dh = double(Dh*D/(nx*ny))
 end
 %% Perform microFEM
 function u = microFEM(nx, ny, am, bm, x, ke, E)
