@@ -8,8 +8,8 @@ a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 % x = design1(nx, ny);
-% x = design2(nx, ny);
-x = design3(nx, ny);
+x = design2(nx, ny);
+% x = design3(nx, ny);
 
 B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0;
                0, x - a,       0, - a - x,     0, a + x,       0,   a - x;
@@ -28,20 +28,22 @@ b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
 ke = integQuad(KE, vx(am,bm));
 
 prev_C=1e10;
-nsteps = 2;
+nsteps = 1;
 prev_s = zeros(ny, nx, nsteps);
 C = 1e5;
 count=0;
 f = 1;
 v = sum(x(:))/(nx*ny);
+Cvec = 0;
+vvec = 0;
 while f>1e-6 || v~=Vf || count<nsteps
-  prev_C = C;
   count=count+1;
   u = microFEM(nx, ny, am, bm, x, ke, b1, D, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
-  
+  Cvec = [Cvec, C];
+  vvec = [vvec, v];
   s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
   avg_s = (s_filtered + sum(prev_s,3))/(1+nsteps);
@@ -71,8 +73,19 @@ while f>1e-6 || v~=Vf || count<nsteps
   x = reshape(y, ny, nx);
   toc;
   plot_fig(x, count);
-
 end
+plot_asmb(x);
+% Cvec
+figure(1)
+hold on;
+yyaxis right
+plot(1:length(Cvec)-1, full(Cvec(2:length(Cvec)))); 
+xlabel('Iteration');
+ylabel('C, mean compliance');
+yyaxis left
+plot(1:length(vvec)-1, vvec(2:length(vvec)));
+ylabel('Volume fraction');
+hold off;
 end
 
 function plot_result(nx, ny, x, u)
@@ -218,6 +231,19 @@ colormap(gray);
 imagesc(1-x);
 saveas(a,[num2str(i), '.jpg']);
 end
+
+function plot_asmb(x)
+n = 3;
+s = size(x);
+t = zeros(3*s);
+for i=1:n
+  for j=1:n
+    t(1+(i-1)*s(1):i*s(1), 1+(j-1)*s(2):j*s(2)) = x;
+  end
+end
+plot_fig(t,0);
+end
+
 %% Perform macro FEM 
 function [C, U] = macroFEM(L, H, a, b, Dh, B, vx)
 U = sparse(2*(L+1)*(H+1), 1);
@@ -246,26 +272,9 @@ free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
 % plot_macro(L, H, 0, U);
-C = double(0.5*F'*U)
+C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
-% function Dh = homogenization(nx, ny, x, b1, u, D, E)
-% Dh =  zeros(3,3); %initialising Dh to be 3x3
-% basmb = zeros(3, length(u));
-% 
-% for i=1:nx
-%   for j=1:ny
-%     n1 = (ny+1)*(i-1)+j;
-%     n2 = (ny+1)*i+j;
-%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
-%     basmb(:, dof) = basmb(:, dof)+(x(j,i)*E(1)+(1-x(j, i))*E(2))*b1;
-% %     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
-%   end
-% end
-% Dh = D*(eye(3)-nx*ny*basmb*u)/(nx*ny);
-% % disp(basmb*u);
-% % Dh = double(Dh*D/(nx*ny));
-% end
 function Dh = homogenization(nx, ny, x, b1, u, D, E)
 Dh =  zeros(3,3); %initialising Dh to be 3x3
 for i=1:nx
@@ -308,7 +317,7 @@ u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
 u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
 u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
 u = [u1 u2 u3];
-plot_result(nx, ny, x, u(:,3));
+% plot_result(nx, ny, x, u(:,3));
 end
 %%
 function u = new_pbc(nx, ny, a, b, k, F, strain)

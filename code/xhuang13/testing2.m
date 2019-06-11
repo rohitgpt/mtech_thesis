@@ -1,6 +1,6 @@
 function testing2()
 E = [1 1e-4];
-nx=33;
+nx=25;
 ny=33;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
@@ -29,6 +29,27 @@ ke = integQuad(KE, vx(am,bm));
 
 x = design3(nx, ny);
 u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E);
+plot_asmb(x);
+end
+
+function plot_fig(x, i)
+% a = figure(1);
+a = figure('visible', 'off');
+colormap(gray);
+imagesc(1-x);
+saveas(a,[num2str(i), '.jpg']);
+end
+
+function plot_asmb(x)
+n = 3;
+s = size(x);
+t = zeros(3*s);
+for i=1:n
+  for j=1:n
+    t(1+(j-1)*s(2):j*s(2),1+(i-1)*s(1):i*s(1)) = x;
+  end
+end
+plot_fig(t,0);
 end
 
 function xinit = design3(nx, ny)
