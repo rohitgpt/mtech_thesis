@@ -8,14 +8,13 @@ a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 % x = design1(nx, ny);
-x = design2(nx, ny);
+% x = design2(nx, ny);
+x = design3(nx, ny);
 
-% B = @(x,y,a,b)[ - b - y,  0,      b + y,    0,      b - y,    0,       y - b,   0;
-%                 0,        a - x,  0,        a + x,  0,        - a - x, 0,       x - a;
-%                 a - x,    - b - y,a + x,    b + y,  - a - x,  b - y,   x - a,   y - b]/(4*a*b);
 B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0;
                0, x - a,       0, - a - x,     0, a + x,       0,   a - x;
                x - a, y - b, - a - x,   b - y, a + x, b + y,   a - x, - b - y]/(4*a*b);
+
 nu=0.3;
 D = 1/(1-nu^2)*[1   nu  0;
                 nu  1   0;
@@ -38,11 +37,11 @@ v = sum(x(:))/(nx*ny);
 while f>1e-6 || v~=Vf || count<nsteps
   prev_C = C;
   count=count+1;
-  u = microFEM(nx, ny, am, bm, x, ke, E);
+  u = microFEM(nx, ny, am, bm, x, ke, b1, D, E);
 
   Dh = homogenization(nx, ny, x, b1, u, D, E);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
-
+  
   s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
   avg_s = (s_filtered + sum(prev_s,3))/(1+nsteps);
@@ -79,14 +78,15 @@ end
 function plot_result(nx, ny, x, u)
 [X, Y] = meshgrid(1:nx+1, 1:ny+1);
 Y = flipud(Y);
-X1 = X + 1000*reshape(u(1:2:size(u)), ny+1, nx+1);
-Y1 = Y + 1000*reshape(u(2:2:size(u)), ny+1, nx+1);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
 % disp(u);
 C = ones(ny+1, nx+1);
 C(1:ny, 1:nx) = 1-x;
 figure(2);
 pcolor(X1, Y1, C);
 colormap(gray);
+pause(.1);
 % plot(X,Y);
 end
 
@@ -246,7 +246,7 @@ free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
 U(free_dofs, :) = K(free_dofs, free_dofs)\F(free_dofs, :);
 U(fixed_dofs, :) = 0;
 % plot_macro(L, H, 0, U);
-C = double(0.5*F'*U);
+C = double(0.5*F'*U)
 end
 %% Return homogenized elasticity matrix
 % function Dh = homogenization(nx, ny, x, b1, u, D, E)
@@ -281,10 +281,10 @@ end
 Dh = double(Dh*D/(nx*ny));
 end
 %% Perform microFEM
-function u = microFEM(nx, ny, am, bm, x, ke, E)
+function u = microFEM(nx, ny, am, bm, x, ke, b1, D, E)
 a = am; b = bm;
 k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
-
+F = sparse(2*(nx+1)*(ny+1), 3);
 for i=1:nx
   for j=1:ny
     n1 = (ny+1)*(i-1)+j;
@@ -296,14 +296,62 @@ for i=1:nx
     %once and for different element it is multiplied by the relative
     %density of element
     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+    F(dof, :) = F(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*b1'*D;
+%     F(dof, :) = F(dof, :) + x(j,i)*b1'*D;
   end
 end
-% full(k)
-u1=pbc(nx, ny, a,b,k,[1,0,0]);
-u2=pbc(nx, ny, a,b,k,[0,1,0]);
-u3=pbc(nx, ny, a,b,k,[0,0,1]);
+
+% u1=pbc(nx, ny, a,b,k,[1,0,0]);
+% u2=pbc(nx, ny, a,b,k,[0,1,0]);
+% u3=pbc(nx, ny, a,b,k,[0,0,1]);
+u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
+u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
+u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
 u = [u1 u2 u3];
-% plot_result(nx, ny, x, u(:,1));
+plot_result(nx, ny, x, u(:,3));
+end
+%%
+function u = new_pbc(nx, ny, a, b, k, F, strain)
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+
+if strain(3)==1
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw+1, ue+1, un, us];
+
+C = zeros((nx+ny-2), 2*(nx+1)*(ny+1));
+Q = zeros((nx+ny-2), 1);
+Q(1:length(uw), :)        =0;
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
+Q(l+1:l+length(un), :)    =0;
+C(sub2ind(size(C),l+1:l+length(un), un+1))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1))   =-1;    l=l+length(un);
+else
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw, ue, un+1, us+1];
+
+C = zeros((nx+ny-2), 2*(nx+1)*(ny+1));
+Q = zeros((nx+ny-2), 1);
+Q(1:length(uw), :)        =0;
+C(sub2ind(size(C),1:length(uw), ue+1))       =1;    
+C(sub2ind(size(C),1:length(uw), uw+1))       =-1;    l=length(uw);  
+Q(l+1:l+length(un), :)    =0;
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
+end
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+alpha=1e7;
+r = F*strain';
+u = sparse(2*(nx+1)*(ny+1),1);
+u(fixeddofs, :) = 0;
+
+% r = zeros(size(u));
+% r = r - k(:, fixeddofs)*u(fixeddofs,:);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 end
 %%
 function u = pbc(nx, ny, a, b, k, strain)
@@ -365,4 +413,10 @@ xinit(1,1)=0;
 xinit(ny,1)=0;
 xinit(1,nx)=0;
 xinit(ny, nx)=0;
+end
+
+function xinit = design3(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xmid = ceil((nx+1)/2); ymid=ceil((ny+1)/2);
+xinit(ymid-(ny-1)/4:ymid+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
 end

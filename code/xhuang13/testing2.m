@@ -1,11 +1,11 @@
 function testing2()
-E = [1 1e-4]*10^2;
-nx=1;
-ny=1;
+E = [1 1e-4];
+nx=33;
+ny=33;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
-a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
-am = .5; bm = .5; %size for the elements in the micro FEM is determined from using a,b,nx,ny
+a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
+am = a/nx; bm = a/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
 % x = design1(nx, ny);
@@ -24,9 +24,106 @@ vx = @(a,b)[-a  -b;
              a  -b;
              a   b;
             -a   b];
-b = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm))
-ke = integQuad(KE, vx(am,bm))
-u = FE(1, 1, 1, 1);
+b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
+ke = integQuad(KE, vx(am,bm));
+
+x = design3(nx, ny);
+u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E);
+end
+
+function xinit = design3(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xmid = ceil((nx+1)/2); ymid=ceil((ny+1)/2);
+xinit(ymid-(ny-1)/4:ymid+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
+end
+
+%% Perform microFEM
+function u = microFEM(nx, ny, am, bm, x, ke, b1, D, E)
+a = am; b = bm;
+k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+F = sparse(2*(nx+1)*(ny+1), 3);
+for i=1:nx
+  for j=1:ny
+    n1 = (ny+1)*(i-1)+j;
+    n2 = (ny+1)*i+j;
+    dof = [2*n1+1; 2*n1+2; 2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;]
+    %k is the assembly of elemental stiffness matrices
+    %every elemental stiffness matrix is identical, i.e. ke is calculated
+    %once and for different element it is multiplied by the relative
+    %density of element
+    k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+    F(dof, :) = F(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*b1'*D;
+%     F(dof, :) = F(dof, :) + x(j,i)/2*b1'*D;
+%     F(dof, :) = F(dof, :) + b1'*D;
+  end
+end
+% u1=pbc(nx, ny, a,b,k,[1,0,0]);
+% u2=pbc(nx, ny, a,b,k,[0,1,0]);
+% u3=pbc(nx, ny, a,b,k,[0,0,1]);
+u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
+u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
+u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
+u = [u1 u2 u3];
+plot_result(nx, ny, x, u(:,3));
+end
+%%
+function u = new_pbc(nx, ny, a, b, k, F, strain)
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+
+if strain(3)==1
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw+1, ue+1, un, us];
+
+C = zeros((nx+ny-2), 2*(nx+1)*(ny+1));
+Q = zeros((nx+ny-2), 1);
+Q(1:length(uw), :)        =0;
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
+Q(l+1:l+length(un), :)    =0;
+C(sub2ind(size(C),l+1:l+length(un), un+1))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1))   =-1;    l=l+length(un);
+else
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw, ue, un+1, us+1];
+
+C = zeros((nx+ny-2), 2*(nx+1)*(ny+1));
+Q = zeros((nx+ny-2), 1);
+Q(1:length(uw), :)        =0;
+C(sub2ind(size(C),1:length(uw), ue+1))       =1;    
+C(sub2ind(size(C),1:length(uw), uw+1))       =-1;    l=length(uw);  
+Q(l+1:l+length(un), :)    =0;
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
+end
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+alpha=1e7;
+r = F*strain';
+u = sparse(2*(nx+1)*(ny+1),1);
+u(fixeddofs, :) = 0;
+
+% r = zeros(size(u));
+% r = r - k(:, fixeddofs)*u(fixeddofs,:);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
+end
+
+function plot_result(nx, ny, x, u)
+[X, Y] = meshgrid(1:nx+1, 1:ny+1);
+Y = flipud(Y);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+% disp(u);
+C = ones(ny+1, nx+1);
+C(1:ny, 1:nx) = 1-x;
+figure(2);
+pcolor(X1, Y1, C);
+colormap(gray);
+pause(.1);
+% plot(X,Y);
 end
 
 function [U]=FE(nelx,nely,x,penal)

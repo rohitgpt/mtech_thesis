@@ -1,7 +1,7 @@
 function testing2()
 E = [1 1e-4]*10^2;
-nx=1;
-ny=1;
+nx=25;
+ny=25;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
@@ -11,29 +11,159 @@ am = .5; bm = .5; %size for the elements in the micro FEM is determined from usi
 % x = design1(nx, ny);
 % x = design2(nx, ny);
 
-B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0]
+B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0;
                0, x - a,       0, - a - x,     0, a + x,       0,   a - x;
-               x - a, y - b, - a - x,   b - y, a + x, b + y,   a - x, - b - y]/(4*a*b)
+               x - a, y - b, - a - x,   b - y, a + x, b + y,   a - x, - b - y]/(4*a*b);
 
 nu=0.3;
 D = 1/(1-nu^2)*[1   nu  0;
                 nu  1   0;
                 0   0   (1-nu)/2;];
 KE = @(x,y) B(x,y,am,bm)'*D*B(x,y,am,bm);
-vx = @(a,b)[-a  b;
-             a  b;
-             a -b;
-            -a -b];
+vx = @(a,b)[-a  -b;
+             a  -b;
+             a   b;
+            -a   b];
 b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
-ke = integQuad(KE, vx(am,bm))
+ke = integQuad(KE, vx(am,bm));
+% u = FE(1, 1, 1, 1);
+x = design3(nx, ny);
+u = microFEM(nx, ny, 1,1,x,ke, b1, D, E);
+end
+
+function xinit = design3(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xmid = ceil(nx/2); ymid=ceil(ny/2);
+xinit(ymid-ny/4:ymid+ny/4,xmid-nx/4:xmid+nx/4) = 0;
+end
+
+%% Perform microFEM
+function u = microFEM(nx, ny, am, bm, x, ke, b1, D, E)
+a = am; b = bm;
+k = sparse(2*(nx+1)*(ny+1), 2*(nx+1)*(ny+1));
+F = sparse(2*(nx+1)*(ny+1), 3);
+for i=1:nx
+  for j=1:ny
+    n1 = (ny+1)*(i-1)+j;
+    n2 = (ny+1)*i+j;
+    dof = [2*n1+1; 2*n1+2; 2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;]
+    %k is the assembly of elemental stiffness matrices
+    %every elemental stiffness matrix is identical, i.e. ke is calculated
+    %once and for different element it is multiplied by the relative
+    %density of element
+    k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
+    F(dof, :) = F(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*b1'*D;
+%     F(dof, :) = F(dof, :) + x(j,i)*b1'*D;
+  end
+end
+
+% u1=pbc(nx, ny, a,b,k,[1,0,0]);
+% u2=pbc(nx, ny, a,b,k,[0,1,0]);
+% u3=pbc(nx, ny, a,b,k,[0,0,1]);
+u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
+u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
+u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
+u = [u1 u2 u3];
+plot_result(nx, ny, x, u(:,1));
+end
+%%
+function u = new_pbc(nx, ny, a, b, k, F, strain)
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+
+if strain(3)==1
+C = zeros(1, 2*(nx+1)*(ny+1));
+Q = zeros(1, 1);
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw+1, ue+1, un, us];
+else
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2, uw, ue, un+1, us+1];
+
+C = zeros((nx+ny-2), 2*(nx+1)*(ny+1));
+Q = zeros((nx+ny-2), 1);
+Q(1:length(uw), :)        =0;
+C(sub2ind(size(C),1:length(uw), ue+1))       =1;    
+C(sub2ind(size(C),1:length(uw), uw+1))       =-1;    l=length(uw);  
+Q(l+1:l+length(un), :)    =0;
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
+end
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+alpha=1e7;
+r = F*strain';
+u = sparse(2*(nx+1)*(ny+1),1);
+u(fixeddofs, :) = 0;
+
+% r = zeros(size(u));
+% r = r - k(:, fixeddofs)*u(fixeddofs,:);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
+end
+
+function plot_result(nx, ny, x, u)
+[X, Y] = meshgrid(1:nx+1, 1:ny+1);
+Y = flipud(Y);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+% disp(u);
+C = ones(ny+1, nx+1);
+C(1:ny, 1:nx) = 1-x;
+figure(2);
+pcolor(X1, Y1, C);
+colormap(gray);
+pause(.1);
+% plot(X,Y);
+end
+
+function [U]=FE(nelx,nely,x,penal)
+[KE] = lk
+K = sparse(2*(nelx+1)*(nely+1), 2*(nelx+1)*(nely+1));
+F = sparse(2*(nely+1)*(nelx+1),1); U = zeros(2*(nely+1)*(nelx+1),1);
+for elx = 1:nelx
+  for ely = 1:nely
+    n1 = (nely+1)*(elx-1)+ely; 
+    n2 = (nely+1)* elx   +ely;
+%     edof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+    edof = sort([2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;]);
+    K(edof,edof) = K(edof,edof) + x(ely,elx)^penal*KE;
+  end
+end
+full(K)
+% DEFINE LOADS AND SUPPORTS (HALF MBB-BEAM)
+F([1+2*(nely+1)*nelx:2:2*(nely+1)*(nelx+1)],1) = 1;
+fixeddofs   = union([1:2:2*(nely+1)],union([2:(nely+1)*2:2*(nelx+1)*(nely+1)],[2*(nely+1):2*(nely+1):2*(nely+1)*(nelx+1)]));
+alldofs     = [1:2*(nely+1)*(nelx+1)];
+freedofs    = setdiff(alldofs,fixeddofs);
+% SOLVING
+U(freedofs,:) = K(freedofs,freedofs) \ F(freedofs,:);      
+U(fixeddofs,:)= 0;
+end
+
+function [KE]=lk
+E = 1.; 
+nu = 0.3;
+k=[ 1/2-nu/6   1/8+nu/8 -1/4-nu/12 -1/8+3*nu/8 ... 
+   -1/4+nu/12 -1/8-nu/8  nu/6       1/8-3*nu/8];
+KE = E/(1-nu^2)*[ k(1) k(2) k(3) k(4) k(5) k(6) k(7) k(8)
+                  k(2) k(1) k(8) k(7) k(6) k(5) k(4) k(3)
+                  k(3) k(8) k(1) k(6) k(7) k(4) k(5) k(2)
+                  k(4) k(7) k(6) k(1) k(8) k(3) k(2) k(5)
+                  k(5) k(6) k(7) k(8) k(1) k(2) k(3) k(4)
+                  k(6) k(5) k(4) k(3) k(2) k(1) k(8) k(7)
+                  k(7) k(4) k(5) k(2) k(3) k(8) k(1) k(6)
+                  k(8) k(3) k(2) k(5) k(4) k(7) k(6) k(1)];
 end
 
 function valInteg = integQuad(F,vertices)
     w = [1 1 1 1];
     ptGaussRef =[-0.5774   -0.5774;
-                 -0.5774    0.5774;
                   0.5774   -0.5774;
-                  0.5774    0.5774];
+                  0.5774    0.5774;
+                 -0.5774    0.5774];
     % Shape functions
     Psi1=@(x,y)(1-x).*(1-y)/4;
     Psi2=@(x,y)(1+x).*(1-y)/4;
