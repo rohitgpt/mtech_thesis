@@ -3,6 +3,7 @@
 \usepackage{textcomp, xspace}
 \usepackage[fleqn]{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{accents}
@@ -35,7 +36,6 @@ Therefore, we frame it as a constrained maximization problem, with the objective
 & & & bending\, moment \leq max\, moment
 \end{aligned}
 \end{equation*}
-
 Now, specific flexural rigidity is used as measure of strength which can be written as 
 \begin{equation}
 \begin{split}
@@ -43,15 +43,43 @@ strength(x) =  &\frac{EI}{\rho}\\
 =&\frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}
 \end{split}
 \end{equation}
-\lsubsection{Optimization Problem}
+Assuming small deformation, from Euler Bernoulli Beam Theory, we get strain $\varepsilon_{xx}$ as\\
+Put Schematics for Beam Theory
+\begin{equation}
+\begin{split}
+\varepsilon_{xx} &= \frac{\Delta x' - \Delta x}{\Delta x}\\
+&= \frac{(R+y)\Delta\theta - R\Delta\theta}{R\Delta\theta}\\
+&= \frac{y}{R}
+\end{split}
+\end{equation}
+Therefore, using constitutive relation, we get $\sigma_{xx}$ as
+\begin{equation}
+\sigma_{xx} = E\varepsilon_{xx} = \frac{E}{R}y
+\end{equation}
+\begin{equation}\label{stress_eb}
+\sigma = \frac{E}{R}r\sin\theta \quad (\because y = r\sin\theta)
+\end{equation}Now, moment can be written as
+\begin{equation}
+M(x) = \int\int y\cdot\sigma(x,y)\cdot dydz\\
+\end{equation}
+For a particular $x$, moment for an annular structure like bamboo can be written as
+\begin{equation}
+\begin{split}
+M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta &\\
+&=\int_{r_i}^{r_o}\int_0^{2\pi} \frac{E(r)r sin\theta}{R}r^2 sin\theta\,dr\,d\theta &\quad (\text{From eqn }\eqref{stress_eb})\\
+&=\pi\int_{r_i}^{r_o}\frac{r^3 E(r)}{R}\,dr
+\end{split}
+\end{equation}
+\subsection{Optimization Problem}
 \begin{equation}
 \begin{split}
 max \quad& \frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}\\
 s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
-& \frac{EI}{R}\leq M_{max}
+& \sum_{r_i}^{r_o}r^3E(r)\leq \frac{M_{max}R}{\pi\Delta r}
 \end{split}
 \end{equation}
-where $E(r) = \nu_1(r) E_1 + \nu_2(r) E_2$, is the Young's Modulus obtained using rule of mixtures[ at a radial distance $r$ from the center. 
+where $E(r) = \nu_1(r) E_1 + \nu_2(r) E_2$, is the Young's Modulus obtained using rule of mixtures at a radial distance $r$ from the center. 
+\newpage
 \section{Method}
 The idea of asymptotic homogenization.
 In a repeating cell Y,

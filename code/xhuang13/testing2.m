@@ -1,7 +1,7 @@
 function testing2()
 E = [1 1e-4];
-nx=25;
-ny=33;
+nx=53;
+ny=45;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
@@ -27,9 +27,15 @@ vx = @(a,b)[-a  -b;
 b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
 ke = integQuad(KE, vx(am,bm));
 
+f = @{design
+x = feval(@design
 x = design3(nx, ny);
+% x(1:ny, 1:nx) = 1;
+% x(rand(), ran
 u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E);
-plot_asmb(x);
+D
+Dh = homogenization(nx, ny, x, b1, u, D, E)
+% plot_asmb(x);
 end
 
 function plot_fig(x, i)
@@ -52,10 +58,41 @@ end
 plot_fig(t,0);
 end
 
+function xinit = design1(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xmid = ceil(nx/2); ymid=ceil(ny/2);
+xinit(ymid:ymid+1,xmid:xmid+1) = 0;
+end
+
+function xinit = design2(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xinit(1,1)=0;
+xinit(ny,1)=0;
+xinit(1,nx)=0;
+xinit(ny, nx)=0;
+end
+
 function xinit = design3(nx, ny)
 xinit(1:ny, 1:nx) = 1;
 xmid = ceil((nx+1)/2); ymid=ceil((ny+1)/2);
-xinit(ymid-(ny-1)/4:ymid+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
+xinit(ymid-4-(ny-1)/4:ymid+4+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
+end
+
+function Dh = homogenization(nx, ny, x, b1, u, D, E)
+Dh =  zeros(3,3); %initialising Dh to be 3x3
+% nx = 3; ny = 3;
+for i=1:nx
+  for j=1:ny
+    n1 = (ny+1)*(i-1)+j;
+    n2 = (ny+1)*i+j;
+%     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
+    dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
+%     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
+%     b1*u(dof,:)
+    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(b1*u(dof, :));         %
+  end
+end
+Dh = double(D*(eye(3)-Dh/4));
 end
 
 %% Perform microFEM
@@ -75,7 +112,7 @@ for i=1:nx
     %density of element
     k(dof, dof) = k(dof, dof) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*ke;
     F(dof, :) = F(dof, :) + (x(j, i)*E(1)+(1-x(j, i))*E(2))*b1'*D;
-%     F(dof, :) = F(dof, :) + x(j,i)/2*b1'*D;
+%     F(dof, :) = F(dof, :) + x(j,i)*b1'*D;
 %     F(dof, :) = F(dof, :) + b1'*D;
   end
 end
@@ -86,7 +123,7 @@ u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
 u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
 u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
 u = [u1 u2 u3];
-plot_result(nx, ny, x, u(:,3));
+plot_result(nx, ny, x, u(:,2));
 end
 %%
 function u = new_pbc(nx, ny, a, b, k, F, strain)
@@ -230,4 +267,26 @@ function valInteg = integQuad(F,vertices)
         suma=suma+w(i)*F(ptGaussDomain(i,1),ptGaussDomain(i,2))*evalDetJacb(i);
     end
     valInteg = suma;
+end
+function x = random_init(nx, ny, Vf)
+xinit = rand(ny, nx);
+[~, index] = sort(xinit(:), 'descend');
+v = Vf*(nx*ny);
+y = zeros(nx*ny, 1);
+y(index(1:ceil(v)))=1;
+x = reshape(y, ny, nx);
+end
+
+function xinit = design1(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xmid = ceil(nx/2); ymid=ceil(ny/2);
+xinit(ymid:ymid+1,xmid:xmid+1) = 0;
+end
+
+function xinit = design2(nx, ny)
+xinit(1:ny, 1:nx) = 1;
+xinit(1,1)=0;
+xinit(ny,1)=0;
+xinit(1,nx)=0;
+xinit(ny, nx)=0;
 end

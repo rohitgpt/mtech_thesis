@@ -1,14 +1,15 @@
-function mainFx(L, H, Vf, nx, ny)
+function mainFx(L, H, Vf, rmin, designnumber, folder, nx, ny)
 tic;
 E = [1 1e-4];
 delta = 0.02; %change in volume in every iteration
-rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
+% rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 % a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
-% x = design1(nx, ny);
-x = design2(nx, ny);
+f = str2func(['design', num2str(designnumber)]);
+x = f(nx, ny);
+% x = design2(nx, ny);
 % x = design3(nx, ny);
 
 B = @(x,y,a,b)[ y - b,     0,   b - y,       0, b + y,     0, - b - y,       0;
@@ -28,7 +29,7 @@ b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
 ke = integQuad(KE, vx(am,bm));
 
 prev_C=1e10;
-nsteps = 1;
+nsteps = 2;
 prev_s = zeros(ny, nx, nsteps);
 C = 1e5;
 count=0;
@@ -37,13 +38,13 @@ v = sum(x(:))/(nx*ny);
 Cvec = 0;
 vvec = 0;
 while f>1e-6 || v~=Vf || count<nsteps
+  prev_C = C;
   count=count+1;
   u = microFEM(nx, ny, am, bm, x, ke, b1, D, E);
 
-  Dh = homogenization(nx, ny, x, b1, u, D, E);
+  Dh = homogenization(nx, ny, x, am, bm, b1, u, D, E, B, vx);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
   Cvec = [Cvec, C];
-  vvec = [vvec, v];
   s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
   avg_s = (s_filtered + sum(prev_s,3))/(1+nsteps);
@@ -67,24 +68,60 @@ while f>1e-6 || v~=Vf || count<nsteps
     end
   end
   
-  [~, index] = sort(avg_s(:), 'descend');
+  [srt, index] = sort(avg_s(:), 'descend');
+  tmp1 = mean(var(avg_s));
+  sqrt(tmp1/count)*100
   y = zeros(nx*ny, 1);
-  y(index(1:ceil(v*(nx*ny))))=1;
+  tmp=0;
+  nc = ceil(v*(nx*ny));
+  while abs(srt(index(nc+tmp+2))-srt(index(nc+tmp+2)))<sqrt(tmp1/count)*srt(index(nc+tmp+1)) && nc+tmp+1<length(srt(:))
+%     abs(srt(index(nc+tmp+2))-srt(index(nc)));
+%     srt(index(nc+tmp+1));
+    tmp=tmp+1;
+  end
+  tmp
+  y(index(1:nc+tmp))=1;
+  vvec = [vvec, (nc+tmp)/(nx*ny)];  
   x = reshape(y, ny, nx);
   toc;
-  plot_fig(x, count);
+  plot_fig(avg_s, folder,  count);
+  plot_fig(x, folder,  -count);
 end
+plot_asmb(x, folder); 
 % Cvec
-figure(1)
+figure
 hold on;
-yyaxis right
+yyaxis left
 plot(1:length(Cvec)-1, full(Cvec(2:length(Cvec)))); 
 xlabel('Iteration');
 ylabel('C, mean compliance');
-yyaxis left
-plot(1:length(vvec)-1, vvec(2:length(vvec))
+title([folder]);
+yyaxis right
+plot(1:length(vvec)-1, vvec(2:length(vvec)));
 ylabel('Volume fraction');
+saveas(gcf, [folder, 'c', '.png']);
 hold off;
+save([folder,'Dh.mat'], 'Dh');
+end
+%% Plotting
+function plot_fig(x, folder, i)
+% a = figure(1);
+a = figure('visible', 'off');
+colormap(gray);
+imagesc(1-x);
+saveas(a,[folder, num2str(i), '.jpg']);
+end
+
+function plot_asmb(x, folder)
+n = 3;
+s = size(x);
+t = zeros(3*s);
+for i=1:n
+  for j=1:n
+    t(1+(i-1)*s(1):i*s(1), 1+(j-1)*s(2):j*s(2)) = x;
+  end
+end
+plot_fig(t, folder, 0);
 end
 
 function plot_result(nx, ny, x, u)
@@ -222,27 +259,6 @@ for i=1:nx
   end
 end
 end
-%% Plotting
-function plot_fig(x, i)
-% a = figure(1);
-a = figure('visible', 'off');
-colormap(gray);
-imagesc(1-x);
-saveas(a,[num2str(i), '.jpg']);
-end
-
-function plot_asmb(x)
-n = 3;
-s = size(x);
-t = zeros(3*s);
-for i=1:n
-  for j=1:n
-    t(1+(i-1)*s(1):i*s(1), 1+(j-1)*s(2):s(2)) = x;
-  end
-end
-plot_fig(t,0);
-end
-
 %% Perform macro FEM 
 function [C, U] = macroFEM(L, H, a, b, Dh, B, vx)
 U = sparse(2*(L+1)*(H+1), 1);
@@ -274,7 +290,7 @@ U(fixed_dofs, :) = 0;
 C = double(0.5*F'*U);
 end
 %% Return homogenized elasticity matrix
-function Dh = homogenization(nx, ny, x, b1, u, D, E)
+function Dh = homogenization(nx, ny, x, am, bm, b1, u, D, E, B, vx)
 Dh =  zeros(3,3); %initialising Dh to be 3x3
 for i=1:nx
   for j=1:ny
@@ -283,10 +299,14 @@ for i=1:nx
 %     dof = [2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n2+1; 2*n2+2; 2*n1+1; 2*n1+2];
     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
 %     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
-    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
+%     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
+    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
   end
 end
-Dh = double(Dh*D/(nx*ny));
+Dh = double(Dh*D/(4*am*bm*nx*ny));
+Dh = 0.5*(Dh+Dh');
+Dh(3, [1 2]) = 0;
+Dh([1 2],3) = 0
 end
 %% Perform microFEM
 function u = microFEM(nx, ny, am, bm, x, ke, b1, D, E)
