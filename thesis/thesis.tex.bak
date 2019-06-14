@@ -1,4 +1,6 @@
 \documentclass[10pt]{article}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
 \usepackage{hyperref}
 \usepackage{textcomp, xspace}
 \usepackage[fleqn]{amsmath}
@@ -26,23 +28,44 @@ Fill it.
 Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin [L.Y.Mwaikambo et al.]. Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction. [Plot showing the distribution of fibers.]\par 
 This can be modeled as the distribution of two materials, and air (capture in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from [Mannan et al., L.Y.Mwaikambo et al.]. \par
 Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\par 
-Therefore, we frame it as a constrained maximization problem, with the objective function being specific strength, optimizing the radial distribution of fibers and parenchyma. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.] 
+\subsection{Formulation}
+Therefore, we frame a constrained problem, optimizing the radial distribution of two material, with properties corresponding to that of fibers and parenchyma, in an annular cross-section composites. The objective function to optimize is specific strength subjected to the constraints of maximum stress and maximum bending moment. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.]. The general problem formulation is written as
 \begin{equation*}
 \begin{aligned}
-& \underset{r}{\text{maximize}}
-& & strength(r) \\
+& \underset{x}{\text{maximize}}
+& & strength(\chi) \\
 & \text{subject to}
-& & stress\,at\,every\, point \leq max\, stress\\
-& & & bending\, moment \leq max\, moment
+& & \sigma(r) \leq \sigma_{max} &\quad \forall r \in [r_i, r_o]\\
+& & & M \leq M_{max}
 \end{aligned}
 \end{equation*}
-Now, specific flexural rigidity is used as measure of strength which can be written as 
-\begin{equation}
+where, $\chi$ is the distribution of the two material in the domain whose inner radius is $r_i$ and outer radius is $r_o$.  $\sigma$ is the stress in the longitudinal direction and $M$ is the bending moment. \par
+\subsection{Implementation}
+Now, flexural rigidity is used as measure of strength which can be written as 
+\begin{equation}\label{objective_eb}
 \begin{split}
-strength(x) =  &\frac{EI}{\rho}\\
-=&\frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}
+EI(r) &= \underset{R}{\iint}E(r)y^2\,dA = \int_{r_1}^{r_2}\int_0^{2\pi} E(r)(r\sin\theta)^2(rdrd\theta)\\
+&= \pi\int_{r_1}^{r_2} E(r)r^3 dr \qquad \text{Integrating over $\theta$}\\
 \end{split}
 \end{equation}
+Therefore, specific flexural rigidity will be written as
+\begin{equation}\label{objective_eb}
+\begin{split}
+strength(\chi) =  &\frac{EI}{\rho}\\
+=&\frac{\sum^{r_o}_{r_i} EI(r)}{\sum^{r_o}_{r_i}\rho(r)(2\pi r\Delta r)}
+\end{split}
+\end{equation}
+where 
+\begin{wrapfigure}[5]{r}{0.2\textwidth}
+\includegraphics[scale=0.3]{moment_annulus}
+\end{wrapfigure}
+\begin{equation}\label{objective_eb}
+\begin{split}
+E(r) &= \chi_1(r) E_1 + \chi_2(r) E_2\\
+\rho(r) &= r(\chi_1(r) \rho_1 + \chi_2(r) \rho_2
+\end{split}
+\end{equation}
+Here $\{E_1, \rho_1\}$ and $\{E_2, \rho_2\}$ are the material properties of the fibers and parenchyma respectively. $\chi_1$ and $\chi_2$ are the proportion of first and second material corresponding to fiber and parenchyma respectively.\par
 Assuming small deformation, from Euler Bernoulli Beam Theory, we get strain $\varepsilon_{xx}$ as\\
 Put Schematics for Beam Theory
 \begin{equation}
@@ -63,7 +86,7 @@ Therefore, using constitutive relation, we get $\sigma_{xx}$ as
 M(x) = \int\int y\cdot\sigma(x,y)\cdot dydz\\
 \end{equation}
 For a particular $x$, moment for an annular structure like bamboo can be written as
-\begin{equation}
+\begin{equation}\label{moment_eb}
 \begin{split}
 M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta &\\
 &=\int_{r_i}^{r_o}\int_0^{2\pi} \frac{E(r)r sin\theta}{R}r^2 sin\theta\,dr\,d\theta &\quad (\text{From eqn }\eqref{stress_eb})\\
@@ -71,14 +94,15 @@ M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta &\\
 \end{split}
 \end{equation}
 \subsection{Optimization Problem}
+Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes
 \begin{equation}
 \begin{split}
-max \quad& \frac{\sum^{r_o}_{r_i} E(r)I(r)}{\sum^{r_o}_{r_i}\rho(r)}\\
+\underset{\chi}{max} \quad& \frac{\sum^{r_o}_{r_i} E(r)r^3\Delta r}{\sum^{r_o}_{r_i}\rho(r)}\\
 s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 & \sum_{r_i}^{r_o}r^3E(r)\leq \frac{M_{max}R}{\pi\Delta r}
 \end{split}
 \end{equation}
-where $E(r) = \nu_1(r) E_1 + \nu_2(r) E_2$, is the Young's Modulus obtained using rule of mixtures at a radial distance $r$ from the center. 
+
 \newpage
 \section{Method}
 The idea of asymptotic homogenization.

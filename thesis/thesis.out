@@ -1,12 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Motivation}{}% 2
 \BOOKMARK [1][-]{section.3}{1D simulation}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Optimization Problem}{section.3}% 4
-\BOOKMARK [1][-]{section.4}{Method}{}% 5
-\BOOKMARK [2][-]{subsection.4.1}{1D Elasticity}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.2}{Optimal Design of Elastic structures}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.3}{Homogenization method}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.4}{Implementation 2D Homogenization}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.5}{Examples}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Results}{}% 11
-\BOOKMARK [1][-]{section.6}{References}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Formulation}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Implementation}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Optimization Problem}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Results}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Method}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{1D Elasticity}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Optimal Design of Elastic structures}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Homogenization method}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.4}{Implementation 2D Homogenization}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.5}{Examples}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Results}{}% 14
+\BOOKMARK [1][-]{section.6}{References}{}% 15
