@@ -1,13 +1,14 @@
-function mainFx(L, H, Vf, nx, ny)
+function mainFx(L, H, Vf, rmin, designnumber, folder, nx, ny)
 tic;
-E = [1 0];
+E = [1 1e-4];
 delta = 0.02; %change in volume in every iteration
-rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
+% rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 % a = 1e-2; b = 1e-2; %a, b for the shape function of elements in the macro FEM
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
 am = a/nx; bm = b/ny; %size for the elements in the micro FEM is determined from using a,b,nx,ny
 % x = random_init(nx, ny, Vf);   %initial design for microscale FEM
-x = design1(nx, ny);
+f = str2func(['design', num2str(designnumber)]);
+x = f(nx, ny);
 % x = design2(nx, ny);
 % x = design3(nx, ny);
 
@@ -44,7 +45,6 @@ while f>1e-6 || v~=Vf || count<nsteps
   Dh = homogenization(nx, ny, x, am, bm, b1, u, D, E, B, vx);
   [C, U] = macroFEM(L, H, a, b, Dh, B, vx);
   Cvec = [Cvec, C];
-  vvec = [vvec, v];  
   s = sensitivity(nx, ny, a, b, x, L, H, D, E, u, B, vx, U);
   s_filtered = apply_filter(nx, ny, s, rmin);
   avg_s = (s_filtered + sum(prev_s,3))/(1+nsteps);
@@ -68,15 +68,27 @@ while f>1e-6 || v~=Vf || count<nsteps
     end
   end
   
-  [~, index] = sort(avg_s(:), 'descend');
+  [srt, index] = sort(avg_s(:), 'descend');
+%   tmp1 = mean(var(avg_s));
+%   sqrt(tmp1/count)*100
   y = zeros(nx*ny, 1);
-  y(index(1:ceil(v*(nx*ny))))=1;
+  tmp=0;
+  nc = ceil(v*(nx*ny));
+%   abs(srt(index(nc+tmp+2))-srt(index(nc+tmp+1)))/srt(index(nc+tmp+1))*100
+%   while abs(srt(index(nc+tmp+2))-srt(index(nc+tmp+1)))<sqrt(tmp1/count)*srt(index(nc+tmp+1)) && nc+tmp+1<length(srt(:))
+% %     abs(srt(index(nc+tmp+2))-srt(index(nc)));
+% %     srt(index(nc+tmp+1));
+%     tmp=tmp+1;
+%   end
+%   tmp
+  y(index(1:nc+tmp))=1;
+  vvec = [vvec, (nc+tmp)/(nx*ny)];  
   x = reshape(y, ny, nx);
   toc;
-  plot_fig(x, count);
-  plot_fig(avg_s, count*10);
+  plot_fig(avg_s, folder,  count);
+  plot_fig(x, folder,  -count);
 end
-plot_asmb(x);
+plot_asmb(x, folder); 
 % Cvec
 figure
 hold on;
@@ -84,21 +96,24 @@ yyaxis left
 plot(1:length(Cvec)-1, full(Cvec(2:length(Cvec)))); 
 xlabel('Iteration');
 ylabel('C, mean compliance');
+title([folder]);
 yyaxis right
 plot(1:length(vvec)-1, vvec(2:length(vvec)));
 ylabel('Volume fraction');
+saveas(gcf, [folder, 'c', '.png']);
 hold off;
+save([folder,'Dh.mat'], 'Dh');
 end
 %% Plotting
-function plot_fig(x, i)
+function plot_fig(x, folder, i)
 % a = figure(1);
 a = figure('visible', 'off');
 colormap(gray);
 imagesc(1-x);
-saveas(a,[num2str(i), '.jpg']);
+saveas(a,[folder, num2str(i), '.jpg']);
 end
 
-function plot_asmb(x)
+function plot_asmb(x, folder)
 n = 3;
 s = size(x);
 t = zeros(3*s);
@@ -107,7 +122,7 @@ for i=1:n
     t(1+(i-1)*s(1):i*s(1), 1+(j-1)*s(2):j*s(2)) = x;
   end
 end
-plot_fig(t,0);
+plot_fig(t, folder, 0);
 end
 
 function plot_result(nx, ny, x, u)
@@ -286,14 +301,13 @@ for i=1:nx
     dof = [2*n1+1; 2*n1+2;  2*n2+1; 2*n2+2; 2*n2-1; 2*n2; 2*n1-1; 2*n1;];
 %     dof = [2*n2+1; 2*n2+2; 2*n1-1; 2*n1; 2*n2-1; 2*n2; 2*n1+1; 2*n1+2;];
 %     Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*(eye(3)-b1*u(dof, :));         %
-    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:))'*D*(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
-%   Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
+    Dh = Dh + (x(j, i)*E(1)+(1-x(j, i))*E(2))*integQuad(@(x,y)(eye(3)-B(x,y,am,bm)*u(dof,:)), vx(am,bm));
   end
 end
-Dh = double(Dh/(4*am*bm*nx*ny));
-% Dh = 0.5*(Dh+Dh');
+Dh = double(Dh*D/(4*am*bm*nx*ny));
+Dh = 0.5*(Dh+Dh');
 Dh(3, [1 2]) = 0;
-Dh([1 2],3) = 0;
+Dh([1 2],3) = 0
 end
 %% Perform microFEM
 function u = microFEM(nx, ny, am, bm, x, ke, b1, D, E)
@@ -315,18 +329,18 @@ for i=1:nx
 %     F(dof, :) = F(dof, :) + x(j,i)*b1'*D;
   end
 end
-z = hanging_nodes(x);
+
 % u1=pbc(nx, ny, a,b,k,[1,0,0]);
 % u2=pbc(nx, ny, a,b,k,[0,1,0]);
 % u3=pbc(nx, ny, a,b,k,[0,0,1]);
-u1=new_pbc(nx, ny, a,b,z,k,F,[1,0,0]);
-u2=new_pbc(nx, ny, a,b,z,k,F,[0,1,0]);
-u3=new_pbc(nx, ny, a,b,z,k,F,[0,0,1]);
+u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
+u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
+u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
 u = [u1 u2 u3];
 % plot_result(nx, ny, x, u(:,3));
 end
 %%
-function u = new_pbc(nx, ny, a, b, zerodofs, k, F, strain)
+function u = new_pbc(nx, ny, a, b, k, F, strain)
 us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
 ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
 un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
@@ -357,13 +371,11 @@ Q(l+1:l+length(un), :)    =0;
 C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
 C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 end
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+alpha=1e7;
 r = F*strain';
 u = sparse(2*(nx+1)*(ny+1),1);
 u(fixeddofs, :) = 0;
-u(zerodofs, :) = 0;
-fixeddofs = [fixeddofs, zerodofs];
-freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
-alpha=1e7;
 
 % r = zeros(size(u));
 % r = r - k(:, fixeddofs)*u(fixeddofs,:);
@@ -407,22 +419,7 @@ r = r - k(:, fixeddofs)*u(fixeddofs,:);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
 u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 end
-%%
-function dof = hanging_nodes(x)
-dof=[];
-[ny, nx] = size(x);
-x = x(1:ny,1:nx-1)+x(1:ny, 2:nx);
-x = x(1:ny-1,1:nx-1)+x(2:ny,1:nx-1);
-for i=1:nx-1
-  for j=1:ny-1
-    if ~x(j, i)
-      n1 = (ny+1)*(i-1)+j;
-      n2 = (ny+1)*i+j;
-      dof = [dof, 2*n2+1, 2*n2+2];   
-    end
-  end
-end
-end
+
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);

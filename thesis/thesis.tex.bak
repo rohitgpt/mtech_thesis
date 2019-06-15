@@ -25,9 +25,9 @@ Fill it.
 \newpage
 \section{Motivation}
 \newpage
-\section{1D simulation}
+\section{1D Simulation}
 Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin [L.Y.Mwaikambo et al.]. Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction. [Plot showing the distribution of fibers.]\par 
-This can be modeled as the distribution of two materials, and air (capture in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from [Mannan et al., L.Y.Mwaikambo et al.]. \par
+This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from [Mannan et al., L.Y.Mwaikambo et al.]. \par
 Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\par 
 \subsection{Formulation}
 Therefore, we frame a constrained problem, optimizing the radial distribution of two material, with properties corresponding to that of fibers and parenchyma, in an annular cross-section composites. The objective function to optimize is specific strength subjected to the constraints of maximum stress and maximum bending moment. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.]. The general problem formulation is written as
@@ -46,7 +46,7 @@ Now, flexural rigidity is used as measure of strength which can be written as
 \begin{wrapfigure}[5]{r}{0.2\textwidth}
 \includegraphics[scale=0.3]{moment_annulus}
 \end{wrapfigure}
-\begin{equation}\label{objective_eb}
+\begin{equation}
 \begin{split}
 EI(r) &= \underset{R}{\iint}E(r)y^2\,dA = \int_{r_1}^{r_2}\int_0^{2\pi} E(r)(r\sin\theta)^2(rdrd\theta)\\
 &= \pi\int_{r_1}^{r_2} E(r)r^3 dr \qquad \text{Integrating over $\theta$}\\
@@ -57,11 +57,11 @@ Therefore, specific flexural rigidity will be written as
 \begin{split}
 strength(\chi) &=\frac{EI}{\rho}\\
 &=\frac{\pi\sum^{r_o}_{r_i}E(r)r^3\Delta r}{2\pi r\sum^{r_o}_{r_i}\rho(r)\Delta r}\\
-&=\frac{\sum^{r_o}_{r_i}E(r)r^3}{2 r\sum^{r_o}_{r_i}\rho(r)}
+&=\frac{\sum^{r_o}_{r_i}E(r)r^3}{2 \sum^{r_o}_{r_i}\rho(r)r}
 \end{split}
 \end{equation}
 where 
-\begin{equation}\label{objective_eb}
+\begin{equation}
 \begin{split}
 E(r) &= \chi_1(r) E_1 + \chi_2(r) E_2\\
 \rho(r) &= \chi_1(r) \rho_1 + \chi_2(r) \rho_2
@@ -83,14 +83,12 @@ Therefore, using constitutive relation, we get $\sigma_{xx}$ as
 \end{equation}
 \begin{equation}\label{stress_eb}
 \sigma = \frac{E}{R}r\sin\theta \quad (\because y = r\sin\theta)
-\end{equation}Now, moment can be written as
-\begin{equation}
-M(x) = \int\int y\cdot\sigma(x,y)\cdot dydz\\
 \end{equation}
-For a particular $x$, moment for an annular structure like bamboo can be written as
+Now, moment can be written as
 \begin{equation}\label{moment_eb}
 \begin{split}
-M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta &\\
+M(x) &= \int\int y\cdot\sigma(x,y)\cdot dydz\\
+M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta & \text{For a particular $x$}\\
 &=\int_{r_i}^{r_o}\int_0^{2\pi} \frac{E(r)r sin\theta}{R}r^2 sin\theta\,dr\,d\theta &\quad (\text{From eqn }\eqref{stress_eb})\\
 &=\pi\int_{r_i}^{r_o}\frac{r^3 E(r)}{R}\,dr
 \end{split}
@@ -99,7 +97,7 @@ M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta &\\
 Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes
 \begin{equation}
 \begin{split}
-\underset{\chi}{max} \quad& \frac{\sum^{r_o}_{r_i}E(r)r^3}{2 r\sum^{r_o}_{r_i}\rho(r)}\\
+\underset{\chi}{max} \quad& \frac{\sum^{r_o}_{r_i}E(r)r^3}{\sum^{r_o}_{r_i}\rho(r)r}\\
 s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 & \sum_{r_i}^{r_o}r^3E(r)\leq \frac{M_{max}R}{\pi\Delta r}
 \end{split}
@@ -116,7 +114,8 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 
 
 \newpage
-\section{Method}
+\section{2D Simulation}
+\subsection{Method}
 The idea of asymptotic homogenization.
 In a repeating cell Y,
 \begin{equation}

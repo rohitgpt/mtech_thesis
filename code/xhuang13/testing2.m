@@ -1,7 +1,7 @@
 function testing2()
-E = [1 1e-4];
-nx=53;
-ny=45;
+E = [1 0];
+nx=13;
+ny=13;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
@@ -27,14 +27,16 @@ vx = @(a,b)[-a  -b;
 b1 = integQuad(@(x,y)B(x,y,am,bm), vx(am,bm));
 ke = integQuad(KE, vx(am,bm));
 
-f = @{design
-x = feval(@design
 x = design3(nx, ny);
 % x(1:ny, 1:nx) = 1;
+% x(2:4,2:4)=0;
+plot_fig(x, 1);
 % x(rand(), ran
+tic;
 u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E);
-D
+toc;
 Dh = homogenization(nx, ny, x, b1, u, D, E)
+toc;
 % plot_asmb(x);
 end
 
@@ -58,6 +60,22 @@ end
 plot_fig(t,0);
 end
 
+function plot_result(nx, ny, x, u)
+[X, Y] = meshgrid(1:nx+1, 1:ny+1);
+Y = flipud(Y);
+X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+% disp(u);
+C = ones(ny+1, nx+1);
+C(1:ny, 1:nx) = 1-x;
+plot_fig(C, 5);
+figure(2);
+pcolor(X1, Y1, C);
+colormap(gray);
+pause(.1);
+% plot(X,Y);
+end
+
 function xinit = design1(nx, ny)
 xinit(1:ny, 1:nx) = 1;
 xmid = ceil(nx/2); ymid=ceil(ny/2);
@@ -75,7 +93,7 @@ end
 function xinit = design3(nx, ny)
 xinit(1:ny, 1:nx) = 1;
 xmid = ceil((nx+1)/2); ymid=ceil((ny+1)/2);
-xinit(ymid-4-(ny-1)/4:ymid+4+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
+xinit(ymid-2-(ny-1)/4:ymid+2+(ny-1)/4,xmid-(nx-1)/4:xmid+(nx-1)/4) = 0;
 end
 
 function Dh = homogenization(nx, ny, x, b1, u, D, E)
@@ -116,17 +134,39 @@ for i=1:nx
 %     F(dof, :) = F(dof, :) + b1'*D;
   end
 end
+plot_fig(k, 2);
+% plot_fig(F, 3);
+z = hanging_nodes(x)
 % u1=pbc(nx, ny, a,b,k,[1,0,0]);
 % u2=pbc(nx, ny, a,b,k,[0,1,0]);
 % u3=pbc(nx, ny, a,b,k,[0,0,1]);
-u1=new_pbc(nx, ny, a,b,k,F,[1,0,0]);
-u2=new_pbc(nx, ny, a,b,k,F,[0,1,0]);
-u3=new_pbc(nx, ny, a,b,k,F,[0,0,1]);
+u1=new_pbc(nx, ny, a,b,z,k,F,[1,0,0]);
+u2=new_pbc(nx, ny, a,b,z,k,F,[0,1,0]);
+u3=new_pbc(nx, ny, a,b,z,k,F,[0,0,1]);
 u = [u1 u2 u3];
+% plot_fig(u, 3);
 plot_result(nx, ny, x, u(:,2));
+
 end
+
+function dof = hanging_nodes(x)
+dof=[];
+[ny, nx] = size(x);
+x = x(1:ny,1:nx-1)+x(1:ny, 2:nx);
+x = x(1:ny-1,1:nx-1)+x(2:ny,1:nx-1);
+for i=1:nx-1
+  for j=1:ny-1
+    if ~x(j, i)
+      n1 = (ny+1)*(i-1)+j;
+      n2 = (ny+1)*i+j;
+      dof = [dof, 2*n2+1, 2*n2+2];   
+    end
+  end
+end
+end
+
 %%
-function u = new_pbc(nx, ny, a, b, k, F, strain)
+function u = new_pbc(nx, ny, a, b, zerodofs, k, F, strain)
 us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
 ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
 un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
@@ -157,33 +197,57 @@ Q(l+1:l+length(un), :)    =0;
 C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
 C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 end
+fixeddofs = [fixeddofs, zerodofs];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
-alpha=1e7;
+alpha=1e2;
 r = F*strain';
 u = sparse(2*(nx+1)*(ny+1),1);
 u(fixeddofs, :) = 0;
 
 % r = zeros(size(u));
 % r = r - k(:, fixeddofs)*u(fixeddofs,:);
+plot_fig(alpha*(C(:, freedofs)'*C(:, freedofs)), 4);
 kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
 u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 end
+%%
+function u = pbc(nx, ny, a, b, k, strain)
+us = (4*(ny+1)-1):2*(ny+1):2*(ny+1)*nx;
+ue = (2*(ny+1)*(nx+1)-2*ny+1):2:(2*(ny+1)*(nx+1)-2);
+un = (2*(ny+1)+1):2*(ny+1):2*(ny+1)*nx;
+uw = 3:2:2*ny;
+fixeddofs = [2*ny+1:2*ny+2, 2*(nx+1)*(ny+1)-1:2*(nx+1)*(ny+1),...
+            2*(ny+1)*(nx)+1:2*(ny+1)*(nx)+2, 1:2];
+freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
+alpha=1e7;
 
-function plot_result(nx, ny, x, u)
-[X, Y] = meshgrid(1:nx+1, 1:ny+1);
-Y = flipud(Y);
-X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
-Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
-% disp(u);
-C = ones(ny+1, nx+1);
-C(1:ny, 1:nx) = 1-x;
-figure(2);
-pcolor(X1, Y1, C);
-colormap(gray);
-pause(.1);
-% plot(X,Y);
+C = zeros(2*(nx+ny)-4, 2*(nx+1)*(ny+1));
+Q = zeros(2*(nx+ny)-4, 1);
+Q(1:length(uw), :)        =2*a*strain(1);
+C(sub2ind(size(C),1:length(uw), ue))       =1;    
+C(sub2ind(size(C),1:length(uw), uw))       =-1;    l=length(uw);  
+Q(l+1:l+length(uw), :)    =2*a*strain(3)/2;
+C(sub2ind(size(C),l+1:l+length(uw), ue+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(uw), uw+1)) =-1;    l=l+length(uw);
+Q(l+1:l+length(un), :)    =2*b*strain(3)/2;
+C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
+C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
+Q(l+1:l+length(un), :)    =2*b*strain(2);
+C(sub2ind(size(C),l+1:l+length(un), un+1)) =1;     
+C(sub2ind(size(C),l+1:l+length(un), us+1)) =-1;    l=l+length(un);
+
+u = sparse(2*(nx+1)*(ny+1),1);
+u(fixeddofs,:) = [ 0, 0, ...
+      2*a*strain(1), 2*a*strain(3)/2, ...
+      2*a*strain(1)+2*b*strain(3)/2, 2*a*strain(3)/2+2*b*strain(2),...
+      2*b*strain(3)/2, 2*b*strain(2)]'; 
+
+r = zeros(size(u));
+r = r - k(:, fixeddofs)*u(fixeddofs,:);
+kdash = k(freedofs, freedofs)+alpha*(C(:, freedofs)'*C(:, freedofs));
+u(freedofs, :)=kdash\(r(freedofs,:) + C(:, freedofs)'*alpha*Q);
 end
-
+%%
 function [U]=FE(nelx,nely,x,penal)
 [KE] = lk
 K = sparse(2*(nelx+1)*(nely+1), 2*(nelx+1)*(nely+1));
@@ -267,26 +331,4 @@ function valInteg = integQuad(F,vertices)
         suma=suma+w(i)*F(ptGaussDomain(i,1),ptGaussDomain(i,2))*evalDetJacb(i);
     end
     valInteg = suma;
-end
-function x = random_init(nx, ny, Vf)
-xinit = rand(ny, nx);
-[~, index] = sort(xinit(:), 'descend');
-v = Vf*(nx*ny);
-y = zeros(nx*ny, 1);
-y(index(1:ceil(v)))=1;
-x = reshape(y, ny, nx);
-end
-
-function xinit = design1(nx, ny)
-xinit(1:ny, 1:nx) = 1;
-xmid = ceil(nx/2); ymid=ceil(ny/2);
-xinit(ymid:ymid+1,xmid:xmid+1) = 0;
-end
-
-function xinit = design2(nx, ny)
-xinit(1:ny, 1:nx) = 1;
-xinit(1,1)=0;
-xinit(ny,1)=0;
-xinit(1,nx)=0;
-xinit(ny, nx)=0;
 end
