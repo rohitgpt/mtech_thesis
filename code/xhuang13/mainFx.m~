@@ -249,7 +249,6 @@ end
 function [C, U] = macroFEM(L, H, a, b, Dh, B, vx)
 U = sparse(2*(L+1)*(H+1), 1);
 K = sparse(2*(L+1)*(H+1),2*(L+1)*(H+1));
-F = sparse(2*(L+1)*(H+1), 1);
 
 %KE is calculated every iteration as Dh is changes every iteration
 KE = integQuad(@(x,y)B(x,y,a,b)'*Dh*B(x,y,a,b), vx(a,b));
@@ -264,9 +263,7 @@ for i=1:L
     K(dof, dof) = K(dof, dof) + KE;
   end
 end
-n2 = (H+1)*(L)+ceil(H/2);
-F(2*n2+2, 1) = -1;
-fixed_dofs = 1:2*(H+1);
+[F, fixed_dofs] = cantilever(L, H);
 % fixed_dofs = 1:2*(H+1):2*(L+1)*(H+1);
 % fixed_dofs = [fixed_dofs, 2:2*(H+1):2*(L+1)*(H+1)];
 free_dofs = setdiff(1:2*(H+1)*(L+1), fixed_dofs);
@@ -423,6 +420,20 @@ for i=1:nx-1
   end
 end
 end
+%% Macro FEM problem
+function [F, fixed_dofs] = cantilever(L, H)
+n2 = (H+1)*(L)+ceil(H/2);
+F = sparse(2*(L+1)*(H+1), 1);
+F(2*n2+2, 1) = -1;
+fixed_dofs = 1:2*(H+1);
+end
+
+function [F, fixed_dofs] = mbb(L, H)
+F = sparse(2*(L+1)*(H+1), 1);
+F(2*(L+1)*(H+1)+2, 1) = -1;
+fixed_dofs = [2*H+1 2*H+2 2*(H+1)*(L+1)];
+end
+
 %% Initial designs for the micro FEM
 function x = random_init(nx, ny, Vf)
 xinit = rand(ny, nx);
