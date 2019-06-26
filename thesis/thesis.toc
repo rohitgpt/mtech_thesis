@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Motivation}{2}{section.2}
+\contentsline {section}{\numberline {3}1D Simulation}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Formulation}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Implementation}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Optimization Problem}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Results}{5}{subsection.3.4}
+\contentsline {section}{\numberline {4}2D Simulation}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Method}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}1D Elasticity}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Optimal Design of Elastic structures}{6}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Homogenization method}{8}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Implementation 2D Homogenization}{11}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Examples}{11}{subsection.4.6}
+\contentsline {section}{\numberline {5}Results}{14}{section.5}
+\contentsline {section}{\numberline {6}References}{14}{section.6}

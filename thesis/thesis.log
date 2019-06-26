@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  17 JUN 2019 22:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.20)  26 JUN 2019 18:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,36 +486,48 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+) (./thesis.toc)
+\tf@toc=\write4
+\openout4 = `thesis.toc'.
+
+
+(./thesis.lof)
+\tf@lof=\write5
+\openout5 = `thesis.lof'.
+
+ (./thesis.lot)
+\tf@lot=\write6
+\openout6 = `thesis.lot'.
+
+ [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<moment_annulus.pdf, id=83, 225.82854pt x 225.82854pt>
+<moment_annulus.pdf, id=103, 225.82854pt x 225.82854pt>
 File: moment_annulus.pdf Graphic file (type pdf)
 <use moment_annulus.pdf>
-Package pdftex.def Info: moment_annulus.pdf  used on input line 47.
+Package pdftex.def Info: moment_annulus.pdf  used on input line 53.
 (pdftex.def)             Requested size: 67.74908pt x 67.74908pt.
- [3] [4 <./moment_annulus.pdf>] [5]
-[6] [7] [8] [9] [10]
-Overfull \hbox (76.27693pt too wide) detected at line 382
+ [3] [4 <./moment_annulus.pdf>] [5] [6] [7] [8] [9] [10]
+Overfull \hbox (76.27693pt too wide) detected at line 391
  $[][]$  
  []
 
 [11] [12] [13] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 466.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 475.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 466.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 475.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 466.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 466.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 475.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 475.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 0889FE77021309F6519D783EFA3DD427;940.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 466.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 475.
  ) 
 Here is how much of TeX's memory you used:
- 7815 strings out of 492982
- 112309 string characters out of 6134896
- 227462 words of memory out of 5000000
- 11166 multiletter control sequences out of 15000+600000
+ 7829 strings out of 492982
+ 112429 string characters out of 6134896
+ 227463 words of memory out of 5000000
+ 11168 multiletter control sequences out of 15000+600000
  13243 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,19n,39p,627b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -539,10 +551,10 @@ s/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (14 pages, 247496 bytes).
+Output written on thesis.pdf (14 pages, 253108 bytes).
 PDF statistics:
- 323 PDF objects out of 1000 (max. 8388607)
- 279 compressed objects within 3 object streams
- 93 named destinations out of 1000 (max. 500000)
+ 342 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 96 named destinations out of 1000 (max. 500000)
  134 words of extra memory for PDF output out of 10000 (max. 10000000)
 
