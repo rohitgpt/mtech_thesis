@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage{subfig}
 \usepackage{wrapfig}
 \usepackage{pdfpages}
 \usepackage{hyperref}
@@ -110,15 +111,66 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 \end{equation}
 
 \subsection{Results}
+\subsubsection{Normal}
+\begin{figure}[hbt!]
+\begin{center}
+%     \subfloat[First sub-figure\label{subfig-1:radial}]{%
+%		\includegraphics[scale=0.45]{./Plots/normal/a77_1.jpg}
+%     }
+%     \vfill
+%     \subfloat[First sub-figure\label{subfig-2:radial}]{%
+%       \includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
+%     }
+	\includegraphics[scale=0.35]{./Plots/normal/a77_1.jpg}
+	\label{fig:radial}
+	\caption{Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
+\end{center}
+\end{figure}
+\newpage
+\begin{figure}[hbt!]
+\begin{center}
+	\includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
+	\label{fig:cellsize}
+	\caption{Radius of parenchyma cell size obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
+\end{center}
+\end{figure}
 
+\subsubsection{Height}
 
+\subsubsection{Extreme}
+We have also obtained results for different types of bamboos, like bamboos with large cross-sectional diameter but thin annular cross-section and bamboos with small diameter but solid cross section with no hollow center.\par
+It should be noted that we didn't have the experimental data for the set of constraint for these cases of bamboos. To obtain these constraints we first provide a rough estimate using the Euler Bernoulli beam equation. Then if the obtained variation of parenchyma cell size goes beyond what is generally observed in nature that set of constraints are rejected and the optimization problem is solved for a new set of sequentially generated constraints. This process is repeated untill a variation of cell size consistent with nature is observed. 
 
+\begin{figure}
+\begin{center}
+     \subfloat[\label{subfig-1:extreme1}]{%
+		\includegraphics[scale=0.36]{./Plots/extremes/a53_1.jpg}
+     }
+     \hfill
+     \subfloat[\label{subfig-2:extreme2}]{%
+       \includegraphics[scale=0.35]{./Plots/extremes/b53.jpg}
+     }
+	\label{fig:extreme1}
+	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an annular rod with inner radius 90mm and outer radius 100mm with $\sigma_{max} = $ 150MPa and $M_{max} = $ 630 N-m}
+\end{center}
+\end{figure}
 
+\begin{figure}
+\begin{center}
+     \subfloat[\label{subfig-1:extreme2}]{%
+		\includegraphics[scale=0.36]{./Plots/extremes/a63_1.jpg}
+     }
+     \hfill
+     \subfloat[\label{subfig-2:extreme2}]{%
+       \includegraphics[scale=0.35]{./Plots/extremes/b63.jpg}
+     }
+	\label{fig:extreme1}
+	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma_{max} = $ 24MPa and $M_{max} = $ 420 N-m}
+\end{center}
+\end{figure}
 
-
-
-
-
+\subsection{Conclusion}
+Assuming axisymmetry, the radial distribution of constituent materials of bamboo is optimal for the constraints of maximum stress and bending moment that are applicable to bamboo under the loading conditions.
 
 \newpage
 \section{2D Simulation}
