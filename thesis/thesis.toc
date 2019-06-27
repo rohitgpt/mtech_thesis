@@ -4,17 +4,17 @@
 \contentsline {subsection}{\numberline {3.1}Formulation}{4}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Implementation}{4}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Optimization Problem}{6}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Results}{6}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Normal}{6}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Extreme}{6}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}Height}{6}{subsubsection.3.4.3}
-\contentsline {subsection}{\numberline {3.5}Conclusion}{6}{subsection.3.5}
-\contentsline {section}{\numberline {4}2D Simulation}{7}{section.4}
-\contentsline {subsection}{\numberline {4.1}Method}{7}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}1D Elasticity}{8}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Optimal Design of Elastic structures}{11}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Homogenization method}{13}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Implementation 2D Homogenization}{16}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}Examples}{16}{subsection.4.6}
-\contentsline {section}{\numberline {5}Results}{19}{section.5}
-\contentsline {section}{\numberline {6}References}{19}{section.6}
+\contentsline {subsection}{\numberline {3.4}Results}{7}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Normal}{7}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Extreme}{8}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Height}{11}{subsubsection.3.4.3}
+\contentsline {subsection}{\numberline {3.5}Conclusion}{12}{subsection.3.5}
+\contentsline {section}{\numberline {4}2D Simulation}{13}{section.4}
+\contentsline {subsection}{\numberline {4.1}Method}{13}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}1D Elasticity}{13}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Optimal Design of Elastic structures}{13}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Homogenization method}{15}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Implementation 2D Homogenization}{18}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Examples}{18}{subsection.4.6}
+\contentsline {section}{\numberline {5}Results}{21}{section.5}
+\contentsline {section}{\numberline {6}References}{21}{section.6}
