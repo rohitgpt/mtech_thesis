@@ -12,9 +12,12 @@ for i=1:m
 
 r1 = 12;              %Inner Radius
 r2 = 36;              %Outer Radius
-cur = 30*i;           %Radius of curvature
+cur = 1/(1/30*(1-(i^2)/(m+1)^2));           %Radius of curvature
+% sigma = 20e6;
 sigma = (20/i)*10^6;  %Max Stress
-M_min = 500/i^1.5;    %Moment
+% sigma = (20)*(1-(i^1-1)/m^1)*10^6;  %Max Stress
+M_min = 500/i^1.5;
+% M_min = 500*(1-(i^1-1)/m^1);    %Moment
 E1 = 20*10^9;         %Young's Modulus of First Material
 E2 = 4.25*10^9;       %Young's Modulus of Second Material
 rho1 = 1000*(2);      %Density of First Material
@@ -73,6 +76,9 @@ end
     toc;
 end
     l=figure(4);
+    c = gray;
+    c = flipud(c);
+    colormap(c);
     surf(1:m,r*1000, dens);
     title('Density variation along radius');
     ylabel('Radius (in mm)');

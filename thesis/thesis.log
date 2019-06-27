@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.20)  27 JUN 2019 11:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  28 JUN 2019 01:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,75 +550,80 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout6 = `thesis.lot'.
 
  [2] [3]
-<moment_annulus.pdf, id=146, 225.82854pt x 225.82854pt>
+<moment_annulus.pdf, id=149, 225.82854pt x 225.82854pt>
 File: moment_annulus.pdf Graphic file (type pdf)
 <use moment_annulus.pdf>
 Package pdftex.def Info: moment_annulus.pdf  used on input line 54.
 (pdftex.def)             Requested size: 67.74908pt x 67.74908pt.
  [4] [5 <./moment_annulus.pdf>]
-<./Plots/normal/a77_1.jpg, id=179, 827.09pt x 620.3175pt>
+<./Plots/normal/a77_1.jpg, id=182, 827.09pt x 620.3175pt>
 File: ./Plots/normal/a77_1.jpg Graphic file (type jpg)
 <use ./Plots/normal/a77_1.jpg>
 Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 124.
 (pdftex.def)             Requested size: 289.48582pt x 217.11438pt.
- [6]
-<./Plots/normal/b77.jpg, id=186, 878.28125pt x 658.46pt>
+<./Plots/normal/b77.jpg, id=183, 878.28125pt x 658.46pt>
 File: ./Plots/normal/b77.jpg Graphic file (type jpg)
 <use ./Plots/normal/b77.jpg>
-Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 132.
+Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 131.
 (pdftex.def)             Requested size: 351.30627pt x 263.37933pt.
 
-Overfull \hbox (6.30627pt too wide) in paragraph at lines 132--134
+Overfull \hbox (6.30627pt too wide) in paragraph at lines 131--133
  [] 
  []
 
-<./Plots/extremes/a53_1.jpg, id=187, 831.105pt x 618.31pt>
+<./Plots/extremes/a53_1.jpg, id=184, 831.105pt x 618.31pt>
 File: ./Plots/extremes/a53_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a53_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 148.
+Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 145.
 (pdftex.def)             Requested size: 299.19757pt x 222.59143pt.
-<./Plots/extremes/b53.jpg, id=188, 878.28125pt x 658.46pt>
+<./Plots/extremes/b53.jpg, id=185, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b53.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b53.jpg>
-Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 152.
+Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 149.
 (pdftex.def)             Requested size: 307.40305pt x 230.46445pt.
-<./Plots/extremes/a63_1.jpg, id=189, 820.06375pt x 617.30624pt>
+<./Plots/extremes/a63_1.jpg, id=186, 820.06375pt x 617.30624pt>
 File: ./Plots/extremes/a63_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a63_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 162.
+Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 159.
 (pdftex.def)             Requested size: 295.22272pt x 222.23007pt.
-<./Plots/extremes/b63.jpg, id=190, 878.28125pt x 658.46pt>
+<./Plots/extremes/b63.jpg, id=187, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b63.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b63.jpg>
-Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 166.
+Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 163.
 (pdftex.def)             Requested size: 307.40305pt x 230.46445pt.
-[7 <./Plots/normal/a77_1.jpg>] [8 <./Plots/normal/b77.jpg>] [9 <./Plots/extreme
-s/a53_1.jpg> <./Plots/extremes/b53.jpg>] [10 <./Plots/extremes/a63_1.jpg> <./Pl
-ots/extremes/b63.jpg>] [11] [12] [13] [14] [15]
-Overfull \hbox (76.27693pt too wide) detected at line 443
+<./Plots/height/height.pdf, id=188, 597.23125pt x 845.1575pt>
+File: ./Plots/height/height.pdf Graphic file (type pdf)
+<use ./Plots/height/height.pdf>
+Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 171.
+(pdftex.def)             Requested size: 345.0pt x 440.72415pt.
+[6] [7 <./Plots/normal/a77_1.jpg>] [8 <./Plots/normal/b77.jpg>] [9 <./Plots/ext
+remes/a53_1.jpg> <./Plots/extremes/b53.jpg>] [10 <./Plots/extremes/a63_1.jpg> <
+./Plots/extremes/b63.jpg>] [11 <./Plots/height/height.pdf>] [12] [13] [14]
+[15]
+Overfull \hbox (76.27693pt too wide) detected at line 448
  $[][]$  
  []
 
 [16] [17] [18] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 527.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 532.
  [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 527.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 532.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 527.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 527.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 532.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 532.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: D5FCFD67F0B1C48547353BC2D59E8591;1199.
+(rerunfilecheck)             Checksum: 5D160D60D9F8207DCCA7E524DF057D87;1199.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 527.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 532.
  ) 
 Here is how much of TeX's memory you used:
- 9066 strings out of 492982
- 134919 string characters out of 6134896
- 245425 words of memory out of 5000000
- 12369 multiletter control sequences out of 15000+600000
+ 9073 strings out of 492982
+ 135110 string characters out of 6134896
+ 246491 words of memory out of 5000000
+ 12374 multiletter control sequences out of 15000+600000
  13243 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,19n,49p,627b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -643,10 +648,10 @@ public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (19 pages, 516835 bytes).
+Output written on thesis.pdf (19 pages, 814823 bytes).
 PDF statistics:
- 420 PDF objects out of 1000 (max. 8388607)
- 363 compressed objects within 4 object streams
- 114 named destinations out of 1000 (max. 500000)
- 196 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2433 PDF objects out of 2487 (max. 8388607)
+ 1376 compressed objects within 14 object streams
+ 115 named destinations out of 1000 (max. 500000)
+ 207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
