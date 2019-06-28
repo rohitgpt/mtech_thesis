@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage{float}
 \usepackage{subfig}
 \usepackage{wrapfig}
 \usepackage{pdfpages}
@@ -109,10 +110,35 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 & \sum_{r_i}^{r_o}r^3E(r)\leq \frac{M_{max}R}{\pi\Delta r}
 \end{split}
 \end{equation}
+\subsection{Cell Size}
+For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{paper:mannan1}. \par
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat{
+	\includegraphics[scale=.3]{./Plots/cell/1.jpg}
+	}
+	\end{tabular}
+%	\hfill
+	\begin{tabular}{@{}c}
+	\subfloat{
+	\includegraphics[scale=1.5]{./Plots/cell/scheme.png}
+	}
+	\end{tabular}
+	
+\caption{Cross-sectional micrograph showing the dimensions of typical parenchyma cell\label{fig:mannancell}
+\cite{paper:mannan1}}
+\end{center}
+\end{figure}
+Parenchyma cells consists of cellular material and air packets. Assuming cell to be spherical, let $v_a$ be the volume of air and $v_p$ be the volume of cellular material. From fig. \ref{fig:mannancell}
 
+\begin{equation*}
+v_a = \frac{4}{3}\pi r^3\\
+v_p = \frac{4}{3}\pi 
+\end{equation*}
 \subsection{Results}
 \subsubsection{Normal}
-\begin{figure}[hbt!]
+\begin{figure}[H]
 \begin{center}
 %     \subfloat[First sub-figure\label{subfig-1:radial}]{%
 %		\includegraphics[scale=0.45]{./Plots/normal/a77_1.jpg}
@@ -126,7 +152,7 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 	\caption{Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
 \end{center}
 \end{figure}
-\begin{figure}[hbt!]
+\begin{figure}[H]
 \begin{center}
 	\includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
 	\label{fig:cellsize}
@@ -138,13 +164,13 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 We have also obtained results for different types of bamboos, like bamboos with large cross-sectional diameter but thin annular cross-section and bamboos with small diameter but solid cross section with no hollow center.\par
 It should be noted that we didn't have the experimental data for the set of constraint for these cases of bamboos. To obtain these constraints we first provide a rough estimate using the Euler Bernoulli beam equation. Then if the obtained variation of parenchyma cell size goes beyond what is generally observed in nature that set of constraints are rejected and the optimization problem is solved for a new set of sequentially generated constraints. This process is repeated untill a variation of cell size consistent with nature is observed. 
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:extreme1}]{%
 		\includegraphics[scale=0.36]{./Plots/extremes/a53_1.jpg}
      }
      \hfill
-     \subfloat[\label{subfig-2:extreme2}]{%
+     \subfloat[\label{subfig-2:extreme1}]{%
        \includegraphics[scale=0.35]{./Plots/extremes/b53.jpg}
      }
 	\label{fig:extreme1}
@@ -152,7 +178,7 @@ It should be noted that we didn't have the experimental data for the set of cons
 \end{center}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:extreme2}]{%
 		\includegraphics[scale=0.36]{./Plots/extremes/a63_1.jpg}
@@ -161,12 +187,12 @@ It should be noted that we didn't have the experimental data for the set of cons
      \subfloat[\label{subfig-2:extreme2}]{%
        \includegraphics[scale=0.35]{./Plots/extremes/b63.jpg}
      }
-	\label{fig:extreme1}
+	\label{fig:extreme2}
 	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma_{max} = $ 24MPa and $M_{max} = $ 420 N-m}
 \end{center}
 \end{figure}
 \subsubsection{Height}
-\begin{figure}[hbt!]
+\begin{figure}[H]
 \begin{center}
 	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, width=1.00\textwidth]{./Plots/height/height.pdf}
 	\label{fig:height}

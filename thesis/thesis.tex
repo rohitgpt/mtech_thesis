@@ -110,7 +110,32 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 & \sum_{r_i}^{r_o}r^3E(r)\leq \frac{M_{max}R}{\pi\Delta r}
 \end{split}
 \end{equation}
+\subsection{Cell Size}
+For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{paper:mannan1}. \par
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat{
+	\includegraphics[scale=.3]{./Plots/cell/1.jpg}
+	}
+	\end{tabular}
+%	\hfill
+	\begin{tabular}{@{}c}
+	\subfloat{
+	\includegraphics[scale=1.5]{./Plots/cell/scheme.png}
+	}
+	\end{tabular}
+	
+\caption{Cross-sectional micrograph showing the dimensions of typical parenchyma cell\label{fig:mannancell}
+\cite{paper:mannan1}}
+\end{center}
+\end{figure}
+Parenchyma cells consists of cellular material and air packets. Assuming cell to be spherical, let $v_a$ be the volume of air and $v_p$ be the volume of cellular material. From fig. \ref{fig:mannancell}
 
+\begin{equation*}
+v_a = \frac{4}{3}\pi r^3\\
+v_p = \frac{4}{3}\pi 
+\end{equation*}
 \subsection{Results}
 \subsubsection{Normal}
 \begin{figure}[H]
