@@ -1,21 +1,23 @@
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
-\contentsline {section}{\numberline {2}Motivation}{3}{section.2}
-\contentsline {section}{\numberline {3}1D Simulation}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Formulation}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Implementation}{4}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Optimization Problem}{6}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Cell Size}{6}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Results}{8}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Normal}{8}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Extreme}{9}{subsubsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.3}Height}{12}{subsubsection.3.5.3}
-\contentsline {subsection}{\numberline {3.6}Conclusion}{13}{subsection.3.6}
-\contentsline {section}{\numberline {4}2D Simulation}{14}{section.4}
-\contentsline {subsection}{\numberline {4.1}Method}{14}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}1D Elasticity}{14}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Optimal Design of Elastic structures}{14}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Homogenization method}{16}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Implementation 2D Homogenization}{19}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}Examples}{19}{subsection.4.6}
-\contentsline {section}{\numberline {5}Results}{22}{section.5}
-\contentsline {section}{\numberline {6}References}{22}{section.6}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Motivation}{4}{section.2}
+\contentsline {section}{\numberline {3}1D Simulation}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Formulation}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Implementation}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Optimization Problem}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Cell Size}{7}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Results}{9}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Normal}{9}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Extreme}{10}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}Height}{13}{subsubsection.3.5.3}
+\contentsline {subsection}{\numberline {3.6}Conclusion}{14}{subsection.3.6}
+\contentsline {section}{\numberline {4}2D Simulation}{15}{section.4}
+\contentsline {subsection}{\numberline {4.1}Overview}{15}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Optimization Problem}{15}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Method}{15}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}1D Elasticity}{16}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Optimal Design of Elastic structures}{16}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Homogenization method}{17}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Implementation 2D Homogenization}{20}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Examples}{21}{subsection.4.8}
+\contentsline {section}{\numberline {5}Results}{24}{section.5}
+\contentsline {section}{\numberline {6}References}{24}{section.6}

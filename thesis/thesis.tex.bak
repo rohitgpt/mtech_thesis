@@ -205,7 +205,16 @@ Assuming axisymmetry, the radial distribution of constituent materials of bamboo
 
 \newpage
 \section{2D Simulation}
-In the previous chapter, we showed that bamboo has optimal one dimensional distribution of the given material for the some constraints. In this chapter, we will discuss the development of 2D topology optimization code required for the generating optimal two dimensional structures from the given materials. 
+In the previous chapter, we discussed the optimality of  one dimensional distribution of the given material of the bamboo for the some constraints. To discuss the optimality of the structure originating from this one dimensional distribution, we will first develop a process for generating optimal structures using topology optimization and finite element methods. Once, we have a sense of what an optimal structure for the given material and loading constraint, we can compare them with the structures found in natural bamboo and be able to comment on its optimality. So, in this chapter, we will discuss the topology optimization of the micro-structure for the given constraints on macro-structure.\par
+
+%It is assumed that the microstructure is periodic\ref{Periodic}. The properties for the macrostructure are obtained by the process of homogenization.  
+
+
+\subsection{Overview}
+First an optimization problem is defined for minimizing the overall compliance of the structure with the constraints on volume. For calculating compliance ($\frac{1}{2}FU$), at every iteration, we find the displacement $U$ for given force $F$ and other boundary conditions on the macro domain. Displacements are determined by finite element analysis where the stiffness matrix for the macro domain elements is obtained by homogenization method. Each macro domain element is further meshed to obtain the micro-structure. It is the topology of this structure that we want to optimize. To achieve this, we link the optimality of the objective function to the topology of the micro-structure by the means of sensitivity analysis. For each element in the micro domain, a number is determined based on how critical is that element is for minimizing the objective function. After each iteration, the structure is updated based on the sensitivity numbers. This process is repeated until the volume constraint is achieved and the sensitivity numbers converges.
+
+
+In this chapter, we will discuss the development of 2D topology optimization code required for the generating optimal two dimensional structures from the given materials. 
 
 \subsection{Method}
 The idea of asymptotic homogenization.
