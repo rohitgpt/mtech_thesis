@@ -5,9 +5,9 @@
 \contentsline {subsection}{\numberline {3.2}Implementation}{5}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Optimization Problem}{7}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Cell Size}{7}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Results}{9}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Normal}{9}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Extreme}{10}{subsubsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5}Results}{8}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Normal}{8}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Extreme}{9}{subsubsection.3.5.2}
 \contentsline {subsubsection}{\numberline {3.5.3}Height}{13}{subsubsection.3.5.3}
 \contentsline {subsection}{\numberline {3.6}Conclusion}{14}{subsection.3.6}
 \contentsline {section}{\numberline {4}2D Simulation}{15}{section.4}
@@ -18,6 +18,6 @@
 \contentsline {subsection}{\numberline {4.5}Optimal Design of Elastic structures}{16}{subsection.4.5}
 \contentsline {subsection}{\numberline {4.6}Homogenization method}{17}{subsection.4.6}
 \contentsline {subsection}{\numberline {4.7}Implementation 2D Homogenization}{20}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Examples}{21}{subsection.4.8}
-\contentsline {section}{\numberline {5}Results}{24}{section.5}
-\contentsline {section}{\numberline {6}References}{24}{section.6}
+\contentsline {subsection}{\numberline {4.8}Examples}{20}{subsection.4.8}
+\contentsline {section}{\numberline {5}Results}{23}{section.5}
+\contentsline {section}{\numberline {6}References}{23}{section.6}
