@@ -240,29 +240,33 @@ For the macrodomain, we have the following FE equation
 \end{equation}
 where $\textbf{K}$ is the assembled stiffness matrix for the macrostructure whose each component is calculated using
 \begin{equation}
-\textbf{K}_i =  \int_{V_i} \textbf{BD}^H\textbf{B} dV_i
+\label{eq:KM}
+\textbf{K}_i =  \int_{V_i} \textbf{B}_i^T\textbf{D}_i^H\textbf{B}_i dV_i
 \end{equation} 
-where $\textbf{B}$ is the 
+where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}_i^H$ is the homogenized elasticity matrix calculated from the finite analysis of the base cell. The homogenization process\cite{paper:homogenization} is discussed in the subsequent chapters. In this study, all base cells are assumed to be identical and therefore, equation \eqref{eq:KM} can be simplified as
+\begin{equation}
+\textbf{K}_i =  \int_{V_i} \textbf{B}^T\textbf{D}^H\textbf{B} dV_i
+\end{equation} 
 
 
-\subsection{Method}
-The idea of asymptotic homogenization.
-In a repeating cell Y,
-\begin{equation}
-	\label{First}
-	\sigma_{ij} = C_{ijkl}\epsilon_{kl}	
-\end{equation}
-where $C_{ijkl}(\underaccent{\tilde}{x}+\underaccent{\tilde}{u}\underaccent{\tilde}{Y})=C_{ijkl}(\underaccent{\tilde}{x})$
-\begin{equation}
-\Rightarrow C_{ijkl}(x_1+n_1Y_1\, x_2+n_2Y_2\,x_3+n_3Y_3) = C_{ijkl}(x_1,x_2,x_3)
-\end{equation}
-$C_{ijkl}(\underaccent{\tilde}{x}) $ is Y-periodic
-\begin{eqnarray}
-&\underaccent{\tilde}{y} = \frac{\underaccent{\tilde}{x}}{\epsilon}\\
-&\Rightarrow g = g(\underaccent{\tilde}{x},\frac{\underaccent{\tilde}{x}}{\epsilon}) = g(\underaccent{\tilde}{x} \,\underaccent{\tilde}{y})
-\end{eqnarray}
-$\underaccent{\tilde}{x} = (x_1, x_2, x_3) \in \mathbb{R}^3$ defines the domain of the composite $\Omega$. The domain is composed of base cells of dimensions, $\varepsilon Y_1 , \varepsilon Y_2,\varepsilon Y_3$ where $\underaccent{\tilde}{y}=\frac{\underaccent{\tilde}{x}}{\varepsilon}$
-\subsection{1D Elasticity}
+\subsection{Homogenization}
+%The idea of asymptotic homogenization.
+%In a repeating cell Y,
+%\begin{equation}
+%	\label{First}
+%	\sigma_{ij} = C_{ijkl}\epsilon_{kl}	
+%\end{equation}
+%where $C_{ijkl}(\textbf{x}+\textbf{u}\textbf{Y})=C_{ijkl}(\textbf{x})$
+%\begin{equation}
+%\Rightarrow C_{ijkl}(x_1+n_1Y_1\, x_2+n_2Y_2\,x_3+n_3Y_3) = C_{ijkl}(x_1,x_2,x_3)
+%\end{equation}
+%$C_{ijkl}(\textbf{x}) $ is Y-periodic
+%\begin{eqnarray}
+%&\textbf{y} = \frac{\textbf{x}}{\epsilon}\\
+%&\Rightarrow g = g(\textbf{x},\frac{\textbf{x}}{\epsilon}) = g(\textbf{x} \,\textbf{y})
+%\end{eqnarray}
+%$\textbf{x} = (x_1, x_2, x_3) \in \mathbb{R}^3$ defines the domain of the composite $\Omega$. The domain is composed of base cells of dimensions, $\varepsilon Y_1 , \varepsilon Y_2,\varepsilon Y_3$ where $\textbf{y}=\frac{\textbf{x}}{\varepsilon}$
+\subsubsection{1D Elasticity}
 \begin{eqnarray}
 &\sigma^\varepsilon = E^\varepsilon\frac{\partial u^\varepsilon}{\partial x}\\
 &\frac{\partial \sigma^\varepsilon}{\partial x}+\gamma^\varepsilon=0 & E^\varepsilon \, \gamma^\varepsilon \rightarrow macroscopically uniform
@@ -279,7 +283,7 @@ u^\varepsilon(x)=u^0{x,y}+\varepsilon u^1(x,y)+\varepsilon^2 u^2(x,y)+ ...\\
 \end{eqnarray}
 
 
-\subsection{Optimal Design of Elastic structures}
+\subsubsection{Optimal Design of Elastic structures}
 
 \begin{center}
 $\textbf{b} \rightarrow$ body forces\\
@@ -348,7 +352,7 @@ a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|de
 \end{eqnarray}
 Treating $\underline{\phi}$ as a design variable is tedious.
 
-\subsection{Homogenization method}
+\subsubsection{Homogenization method}
 \begin{equation}
 E_{ijkl}^\varepsilon (\textbf{x}) = E_{ijkl}(\textbf{x},\textbf{y}), \qquad \textbf{y} = \frac{\textbf{x}}{\varepsilon}
 \end{equation}
@@ -470,7 +474,7 @@ At macroscopic level, we have
 a_H(\textbf{u},\textbf{v}) = L(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_0
 \end{equation}
 where $\mathcal{U}_0$ is homogeneous case of $\mathcal{U}$, i.e., $\textbf{g}=0$.
-\subsection{Implementation 2D Homogenization}
+\subsubsection{Implementation 2D Homogenization}
 Basic homogenization equation, 
 \begin{equation}
 u_{1i}(\textbf{x},\textbf{y}) = -\chi^{pq}_i\frac{\partial u_{0p}(\textbf{x})}{\partial x_q}
@@ -483,7 +487,7 @@ Compute:
 \begin{equation}\label{homoE}
 E_{ijkl}^H=\frac{1}{|Y|}\int_Y\bigg (E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg )\,dy
 \end{equation}
-\subsection{Examples}
+\subsubsection{Examples}
 Consider: k=1, l=1
 \begin{equation}\label{2drhs}
 \begin{split}
@@ -584,6 +588,8 @@ and eq. \eqref{Dhomo} becomes:
 \boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\Phi\bigg )\,dy
 }
 \end{equation}
+
+\subsection{Periodic Boundary Conditions}
 
 \section{Results}
 \cite{first}

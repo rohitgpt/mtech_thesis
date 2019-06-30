@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  30 JUN 2019 23:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  1 JUL 2019 00:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -618,7 +618,7 @@ d parenchyma, (b)Radius of parenchyma
 \openout6 = `thesis.lot'.
 
  [2] [3] [4]
-<moment_annulus.pdf, id=174, 225.82854pt x 225.82854pt>
+<moment_annulus.pdf, id=179, 225.82854pt x 225.82854pt>
 File: moment_annulus.pdf Graphic file (type pdf)
 <use moment_annulus.pdf>
 Package pdftex.def Info: moment_annulus.pdf  used on input line 56.
@@ -633,12 +633,12 @@ Underfull \hbox (badness 5147) in paragraph at lines 54--57
 
 LaTeX Warning: Citation `paper:mannan1' on page 7 undefined on input line 115.
 
-<./Plots/cell/1.jpg, id=207, 542.025pt x 542.025pt>
+<./Plots/cell/1.jpg, id=212, 542.025pt x 542.025pt>
 File: ./Plots/cell/1.jpg Graphic file (type jpg)
 <use ./Plots/cell/1.jpg>
 Package pdftex.def Info: ./Plots/cell/1.jpg  used on input line 121.
 (pdftex.def)             Requested size: 162.60875pt x 162.60875pt.
-<./Plots/cell/scheme.png, id=208, 70.76437pt x 65.49469pt>
+<./Plots/cell/scheme.png, id=213, 70.76437pt x 65.49469pt>
 File: ./Plots/cell/scheme.png Graphic file (type png)
 <use ./Plots/cell/scheme.png>
 Package pdftex.def Info: ./Plots/cell/scheme.png  used on input line 127.
@@ -649,24 +649,24 @@ LaTeX Warning: Citation `paper:mannan1' on page 7 undefined on input line 131.
 
 LaTeX Warning: Citation `paper:mannan1' on page 7 undefined on input line 131.
 
-<./Plots/normal/a77_1.jpg, id=211, 827.09pt x 620.3175pt>
+<./Plots/normal/a77_1.jpg, id=216, 827.09pt x 620.3175pt>
 File: ./Plots/normal/a77_1.jpg Graphic file (type jpg)
 <use ./Plots/normal/a77_1.jpg>
 Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 151.
 (pdftex.def)             Requested size: 289.48582pt x 217.11438pt.
-<./Plots/normal/b77.jpg, id=212, 878.28125pt x 658.46pt>
+<./Plots/normal/b77.jpg, id=217, 878.28125pt x 658.46pt>
 File: ./Plots/normal/b77.jpg Graphic file (type jpg)
 <use ./Plots/normal/b77.jpg>
 Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 158.
 (pdftex.def)             Requested size: 351.30627pt x 263.37933pt.
 [7 <./Plots/cell/1.jpg> <./Plots/cell/scheme.png>] [8 <./Plots/normal/a77_1.jpg
 >]
-<./Plots/extremes/a53_1.jpg, id=226, 831.105pt x 618.31pt>
+<./Plots/extremes/a53_1.jpg, id=231, 831.105pt x 618.31pt>
 File: ./Plots/extremes/a53_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a53_1.jpg>
 Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 172.
 (pdftex.def)             Requested size: 299.19757pt x 222.59143pt.
-<./Plots/extremes/b53.jpg, id=227, 878.28125pt x 658.46pt>
+<./Plots/extremes/b53.jpg, id=232, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b53.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b53.jpg>
 Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 176.
@@ -678,12 +678,12 @@ Underfull \hbox (badness 1237) in paragraph at lines 178--178
  []
 
 [9 <./Plots/normal/b77.jpg>]
-<./Plots/extremes/a63_1.jpg, id=232, 820.06375pt x 617.30624pt>
+<./Plots/extremes/a63_1.jpg, id=237, 820.06375pt x 617.30624pt>
 File: ./Plots/extremes/a63_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a63_1.jpg>
 Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 186.
 (pdftex.def)             Requested size: 295.22272pt x 222.23007pt.
-<./Plots/extremes/b63.jpg, id=233, 878.28125pt x 658.46pt>
+<./Plots/extremes/b63.jpg, id=238, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b63.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b63.jpg>
 Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 190.
@@ -695,7 +695,7 @@ Underfull \hbox (badness 1237) in paragraph at lines 192--192
  []
 
 [10 <./Plots/extremes/a53_1.jpg> <./Plots/extremes/b53.jpg>]
-<./Plots/height/height.pdf, id=241, 597.23125pt x 845.1575pt>
+<./Plots/height/height.pdf, id=246, 597.23125pt x 845.1575pt>
 File: ./Plots/height/height.pdf Graphic file (type pdf)
 <use ./Plots/height/height.pdf>
 Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 198.
@@ -714,29 +714,29 @@ LaTeX Warning: Citation `paper:homogenization' on page 16 undefined on input li
 ne 246.
 
 [16] [17] [18] [19] [20]
-Overfull \hbox (3.02325pt too wide) detected at line 517
+Overfull \hbox (3.02325pt too wide) detected at line 516
  $[][]$  
  []
 
-[21] [22] [23] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 601.
- [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 601.
+[21] [22] (./thesis.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 602.
+ [23]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 602.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 601.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 601.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 602.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 602.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: EB230D1F176A18C446B3AAE670489F1E;1459.
+(rerunfilecheck)             Checksum: A3F2E71D0037F19141BA8B02A3FFF820;1595.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 601.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 602.
  ) 
 Here is how much of TeX's memory you used:
- 9598 strings out of 492982
- 142775 string characters out of 6134896
- 261697 words of memory out of 5000000
+ 9595 strings out of 492982
+ 142802 string characters out of 6134896
+ 258662 words of memory out of 5000000
  12867 multiletter control sequences out of 15000+600000
  13243 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -762,10 +762,10 @@ public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (24 pages, 878529 bytes).
+Output written on thesis.pdf (23 pages, 876194 bytes).
 PDF statistics:
- 2490 PDF objects out of 2984 (max. 8388607)
- 1424 compressed objects within 15 object streams
- 132 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2488 PDF objects out of 2984 (max. 8388607)
+ 1423 compressed objects within 15 object streams
+ 129 named destinations out of 1000 (max. 500000)
+ 257 words of extra memory for PDF output out of 10000 (max. 10000000)
 
