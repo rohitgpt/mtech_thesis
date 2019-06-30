@@ -4,9 +4,11 @@ The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: bib.bib
 Warning--I didn't find a database entry for "paper:mannan1"
+Warning--I didn't find a database entry for "paper:simp"
+Warning--I didn't find a database entry for "paper:homogenization"
 You've used 2 entries,
             2118 wiz_defined-function locations,
-            511 strings with 4121 characters,
+            513 strings with 4151 characters,
 and the built_in function-call counts, 443 in all, are:
 = -- 42
 > -- 14
@@ -45,4 +47,4 @@ warning$ -- 0
 while$ -- 4
 width$ -- 3
 write$ -- 24
-(There was 1 warning)
+(There were 3 warnings)

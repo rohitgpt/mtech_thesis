@@ -213,15 +213,40 @@ In the previous chapter, we discussed the optimality of the one-dimensional dist
 First, an optimization problem is defined for minimizing the overall compliance of the structure with the constraints on volume. For calculating compliance ($\frac{1}{2}F^TU$), at every iteration, we find the displacement $U$ for given force $F$ and other boundary conditions on the macro domain. Displacements are determined by finite element analysis where the stiffness matrix for the macro domain elements is obtained by homogenization method. Each macro domain element is a called base cell and is further meshed to obtain the microstructure. To obtain the homogenized properties, another finite element analysis is done on this microdomain by applying periodic boundary conditions. It is the topology of this structure that we want to optimize. To achieve this, we link the optimality of the objective function to the topology of the microstructure through sensitivity analysis. For each element in the microdomain, a number is determined based on how critical is that element is for minimizing the objective function. After each iteration, the structure is updated based on the sensitivity numbers. This process is repeated until the volume constraint is achieved and the sensitivity numbers converge.
 
 \subsection{Optimization Problem}
-\begin{equation*}
+\begin{equation}
+\label{eq:2dopt}
 \begin{aligned}
 & \underset{\chi}{\text{minimize :}}
 & &  C = \frac{1}{2}\textbf{F}^\textbf{T}\textbf{U}\\
 & \text{subject to:}
 & & \sum_{j=1}^N V_j x_j - V_f = 0 \qquad \text{where }\quad x_j = \{0, 1\}
 \end{aligned}
-\end{equation*}
-Here, $F$ is the applied load, $U$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x$
+\end{equation}
+Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. 
+
+<Schematic of the cantilever beam>
+
+<Schematic of the microstructure>
+
+\subsection{Finite Element Analysis} 
+The optimization problem defined in \eqref{eq:2dopt} requires the finite element analysis to be done on two scales, one for macrostructure and another for the base cell. For the microstructure, since the design variables can be either 0 or 1, Solid Isotropic Material with Penalization model\cite{paper:simp} is used for obtaining the material properties. Thus, the elasticity matrix can be written as
+\begin{equation}
+\textbf{D} = x_j^p\textbf{D}^1 + (1-x_j^p)\textbf{D}^2
+\end{equation}
+where $\textbf{D}^1$ and $\textbf{D}^2$ are the elasticity matrices for material 1 and 2 respectively, $p$ is the penalization constant.
+For the macrodomain, we have the following FE equation
+\begin{equation}
+\textbf{KU} = \textbf{F}
+\end{equation}
+where $\textbf{K}$ is the assembled stiffness matrix for the macrostructure whose each component is calculated using
+\begin{equation}
+\label{eq:KM}
+\textbf{K}_i =  \int_{V_i} \textbf{B}_i^T\textbf{D}_i^H\textbf{B}_i dV_i
+\end{equation} 
+where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}_i^H$ is the homogenized elasticity matrix calculated from the microstructure. The homogenization process\cite{paper:homogenization} is discussed in the subsequent chapters. In this study, all base cells are assumed to be identical and therefore, equation \eqref{eq:KM} can be simplified as
+\begin{equation}
+\textbf{K}_i =  \int_{V_i} \textbf{B}^T\textbf{D}^H\textbf{B} dV_i
+\end{equation} 
 
 
 
