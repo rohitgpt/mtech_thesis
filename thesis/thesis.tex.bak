@@ -590,6 +590,8 @@ and eq. \eqref{Dhomo} becomes:
 \end{equation}
 
 \subsection{Periodic Boundary Conditions}
+The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields. T
+For 
 
 \section{Results}
 \cite{first}
