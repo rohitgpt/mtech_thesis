@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  2 JUL 2019 02:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  3 JUL 2019 00:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -719,25 +719,25 @@ Overfull \hbox (3.02325pt too wide) detected at line 516
  []
 
 [21] [22] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 603.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 620.
  [23]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 603.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 620.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 603.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 603.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 620.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 620.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: A3F2E71D0037F19141BA8B02A3FFF820;1595.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 603.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 620.
  ) 
 Here is how much of TeX's memory you used:
- 9595 strings out of 492982
- 142802 string characters out of 6134896
- 258662 words of memory out of 5000000
- 12867 multiletter control sequences out of 15000+600000
+ 9600 strings out of 492982
+ 142875 string characters out of 6134896
+ 258776 words of memory out of 5000000
+ 12869 multiletter control sequences out of 15000+600000
  13243 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,19n,49p,1221b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -762,10 +762,10 @@ public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/latxfont/line10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (23 pages, 876396 bytes).
+Output written on thesis.pdf (23 pages, 877994 bytes).
 PDF statistics:
- 2488 PDF objects out of 2984 (max. 8388607)
- 1423 compressed objects within 15 object streams
- 129 named destinations out of 1000 (max. 500000)
+ 2491 PDF objects out of 2984 (max. 8388607)
+ 1426 compressed objects within 15 object streams
+ 132 named destinations out of 1000 (max. 500000)
  257 words of extra memory for PDF output out of 10000 (max. 10000000)
 
