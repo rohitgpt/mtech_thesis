@@ -1,0 +1,7438 @@
+%% ================================================================================
+%% This LaTeX file was created by AbiWord.                                         
+%% AbiWord is a free, Open Source word processor.                                  
+%% More information about AbiWord is available at http://www.abisource.com/        
+%% ================================================================================
+
+\documentclass[a4paper,portrait,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[normalem]{ulem}
+%% Please revise the following command, if your babel
+%% package does not support en-IN
+\usepackage[en]{babel}
+\usepackage{color}
+\usepackage{hyperref}
+ 
+\begin{document}
+
+
+\begin{flushleft}
+PERGAMON
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A review of homogenization and topology optimization
+\end{flushleft}
+
+
+\begin{flushleft}
+IÐhomogenization theory for media with periodic
+\end{flushleft}
+
+
+\begin{flushleft}
+structure
+\end{flushleft}
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton *
+\end{flushleft}
+
+
+\begin{flushleft}
+Department of Civil Engineering, University of Wales, Swansea, Singleton Park, Swansea, SA2 8PP, U.K.
+\end{flushleft}
+
+
+\begin{flushleft}
+Received 28 January 1997; accepted 28 April 1997
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Abstract
+\end{flushleft}
+
+
+\begin{flushleft}
+This is the ®rst part of a three-paper review of homogenization and topology optimization, viewed from an
+\end{flushleft}
+
+
+\begin{flushleft}
+engineering standpoint and with the ultimate aim of clarifying the ideas so that interested researchers can easily
+\end{flushleft}
+
+
+\begin{flushleft}
+implement the concepts described. In the ®rst paper we focus on the theory of the homogenization method where
+\end{flushleft}
+
+
+\begin{flushleft}
+we are concerned with the main concepts and derivation of the equations for computation of e€ective constitutive
+\end{flushleft}
+
+
+\begin{flushleft}
+parameters of complex materials with a periodic micro structure. Such materials are described by the base cell,
+\end{flushleft}
+
+
+\begin{flushleft}
+which is the smallest repetitive unit of material, and the evaluation of the e€ective constitutive parameters may be
+\end{flushleft}
+
+
+\begin{flushleft}
+carried out by analysing the base cell alone. For simple microstructures this may be achieved analytically, whereas
+\end{flushleft}
+
+
+\begin{flushleft}
+for more complicated systems numerical methods such as the ®nite element method must be employed. In the
+\end{flushleft}
+
+
+\begin{flushleft}
+second paper, we consider numerical and analytical solutions of the homogenization equations. Topology
+\end{flushleft}
+
+
+\begin{flushleft}
+optimization of structures is a rapidly growing research area, and as opposed to shape optimization allows the
+\end{flushleft}
+
+
+\begin{flushleft}
+introduction of holes in structures, with consequent savings in weight and improved structural characteristics. The
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenization approach, with an emphasis on the optimality criteria method, will be the topic of the third paper
+\end{flushleft}
+
+
+\begin{flushleft}
+in this review. \# 1998 Elsevier Science Ltd. All rights reserved.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+1. Introduction
+\end{flushleft}
+
+
+\begin{flushleft}
+Advances in technology in recent years have been
+\end{flushleft}
+
+
+\begin{flushleft}
+paralleled by the increased use of composite materials
+\end{flushleft}
+
+
+\begin{flushleft}
+in industry. Since materials have di€erent properties, it
+\end{flushleft}
+
+
+\begin{flushleft}
+seems sensible to make use of the good properties of
+\end{flushleft}
+
+
+\begin{flushleft}
+each single ingredient by using them in a proper combination. For example, a simple mixture of clay, sand
+\end{flushleft}
+
+
+\begin{flushleft}
+and straw produced a composite building material
+\end{flushleft}
+
+
+\begin{flushleft}
+which was used by the oldest known civilizations. The
+\end{flushleft}
+
+
+\begin{flushleft}
+further development of non-metallic materials and
+\end{flushleft}
+
+
+\begin{flushleft}
+composites has attracted the attention of scientists and
+\end{flushleft}
+
+
+\begin{flushleft}
+engineers in various ®elds, for example, aerospace,
+\end{flushleft}
+
+
+\begin{flushleft}
+transportation, and other branches of civil and mechanical engineering. Apart from the considerably low
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+* Corresponding author.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ratio of weight to strength, some composites bene®t
+\end{flushleft}
+
+
+\begin{flushleft}
+from other desirable properties, such as corrosion and
+\end{flushleft}
+
+
+\begin{flushleft}
+thermal resistance, toughness and lower cost. Usually,
+\end{flushleft}
+
+
+\begin{flushleft}
+composite materials comprise of a matrix which could
+\end{flushleft}
+
+
+\begin{flushleft}
+be metal, polymeric (like plastics) or ceramic, and a reinforcement or inclusion, which could be particles or
+\end{flushleft}
+
+
+\begin{flushleft}
+®bres of steel, aluminum, silicon etc.
+\end{flushleft}
+
+
+\begin{flushleft}
+Composite materials may be de®ned as a man-made
+\end{flushleft}
+
+
+\begin{flushleft}
+material with di€erent dissimilar constituents, which
+\end{flushleft}
+
+
+\begin{flushleft}
+occupy di€erent regions with distinct interfaces
+\end{flushleft}
+
+
+\begin{flushleft}
+between them [1]. The properties of a composite are
+\end{flushleft}
+
+
+\begin{flushleft}
+di€erent from its individual constituents. A cellular
+\end{flushleft}
+
+
+\begin{flushleft}
+body can be considered as a simple case of a composite, comprising solids and voids. This is the case
+\end{flushleft}
+
+
+\begin{flushleft}
+which is used in the structural topology optimization.
+\end{flushleft}
+
+
+\begin{flushleft}
+In this study, composites with a regular or nearly
+\end{flushleft}
+
+
+\begin{flushleft}
+regular structure are considered. Having suciently
+\end{flushleft}
+
+
+\begin{flushleft}
+regular heterogenities enables us to assume a periodic
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+0045-7949/98/\$ - see front matter \# 1998 Elsevier Science Ltd. All rights reserved.
+\end{flushleft}
+
+
+\begin{flushleft}
+PII: S 0 0 4 5 - 7 9 4 9 ( 9 8 ) 0 0 1 3 1 - X
+\end{flushleft}
+
+
+
+
+
+\newpage
+708
+
+
+
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+structure for the composite. It should be emphasized
+\end{flushleft}
+
+
+\begin{flushleft}
+that in comparison with the dimensions of the body
+\end{flushleft}
+
+
+\begin{flushleft}
+the size of these non-homogeneities should be very
+\end{flushleft}
+
+
+\begin{flushleft}
+small. Owing to this, these types of material are sometimes called composites with periodic microstructures.
+\end{flushleft}
+
+
+\begin{flushleft}
+Even with the help of high-speed modern computers,
+\end{flushleft}
+
+
+\begin{flushleft}
+the analysis of the boundary value problems consisting
+\end{flushleft}
+
+
+\begin{flushleft}
+of such media with a large number of heterogenities, is
+\end{flushleft}
+
+
+\begin{flushleft}
+extremely dicult. A natural way to overcome this dif®culty is to replace the composite with a kind of equivalent material model. This procedure is usually called
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenization. One way of ®nding the properties of
+\end{flushleft}
+
+
+\begin{flushleft}
+such composites is by carrying out experimental tests.
+\end{flushleft}
+
+
+\begin{flushleft}
+It is quite evident that because of the volume and cost
+\end{flushleft}
+
+
+\begin{flushleft}
+of the required tests for all possible reinforcement
+\end{flushleft}
+
+
+\begin{flushleft}
+types, experimental measurements are often impracticable.
+\end{flushleft}
+
+
+\begin{flushleft}
+The mathematical theory of homogenization, which
+\end{flushleft}
+
+
+\begin{flushleft}
+has developed since the 1970 s is used as an alternative
+\end{flushleft}
+
+
+\begin{flushleft}
+approach to ®nd the e€ective properties of the equivalent homogenized material [2$\pm$4]. This theory can be
+\end{flushleft}
+
+
+\begin{flushleft}
+applied in many areas of physics and engineering having ®nely heterogeneous continuous media, like heat
+\end{flushleft}
+
+
+\begin{flushleft}
+transfer or ¯uid ¯ow in porous media or, for example,
+\end{flushleft}
+
+
+\begin{flushleft}
+electromagnetism in composites. In fact, the basic
+\end{flushleft}
+
+
+\begin{flushleft}
+assumption of continuous media in mechanics and
+\end{flushleft}
+
+
+\begin{flushleft}
+physics can be thought of as sort of homogenization,
+\end{flushleft}
+
+
+\begin{flushleft}
+as the materials are composed of atoms or molecules.
+\end{flushleft}
+
+
+\begin{flushleft}
+From a mathematical point of view, the theory of
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenization is a limit theory which uses the
+\end{flushleft}
+
+
+\begin{flushleft}
+asymptotic expansion and the assumption of periodicity to substitute the di€erential equations with
+\end{flushleft}
+
+
+\begin{flushleft}
+rapidly oscillating coecients, with di€erential
+\end{flushleft}
+
+
+\begin{flushleft}
+equations whose coecients are constant or slowly
+\end{flushleft}
+
+
+\begin{flushleft}
+varying in such a way that the solutions are close to
+\end{flushleft}
+
+
+\begin{flushleft}
+the initial equations [5].
+\end{flushleft}
+
+
+\begin{flushleft}
+This method makes it possible to predict both the
+\end{flushleft}
+
+
+\begin{flushleft}
+overall and local properties of processes in composites.
+\end{flushleft}
+
+
+\begin{flushleft}
+In the ®rst step, the appropriate local problem on the
+\end{flushleft}
+
+
+\begin{flushleft}
+unit cell of the material is solved and the e€ective material properties are obtained. In the second step, the
+\end{flushleft}
+
+
+\begin{flushleft}
+boundary value problem for a homogenized material is
+\end{flushleft}
+
+
+\begin{flushleft}
+solved.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+a 3 ? 3 diagonal matrix:
+\end{flushleft}
+
+
+2
+
+
+3
+
+
+\begin{flushleft}
+n1 0 0
+\end{flushleft}
+
+
+\begin{flushleft}
+N ˆ 4 0 n2 0 5;
+\end{flushleft}
+
+
+\begin{flushleft}
+0 0 n3
+\end{flushleft}
+
+
+\begin{flushleft}
+where n1, n2 and n3 are arbitrary integer numbers, and
+\end{flushleft}
+
+
+\begin{flushleft}
+Y = hY1 Y2 Y3iT is a constant vector which determines the period of the structure; F can be a scalar or
+\end{flushleft}
+
+
+\begin{flushleft}
+vectorial or even tensorial function of the position vector x. For example, in a composite tissued by a periodically repeating cell Y, the mechanical behaviour is
+\end{flushleft}
+
+
+\begin{flushleft}
+described by the constitutional relations of the form:
+\end{flushleft}
+
+
+\begin{flushleft}
+sij ˆ cijkl ekl ;
+\end{flushleft}
+
+
+\begin{flushleft}
+and the tensor cijkl is a periodic function of the spatial
+\end{flushleft}
+
+
+\begin{flushleft}
+coordinate x, so that
+\end{flushleft}
+
+
+\begin{flushleft}
+cijkl x ‡ NY† ˆ cijkl x†
+\end{flushleft}
+
+
+
+
+
+2†
+
+
+
+
+
+\begin{flushleft}
+or
+\end{flushleft}
+
+
+\begin{flushleft}
+cijkl x1 ‡ n1 Y1 ; x2 ‡ n2 Y2 ; x3 ‡ n3 Y3 † ˆ cijkl x1 ; x2 ; x3 †:
+\end{flushleft}
+
+
+\begin{flushleft}
+cijkl(x) is called the Y-periodic (see Fig. 1). Note that
+\end{flushleft}
+
+
+\begin{flushleft}
+sij and ekl are, respectively, the stress and strain tensors.
+\end{flushleft}
+
+
+\begin{flushleft}
+In the theory of homogenization the period Y compared with the dimensions of the overall domain is
+\end{flushleft}
+
+
+\begin{flushleft}
+assumed to be very small. Hence, the characteristic
+\end{flushleft}
+
+
+\begin{flushleft}
+functions of these highly heterogeneous media will
+\end{flushleft}
+
+
+\begin{flushleft}
+rapidly vary within a very small neighbourhood of a
+\end{flushleft}
+
+
+\begin{flushleft}
+point x. This fact inspires the consideration of two
+\end{flushleft}
+
+
+\begin{flushleft}
+di€erent scales of dependencies for all quantities: one
+\end{flushleft}
+
+
+\begin{flushleft}
+on the macroscopic or global level x, which indicates
+\end{flushleft}
+
+
+\begin{flushleft}
+slow variations, and the other on the microscopic or
+\end{flushleft}
+
+
+\begin{flushleft}
+local level y, which describes rapid oscillations.
+\end{flushleft}
+
+
+\begin{flushleft}
+The ratio of the real length of a unit vector in the
+\end{flushleft}
+
+
+\begin{flushleft}
+microscopic coordinates to the real length of a unit
+\end{flushleft}
+
+
+\begin{flushleft}
+vector in the macroscopic coordinates, is a small parameter E. so Ey = x or y = x/E. Consequently, if g is a
+\end{flushleft}
+
+
+\begin{flushleft}
+general function then we can say g = g(x, x/E) = g(x,
+\end{flushleft}
+
+
+\begin{flushleft}
+y). To illustrate the technique let us assume that F(x)
+\end{flushleft}
+
+
+\begin{flushleft}
+is a physical quantity of a strongly heterogeneous med-
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+2. Periodicity and Asymptotic Expansion
+\end{flushleft}
+
+
+\begin{flushleft}
+A heterogeneous medium is said to have a regular
+\end{flushleft}
+
+
+\begin{flushleft}
+periodicity if the functions denoting some physical
+\end{flushleft}
+
+
+\begin{flushleft}
+quantity of the the mediumÐeither geometrical or
+\end{flushleft}
+
+
+\begin{flushleft}
+some other characteristicsÐhave the following property:
+\end{flushleft}
+
+
+\begin{flushleft}
+F x ‡ NY† ˆ F x†:
+\end{flushleft}
+
+
+
+
+
+1†
+
+
+
+
+
+\begin{flushleft}
+x = (x1, x2, x3) is the position vector of the point, N is
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 1. Periodicity requires that the functions have equal
+\end{flushleft}
+
+
+\begin{flushleft}
+values at points P1, P2,. . ., P6.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+\newpage
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 2. A highly oscillating function.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ium. Thus F(x) will have oscillations, see Fig. 2. To
+\end{flushleft}
+
+
+\begin{flushleft}
+study these oscillations using this double-scale expansion, the space can be enlarged as indicated in Fig. 3.
+\end{flushleft}
+
+
+\begin{flushleft}
+The small parameter E also provides an indication of
+\end{flushleft}
+
+
+\begin{flushleft}
+the proportion between the dimensions of the base
+\end{flushleft}
+
+
+\begin{flushleft}
+cells of a composite and the whole domain, known as
+\end{flushleft}
+
+
+\begin{flushleft}
+the characteristic inhomogeneity dimension. As a
+\end{flushleft}
+
+
+\begin{flushleft}
+hypothetical example, E for the skin cells of the human
+\end{flushleft}
+
+
+\begin{flushleft}
+body is larger than E for the atoms of which it is comprised. The quantity 1/E can be thought of as a magni-
+\end{flushleft}
+
+
+
+
+
+709
+
+
+
+
+
+\begin{flushleft}
+®cation factor which enlarges the dimensions of a base
+\end{flushleft}
+
+
+\begin{flushleft}
+cell to be comparable with the dimensions of the
+\end{flushleft}
+
+
+\begin{flushleft}
+material [6$\pm$8], see Fig. 4.
+\end{flushleft}
+
+
+\begin{flushleft}
+In the double-scale technique, the partial di€erential
+\end{flushleft}
+
+
+\begin{flushleft}
+equations of the problem have coecients of the form
+\end{flushleft}
+
+
+\begin{flushleft}
+a(x/E) or a(y), where a(y) is a periodic function of its
+\end{flushleft}
+
+
+\begin{flushleft}
+arguments. The corresponding boundary value problem may be treated by asymptotically expanding the
+\end{flushleft}
+
+
+\begin{flushleft}
+solution in powers of the small parameter E. This technique has already proved to be useful in the analysis
+\end{flushleft}
+
+
+\begin{flushleft}
+of slightly perturbed periodic processes in the theory
+\end{flushleft}
+
+
+\begin{flushleft}
+of vibrations. The same principle is extendible to processes occurring in composite materials with a regular
+\end{flushleft}
+
+
+\begin{flushleft}
+structure.
+\end{flushleft}
+
+
+\begin{flushleft}
+If we assign a coordinate system x = (x1, x2, x3) in
+\end{flushleft}
+
+
+\begin{flushleft}
+R3 space to de®ne the domain of the composite material problem O, then assuming periodicity, the
+\end{flushleft}
+
+
+\begin{flushleft}
+domain can be regarded as a collection of parallelpiped cells of identical dimensions EY1, EY2, EY3, where
+\end{flushleft}
+
+
+\begin{flushleft}
+Y1, Y2 and Y3 are the sides of the base cell in a local
+\end{flushleft}
+
+
+\begin{flushleft}
+(microscopic) coordinate system y = (y1, y2, y3) = x/E.
+\end{flushleft}
+
+
+\begin{flushleft}
+So for a ®xed x in the macroscopic level, any dependency on y can be considered Y-periodic. Moreover, it
+\end{flushleft}
+
+
+\begin{flushleft}
+is assumed that the form and composition of the base
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 3. One of the oscillations in the expanded scale.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 4. Characteristic dimension of inhomogeneity and scale enlargement.
+\end{flushleft}
+
+
+
+
+
+\newpage
+710
+
+
+
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+cell varies in a smooth way with the macroscopic variable x. This means that for di€erent points the structure of the composite may vary, but if one looks
+\end{flushleft}
+
+
+\begin{flushleft}
+through a microscope at a point at x, a periodic pattern can be found.
+\end{flushleft}
+
+
+\begin{flushleft}
+Functions determining the behaviour of the composite can be expanded as:
+\end{flushleft}
+
+
+\begin{flushleft}
+FE x† ˆ F0 x; y† ‡ EF1 x; y† ‡ E2 F2 x; y† ‡ ? ? ? ;
+\end{flushleft}
+
+
+0
+
+
+
+
+
+\begin{flushleft}
+3. One-dimensional Elasticity Problem
+\end{flushleft}
+
+
+\begin{flushleft}
+To clarify the homogenization method, the simple
+\end{flushleft}
+
+
+\begin{flushleft}
+case of calculation of deformation of an inhomogeneous bar in the longitudinal direction is considered.
+\end{flushleft}
+
+
+\begin{flushleft}
+Here, we attempt to derive the modulus of elasticity
+\end{flushleft}
+
+
+\begin{flushleft}
+without recourse to advanced mathematics.
+\end{flushleft}
+
+
+\begin{flushleft}
+According to the assumptions of the theory, the
+\end{flushleft}
+
+
+\begin{flushleft}
+medium has a periodic composite microstructure
+\end{flushleft}
+
+
+\begin{flushleft}
+(Fig. 5).
+\end{flushleft}
+
+
+\begin{flushleft}
+The governing equations, in the form of Hooke's
+\end{flushleft}
+
+
+\begin{flushleft}
+law of linear elasticity and the Cauchy's ®rst law of
+\end{flushleft}
+
+
+\begin{flushleft}
+motion (equilibrium equation), are:
+\end{flushleft}
+
+
+3†
+
+
+
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@s
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ gE ˆ 0:
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+EE x; x=E† ˆ EE x=E† ˆ E y†
+\end{flushleft}
+
+
+
+
+
+4†
+
+
+
+
+
+\begin{flushleft}
+The dependency of the quantities to the size of the
+\end{flushleft}
+
+
+\begin{flushleft}
+unit cell of inhomogeneity is indicated by the superscript ``E''. sE is the stress, uE is the displacement, EE(x)
+\end{flushleft}
+
+
+\begin{flushleft}
+is the Young's modulus and gE is the weight per unit
+\end{flushleft}
+
+
+\begin{flushleft}
+volume of material. It is assumed that EE and gE are
+\end{flushleft}
+
+
+\begin{flushleft}
+macroscopically uniform along the domain and only
+\end{flushleft}
+
+
+
+
+
+5†
+
+
+
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+\begin{flushleft}
+gE x; x=E† ˆ gE x=E† ˆ g y†:
+\end{flushleft}
+
+
+
+
+
+6†
+
+
+
+
+
+\begin{flushleft}
+Using the 	 asymptotic expansion:
+\end{flushleft}
+
+
+\begin{flushleft}
+uE x† ˆ u0 x; y† ‡ Eu1 x; y† ‡ E2 u2 x; y† ‡ ? ? ?
+\end{flushleft}
+
+
+
+
+
+1
+
+
+
+
+
+\begin{flushleft}
+where E 4 0 and functions F (x, y), F (x, y), . . . are
+\end{flushleft}
+
+
+\begin{flushleft}
+smooth with respect to x and Y-periodic in y, which
+\end{flushleft}
+
+
+\begin{flushleft}
+means that they take equal values on the opposite
+\end{flushleft}
+
+
+\begin{flushleft}
+sides of the parallel-piped base cell.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@uE
+\end{flushleft}
+
+
+\begin{flushleft}
+sE ˆ EE
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+vary inside each cell:
+\end{flushleft}
+
+
+
+
+
+7†
+
+
+
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+\begin{flushleft}
+sE x† ˆ s0 x; y† ‡ Es1 x; y† ‡ E2 2 x; y† ‡ ? ? ? ;
+\end{flushleft}
+
+
+
+
+
+8†
+
+
+
+
+
+\begin{flushleft}
+where ui(x, y) and si(x, y), (i = 1, 2, . . . ) are periodic
+\end{flushleft}
+
+
+\begin{flushleft}
+on y and the length of period is Y. In due course the
+\end{flushleft}
+
+
+\begin{flushleft}
+following facts will be referred to:
+\end{flushleft}
+
+
+\begin{flushleft}
+Fact (1). The derivative of a periodic function is
+\end{flushleft}
+
+
+\begin{flushleft}
+also periodic with the same period.
+\end{flushleft}
+
+
+\begin{flushleft}
+Fact (2). The integral of the derivative of a function
+\end{flushleft}
+
+
+\begin{flushleft}
+over the period is zero. (These facts can easily be veri®ed by the de®nition of derivative and periodicity.)
+\end{flushleft}
+
+
+\begin{flushleft}
+Fact (3). If F = F(x, y) and y depends on x, then:
+\end{flushleft}
+
+
+\begin{flushleft}
+dF @F @F @y
+\end{flushleft}
+
+
+ˆ
+
+
+‡
+
+
+:
+
+
+\begin{flushleft}
+dx @x @y @x
+\end{flushleft}
+
+
+\begin{flushleft}
+In this case, as y = x/E, so
+\end{flushleft}
+
+
+\begin{flushleft}
+dF @F 1 @F
+\end{flushleft}
+
+
+ˆ
+
+
+‡
+
+
+:
+
+
+\begin{flushleft}
+dx @x E @y
+\end{flushleft}
+
+
+\begin{flushleft}
+Using the latter fact and substituting the series in
+\end{flushleft}
+
+
+\begin{flushleft}
+Eqs. (7) and (8) into Eqs. (3) and (4), we obtain:
+\end{flushleft}
+
+
+\begin{flushleft}
+s0 ‡ Es1 ‡ E2 s2 ‡ ? ? ?
+\end{flushleft}
+
+
+? 0
+
+
+?
+
+
+\begin{flushleft}
+@u
+\end{flushleft}
+
+
+\begin{flushleft}
+1 @u0
+\end{flushleft}
+
+
+\begin{flushleft}
+@u1 @u1
+\end{flushleft}
+
+
+\begin{flushleft}
+@u1
+\end{flushleft}
+
+
+\begin{flushleft}
+@u2
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ E y†
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+‡E
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+‡ E2
+\end{flushleft}
+
+
+\begin{flushleft}
+‡E
+\end{flushleft}
+
+
+‡ ??? ;
+
+
+\begin{flushleft}
+@x E @y
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+9†
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+\begin{flushleft}
+@s0 1 @s0
+\end{flushleft}
+
+
+\begin{flushleft}
+@s1 @s1
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+‡E
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+‡ ? ? ? ‡ g y† ˆ 0:
+\end{flushleft}
+
+
+\begin{flushleft}
+@x E @y
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+10†
+
+
+
+
+
+\begin{flushleft}
+By equating the terms with the same power of E,
+\end{flushleft}
+
+
+\begin{flushleft}
+Eq. (9) yields:
+\end{flushleft}
+
+
+? 0?
+
+
+\begin{flushleft}
+@u
+\end{flushleft}
+
+
+\begin{flushleft}
+0 ˆ E y†
+\end{flushleft}
+
+
+;
+
+
+11†
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+? 0
+
+
+?
+
+
+\begin{flushleft}
+@u
+\end{flushleft}
+
+
+\begin{flushleft}
+@u1
+\end{flushleft}
+
+
+\begin{flushleft}
+s ˆ E y†
+\end{flushleft}
+
+
+‡
+
+
+;
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+12†
+
+
+
+
+
+? 1
+
+
+?
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+\begin{flushleft}
+@u2
+\end{flushleft}
+
+
+\begin{flushleft}
+s1 ˆ E y†
+\end{flushleft}
+
+
+‡
+
+
+;
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+13†
+
+
+
+
+
+0
+
+
+
+
+
+\begin{flushleft}
+Fig. 5. A composite bar.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and similarly from Eq. (10):
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+\newpage
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@s0
+\end{flushleft}
+
+
+ˆ 0;
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+14†
+
+
+
+
+
+\begin{flushleft}
+@s0 @s1
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+‡ g y† ˆ 0:
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+15†
+
+
+
+
+
+\begin{flushleft}
+Dividing by E(y) and integrating both sides of Eq. (16)
+\end{flushleft}
+
+
+\begin{flushleft}
+over the period Y, and using fact (2), yields:
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+dy du0 x†
+\end{flushleft}
+
+
+0
+
+
+\begin{flushleft}
+s x† ˆ Y=
+\end{flushleft}
+
+
+:
+
+
+17†
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+\begin{flushleft}
+Y E y†
+\end{flushleft}
+
+
+\begin{flushleft}
+Now, by substituting the value of s0(x) into Eq. (16),
+\end{flushleft}
+
+
+\begin{flushleft}
+we obtain:
+\end{flushleft}
+
+
+? ?
+
+
+?
+
+
+? 0
+
+
+\begin{flushleft}
+@u1 x; y†
+\end{flushleft}
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+\begin{flushleft}
+du x†
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ Y= E y†
+\end{flushleft}
+
+
+\begin{flushleft}
+ÿ1
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+\begin{flushleft}
+Y E y†
+\end{flushleft}
+
+
+\begin{flushleft}
+and by integrating this equation, we conclude that u1
+\end{flushleft}
+
+
+\begin{flushleft}
+has the following form:
+\end{flushleft}
+
+
+\begin{flushleft}
+u1 x; y† ˆ w y†
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+du0 x†
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ x x†;
+\end{flushleft}
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+where Z is the dummy variable of integration and b is
+\end{flushleft}
+
+
+\begin{flushleft}
+a constant. Now, using the boundary condition
+\end{flushleft}
+
+
+\begin{flushleft}
+w(0) = w(Y) yields:
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+0
+
+
+
+
+
+\begin{flushleft}
+From Eqs. (11) and (14) it is concluded that the functions u0 and s0 only depend on x [i.e. u0(x) and s0(x)].
+\end{flushleft}
+
+
+\begin{flushleft}
+Bearing in mind that the relationship between s0(x)
+\end{flushleft}
+
+
+\begin{flushleft}
+and u0(x) is sought (because they are independent of
+\end{flushleft}
+
+
+\begin{flushleft}
+the microscopic scale), Eq. (12) can be written as:
+\end{flushleft}
+
+
+? 0
+
+
+?
+
+
+\begin{flushleft}
+du x† @u1 x; y†
+\end{flushleft}
+
+
+\begin{flushleft}
+s0 x† ˆ E y†
+\end{flushleft}
+
+
+‡
+
+
+:
+
+
+16†
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+
+
+
+18†
+
+
+
+
+
+\begin{flushleft}
+where w(y) is the initial function of the terms inside the
+\end{flushleft}
+
+
+\begin{flushleft}
+square brackets and x(x) is the constant of integration
+\end{flushleft}
+
+
+\begin{flushleft}
+due to y. From Eqs. (16) and (18) it follows that
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+dw y† du0 x†
+\end{flushleft}
+
+
+\begin{flushleft}
+s0 x† ˆ E y† 1 ‡
+\end{flushleft}
+
+
+:
+
+
+19†
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+\begin{flushleft}
+Di€erentiating Eq. (19) with respect to y, one concludes that
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+??
+
+
+\begin{flushleft}
+d
+\end{flushleft}
+
+
+\begin{flushleft}
+dw y†
+\end{flushleft}
+
+
+\begin{flushleft}
+E y† 1 ‡
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ 0; on Y;
+\end{flushleft}
+
+
+20†
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+
+
+
+711
+
+
+
+
+
+\begin{flushleft}
+a
+\end{flushleft}
+
+
+\begin{flushleft}
+dZ ÿ Y ˆ 0;
+\end{flushleft}
+
+
+\begin{flushleft}
+E Z†
+\end{flushleft}
+
+
+
+
+
+24†
+
+
+
+
+
+\begin{flushleft}
+or
+\end{flushleft}
+
+
+?
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+a ˆ 1=
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+0
+
+
+
+
+
+?
+
+
+\begin{flushleft}
+dZ
+\end{flushleft}
+
+
+:
+
+
+\begin{flushleft}
+E Z†
+\end{flushleft}
+
+
+
+
+
+25†
+
+
+
+
+
+\begin{flushleft}
+Note that comparig Eqs. (19) and (21) one can see
+\end{flushleft}
+
+
+\begin{flushleft}
+that
+\end{flushleft}
+
+
+\begin{flushleft}
+s0 x† ˆ a
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+du0 x†
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+
+
+
+26†
+
+
+
+
+
+\begin{flushleft}
+and substituting for a from Eq. (25) yields
+\end{flushleft}
+
+
+?
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+s x† ˆ 1=
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+0
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+0
+
+
+
+
+
+?
+
+
+\begin{flushleft}
+dZ du0 x†
+\end{flushleft}
+
+
+:
+
+
+\begin{flushleft}
+E Z†
+\end{flushleft}
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+
+
+
+27†
+
+
+
+
+
+\begin{flushleft}
+By integrating Eq. (15) over the length of the period
+\end{flushleft}
+
+
+\begin{flushleft}
+(0, Y) and using fact (2) mentioned earlier, results in:
+\end{flushleft}
+
+
+\begin{flushleft}
+ds0 x†
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ g? ˆ 0;
+\end{flushleft}
+
+
+\begin{flushleft}
+dx
+\end{flushleft}
+
+
+
+
+
+28†
+
+
+
+
+
+\begin{flushleft}
+where g=1/Y fY g(y)dy is the volumetric average of g
+\end{flushleft}
+
+
+\begin{flushleft}
+inside the base cell.
+\end{flushleft}
+
+
+\begin{flushleft}
+By studying Eqs. (27) and (28), we realize that they
+\end{flushleft}
+
+
+\begin{flushleft}
+are very similar to the equations of one-dimensional
+\end{flushleft}
+
+
+\begin{flushleft}
+(1D) elasticity in homogeneous material, and s0 and u0
+\end{flushleft}
+
+
+\begin{flushleft}
+are independent of the microscopic scale y. The only
+\end{flushleft}
+
+
+\begin{flushleft}
+di€erence is the elasticity coecient, which should be
+\end{flushleft}
+
+
+\begin{flushleft}
+replaced by the homogenized one. Hence, the problem
+\end{flushleft}
+
+
+\begin{flushleft}
+can be summarized as:
+\end{flushleft}
+
+
+?
+
+
+
+
+
+\begin{flushleft}
+s0 x† ˆ EH du0 x†=dx
+\end{flushleft}
+
+
+\begin{flushleft}
+ds0 x†=dx ‡ g? ˆ 0;
+\end{flushleft}
+
+
+
+
+
+29†
+
+
+
+
+
+\begin{flushleft}
+and w(y) takes equal values on the opposite faces of Y
+\end{flushleft}
+
+
+\begin{flushleft}
+[i.e. w(0) = w(Y)]. Integrating Eq. (20) yields
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+dw y†
+\end{flushleft}
+
+
+\begin{flushleft}
+E y† 1 ‡
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ a a is a constant†;
+\end{flushleft}
+
+
+21†
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+or
+\end{flushleft}
+
+
+22†
+
+
+
+
+
+\begin{flushleft}
+is the homogenized modulus of elasticity.
+\end{flushleft}
+
+
+\begin{flushleft}
+To ®nd displacements, following the same as for the
+\end{flushleft}
+
+
+\begin{flushleft}
+homogeneous material, the bar problem is now
+\end{flushleft}
+
+
+\begin{flushleft}
+straightforward. Combining the two parts of Eq. (29),
+\end{flushleft}
+
+
+\begin{flushleft}
+we obtain:
+\end{flushleft}
+
+
+
+
+
+23†
+
+
+
+
+
+\begin{flushleft}
+@2 u0 x†
+\end{flushleft}
+
+
+\begin{flushleft}
+g
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆÿ H:
+\end{flushleft}
+
+
+\begin{flushleft}
+@x2
+\end{flushleft}
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+dw y†
+\end{flushleft}
+
+
+\begin{flushleft}
+a
+\end{flushleft}
+
+
+ˆ
+
+
+\begin{flushleft}
+ÿ 1:
+\end{flushleft}
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+\begin{flushleft}
+E y†
+\end{flushleft}
+
+
+\begin{flushleft}
+Integrating Eq. (22) it follows that
+\end{flushleft}
+
+
+?
+
+
+\begin{flushleft}
+y?
+\end{flushleft}
+
+
+\begin{flushleft}
+a
+\end{flushleft}
+
+
+\begin{flushleft}
+w y† ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+ÿ 1 dZ ‡ b;
+\end{flushleft}
+
+
+\begin{flushleft}
+0 E Z†
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+EH ˆ 1=
+\end{flushleft}
+
+
+
+
+
+?
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+0
+
+
+
+
+
+?
+
+
+\begin{flushleft}
+dZ
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+E Z†
+\end{flushleft}
+
+
+
+
+
+30†
+
+
+
+
+
+\newpage
+712
+
+
+
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+By two times integration and using the boundary conditions (x = 0; u = 0) and (x = L; du/dx = 0) it
+\end{flushleft}
+
+
+\begin{flushleft}
+results in:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+5. General Boundary Value Problem
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+The 1D heat conduction is very similar to the 1D
+\end{flushleft}
+
+
+\begin{flushleft}
+elasticity problem. The governing equations, Fourier's
+\end{flushleft}
+
+
+\begin{flushleft}
+law of heat conduction and the equation of heat balance, are:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Many physical systems which do not change with
+\end{flushleft}
+
+
+\begin{flushleft}
+timeÐsometimes called steady-state problemsÐcan be
+\end{flushleft}
+
+
+\begin{flushleft}
+modelled by elliptic equations. As a general problem,
+\end{flushleft}
+
+
+\begin{flushleft}
+the divergent elliptic equation in a non-homogeneous
+\end{flushleft}
+
+
+\begin{flushleft}
+medium with regular structure is now explained.
+\end{flushleft}
+
+
+\begin{flushleft}
+Let OWR3 be an unbounded medium tissued by parallelepiped unit cells Y, whose material properties are
+\end{flushleft}
+
+
+\begin{flushleft}
+determined by a symmetric matrix aij(x, y) = aij(y),
+\end{flushleft}
+
+
+\begin{flushleft}
+where y = x/E and x = (x1, x2, x3) and the functions
+\end{flushleft}
+
+
+\begin{flushleft}
+aij are periodic in the spatial variables y = (y1, y2, y3).
+\end{flushleft}
+
+
+\begin{flushleft}
+The boundary value problem to be dealt with is:
+\end{flushleft}
+
+
+
+
+
+?
+
+
+
+
+
+\begin{flushleft}
+AE uE ˆ f
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+u x† ˆ ÿ
+\end{flushleft}
+
+
+
+
+
+2
+
+
+
+
+
+\begin{flushleft}
+g? x
+\end{flushleft}
+
+
+\begin{flushleft}
+g?
+\end{flushleft}
+
+
+\begin{flushleft}
+Lx:
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+EH 2 EH
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+4. Problem of Heat Conduction
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+qE x† ˆ KE dTE x†=dx
+\end{flushleft}
+
+
+\begin{flushleft}
+@qE =@x ‡ f ˆ 0:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+31†
+
+
+
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+q is the heat ¯ux, T is the temperature, and K (x) is
+\end{flushleft}
+
+
+\begin{flushleft}
+the conductivity coecient. Following a very similar
+\end{flushleft}
+
+
+\begin{flushleft}
+procedure to the 1D elasticity problem, the homogenized coecient of heat conduction can be obtained
+\end{flushleft}
+
+
+\begin{flushleft}
+as:
+\end{flushleft}
+
+
+\begin{flushleft}
+? Y
+\end{flushleft}
+
+
+?
+
+
+1
+
+
+\begin{flushleft}
+dZ
+\end{flushleft}
+
+
+\begin{flushleft}
+KH ˆ 1=
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+Y 0 K Z†
+\end{flushleft}
+
+
+\begin{flushleft}
+which as is expected, is the same as Eq. (30).
+\end{flushleft}
+
+
+\begin{flushleft}
+Similarly, starting from the equations of heat conduction in the general 3D case, and following the same
+\end{flushleft}
+
+
+\begin{flushleft}
+procedure as for 1D problem, the following results will
+\end{flushleft}
+
+
+\begin{flushleft}
+be obtained [6]:
+\end{flushleft}
+
+
+?
+
+
+
+
+
+?
+
+
+\begin{flushleft}
+q?i x ˆ KH
+\end{flushleft}
+
+
+\begin{flushleft}
+ij @T x†=@xj
+\end{flushleft}
+
+
+@?
+
+
+\begin{flushleft}
+qi =@xi ‡ f ˆ 0;
+\end{flushleft}
+
+
+
+
+
+32†
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+\begin{flushleft}
+KH
+\end{flushleft}
+
+
+\begin{flushleft}
+ij
+\end{flushleft}
+
+
+
+
+
+36†
+
+
+
+
+
+\begin{flushleft}
+uE ˆ 0 on @O;
+\end{flushleft}
+
+
+
+
+
+37†
+
+
+
+
+
+\begin{flushleft}
+where the function f is de®ned in O and
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+@
+
+
+@
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+\begin{flushleft}
+A ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+aij y†
+\end{flushleft}
+
+
+\begin{flushleft}
+@xi
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+
+
+
+?
+
+
+
+
+
+?
+
+
+? ?
+
+
+\begin{flushleft}
+@wi
+\end{flushleft}
+
+
+\begin{flushleft}
+K y† dij ‡
+\end{flushleft}
+
+
+\begin{flushleft}
+dy ;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+33†
+
+
+
+
+
+\begin{flushleft}
+and wj(y) is the solution of the partial di€erential
+\end{flushleft}
+
+
+\begin{flushleft}
+equation:
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+??
+
+
+@
+
+
+\begin{flushleft}
+@wj
+\end{flushleft}
+
+
+\begin{flushleft}
+K y† dij ‡
+\end{flushleft}
+
+
+ˆ0
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+on Y:
+\end{flushleft}
+
+
+
+
+
+34†
+
+
+
+
+
+\begin{flushleft}
+dij is the Kronecker symbol and the boundary conditions are concluded from the periodicity, i.e. wj takes
+\end{flushleft}
+
+
+\begin{flushleft}
+equal values on the opposite sides of the base cell. In
+\end{flushleft}
+
+
+\begin{flushleft}
+Eqs. (31) and (32), q and @qi/@xi are the volumetric
+\end{flushleft}
+
+
+\begin{flushleft}
+average value of q0i (x) and @q0i /@xi over Y. The volumetric average of a quantity a(x, y) over Y is de®ned
+\end{flushleft}
+
+
+\begin{flushleft}
+by:
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+a x; y†dy:
+\end{flushleft}
+
+
+
+
+
+35†
+
+
+
+
+
+38†
+
+
+
+
+
+\begin{flushleft}
+is the elliptical operator. The superscript ``E'' is used to
+\end{flushleft}
+
+
+\begin{flushleft}
+show the dependency of the operator and the solution
+\end{flushleft}
+
+
+\begin{flushleft}
+to the characteristic inhomogeneity dimension.
+\end{flushleft}
+
+
+\begin{flushleft}
+Using a double-scale asymptotic expansion, the solution to Eqs. (36) and (37) can be written as:
+\end{flushleft}
+
+
+\begin{flushleft}
+uE x† ˆ u0 x; y† ‡ E1 u1 x; y† ‡ E2 u2 x; y† ‡ ? ? ? ;
+\end{flushleft}
+
+
+
+
+
+39†
+
+
+
+
+
+\begin{flushleft}
+j
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+where functions u (x, y) are Y-periodic in y. Recalling
+\end{flushleft}
+
+
+\begin{flushleft}
+the rule of indirect di€erentiation (fact 3) yields
+\end{flushleft}
+
+
+\begin{flushleft}
+AE ˆ
+\end{flushleft}
+
+
+
+
+
+1 1 1 2
+
+
+\begin{flushleft}
+A ‡ A ‡ A;
+\end{flushleft}
+
+
+\begin{flushleft}
+E2
+\end{flushleft}
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+40†
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+
+
+
+1
+
+
+ˆ
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+a? x† ˆ
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+in O;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A1 ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+\begin{flushleft}
+A2 ˆ
+\end{flushleft}
+
+
+
+
+
+?
+
+
+?
+
+
+@
+
+
+@
+
+
+\begin{flushleft}
+aij y†
+\end{flushleft}
+
+
+;
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A3 ˆ
+\end{flushleft}
+
+
+
+
+
+?
+
+
+?
+
+
+@
+
+
+@
+
+
+\begin{flushleft}
+aij y†
+\end{flushleft}
+
+
+\begin{flushleft}
+@xi
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+
+
+
+?
+
+
+?
+
+
+?
+
+
+?
+
+
+@
+
+
+@
+
+
+@
+
+
+@
+
+
+\begin{flushleft}
+aij y†
+\end{flushleft}
+
+
+\begin{flushleft}
+aij y†
+\end{flushleft}
+
+
+‡
+
+
+:
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xi
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Applying Eqs. (39) and (40) into Eq. (36) yields
+\end{flushleft}
+
+
+\begin{flushleft}
+Eÿ2 A1 ‡ Eÿ1 A2 ‡ A3 † u0 ‡ Eu1 ‡ E2 u2 ‡ ? ? ?† ˆ f;
+\end{flushleft}
+
+
+
+
+
+41†
+
+
+
+
+
+\begin{flushleft}
+and by equating terms with the same power of E, we
+\end{flushleft}
+
+
+\begin{flushleft}
+obtain:
+\end{flushleft}
+
+
+\begin{flushleft}
+A1 u0 ˆ0;
+\end{flushleft}
+
+
+2 0
+
+
+
+
+
+43†
+
+
+
+
+
+2 1
+
+
+
+
+
+3 0
+
+
+
+
+
+44†
+
+
+
+
+
+\begin{flushleft}
+A u ‡ A u ˆ0;
+\end{flushleft}
+
+
+1 2
+
+
+
+
+
+42†
+
+
+
+
+
+1 1
+
+
+
+
+
+\begin{flushleft}
+A u ‡ A u ‡ A u ˆf; ? ? ?
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+If x and y are considered as independent variables,
+\end{flushleft}
+
+
+\begin{flushleft}
+these equations form a recurrent system of di€erential
+\end{flushleft}
+
+
+\begin{flushleft}
+equations with the functions u0, u1 and u2 parameter-
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+\newpage
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ized by x. Before proceeding to the analysis of this system, it is useful to notice the following fact:
+\end{flushleft}
+
+
+\begin{flushleft}
+Fact (4). The equation
+\end{flushleft}
+
+
+\begin{flushleft}
+A1 u ˆ F
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+in Y
+\end{flushleft}
+
+
+
+
+
+45†
+
+
+
+
+
+\begin{flushleft}
+for a Y-periodic function u has a unique solution if:
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+F? ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fdy ˆ 0;
+\end{flushleft}
+
+
+
+
+
+46†
+
+
+
+
+
+\begin{flushleft}
+where vYv denotes the volume of the base cell.
+\end{flushleft}
+
+
+\begin{flushleft}
+From this fact, and using Eq. (42), it immediately
+\end{flushleft}
+
+
+\begin{flushleft}
+follows that
+\end{flushleft}
+
+
+\begin{flushleft}
+u0 ˆ u x†;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A1 u1 ˆ ÿA2u 0 ˆ ÿ
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@aij y† @u x†
+\end{flushleft}
+
+
+:
+
+
+\begin{flushleft}
+@yi @xj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+u1 x; y† ˆ wi y†
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@u x†
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ x x†;
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+
+
+
+49†
+
+
+
+
+
+\begin{flushleft}
+where wj(y) is the Y-periodic solution of the local
+\end{flushleft}
+
+
+\begin{flushleft}
+equation
+\end{flushleft}
+
+
+\begin{flushleft}
+@aij y†
+\end{flushleft}
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+in Y:
+\end{flushleft}
+
+
+
+
+
+50†
+
+
+
+
+
+\begin{flushleft}
+Now, turning to Eq. (44) for u2 and taking x as a parameter, it follows from fact (4) that Eq. (44) will have
+\end{flushleft}
+
+
+\begin{flushleft}
+a unique solution if
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A2 u1 ‡ A3 u0 †dy ‡ f ˆ 0;
+\end{flushleft}
+
+
+
+
+
+51†
+
+
+
+
+
+\begin{flushleft}
+which when combined with Eq. (49) results in the following homogenized (macroscopic) equation for u(x):
+\end{flushleft}
+
+
+\begin{flushleft}
+aH
+\end{flushleft}
+
+
+\begin{flushleft}
+ij
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Thus, it is demonstrated that the initial equation has
+\end{flushleft}
+
+
+\begin{flushleft}
+been split into two di€erent problems:
+\end{flushleft}
+
+
+\begin{flushleft}
+1. Determine wj(y) from Eq. (50) which is solved on
+\end{flushleft}
+
+
+\begin{flushleft}
+the base cell.
+\end{flushleft}
+
+
+\begin{flushleft}
+2. Solve Eq. (52) on O with u = 0 on @O. The homogenized coecients aH
+\end{flushleft}
+
+
+\begin{flushleft}
+ij are obtained from Eq. (53).
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+6. General Elasticity Problem
+\end{flushleft}
+
+
+48†
+
+
+
+
+
+\begin{flushleft}
+As in the right-hand side of Eq. (48) the variables are
+\end{flushleft}
+
+
+\begin{flushleft}
+separated, the solution of this equation may be represented in the form
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ÿ
+\end{flushleft}
+
+
+
+
+
+@2
+
+
+:
+
+
+\begin{flushleft}
+@xi @xj
+\end{flushleft}
+
+
+
+
+
+47†
+
+
+
+
+
+\begin{flushleft}
+and by substituting into Eq. (43) we ®nd:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+A1 wj y† ˆ
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+AH ˆ aH
+\end{flushleft}
+
+
+\begin{flushleft}
+ij
+\end{flushleft}
+
+
+
+
+
+713
+
+
+
+
+
+2
+
+
+
+
+
+\begin{flushleft}
+@ u x†
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ f;
+\end{flushleft}
+
+
+\begin{flushleft}
+@xi @xj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+where the quantities
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+1
+
+
+\begin{flushleft}
+@wj
+\end{flushleft}
+
+
+\begin{flushleft}
+aH
+\end{flushleft}
+
+
+\begin{flushleft}
+aij y† ‡ aik y†
+\end{flushleft}
+
+
+\begin{flushleft}
+dy
+\end{flushleft}
+
+
+\begin{flushleft}
+ij ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@yk
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj Y
+\end{flushleft}
+
+
+
+
+
+52†
+
+
+
+
+
+53†
+
+
+
+
+
+\begin{flushleft}
+are the e€ective coecients of the homogenized operator:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+So far, the application of the homogenization theory
+\end{flushleft}
+
+
+\begin{flushleft}
+in 1D elasticity, heat conduction, and as a more general problem in elliptic partial di€erential equations,
+\end{flushleft}
+
+
+\begin{flushleft}
+has been discussed. For the sake of completeness the
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenization method for cellular media in weak
+\end{flushleft}
+
+
+\begin{flushleft}
+form, which is suitable for the derivation of the ®nite
+\end{flushleft}
+
+
+\begin{flushleft}
+element formulation, using the procedure and notation
+\end{flushleft}
+
+
+\begin{flushleft}
+used by Guedes and Kikuchi in Ref. [9], is brie¯y
+\end{flushleft}
+
+
+\begin{flushleft}
+explained. This is the case applied in topological structural optimization by Bendsùe and Kikuchi [10$\pm$14].
+\end{flushleft}
+
+
+\begin{flushleft}
+Let us consider the elasticity problem constructed
+\end{flushleft}
+
+
+\begin{flushleft}
+from a material with a porous body with a periodic
+\end{flushleft}
+
+
+\begin{flushleft}
+cellular microstructure. Body forces f and tractions t
+\end{flushleft}
+
+
+\begin{flushleft}
+are applied. See Fig. 6 O is assumed to be an open
+\end{flushleft}
+
+
+\begin{flushleft}
+subset of R3 with a smooth boundary on G comprising
+\end{flushleft}
+
+
+\begin{flushleft}
+Gd ( where displacements are prescribed) and Gt (the
+\end{flushleft}
+
+
+\begin{flushleft}
+traction boundary). The base cell1 of the cellular body
+\end{flushleft}
+
+
+\begin{flushleft}
+Y is illustrated in Fig. 7. Y is assumed to be an open
+\end{flushleft}
+
+
+\begin{flushleft}
+rectangular parallel-piped in R3 de®ned by
+\end{flushleft}
+
+
+\begin{flushleft}
+Y ˆŠ0; Y1 ‰?Š0; Y2 ‰?Š0; Y3 ‰;
+\end{flushleft}
+
+
+\begin{flushleft}
+with a hole v in it. The boundary of v is de®ned by s
+\end{flushleft}
+
+
+\begin{flushleft}
+(@v = s) and is assumed to be suciently smooth, and
+\end{flushleft}
+
+
+\begin{flushleft}
+as a more general case the tractions p can also exist
+\end{flushleft}
+
+
+\begin{flushleft}
+inside the holes. The solid part of the cell is denoted
+\end{flushleft}
+
+
+\begin{flushleft}
+by ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y, therefore, the solid part of the domain can be
+\end{flushleft}
+
+
+\begin{flushleft}
+de®ned as
+\end{flushleft}
+
+
+\begin{flushleft}
+OE ˆ fx 2 Oj y ˆ x=E† 2 ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Yg:
+\end{flushleft}
+
+
+\begin{flushleft}
+Also, we de®ne
+\end{flushleft}
+
+
+\begin{flushleft}
+SE ˆ
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+all[
+\end{flushleft}
+
+
+\begin{flushleft}
+cells
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+si :
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+iˆ1
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+Having periodic microstructure does not mean that the
+\end{flushleft}
+
+
+\begin{flushleft}
+form and composition of the base cell cannot vary,but the
+\end{flushleft}
+
+
+\begin{flushleft}
+variations in the macroscopic scale are assumed to be smooth
+\end{flushleft}
+
+
+\begin{flushleft}
+enough.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+It is also assumed that none of the holes vi intersect
+\end{flushleft}
+
+
+\begin{flushleft}
+the boundary G. (i.e. G\ensuremath{\backslash}SE=;).
+\end{flushleft}
+
+
+\begin{flushleft}
+Now, considering the stress$\pm$strain and strain$\pm$displacement relations:
+\end{flushleft}
+
+
+
+
+
+\newpage
+714
+
+
+
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 6. Elasticity problem in a cellular body.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+V ˆ fv 2 ‰H1 OE Š3
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+vjGd ˆ 0g;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and H1 is the Sobolev space2. The elastic constants of
+\end{flushleft}
+
+
+\begin{flushleft}
+the solid are assumed to have symmetry and coercivity
+\end{flushleft}
+
+
+\begin{flushleft}
+properties:
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl ˆ Ejikl ˆ Eijlk ˆ Eklij ;
+\end{flushleft}
+
+
+\begin{flushleft}
+9a $>$ 0 : EEijkl ekl ˆ aeij eij ;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Fig. 7. Base cell of the cellular body.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+sEij ˆ EEijkl eEkl ;
+\end{flushleft}
+
+
+\begin{flushleft}
+eEkl ˆ
+\end{flushleft}
+
+
+
+
+
+54†
+
+
+
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+1 @uEk @uEl
+\end{flushleft}
+
+
+‡
+
+
+;
+
+
+\begin{flushleft}
+2 @xl @xk
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Find uE\$VE, such that
+\end{flushleft}
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@uEk @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+dO ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @xj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+fEi vi dO ‡
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ti vi dG ‡
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+sE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+pEi vi dS;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 VE ;
+\end{flushleft}
+
+
+
+
+
+56†
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+2
+
+
+
+
+
+\begin{flushleft}
+H1(OE) is de®ned as:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+H1 OE † ˆ fw x†jw x† 2 L2 OE †
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@w x†
+\end{flushleft}
+
+
+\begin{flushleft}
+2 L2 OE †g;
+\end{flushleft}
+
+
+\begin{flushleft}
+@xi
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+\begin{flushleft}
+L2 OE † ˆ fw x†j
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Now, using the double-scale asymptotic expansion and
+\end{flushleft}
+
+
+\begin{flushleft}
+fact (3), Eq. (56) becomes
+\end{flushleft}
+
+
+?
+
+
+??
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+1 @u0 @ui 1 @u0k @u1k @vi @u0k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl 2 k
+\end{flushleft}
+
+
+‡
+
+
+‡
+
+
+‡
+
+
+\begin{flushleft}
+E @gl @yj E @xl @yl @j
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+?? 0
+
+
+?
+
+
+? 1
+
+
+? ?
+
+
+\begin{flushleft}
+@uk @u1k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+@uk @u2 @vi
+\end{flushleft}
+
+
+‡
+
+
+‡
+
+
+‡
+
+
+‡
+
+
+\begin{flushleft}
+‡ E ? ? ?†gdO
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @yl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @yl @yj
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+55†
+
+
+
+
+
+\begin{flushleft}
+the virtual displacement equation can be constructed
+\end{flushleft}
+
+
+\begin{flushleft}
+as:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+‰w x†Š2 $<$ 1
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and x 2 OE g;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+which assures the integrability of the functions and their derivatives.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8eij ˆ eij :
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+fEi vi dO ‡
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ti vi dG ‡
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+sE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+pEi vi ds;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 VO ?ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+57†
+
+
+
+
+
+\begin{flushleft}
+where
+\end{flushleft}
+
+
+\begin{flushleft}
+VO ?ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Yjv :; y†Y ÿ periodic;
+\end{flushleft}
+
+
+\begin{flushleft}
+Y ˆ fv x; y†; x; y† 2 O ? ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+v smooth enough and vjGd ˆ 0g:
+\end{flushleft}
+
+
+\begin{flushleft}
+Similarly, we de®ne VO and Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y as:
+\end{flushleft}
+
+
+\begin{flushleft}
+VO ˆ fv x† defined in Ojv smooth enough and vjGd ˆ 0g:
+\end{flushleft}
+
+
+\begin{flushleft}
+Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Yj v y†;
+\end{flushleft}
+
+
+\begin{flushleft}
+Y ˆ fv y† defined in ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y ÿ periodic and smooth enoughg:
+\end{flushleft}
+
+
+\begin{flushleft}
+Introducing the following facts:
+\end{flushleft}
+
+
+\begin{flushleft}
+Fact (5). For a Y-periodic function C(y) when
+\end{flushleft}
+
+
+\begin{flushleft}
+E 4 0 we have
+\end{flushleft}
+
+
+\begin{flushleft}
+?x?
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+C
+\end{flushleft}
+
+
+\begin{flushleft}
+C y†dY dO;
+\end{flushleft}
+
+
+58†
+
+
+\begin{flushleft}
+dO ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj O ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+OE
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+SE
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+C
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+?x?
+\end{flushleft}
+
+
+\begin{flushleft}
+E
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+dO ˆ
+\end{flushleft}
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+EjYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+C y†dsdO;
+\end{flushleft}
+
+
+
+
+
+59†
+
+
+
+
+
+\begin{flushleft}
+\newpage
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+and assuming that the functions are all smooth so that
+\end{flushleft}
+
+
+\begin{flushleft}
+when E 4 0 all integrals exist, and by equating the
+\end{flushleft}
+
+
+\begin{flushleft}
+terms with the same power of E we obtain:
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+O ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+
+
+
+?
+
+
+
+
+
+\begin{flushleft}
+@u0k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+dY dG ˆ 0;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl @yi
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 VO ?ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+
+
+
+?? 0
+
+
+?
+
+
+? ?
+
+
+\begin{flushleft}
+@uk @u1k @vi @u0k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+‡
+
+
+\begin{flushleft}
+dY dO
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @yl @yj @yl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+?
+
+
+?
+
+
+1
+
+
+ˆ
+
+
+\begin{flushleft}
+pi vi dS dO; 8v 2 VO ?ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+\begin{flushleft}
+O jYj s
+\end{flushleft}
+
+
+
+
+
+60†
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+?
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+61†
+
+
+
+
+
+?? 0
+
+
+?
+
+
+? 1
+
+
+? ? ?
+
+
+\begin{flushleft}
+@uk @u1k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+@uk @u2k @vi
+\end{flushleft}
+
+
+\begin{flushleft}
+dY dO
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+‡
+
+
+‡
+
+
+\begin{flushleft}
+@xl @yl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl @yl @yj
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+?
+
+
+?
+
+
+1
+
+
+ˆ
+
+
+\begin{flushleft}
+fi vi dY dO ‡
+\end{flushleft}
+
+
+\begin{flushleft}
+ti vi dG; 8v 2 VO ?ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y:
+\end{flushleft}
+
+
+\begin{flushleft}
+O jYj ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+62†
+
+
+\begin{flushleft}
+Now, as v is an arbitrary function we choose v = v(y)
+\end{flushleft}
+
+
+\begin{flushleft}
+(i.e. v \$ Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y ). Then integrating by parts, applying the
+\end{flushleft}
+
+
+\begin{flushleft}
+divergence theorem to the integral in ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y, and using
+\end{flushleft}
+
+
+\begin{flushleft}
+periodicity from Eq. (60), we obtain:
+\end{flushleft}
+
+
+? ?
+
+
+?
+
+
+??
+
+
+\begin{flushleft}
+@u0
+\end{flushleft}
+
+
+1
+
+
+@
+
+
+\begin{flushleft}
+ÿ
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl k vi dY
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj O ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+\begin{flushleft}
+@u0
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ Eijkl k nj vi dSgdO ˆ 0;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+\begin{flushleft}
+v being arbitrary results in:
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+@u0
+\end{flushleft}
+
+
+@
+
+
+\begin{flushleft}
+ÿ
+\end{flushleft}
+
+
+ˆ;
+
+
+\begin{flushleft}
+Eijkl k ˆ 0; 8y 2 Y
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+u0k
+\end{flushleft}
+
+
+\begin{flushleft}
+nj ˆ 0 on
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+s:
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v:
+\end{flushleft}
+
+
+
+
+
+63†
+
+
+
+
+
+64†
+
+
+
+
+
+65†
+
+
+
+
+
+\begin{flushleft}
+Considering fact (4) and Eq. (64) it is concluded that:
+\end{flushleft}
+
+
+\begin{flushleft}
+u0 x; y† ˆ u0 x†:
+\end{flushleft}
+
+
+
+
+
+66†
+
+
+
+
+
+\begin{flushleft}
+This means that the ®rst term of the asymptotic
+\end{flushleft}
+
+
+\begin{flushleft}
+expansion only depends on the macroscopic scale x.
+\end{flushleft}
+
+
+\begin{flushleft}
+Now, as v is an arbitrary function, if we choose
+\end{flushleft}
+
+
+\begin{flushleft}
+v = v(x) (i.e. v is only a function of x), then from
+\end{flushleft}
+
+
+\begin{flushleft}
+Eq. (61) it is concluded that:
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+1
+
+
+\begin{flushleft}
+pi dS vi x†dO ˆ 0; 8v 2 VO ;
+\end{flushleft}
+
+
+67†
+
+
+\begin{flushleft}
+O jYj s
+\end{flushleft}
+
+
+\begin{flushleft}
+which implies that
+\end{flushleft}
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+pi x; y†dS ˆ 0:
+\end{flushleft}
+
+
+
+
+
+68†
+
+
+
+
+
+\begin{flushleft}
+This means that the applied tractions have to be selfequilibrating. So the possible applied tractions are
+\end{flushleft}
+
+
+\begin{flushleft}
+restricted.
+\end{flushleft}
+
+
+
+
+
+715
+
+
+
+
+
+\begin{flushleft}
+On the other hand, introducing Eq. (66) into Eq. (61)
+\end{flushleft}
+
+
+\begin{flushleft}
+and choosing v = v(y) yields
+\end{flushleft}
+
+
+? 0
+
+
+?
+
+
+\begin{flushleft}
+@uk @u1k @vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+dY ˆ pi vi dS; 8v 2 Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y:
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @yl
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+69†
+
+
+\begin{flushleft}
+Integrating by parts, using the divergence theorem and
+\end{flushleft}
+
+
+\begin{flushleft}
+applying the periodicity conditions on the opposite
+\end{flushleft}
+
+
+\begin{flushleft}
+faces of Y, it follows from Eq. (69) that:
+\end{flushleft}
+
+
+?
+
+
+? 0
+
+
+??
+
+
+\begin{flushleft}
+@uk x† @u1k
+\end{flushleft}
+
+
+@
+
+
+\begin{flushleft}
+ÿ
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+vi dY
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl
+\end{flushleft}
+
+
+\begin{flushleft}
+@yt
+\end{flushleft}
+
+
+\begin{flushleft}
+Y @yj
+\end{flushleft}
+
+
+ˆ
+
+
+? 0
+
+
+?
+
+
+\begin{flushleft}
+@uk x† @u1k
+\end{flushleft}
+
+
+\begin{flushleft}
+‡ Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+vi nj dS
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl
+\end{flushleft}
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+s
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+pi vi dS;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y:
+\end{flushleft}
+
+
+
+
+
+70†
+
+
+
+
+
+\begin{flushleft}
+Since v is arbitrary, it is concluded that
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+?
+
+
+?
+
+
+\begin{flushleft}
+@u0 x†
+\end{flushleft}
+
+
+@
+
+
+\begin{flushleft}
+@u1
+\end{flushleft}
+
+
+@
+
+
+\begin{flushleft}
+ÿ
+\end{flushleft}
+
+
+\begin{flushleft}
+on ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl k ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl k
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@u0 x†
+\end{flushleft}
+
+
+\begin{flushleft}
+@u1k
+\end{flushleft}
+
+
+\begin{flushleft}
+ˆ ÿEijkl k nj ‡ pi
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+on s:
+\end{flushleft}
+
+
+
+
+
+71†
+
+
+
+
+
+72†
+
+
+
+
+
+\begin{flushleft}
+Now, considering Eq. (62) and choosing v = v(x)
+\end{flushleft}
+
+
+\begin{flushleft}
+results in a statement of equilibrium in the macroscopic level:
+\end{flushleft}
+
+
+?
+
+
+? 0
+
+
+? ?
+
+
+\begin{flushleft}
+@uk @u1k
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+@vi x†
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+dO
+\end{flushleft}
+
+
+\begin{flushleft}
+dY
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+\begin{flushleft}
+@x
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+\begin{flushleft}
+l
+\end{flushleft}
+
+
+\begin{flushleft}
+l
+\end{flushleft}
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+?
+
+
+?
+
+
+1
+
+
+ˆ
+
+
+\begin{flushleft}
+fi dY vi x†dO
+\end{flushleft}
+
+
+\begin{flushleft}
+O‡
+\end{flushleft}
+
+
+\begin{flushleft}
+ti vi x†dG
+\end{flushleft}
+
+
+\begin{flushleft}
+G; 8v 2 VO :
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+73†
+
+
+\begin{flushleft}
+If in Eq. (62) we assume that v = v(y), this leads to:
+\end{flushleft}
+
+
+? 1
+
+
+?
+
+
+?
+
+
+?
+
+
+1
+
+
+\begin{flushleft}
+@uk @u2k @vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+dY dO
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @yl
+\end{flushleft}
+
+
+\begin{flushleft}
+O jYj ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+1
+
+
+ˆ
+
+
+\begin{flushleft}
+fi vi y†dY dO; 8v 2 Vˆ
+\end{flushleft}
+
+
+74†
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+\begin{flushleft}
+O jYj ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+\begin{flushleft}
+or equivalently,
+\end{flushleft}
+
+
+? 1
+
+
+?
+
+
+\begin{flushleft}
+@uk @u2k @vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+‡
+
+
+\begin{flushleft}
+dY ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@yj
+\end{flushleft}
+
+
+\begin{flushleft}
+@x1 @yl
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+fi vi y†dY;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+75†
+
+
+
+
+
+\begin{flushleft}
+which represents the equilibrium of the base cell in the
+\end{flushleft}
+
+
+\begin{flushleft}
+microscopic level.
+\end{flushleft}
+
+
+\begin{flushleft}
+The procedure followed so far can be applied for
+\end{flushleft}
+
+
+\begin{flushleft}
+higher terms of the expansion. However, in this case
+\end{flushleft}
+
+
+\begin{flushleft}
+the ®rst-order terms are enough. The macroscopic
+\end{flushleft}
+
+
+\begin{flushleft}
+mechanical behaviour is represented by u0, and u1 represents the microscopic behaviour.
+\end{flushleft}
+
+
+\begin{flushleft}
+As we have noticed earlier, our goal is to ®nd the
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenized elastic constants such that the equili-
+\end{flushleft}
+
+
+
+
+
+\newpage
+716
+
+
+
+
+
+\begin{flushleft}
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+brium equation (or equivalently the equation of virtual
+\end{flushleft}
+
+
+\begin{flushleft}
+displacements) can be constructed in the macroscopic
+\end{flushleft}
+
+
+\begin{flushleft}
+system of coordinates. These homogenized constants
+\end{flushleft}
+
+
+\begin{flushleft}
+should be such that the corresponding equilibrium
+\end{flushleft}
+
+
+\begin{flushleft}
+equation re¯ects the mechanical behaviour of the
+\end{flushleft}
+
+
+\begin{flushleft}
+microstructure of the cellular material without explicitly using the parameter E. To accomplish this we consider Eq. (69) once again. As this equation is linear
+\end{flushleft}
+
+
+\begin{flushleft}
+with respect to u0 and p, we consider the two following
+\end{flushleft}
+
+
+\begin{flushleft}
+problems:
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) Let w kl\$Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y be the solution of
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Eijpq
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@w
+\end{flushleft}
+
+
+\begin{flushleft}
+wkl
+\end{flushleft}
+
+
+\begin{flushleft}
+p @vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+dY ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@yq @yj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+dY;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yi
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+76†
+
+
+
+
+
+\begin{flushleft}
+(ii) and let C \$ Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y be the solution of
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@Ck @vi y†
+\end{flushleft}
+
+
+\begin{flushleft}
+dY ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl @yj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+S
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+pi vi y†dY;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 Vˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y;
+\end{flushleft}
+
+
+77†
+
+
+
+
+
+\begin{flushleft}
+where x plays the role of a parameter. It can be
+\end{flushleft}
+
+
+\begin{flushleft}
+shown that the solution u1 will be
+\end{flushleft}
+
+
+\begin{flushleft}
+u1i ˆ ÿwkl
+\end{flushleft}
+
+
+\begin{flushleft}
+i x; y†
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@u0k x†
+\end{flushleft}
+
+
+\begin{flushleft}
+ÿ Ci x; y† ‡ u\~{} 1i x†;
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Introducing Eq. (78) into Eq. (73) yields
+\end{flushleft}
+
+
+{``}
+
+
+! \#
+
+
+\begin{flushleft}
+@wkl
+\end{flushleft}
+
+
+\begin{flushleft}
+@u0k x† @ui x†
+\end{flushleft}
+
+
+1
+
+
+\begin{flushleft}
+p
+\end{flushleft}
+
+
+\begin{flushleft}
+Eijkl ÿ Eijpq
+\end{flushleft}
+
+
+\begin{flushleft}
+dO
+\end{flushleft}
+
+
+\begin{flushleft}
+dY
+\end{flushleft}
+
+
+\begin{flushleft}
+@yq
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+O jYj ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+?
+
+
+?
+
+
+1
+
+
+\begin{flushleft}
+@Ck
+\end{flushleft}
+
+
+\begin{flushleft}
+@vi x†
+\end{flushleft}
+
+
+ˆ
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+\begin{flushleft}
+dY
+\end{flushleft}
+
+
+\begin{flushleft}
+dO
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+\begin{flushleft}
+@y
+\end{flushleft}
+
+
+\begin{flushleft}
+l
+\end{flushleft}
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+?
+
+
+?
+
+
+1
+
+
+‡
+
+
+\begin{flushleft}
+fi dY vi x†dO
+\end{flushleft}
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ti vi x†dG;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 VO :
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Now, denoting
+\end{flushleft}
+
+
+\begin{flushleft}
+EH
+\end{flushleft}
+
+
+\begin{flushleft}
+ijkl x† ˆ
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+tij x† ˆ
+\end{flushleft}
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+Eijkl
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Eijkl ÿ Eijpq
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@Ck
+\end{flushleft}
+
+
+\begin{flushleft}
+dY;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yl
+\end{flushleft}
+
+
+
+
+
+!
+
+
+\begin{flushleft}
+@w
+\end{flushleft}
+
+
+\begin{flushleft}
+wkl
+\end{flushleft}
+
+
+\begin{flushleft}
+p
+\end{flushleft}
+
+
+\begin{flushleft}
+dY;
+\end{flushleft}
+
+
+\begin{flushleft}
+@yq
+\end{flushleft}
+
+
+
+
+
+79†
+
+
+
+
+
+80†
+
+
+
+
+
+81†
+
+
+
+
+
+\begin{flushleft}
+and
+\end{flushleft}
+
+
+\begin{flushleft}
+bi x† ˆ
+\end{flushleft}
+
+
+
+
+
+1
+
+
+\begin{flushleft}
+jYj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Y
+\end{flushleft}
+
+
+ˆ
+
+
+
+
+
+\begin{flushleft}
+fi dY;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Eq. (79) can be written as:
+\end{flushleft}
+
+
+
+
+
+‡
+
+
+
+
+
+\begin{flushleft}
+@u0k x† @vi x†
+\end{flushleft}
+
+
+\begin{flushleft}
+dO ˆ
+\end{flushleft}
+
+
+\begin{flushleft}
+@xl @xj
+\end{flushleft}
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+bi x†vi x†dO ‡
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Gt
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+tij x†
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+@vi x†
+\end{flushleft}
+
+
+\begin{flushleft}
+dO
+\end{flushleft}
+
+
+\begin{flushleft}
+@xj
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+ti x†dG;
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+8v 2 VO :
+\end{flushleft}
+
+
+
+
+
+83†
+
+
+
+
+
+\begin{flushleft}
+This is very similar to the equation of virtual displacement, Eq. (56), and it represents the macroscopic equilibrium. EH
+\end{flushleft}
+
+
+\begin{flushleft}
+ijkl de®ned by Eq. (80) represents the
+\end{flushleft}
+
+
+\begin{flushleft}
+homogenized elastic constants. tij are average ``residual'' stresses within the cell due to the tractions p
+\end{flushleft}
+
+
+\begin{flushleft}
+inside the holes, and bi are the average body forces.
+\end{flushleft}
+
+
+\begin{flushleft}
+As we notice, the microscopic and macroscopic problems are not coupled and the solution of the elasticity
+\end{flushleft}
+
+
+\begin{flushleft}
+problem can be summarized as:
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) Find w and C within the base cell by solving the
+\end{flushleft}
+
+
+\begin{flushleft}
+integral Eqs. (76) and (77) on the base cell.
+\end{flushleft}
+
+
+\begin{flushleft}
+(ii) Find DH
+\end{flushleft}
+
+
+\begin{flushleft}
+ijkl, tij and bi by using Eqs. (80)$\pm$(82).
+\end{flushleft}
+
+
+\begin{flushleft}
+(iii) Construct Eq. (83) in macroscopic coordinates.
+\end{flushleft}
+
+
+\begin{flushleft}
+If the whole domain of the cellular material comprises
+\end{flushleft}
+
+
+\begin{flushleft}
+a uniform cell structure, as well as uniform applied
+\end{flushleft}
+
+
+\begin{flushleft}
+tractions on the boundaries of the holes of the cells,
+\end{flushleft}
+
+
+\begin{flushleft}
+then it is only necessary to solve the microscopic
+\end{flushleft}
+
+
+\begin{flushleft}
+Eqs. (76) and (77) once. Otherwise these equations
+\end{flushleft}
+
+
+\begin{flushleft}
+must be solved for every point x of O.
+\end{flushleft}
+
+
+
+
+
+78†
+
+
+
+
+
+\begin{flushleft}
+where u\"{A}1i are arbitrary constants of integration
+\end{flushleft}
+
+
+\begin{flushleft}
+in y.
+\end{flushleft}
+
+
+
+
+
+‡
+
+
+
+
+
+\begin{flushleft}
+O
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+EH
+\end{flushleft}
+
+
+\begin{flushleft}
+ijkl
+\end{flushleft}
+
+
+
+
+
+82†
+
+
+
+
+
+\begin{flushleft}
+7. Conclusion and Final Remarks
+\end{flushleft}
+
+
+\begin{flushleft}
+In this ®rst part of a three paper review we have
+\end{flushleft}
+
+
+\begin{flushleft}
+focused on the theory of the homogenization method
+\end{flushleft}
+
+
+\begin{flushleft}
+for the computation of e€ective constitutive parameters of complex materials with a periodic microstructure. In the second part of this review we will
+\end{flushleft}
+
+
+\begin{flushleft}
+consider the motives for using the homogenization theory for topological structural optimization. In particular, the ®nite element formulation will be explained for
+\end{flushleft}
+
+
+\begin{flushleft}
+the material model based on a microstructure consisting of an isotropic material with rectangular voids.
+\end{flushleft}
+
+
+\begin{flushleft}
+Some examples will also be provided.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+References
+\end{flushleft}
+
+
+\begin{flushleft}
+[1] Kalamkarov AL. Composite and reinforced elements of
+\end{flushleft}
+
+
+\begin{flushleft}
+construction. Wiley, New York, 1992.
+\end{flushleft}
+
+
+\begin{flushleft}
+[2] Sanchez-Palencia E. Non-homogenous media and vibration theory. Lect Notes Phys, 127, 1980.
+\end{flushleft}
+
+
+\begin{flushleft}
+[3] Benssousan A, Lions JL, Papanicoulau G. Asymptotic
+\end{flushleft}
+
+
+\begin{flushleft}
+analysis for periodic structures. Amesterdam, North
+\end{flushleft}
+
+
+\begin{flushleft}
+Holland, 1978.
+\end{flushleft}
+
+
+\begin{flushleft}
+[4] Cioranescu D, Paulin JSJ. Homogenization in open sets
+\end{flushleft}
+
+
+\begin{flushleft}
+with holes. J Math Aanal Appl 1979;71:590$\pm$607.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+\newpage
+B. Hassani, E. Hinton / Computers and Structures 69 (1998) 707$\pm$717
+\end{flushleft}
+
+
+\begin{flushleft}
+[5] Oleinik OA. On homogenization problems. In: Trends
+\end{flushleft}
+
+
+\begin{flushleft}
+and application of pure mathematics in mechanics.
+\end{flushleft}
+
+
+\begin{flushleft}
+Springer, Berlin, 1984.
+\end{flushleft}
+
+
+\begin{flushleft}
+[6] Caillerie D. Homogenization of periodic media tissued
+\end{flushleft}
+
+
+\begin{flushleft}
+composite materials, Technical report. Institute of
+\end{flushleft}
+
+
+\begin{flushleft}
+Mechanics, Grenoble, France.
+\end{flushleft}
+
+
+\begin{flushleft}
+[7] Bourgat JF. Numerical experiments of the homogenization method for operators with periodic coecients.
+\end{flushleft}
+
+
+\begin{flushleft}
+Lect Notes Math 1977:330$\pm$56.
+\end{flushleft}
+
+
+\begin{flushleft}
+[8] Lene F., Duvaut G. Resultats d'isotropie pour des milieux homogeneises. C R Acad Sc Paris 1981; 7 293 (II):
+\end{flushleft}
+
+
+477$\pm$480.
+
+
+\begin{flushleft}
+[9] Guedes JM, Kikuchi N. Pre and post processing for materials based on the homogenization method with adaptive ®nite element methods. Comp Meth Appl Mech
+\end{flushleft}
+
+
+\begin{flushleft}
+Engng 1990;83:143$\pm$98.
+\end{flushleft}
+
+
+
+
+
+717
+
+
+
+
+
+\begin{flushleft}
+[10] Bendsùe MP, Kikuchi N. Generating optimal topologies
+\end{flushleft}
+
+
+\begin{flushleft}
+in structural design using homogenization method. Comp
+\end{flushleft}
+
+
+\begin{flushleft}
+Meth Appl Mech Engng 1988;71:197$\pm$224.
+\end{flushleft}
+
+
+\begin{flushleft}
+[11] Bendsùe MP. Optimal shape design as a material distribution problem. Struct Optim 1989;1:193$\pm$202.
+\end{flushleft}
+
+
+\begin{flushleft}
+[12] Bendsùe MP, D\~{o}\^{A} az AR, Kikuchi N. Topology and generalized layout optimization of elastic structures. In:
+\end{flushleft}
+
+
+\begin{flushleft}
+Bendsùe MP, Mota Soares CA, editors. Topology design
+\end{flushleft}
+
+
+\begin{flushleft}
+of structures. Kluwer, Dordrecht, 1993. p. 159$\pm$205.
+\end{flushleft}
+
+
+\begin{flushleft}
+[13] Suzuki K, Kikuchi N. A homogenization method for
+\end{flushleft}
+
+
+\begin{flushleft}
+shape and topology optimization. Comp Meth Appl
+\end{flushleft}
+
+
+\begin{flushleft}
+Mech Engng 1991;93:291$\pm$318.
+\end{flushleft}
+
+
+\begin{flushleft}
+[14] Jog CS, Haber RB, Bendsùe MP. Topology design with
+\end{flushleft}
+
+
+\begin{flushleft}
+optimized, self-adaptive materials, Technical Report
+\end{flushleft}
+
+
+\begin{flushleft}
+DCAMM 457. Technical University of Denmark, 1993.
+\end{flushleft}
+
+
+
+
+
+\newpage
+
+
+
+\end{document}

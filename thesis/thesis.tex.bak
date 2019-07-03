@@ -344,6 +344,7 @@ Eq \eqref{eq:penalty1} has to be solved separately for the three cases of period
 \subsection{Homogenization}
 The homogenization method is generally used to analyze the properties of composites with complex but periodic microstructure. The procedure replaces the composites with an equivalent homogeneous material. 
 The method is based on the two-scale asymptotic expansion of structural responses.
+
 %The idea of asymptotic homogenization.
 %In a repeating cell Y,
 %\begin{equation}
