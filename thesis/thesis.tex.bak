@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage{bm}
 \usepackage[a4paper]{geometry}
 \usepackage{float}
 \usepackage{subfig}
@@ -12,6 +13,8 @@
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{accents}
+\newcommand{\e}[1]{\textbf{#1}} 
+%\newcommand{\e}{\textbf{}} 
 \begin{document}
 
 \title{Master's Thesis}
@@ -627,7 +630,7 @@ u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
 v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions.
+\eqref{eq:fbc2} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
 \par
 Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
 \begin{eqnarray}
@@ -636,20 +639,38 @@ u(p_1, p_2^0) = -u(p_1, p_2^0+P_2),\\
 \label{eq:symmetryq1}
 v(p_1, p_2^0) = v(p_1, p_2^0+P_2).\\
 \label{eq:symmetryq2}
-u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
+u(p_1^0, p_2) = u(p_1^0+P_1, p_2),\\
 \label{eq:symmetryq2v}
-v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
+v(p_1^0, p_2) = -v(p_1^0+P_1, p_2).
 \end{eqnarray}
-From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
+From eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, and \eqref{eq:periodicity}, we get
 \begin{eqnarray}
-\label{eq:fbc1}
-u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
 \label{eq:fbc2}
-v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
+u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
+\label{eq:fbc1}
+v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
-Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions.
+Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
+\eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.
+\subsubsection{Penalty Method}
+We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\textbf{D}\}$ can be written as
+\begin{equation*}
+[\textbf{C}]\{\textbf{D}\} = \{\textbf{Q}\}
+\end{equation*}
+where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let us define $\{\textbf{t}\}$ as
+\begin{equation*}
+\{\textbf{t}\} = [\textbf{C}]\{\textbf{D}\} - \{\textbf{Q}\}
+\end{equation*}
+such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by augmenting the potential energy function\cite{Book:Cook} $\Pi$ with a \textit{penalty function} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is a diagonal matrix of penalty numbers. Thus, potential energy function becomes
+\begin{equation}
+\bm\Pi = \frac{1}{2}\{\e D\}[\e K]\{\e D\} - \{\e D\}^T\{\e R\} + \frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}
+\end{equation}
+For minimum potential energy condition, $\{\frac{\partial\bm\Pi}{\partial\e D}\} = \{0\}$, this implies
+\begin{equation}
+\bigg([\e K]+[\e C]^T[\bm\alpha][\e C]\bigg)\{\e D\} = \{
+\end{equation}
 
+\newpage
 \section{Results}
 \cite{first}
 \cite{WEBSITE:1}

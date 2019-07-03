@@ -1,4 +1,5 @@
 \documentclass[10pt]{article}
+\usepackage{bm}
 \usepackage[a4paper]{geometry}
 \usepackage{float}
 \usepackage{subfig}
@@ -12,6 +13,8 @@
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{accents}
+\newcommand{\e}[1]{\textbf{#1}} 
+%\newcommand{\e}{\textbf{}} 
 \begin{document}
 
 \title{Master's Thesis}
@@ -649,7 +652,26 @@ v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
 \eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.
-\subsubsection{Implmentation}
+\subsubsection{Penalty Method}
+We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
+\begin{equation*}
+[\textbf{C}]\{\textbf{U}\} = \{\textbf{Q}\}
+\end{equation*}
+where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let us define $\{\textbf{t}\}$ as
+\begin{equation*}
+\{\textbf{t}\} = [\textbf{C}]\{\textbf{U}\} - \{\textbf{Q}\}
+\end{equation*}
+such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by augmenting the potential energy function\cite{Book:Cook} $\Pi$ with a \textit{penalty function} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is a diagonal matrix of penalty numbers. Thus, potential energy function becomes
+\begin{equation}
+\bm\Pi = \frac{1}{2}\{\e U\}^T[\e K]\{\e U\} - \{\e U\}^T\{\e F\} + \frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}
+\end{equation}
+where $[\e K]$ is the stiffness matrix and $\{\e F\}$ are the forces.\par
+For minimum potential energy condition, $\{\frac{\partial\bm\Pi}{\partial\e U}\} = \{0\}$, this implies
+\begin{equation}
+\bigg([\e K]+[\e C]^T[\bm\alpha][\e C]\bigg)\{\e U\} = \{\e F\} + [\e C]^T[\bm\alpha]\{\e Q\}
+\end{equation}
+
+\newpage
 \section{Results}
 \cite{first}
 \cite{WEBSITE:1}
