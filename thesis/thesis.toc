@@ -21,5 +21,6 @@
 \contentsline {subsubsection}{\numberline {4.4.4}Implementation 2D Homogenization}{20}{subsubsection.4.4.4}
 \contentsline {subsubsection}{\numberline {4.4.5}Examples}{21}{subsubsection.4.4.5}
 \contentsline {subsection}{\numberline {4.5}Periodic Boundary Conditions}{23}{subsection.4.5}
-\contentsline {section}{\numberline {5}Results}{23}{section.5}
-\contentsline {section}{\numberline {6}References}{23}{section.6}
+\contentsline {subsubsection}{\numberline {4.5.1}Implmentation}{24}{subsubsection.4.5.1}
+\contentsline {section}{\numberline {5}Results}{24}{section.5}
+\contentsline {section}{\numberline {6}References}{24}{section.6}

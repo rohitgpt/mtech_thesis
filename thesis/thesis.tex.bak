@@ -592,22 +592,63 @@ and eq. \eqref{Dhomo} becomes:
 \subsection{Periodic Boundary Conditions}
 The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[\epsilon_{11}, \epsilon_{22}, 2\epsilon_{12}] = [1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields.\par
 If $u$ and $v$ are the components of displacements in $p_1$ and $p_2$ directions respectively, then from periodicity, we have
-\begin{eqnarray}
-\label{eq:periodicity1}
+%\begin{eqnarray}
+%\label{eq:periodicity1}
+%u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
+%\label{eq:periodicity2}
+%v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
+%\end{eqnarray}
+\begin{equation}
+\label{eq:periodicity}
+\begin{split}
 u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
-\label{eq:periodicity2}
 v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
-\end{eqnarray}
+\end{split}
+\end{equation}
 For cases $[1, 0, 0]^T$ and $[0, 1, 0]^T$, from symmetry of loading and geometry w.r.t. $q_1$, we have
 \begin{eqnarray}
+\label{eq:symmetryq1u}
 u(p_1, p_2^0) = u(p_1, p_2^0+P_2),\\
+\label{eq:symmetryq1}
 v(p_1, p_2^0) = -v(p_1, p_2^0+P_2).
 \end{eqnarray}
 Similarly, using the symmetry about $q_2$, we have
 \begin{eqnarray}
+\label{eq:symmetryq2}
 u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
+\label{eq:symmetryq2v}
 v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
 \end{eqnarray}
+From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
+\begin{eqnarray}
+\label{eq:fbc1}
+u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
+\label{eq:fbc2}
+v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
+\end{eqnarray}
+Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
+\eqref{eq:fbc2} are the required periodic boundary conditions.
+\par
+Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
+\begin{eqnarray}
+\label{eq:symmetryq1u}
+u(p_1, p_2^0) = -u(p_1, p_2^0+P_2),\\
+\label{eq:symmetryq1}
+v(p_1, p_2^0) = v(p_1, p_2^0+P_2).\\
+\label{eq:symmetryq2}
+u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
+\label{eq:symmetryq2v}
+v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
+\end{eqnarray}
+From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
+\begin{eqnarray}
+\label{eq:fbc1}
+u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
+\label{eq:fbc2}
+v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
+\end{eqnarray}
+Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
+\eqref{eq:fbc2} are the required periodic boundary conditions.
 
 \section{Results}
 \cite{first}
