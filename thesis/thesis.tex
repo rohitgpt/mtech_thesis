@@ -251,8 +251,100 @@ where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}
 \textbf{K}_i =  \int_{V_i} \textbf{B}^T\textbf{D}^H\textbf{B} dV_i
 \end{equation} 
 
+\subsection{Periodic Boundary Conditions}
+The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[\epsilon_{11}, \epsilon_{22}, 2\epsilon_{12}] = [1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields.\par
+If $u$ and $v$ are the components of displacements in $p_1$ and $p_2$ directions respectively, then from periodicity, we have
+%\begin{eqnarray}
+%\label{eq:periodicity1}
+%u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
+%\label{eq:periodicity2}
+%v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
+%\end{eqnarray}
+\begin{equation}
+\label{eq:periodicity}
+\begin{split}
+u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
+v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
+\end{split}
+\end{equation}
+For cases $[1, 0, 0]^T$ and $[0, 1, 0]^T$, from symmetry of loading and geometry w.r.t. $q_1$, we have
+\begin{eqnarray}
+\label{eq:symmetryq1u}
+u(p_1, p_2^0) = u(p_1, p_2^0+P_2),\\
+\label{eq:symmetryq1}
+v(p_1, p_2^0) = -v(p_1, p_2^0+P_2).
+\end{eqnarray}
+Similarly, using the symmetry about $q_2$, we have
+\begin{eqnarray}
+\label{eq:symmetryq2}
+u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
+\label{eq:symmetryq2v}
+v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
+\end{eqnarray}
+From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
+\begin{eqnarray}
+\label{eq:fbc1}
+u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
+\label{eq:fbc2}
+v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
+\end{eqnarray}
+Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
+\eqref{eq:fbc2} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
+\par
+Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
+\begin{eqnarray}
+\label{eq:symmetryq1u}
+u(p_1, p_2^0) = -u(p_1, p_2^0+P_2),\\
+\label{eq:symmetryq1}
+v(p_1, p_2^0) = v(p_1, p_2^0+P_2).\\
+\label{eq:symmetryq2}
+u(p_1^0, p_2) = u(p_1^0+P_1, p_2),\\
+\label{eq:symmetryq2v}
+v(p_1^0, p_2) = -v(p_1^0+P_1, p_2).
+\end{eqnarray}
+From eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, and \eqref{eq:periodicity}, we get
+\begin{eqnarray}
+\label{eq:fbc2}
+u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
+\label{eq:fbc1}
+v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
+\end{eqnarray}
+Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
+\eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.\par
+<Put schemtics of bc for first, second case>\\
+<Put schemtics of bc for third case>\\
+<Put deformation plots for each>\\
+
+\subsubsection{Penalty Method}
+We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
+\begin{equation*}
+[\textbf{C}]\{\textbf{U}\} = \{\textbf{Q}\}
+\end{equation*}
+where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let us define $\{\textbf{t}\}$ as
+\begin{equation*}
+\{\textbf{t}\} = [\textbf{C}]\{\textbf{U}\} - \{\textbf{Q}\}
+\end{equation*}
+such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by augmenting the potential energy function\cite{Book:Cook} $\Pi$ with a \textit{penalty function} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is a diagonal matrix of penalty numbers. Thus, potential energy function becomes
+\begin{equation}
+\bm\Pi = \frac{1}{2}\{\e U\}^T[\e K]\{\e U\} - \{\e U\}^T\{\e F\} + \frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}
+\end{equation}
+where $[\e K]$ is the stiffness matrix and $\{\e F\}$ are the forces.\par
+For minimum potential energy condition, $\{\frac{\partial\bm\Pi}{\partial\e U}\} = \{0\}$, this implies
+\begin{equation}
+\label{eq:penalty}
+\bigg([\e K]+[\e C]^T[\bm\alpha][\e C]\bigg)\{\e U\} = \{\e F\} + [\e C]^T[\bm\alpha]\{\e Q\}
+\end{equation}
+If $[\bm\alpha]$ is null matrix, all constraints are ignored, else if $\alpha_i$'s are infinite, all constraints are satisfied. For a positive definite $[\e K]$, positive penalty numbers are used. We have set all penalty numbers to be same, this means that all constraints are given equal priority, i.e. $[\bm\alpha] = \alpha[I]$. $\alpha$ must be significantly larger to ensure that the constraint violation is negligible. Thus, the eq. \eqref{eq:penalty} reduces to the following
+\begin{equation}
+\label{eq:penalty1}
+\bigg([\e K]+\alpha[\e C]^T[\e C]\bigg)\{\e U\} = \{\e F\} + \alpha[\e C]^T\{\e Q\}
+\end{equation}
+Eq \eqref{eq:penalty1} has to be solved separately for the three cases of periodic boundary conditions.
 
 \subsection{Homogenization}
+The homogenization method is generally used to analyze the properties of composites with complex but periodic microstructure. The procedure replaces the composites with an equivalent homogeneous material. 
+The method is based on the two-scale asymptotic expansion of structural responses.
+
 %The idea of asymptotic homogenization.
 %In a repeating cell Y,
 %\begin{equation}
@@ -590,85 +682,6 @@ and eq. \eqref{Dhomo} becomes:
 \begin{equation}
 \boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\Phi\bigg )\,dy
 }
-\end{equation}
-
-\subsection{Periodic Boundary Conditions}
-The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[\epsilon_{11}, \epsilon_{22}, 2\epsilon_{12}] = [1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields.\par
-If $u$ and $v$ are the components of displacements in $p_1$ and $p_2$ directions respectively, then from periodicity, we have
-%\begin{eqnarray}
-%\label{eq:periodicity1}
-%u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
-%\label{eq:periodicity2}
-%v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
-%\end{eqnarray}
-\begin{equation}
-\label{eq:periodicity}
-\begin{split}
-u(p_1, p_2) = u(p_1+P_1, p_2) = u(p_1, p_2+P_2) = u(p_1+P_1, p_2+P_2),\\
-v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
-\end{split}
-\end{equation}
-For cases $[1, 0, 0]^T$ and $[0, 1, 0]^T$, from symmetry of loading and geometry w.r.t. $q_1$, we have
-\begin{eqnarray}
-\label{eq:symmetryq1u}
-u(p_1, p_2^0) = u(p_1, p_2^0+P_2),\\
-\label{eq:symmetryq1}
-v(p_1, p_2^0) = -v(p_1, p_2^0+P_2).
-\end{eqnarray}
-Similarly, using the symmetry about $q_2$, we have
-\begin{eqnarray}
-\label{eq:symmetryq2}
-u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
-\label{eq:symmetryq2v}
-v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
-\end{eqnarray}
-From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
-\begin{eqnarray}
-\label{eq:fbc1}
-u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
-\label{eq:fbc2}
-v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
-\end{eqnarray}
-Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
-\par
-Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
-\begin{eqnarray}
-\label{eq:symmetryq1u}
-u(p_1, p_2^0) = -u(p_1, p_2^0+P_2),\\
-\label{eq:symmetryq1}
-v(p_1, p_2^0) = v(p_1, p_2^0+P_2).\\
-\label{eq:symmetryq2}
-u(p_1^0, p_2) = u(p_1^0+P_1, p_2),\\
-\label{eq:symmetryq2v}
-v(p_1^0, p_2) = -v(p_1^0+P_1, p_2).
-\end{eqnarray}
-From eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, and \eqref{eq:periodicity}, we get
-\begin{eqnarray}
-\label{eq:fbc2}
-u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
-\label{eq:fbc1}
-v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
-\end{eqnarray}
-Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.
-\subsubsection{Penalty Method}
-We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
-\begin{equation*}
-[\textbf{C}]\{\textbf{U}\} = \{\textbf{Q}\}
-\end{equation*}
-where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let us define $\{\textbf{t}\}$ as
-\begin{equation*}
-\{\textbf{t}\} = [\textbf{C}]\{\textbf{U}\} - \{\textbf{Q}\}
-\end{equation*}
-such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by augmenting the potential energy function\cite{Book:Cook} $\Pi$ with a \textit{penalty function} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is a diagonal matrix of penalty numbers. Thus, potential energy function becomes
-\begin{equation}
-\bm\Pi = \frac{1}{2}\{\e U\}^T[\e K]\{\e U\} - \{\e U\}^T\{\e F\} + \frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}
-\end{equation}
-where $[\e K]$ is the stiffness matrix and $\{\e F\}$ are the forces.\par
-For minimum potential energy condition, $\{\frac{\partial\bm\Pi}{\partial\e U}\} = \{0\}$, this implies
-\begin{equation}
-\bigg([\e K]+[\e C]^T[\bm\alpha][\e C]\bigg)\{\e U\} = \{\e F\} + [\e C]^T[\bm\alpha]\{\e Q\}
 \end{equation}
 
 \newpage

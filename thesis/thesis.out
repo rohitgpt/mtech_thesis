@@ -14,13 +14,13 @@
 \BOOKMARK [2][-]{subsection.4.1}{Overview}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.2}{Optimization Problem}{section.4}% 15
 \BOOKMARK [2][-]{subsection.4.3}{Finite Element Analysis}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.4}{Homogenization}{section.4}% 17
-\BOOKMARK [3][-]{subsubsection.4.4.1}{1D Elasticity}{subsection.4.4}% 18
-\BOOKMARK [3][-]{subsubsection.4.4.2}{Optimal Design of Elastic structures}{subsection.4.4}% 19
-\BOOKMARK [3][-]{subsubsection.4.4.3}{Homogenization method}{subsection.4.4}% 20
-\BOOKMARK [3][-]{subsubsection.4.4.4}{Implementation 2D Homogenization}{subsection.4.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.4.5}{Examples}{subsection.4.4}% 22
-\BOOKMARK [2][-]{subsection.4.5}{Periodic Boundary Conditions}{section.4}% 23
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Penalty Method}{subsection.4.5}% 24
+\BOOKMARK [2][-]{subsection.4.4}{Periodic Boundary Conditions}{section.4}% 17
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Penalty Method}{subsection.4.4}% 18
+\BOOKMARK [2][-]{subsection.4.5}{Homogenization}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.5.1}{1D Elasticity}{subsection.4.5}% 20
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Optimal Design of Elastic structures}{subsection.4.5}% 21
+\BOOKMARK [3][-]{subsubsection.4.5.3}{Homogenization method}{subsection.4.5}% 22
+\BOOKMARK [3][-]{subsubsection.4.5.4}{Implementation 2D Homogenization}{subsection.4.5}% 23
+\BOOKMARK [3][-]{subsubsection.4.5.5}{Examples}{subsection.4.5}% 24
 \BOOKMARK [1][-]{section.5}{Results}{}% 25
 \BOOKMARK [1][-]{section.6}{References}{}% 26
