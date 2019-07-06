@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  6 JUL 2019 17:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  6 JUL 2019 20:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -733,28 +733,29 @@ LaTeX Warning: Citation `paper:simp' on page 11 undefined on input line 236.
 [11]
 
 LaTeX Warning: Citation `paper:homogenization' on page 12 undefined on input li
-ne 250.
+ne 251.
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 315--318
+Underfull \hbox (badness 10000) in paragraph at lines 317--320
 
  []
 
 
-LaTeX Warning: Citation `Book:Cook' on page 13 undefined on input line 328.
+LaTeX Warning: Citation `Book:Cook' on page 13 undefined on input line 330.
 
 <./Plots/homo/2.jpg, id=2293, 962.59625pt x 962.59625pt>
 File: ./Plots/homo/2.jpg Graphic file (type jpg)
 <use ./Plots/homo/2.jpg>
-Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 467.
+Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 469.
 (pdftex.def)             Requested size: 192.51584pt x 192.51584pt.
-[13] [14 <./Plots/homo/2.jpg>] [15] [16] [17] (./thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 732.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 732.
- (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 732.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 732.
+[13] [14 <./Plots/homo/2.jpg>] [15] [16] [17] [18] [19] (./thesis.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 780.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 780.
+
+(./thesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 780.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 780.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 136722221FEF880EC4FA0F9B303214F0;1480.
 
@@ -764,13 +765,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 732.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 780.
  ) 
 Here is how much of TeX's memory you used:
- 9687 strings out of 492982
- 143885 string characters out of 6134896
- 251609 words of memory out of 5000000
- 12960 multiletter control sequences out of 15000+600000
+ 9704 strings out of 492982
+ 144086 string characters out of 6134896
+ 251940 words of memory out of 5000000
+ 12967 multiletter control sequences out of 15000+600000
  17535 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,19n,49p,1221b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -794,10 +795,10 @@ s/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/symbols/msam10.pfb>
-Output written on thesis.pdf (18 pages, 980597 bytes).
+Output written on thesis.pdf (20 pages, 986259 bytes).
 PDF statistics:
- 2464 PDF objects out of 2487 (max. 8388607)
- 1404 compressed objects within 15 object streams
- 111 named destinations out of 1000 (max. 500000)
+ 2489 PDF objects out of 2984 (max. 8388607)
+ 1427 compressed objects within 15 object streams
+ 121 named destinations out of 1000 (max. 500000)
  254 words of extra memory for PDF output out of 10000 (max. 10000000)
 

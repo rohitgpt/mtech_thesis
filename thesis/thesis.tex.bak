@@ -235,6 +235,7 @@ Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the 
 \subsection{Finite Element Analysis} 
 The optimization problem defined in \eqref{eq:2dopt} requires the finite element analysis to be done on two scales, one for macrostructure and another for the base cell. For the microstructure, since the design variables can be either 0 or 1, Solid Isotropic Material with Penalization model\cite{paper:simp} is used for obtaining the material properties. Thus, the elasticity matrix can be written as
 \begin{equation}
+\label{eq:simp}
 \textbf{D} = x_j^p\textbf{D}^1 + (1-x_j^p)\textbf{D}^2
 \end{equation}
 where $\textbf{D}^1$ and $\textbf{D}^2$ are the elasticity matrices for material 1 and 2 respectively, $p$ is the penalization constant.
@@ -249,6 +250,7 @@ where $\textbf{K}$ is the assembled stiffness matrix for the macrostructure whos
 \end{equation} 
 where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}_i^H$ is the homogenized elasticity matrix calculated from the finite analysis of the base cell. The homogenization process\cite{paper:homogenization} is discussed in the subsequent chapters. In this study, all base cells are assumed to be identical and therefore, equation \eqref{eq:KM} can be simplified as
 \begin{equation}
+\label{eq:KM1}
 \textbf{K}_i =  \int_{V_i} \textbf{B}^T\textbf{D}^H\textbf{B} dV_i
 \end{equation} 
 
@@ -614,7 +616,7 @@ where $E^H_{ijkl}(x)$ is
 %E_{ijkl}^H=\frac{1}{|Y|}\int_Y\bigg (E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg )\,dy
 %\end{equation}
 %\subsubsection{Examples}
-For 2D problems, it is sufficient to solve \eqref{eq:homogenized} for $i, j, p, q = \{1, 2\}$ and three cases for $\{k, l\} = \{1,1\}, \{2,2\}, \{1,2\}$. Assuming orthotropicity, we solve eq \eqref{eq:homogenized1} for $\{k,l\} = \{1,1\}$ we get
+For 2D problems, it is sufficient to solve \eqref{eq:homogenized} for $i, j, p, q = \{1, 2\}$ and three cases for $\{k, l\} = \{1,1\}, \{2,2\}, \{1,2\}$. In this section, we will refer $\e v^1$ as $\e v$. Assuming orthotropicity, we solve eq \eqref{eq:homogenized1} for $\{k,l\} = \{1,1\}$ we get
 %\begin{equation}\label{2drhs}
 %\begin{split}
 %\int_Y E_{ijkl}\frac{\partial v_i}{\partial y_j}\, dy &=\int_Y E_{ij11}\frac{\partial v_i}{\partial y_j}\,dy\\
@@ -657,7 +659,7 @@ E^H_{2211} = &\frac{1}{|Y|}\int_Y\bigg ( E_{2211} - E_{2211}\frac{\partial \chi^
 %\\
 %E^H_{1211} = &-\frac{1}{|Y|}\int_Y\bigg (E_{1212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1221}\frac{\partial \chi^{11}_2}{\partial y_1}\bigg )\,dy
 \end{eqnarray}
-Let $\chi^{11} = \hat u^1, \chi^{22} = \hat u^2, \chi^{12} = \hat u^3$ and $E_{1111} = D_{11}, E_{2222} = D_{22}, E_{1212} = D_{66}, E_{1122} = E_{2211} = D_{12}$. Then eq \eqref{eq:homogenized2} becomes
+Let $\chi^{11} = \hat{\e u}^1, \chi^{22} = \hat u^2, \chi^{12} = \hat u^3$ and $E_{1111} = D_{11}, E_{2222} = D_{22}, E_{1212} = D_{66}, E_{1122} = E_{2211} = D_{12}$. Then eq \eqref{eq:homogenized2} becomes
 \begin{equation}
 \label{eq:dehomogenized}
 \begin{split}
@@ -667,11 +669,13 @@ Let $\chi^{11} = \hat u^1, \chi^{22} = \hat u^2, \chi^{12} = \hat u^3$ and $E_{1
 \end{split}
 \end{equation}
 and eq \eqref{eq:homogenized3} becomes
-\begin{equation}\label{Dhomo}
+\begin{equation}
+\label{Dhomo}
 D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-D_{11}\frac{\partial\hat u^1_1}{\partial y_1} - D_{12}\frac{\partial \hat u^1_2}{\partial y_2}\bigg )\,dy
 \end{equation}
 Rearranging Eq. \eqref{eq:dehomogenized}
 \begin{equation}
+\label{eq:dehomogenized1}
 \begin{split}
 &\int_Y\bigg\{\frac{\partial v_1}{\partial y_1}\quad\frac{\partial v_2}{\partial y_2}\quad\frac{\partial v_1}{\partial y_2}+\frac{\partial v_2}{\partial y_1}\bigg\}
 \begin{bmatrix}
@@ -706,17 +710,63 @@ and
 \textbf{d}_1 & \textbf{d}_2 & \textbf{d}_3\\
 \end{bmatrix}
 \end{equation}
-Then Eq \eqref{Dformat}, can be written as
+Then Eq \eqref{eq:dehomogenized1}, can be written as
 \begin{equation}
-\int_Y \textbf{v}^T \textbf{b}^T \textbf{D} \textbf{b}\Phi\,dY = \int_Y\textbf{v}^T\textbf{b}^T\textbf{d}_1 \qquad \forall \textbf{v}\in\textbf{V}_Y
+\int_Y \textbf{v}^T \textbf{b}^T \textbf{D} \textbf{b}\hat{\e u}^1 \,dY = \int_Y\textbf{v}^T\textbf{b}^T\textbf{d}_1 \qquad \forall \textbf{v}\in\textbf{V}_Y
 \end{equation}
 and eq. \eqref{Dhomo} becomes:
 \begin{equation}
-\boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\Phi\bigg )\,dy
+\label{eq:D1}
+\boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\hat{\e u}^1\bigg )\,dy
 }
 \end{equation}
+Similarly, we can derive
+\begin{eqnarray}
+D^H_{12} = \frac{1}{|Y|}\int_Y\bigg (D_{12}-\textbf{d}_1^T\textbf{b}\hat{\e u}^2\bigg )\,dy\\
+D^H_{22} = \frac{1}{|Y|}\int_Y\bigg (D_{22}-\textbf{d}_2^T\textbf{b}\hat{\e u}^2\bigg )\,dy\\
+\label{eq:D6}
+D^H_{66} = \frac{1}{|Y|}\int_Y\bigg (D_{66}-\textbf{d}_3^T\textbf{b}\hat{\e u}^3\bigg )\,dy
+\end{eqnarray}
+Assembling $\e D^H$ from eqs \eqref{eq:D1}-\eqref{eq:D6}
+\begin{equation}
+\label{eq:dehomogenized2}
+\boxed{\e D^H = \frac{1}{|Y|}\int_Y\e D\big (\e I-\textbf{b}\hat{\e u}\big)\,dy}
+\end{equation}
+Here, the microscopic displacements are determined by applying periodic boundary conditions as explained in previous section.
 \subsection{Sensitivity Analysis}
-
+Sensitivity analysis of the objective function is necessary for linking the topology of the base cell to the compliance of the structure. From eq \eqref{eq:2dopt}, we can write the compliance of one material unit cell as 
+\begin{equation}
+C_i = \frac{1}{2}\e U_i^T\e K_i^T\e U_i = \frac{1}{2}\e U_i^T\e K_i\e U_i
+\end{equation}
+Now, the macrostructure is composed of identical base cell. Therefore, the sensitivity of the compliance complete structure w.r.t the relative densities(the design variables) of microstructure will be the average of sensitivities of compliance of all the macrostructure elements w.r.t. the base cell design variable. i.e.,
+\begin{equation}
+\label{eq:sensitivity}
+\begin{split}
+\frac{dC}{dx_j} &= \frac{1}{2M}\sum_{i=1}^M\e U_i^T\fj{\e K_i}{x_j}\e U_i\\
+&= \frac{1}{2M}\sum_{i=1}^M\e U_i^T\int_{V_i} \textbf{B}^T\fj{\e D^H}{x_j}\textbf{B} dV_i\,\e U_i\\
+\end{split}
+\end{equation}
+here $M$ is total number of elements in the macrostructure. From eq \eqref{eq:dehomogenized2}, we can write
+\begin{equation}
+\fj{\e D^H}{x_j} = \frac{1}{|Y|}\int_Y\big (\e I-\textbf{b}\hat{\e u}\big)^T\fj{\e D}{x_j}\big (\e I-\textbf{b}\hat{\e u}\big)\,dy
+\end{equation}
+Using eq \eqref{eq:simp}
+\begin{equation}
+\fj{\e D^H}{x_j} = \frac{px^{p-1}_j}{|Y_j|}\int_{Y_j}\big (\e I-\e b\hat{\e u}_j\big)^T(\e D^1 - \e D^2)\big (\e I-\textbf{b}\hat{\e u}_j\big)\,dy_j
+\end{equation}
+Now, eq \eqref{eq:sensitivity} becomes
+\begin{equation}
+\label{eq:sensitivity1}
+\frac{dC}{dx_j} = \frac{px^{p-1}_j}{2M|Y_j|}\sum_{i=1}^M\e U_i^T\bigg (\int_{V_i} \textbf{B}^T\bigg[\int_{Y_j}\big (\e I-\e b\hat{\e u}_j\big)^T(\e D^1 - \e D^2)\big (\e I-\textbf{b}\hat{\e u}_j\big)\,dy_j\bigg]\textbf{B} dV_i\bigg )\e U_i
+\end{equation}
+Therefore, the elemental sensitivity numbers can be defined as
+\begin{equation}
+\begin{split}
+\alpha_j &= \frac{2M}{p}\frac{dC}{dx_j}\\
+&=\frac{x^{p-1}_j}{|Y_j|}\sum_{i=1}^M\e U_i^T\bigg (\int_{V_i} \textbf{B}^T\bigg[\int_{Y_j}\big (\e I-\e b\hat{\e u}_j\big)^T(\e D^1 - \e D^2)\big (\e I-\textbf{b}\hat{\e u}_j\big)\,dy_j\bigg]\textbf{B} dV_i\bigg )\e U_i
+\end{split}
+\end{equation}
+Here, both $M$ and $p$ are constant for the problem. Also, if the elements of the base cell are identical $|Y|_j$ term can also be removed. Since, we are doing a discrete optimization meaning $x_j$'s can only be $0$ or $1$, we 
 \subsection{Mesh Fitering}
 
 \subsection{Results}
