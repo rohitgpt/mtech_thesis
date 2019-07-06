@@ -19,6 +19,7 @@
 \contentsline {subsection}{\numberline {4.5}Homogenization}{13}{subsection.4.5}
 \contentsline {subsubsection}{\numberline {4.5.1}Implementation}{16}{subsubsection.4.5.1}
 \contentsline {subsection}{\numberline {4.6}Sensitivity Analysis}{18}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Mesh Fitering}{19}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Results}{19}{subsection.4.8}
+\contentsline {subsection}{\numberline {4.7}Fitering}{19}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Procedure}{19}{subsection.4.8}
+\contentsline {subsection}{\numberline {4.9}Results}{19}{subsection.4.9}
 \contentsline {section}{\numberline {5}References}{20}{section.5}

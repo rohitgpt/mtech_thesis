@@ -766,8 +766,27 @@ Therefore, the elemental sensitivity numbers can be defined as
 &=\frac{x^{p-1}_j}{|Y_j|}\sum_{i=1}^M\e U_i^T\bigg (\int_{V_i} \textbf{B}^T\bigg[\int_{Y_j}\big (\e I-\e b\hat{\e u}_j\big)^T(\e D^1 - \e D^2)\big (\e I-\textbf{b}\hat{\e u}_j\big)\,dy_j\bigg]\textbf{B} dV_i\bigg )\e U_i
 \end{split}
 \end{equation}
-Here, both $M$ and $p$ are constant for the problem. Also, if the elements of the base cell are identical $|Y|_j$ term can also be removed. Since, we are doing a discrete optimization meaning $x_j$'s can only be $0$ or $1$, we 
-\subsection{Mesh Fitering}
+Here, both $M$ and $p$ are constant for the problem. Also, if the elements of the base cell are identical $|Y|_j$ term can also be removed. Since, we are doing a discrete optimization meaning $x_j$'s can only be $0$ or $1$, at every iteration we set elements with high sensitivities to $1$ and others to $0$.
+\subsection{Fitering}
+Topology optimization techniques often faces problems such as numerical instability consequences. These instabilities leads to checkerboard pattern in the topology, mesh dependency of the solution etc. To get rid off such problem, the technique of filtering is used. There are many filter that are being used in topology optimization problems. We have used a weighted mean sensitivity filter. The modified sensitivity numbers are 
+\begin{equation}
+\hat\alpha_j = \frac{\sum_{k=1}^{N}w(r_{jk})\alpha_k}{\sum_{k=1}^Nw(r_{jk})}
+\end{equation}
+where $r_{jk}$ is the euclidean distance between $j$th and $k$th element in the base cell. $w(r_{jk})$ is the weight assigned to the sensitivity number of $k$th element.
+\begin{equation}
+w(r_{jk}) = 
+\begin{cases}
+r_0 - r_{jk} &; r_{jk}<r_0\\
+0 &; r_{jk}\geq r_0
+\end{cases}
+\end{equation}
+where $r_0$ is the filter radius. 
+Further, to get gradual improvement in the topology, an average is taken with the sensitivity numbers from the previous iteration, i.e.,
+\begin{equation}
+\hat\alpha^t_j = \frac{1}{2}(\hat\alpha^{t-1}_j+\hat\alpha^t_j)
+\end{equation}
+
+\subsection{Procedure}
 
 \subsection{Results}
 \cite{first}
