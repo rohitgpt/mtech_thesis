@@ -17,9 +17,8 @@
 \contentsline {subsection}{\numberline {4.4}Periodic Boundary Conditions}{12}{subsection.4.4}
 \contentsline {subsubsection}{\numberline {4.4.1}Penalty Method}{13}{subsubsection.4.4.1}
 \contentsline {subsection}{\numberline {4.5}Homogenization}{13}{subsection.4.5}
-\contentsline {subsubsection}{\numberline {4.5.1}Implementation 2D Homogenization}{16}{subsubsection.4.5.1}
-\contentsline {subsubsection}{\numberline {4.5.2}Examples}{17}{subsubsection.4.5.2}
-\contentsline {subsection}{\numberline {4.6}Sensitivity Analysis}{19}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Mesh Fitering}{19}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Results}{19}{subsection.4.8}
-\contentsline {section}{\numberline {5}References}{20}{section.5}
+\contentsline {subsubsection}{\numberline {4.5.1}Implementation}{16}{subsubsection.4.5.1}
+\contentsline {subsection}{\numberline {4.6}Sensitivity Analysis}{17}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Mesh Fitering}{17}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Results}{17}{subsection.4.8}
+\contentsline {section}{\numberline {5}References}{18}{section.5}
