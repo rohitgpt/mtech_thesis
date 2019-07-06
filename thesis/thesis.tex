@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{accents}
 \newcommand{\e}[1]{\textbf{#1}} 
+\newcommand{\fj}[2]{\frac{\partial #1}{\partial #2}} 
 %\newcommand{\e}{\textbf{}} 
 \begin{document}
 
@@ -151,14 +152,14 @@ v_p = \frac{4}{3}\pi
 %     \subfloat[First sub-figure\label{subfig-2:radial}]{%
 %       \includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
 %     }
-	\includegraphics[scale=0.35]{./Plots/normal/a77_1.jpg}
+	\includegraphics[scale=0.3]{./Plots/normal/a77_1.jpg}
 	\label{fig:radial}
 	\caption{Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
-	\includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
+	\includegraphics[scale=0.3]{./Plots/normal/b77.jpg}
 	\label{fig:cellsize}
 	\caption{Radius of parenchyma cell size obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
 \end{center}
@@ -171,11 +172,11 @@ It should be noted that we didn't have the experimental data for the set of cons
 \begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:extreme1}]{%
-		\includegraphics[scale=0.36]{./Plots/extremes/a53_1.jpg}
+		\includegraphics[scale=0.24]{./Plots/extremes/a53_1.jpg}
      }
      \hfill
      \subfloat[\label{subfig-2:extreme1}]{%
-       \includegraphics[scale=0.35]{./Plots/extremes/b53.jpg}
+       \includegraphics[scale=0.24]{./Plots/extremes/b53.jpg}
      }
 	\label{fig:extreme1}
 	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an annular rod with inner radius 90mm and outer radius 100mm with $\sigma_{max} = $ 150MPa and $M_{max} = $ 630 N-m}
@@ -185,11 +186,11 @@ It should be noted that we didn't have the experimental data for the set of cons
 \begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:extreme2}]{%
-		\includegraphics[scale=0.36]{./Plots/extremes/a63_1.jpg}
+		\includegraphics[scale=0.24]{./Plots/extremes/a63_1.jpg}
      }
      \hfill
      \subfloat[\label{subfig-2:extreme2}]{%
-       \includegraphics[scale=0.35]{./Plots/extremes/b63.jpg}
+       \includegraphics[scale=.24]{./Plots/extremes/b63.jpg}
      }
 	\label{fig:extreme2}
 	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma_{max} = $ 24MPa and $M_{max} = $ 420 N-m}
@@ -198,7 +199,7 @@ It should be noted that we didn't have the experimental data for the set of cons
 \subsubsection{Height}
 \begin{figure}[H]
 \begin{center}
-	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, width=1.00\textwidth]{./Plots/height/height.pdf}
+	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
 	\label{fig:height}
 	\caption{Density variation with height and radius obtained for an annular rod with inner radius 12mm and outer radius 36mm}
 \end{center}
@@ -361,109 +362,135 @@ The method is based on the two-scale asymptotic expansion of structural response
 %&\Rightarrow g = g(\textbf{x},\frac{\textbf{x}}{\epsilon}) = g(\textbf{x} \,\textbf{y})
 %\end{eqnarray}
 %$\textbf{x} = (x_1, x_2, x_3) \in \mathbb{R}^3$ defines the domain of the composite $\Omega$. The domain is composed of base cells of dimensions, $\varepsilon Y_1 , \varepsilon Y_2,\varepsilon Y_3$ where $\textbf{y}=\frac{\textbf{x}}{\varepsilon}$
-\subsubsection{1D Elasticity}
-\begin{eqnarray}
-&\sigma^\varepsilon = E^\varepsilon\frac{\partial u^\varepsilon}{\partial x}\\
-&\frac{\partial \sigma^\varepsilon}{\partial x}+\gamma^\varepsilon=0 & E^\varepsilon \, \gamma^\varepsilon \rightarrow macroscopically uniform
-\end{eqnarray}
-Inside each cell, 
-\begin{eqnarray}
-E^\varepsilon (x, \frac{x}{\varepsilon})&=E(y) \\ 
-\gamma^\varepsilon(x, \frac{x}{\varepsilon})&=\gamma(y)
-\end{eqnarray} 
-Let
-\begin{eqnarray}
-u^\varepsilon(x)=u^0{x,y}+\varepsilon u^1(x,y)+\varepsilon^2 u^2(x,y)+ ...\\
-\sigma^\varepsilon(x)=\sigma^0{x,y}+\varepsilon \sigma^1(x,y)+\varepsilon^2 \sigma^2(x,y)+ ...
-\end{eqnarray}
+%\subsubsection{1D Elasticity}
+%\begin{eqnarray}
+%&\sigma^\varepsilon = E^\varepsilon\frac{\partial u^\varepsilon}{\partial x}\\
+%&\frac{\partial \sigma^\varepsilon}{\partial x}+\gamma^\varepsilon=0 & E^\varepsilon \, \gamma^\varepsilon \rightarrow macroscopically uniform
+%\end{eqnarray}
+%Inside each cell, 
+%\begin{eqnarray}
+%E^\varepsilon (x, \frac{x}{\varepsilon})&=E(y) \\ 
+%\gamma^\varepsilon(x, \frac{x}{\varepsilon})&=\gamma(y)
+%\end{eqnarray} 
+%Let
+%\begin{eqnarray}
+%u^\varepsilon(x)=u^0{x,y}+\varepsilon u^1(x,y)+\varepsilon^2 u^2(x,y)+ ...\\
+%\sigma^\varepsilon(x)=\sigma^0{x,y}+\varepsilon \sigma^1(x,y)+\varepsilon^2 \sigma^2(x,y)+ ...
+%\end{eqnarray}
 
 
-\subsubsection{Optimal Design of Elastic structures}
-
+%\subsubsection{Optimal Design of Elastic structures}
+%
+%\begin{center}
+%$\textbf{b} \rightarrow$ body forces\\
+%$\textbf{t} \rightarrow$ surface tractions
+%\end{center}
+%
+%Optimal choice of $\mathbb{C}_{ijkl} \in U_{ad} \leftarrow $ admissible set of elasticity \par $\mathbb{C}_{ijkl}(\textbf{x}) \forall \textbf{x} \in \Omega $ has 21 independent components \par $a_E(\textbf{u}, \textbf{v}) = \int_\Omega \mathbb{C}_{ijkl}\,\varepsilon_{kl}(\textbf{u})\,\varepsilon_{kl}(\textbf{v})d\textbf{v} \rightarrow $ energy bilinear form \par
+%$L(\textbf{v}) = \int_\Omega \textbf{v}\, d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}ds \rightarrow $ load linear form.\par
+%\hfill \break
+%Minimum compliance problem:
+%\begin{eqnarray}
+%minimize & L(\textbf{v}),\\
+%subject\, to & \mathbb{C}_{ijkl} \in \mathbb{U}_{ad}\\
+%		  & a_E(\textbf{u}, \textbf{v}) = L(\textbf{v}) &\forall \textbf{v} \in \mathbb{U} 
+%\end{eqnarray}
+%where $\mathbb{U}\rightarrow $ kinematically admissible displacements.\\
+%For optimal shape design:
+%\begin{eqnarray}
+%\mathbb{C}_{ijkl}(\textbf{x}) = \chi(\textbf{x})\overline{\mathbb{C}}_{ijkl}, & \textrm{where  } \overline{\mathbb{C}}_{ijkl}\rightarrow\textrm{stiffness matrix of the material}\\
+%\chi(\textbf{x}) =
+%    \begin{cases}
+%        1 & \text{if $\textbf{x}\in \Omega^m$,}\\
+%        0 & \text{if $\textbf{x}\in \Omega\backslash\Omega^m$}
+%    \end{cases}
+%\end{eqnarray}
+%where $\Omega^m \rightarrow$ part of the domain occupied by the material.\\
+%For sizing problem:
+%\begin{eqnarray}
+%\mathbb{C}_{ijkl}(\textbf{x}) = h(\textbf{x})\overline{\mathbb{C}}_{ijkl}\\
+%& \int_\Omega \chi(\textbf{x})d\textbf{x}=V_f\\
+%\& & \int_\Omega h(\textbf{x})d\textbf{x}=V_f.
+%\end{eqnarray}
+%where $h(x)$ is a sizing function. \hfill
+%\break
+%Traditionally shape design problems are initiated in the following manner:
+%\begin{align}
+%Ref\, doamin: & \Omega_0\in \mathbb{R}^3\\
+%\underline{\phi}:  & \Omega_0 \rightarrow \phi(\Omega_0) \text{is a diffeomorphism.}\\
+%L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds
+%\end{align}
+%
+%\begin{equation}
+%\begin{split}
+%a_E &=\int_\Omega \mathbb{C}_{ijkl}(\textbf{x}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})d\textbf{x}\\
+%&=\int_{\Omega_0} \mathbb{C}_{ijkl}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})|det(D\underline{\phi}^{-1})|d\textbf{x}
+%\end{split}
+%\end{equation}
+%
+%Now,
+%\begin{equation}	\label{compliance}
+%\begin{split}
+%\mathbb{C}_{ijkl} \varepsilon_{kl} &= \mathbb{C}_{ijkl}\frac{1}{2}(u_{k,l}+u_{l,k})\\
+% & =\frac{1}{2}\mathbb{C}_{ijkl}u_{k,l}+\frac{1}{2}\mathbb{C}_{ijlk}u_{l,k}\\
+% & =\mathbb{C}_{ijkl}u_{k,l}
+%\end{split}
+%\end{equation}
+%\begin{equation}
+%\begin{split}
+%a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|det(D\underline{\phi}^{-1}|d\textbf{x}\\
+%&= \int_{\Omega_0}\mathbb{C}_{ijkl}\frac{\partial u_k}{\partial\textbf{x}_m}(D\underline{\phi}^{-1})_{ml}\frac{\partial u_i}{\partial \textbf{x}_p}(D\phi^{-1})_{pj}|det(D\underline{\phi}^{-1})|d\textbf{x}\\
+%\end{split}
+%\end{equation}
+%\begin{eqnarray}
+%\Rightarrow \mathbb{C}_{ijkl}(D\underline{\phi}^{-1})_{ml}(D\underline{\phi}^{-1})_{pj}|det(D\underline{\phi}^{-1})| = \bar{\mathbb{C}}_{ipkm}\\
+%\bar{\mathbb{C}}_{ijkl} = \mathbb{C}_{ipkm}(D\underline{\phi}^{-1})_{lm}(D\underline{\phi}^{-1})_{jp}|det(D\underline{\phi}^{-1})|
+%\end{eqnarray}
+%Treating $\underline{\phi}$ as a design variable is tedious.
+%
+We will now derive the equation for homogenization. 
+%From Cauchy's First law of motion
+%\begin{equation}
+%\label{eq:cauchy}
+%\frac{\partial \sigma_{ij}}{\partial x_i} + f_j = 0
+%\end{equation}
+%where $\sigma_{ij} = E_{ijkl}\epsilon_{kl}$ and $\e f$ are the forces. Now $\epsilon_{kl} = \frac{1}{2}(\fj{u_k}{x_l}+\fj{u_l}{x_k})$. Also, in the SIMP material model, $E_{ijkl}$ is function of $\e x$.
+%So, eq \eqref{eq:cauchy} can be written as
+%\begin{eqnarray}
+%\label{eq:cauchy1}
+%\fj{}{x_i}\bigg(E_{ijkl}(\e x)(\fj{u_k}{x_l}+\fj{u_l}{x_k})\bigg) + f_j &= 0 \qquad &\text{in } \Omega
+%%\e u^\varepsilon \big|_{\partial\Omega} &= 0 \qquad &\text{on } \partial \Omega
+%\end{eqnarray}
+Now, the structure is Y-periodic, therefore we have, $E_{ijkl}(\e y) =E_{jikl}(\e y) =E_{ijlk}(\e y) =E_{klij}(\e y)$ where $\e y = \e x/\varepsilon$
+\begin{figure}[H]
 \begin{center}
-$\textbf{b} \rightarrow$ body forces\\
-$\textbf{t} \rightarrow$ surface tractions
+	\includegraphics[scale=0.2]{./Plots/homo/2.jpg}
+	\label{fig:doublescale}
+	\caption{Schematic for periodic structure and double scale modeling}
 \end{center}
-
-Optimal choice of $\mathbb{C}_{ijkl} \in U_{ad} \leftarrow $ admissible set of elasticity \par $\mathbb{C}_{ijkl}(\textbf{x}) \forall \textbf{x} \in \Omega $ has 21 independent components \par $a_E(\textbf{u}, \textbf{v}) = \int_\Omega \mathbb{C}_{ijkl}\,\varepsilon_{kl}(\textbf{u})\,\varepsilon_{kl}(\textbf{v})d\textbf{v} \rightarrow $ energy bilinear form \par
-$L(\textbf{v}) = \int_\Omega \textbf{v}\, d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}ds \rightarrow $ load linear form.\par
-\hfill \break
-Minimum compliance problem:
-\begin{eqnarray}
-minimize & L(\textbf{v}),\\
-subject\, to & \mathbb{C}_{ijkl} \in \mathbb{U}_{ad}\\
-		  & a_E(\textbf{u}, \textbf{v}) = L(\textbf{v}) &\forall \textbf{v} \in \mathbb{U} 
-\end{eqnarray}
-where $\mathbb{U}\rightarrow $ kinematically admissible displacements.\\
-For optimal shape design:
-\begin{eqnarray}
-\mathbb{C}_{ijkl}(\textbf{x}) = \chi(\textbf{x})\overline{\mathbb{C}}_{ijkl}, & \textrm{where  } \overline{\mathbb{C}}_{ijkl}\rightarrow\textrm{stiffness matrix of the material}\\
-\chi(\textbf{x}) =
-    \begin{cases}
-        1 & \text{if $\textbf{x}\in \Omega^m$,}\\
-        0 & \text{if $\textbf{x}\in \Omega\backslash\Omega^m$}
-    \end{cases}
-\end{eqnarray}
-where $\Omega^m \rightarrow$ part of the domain occupied by the material.\\
-For sizing problem:
-\begin{eqnarray}
-\mathbb{C}_{ijkl}(\textbf{x}) = h(\textbf{x})\overline{\mathbb{C}}_{ijkl}\\
-& \int_\Omega \chi(\textbf{x})d\textbf{x}=V_f\\
-\& & \int_\Omega h(\textbf{x})d\textbf{x}=V_f.
-\end{eqnarray}
-where $h(x)$ is a sizing function. \hfill
-\break
-Traditionally shape design problems are initiated in the following manner:
-\begin{align}
-Ref\, doamin: & \Omega_0\in \mathbb{R}^3\\
-\underline{\phi}:  & \Omega_0 \rightarrow \phi(\Omega_0) \text{is a diffeomorphism.}\\
-L(\textbf{v})&=\int_{\Omega_0} \textbf{f}\cdot\textbf{v} |det(D\underline{\phi}^{-1})|d\textbf{x}+\int_{\partial\Omega_t} \textbf{t}\cdot\textbf{v}|det(D\underline{\phi}^{-1})|ds
-\end{align}
-
-\begin{equation}
-\begin{split}
-a_E &=\int_\Omega \mathbb{C}_{ijkl}(\textbf{x}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})d\textbf{x}\\
-&=\int_{\Omega_0} \mathbb{C}_{ijkl}\varepsilon_{kl}(\textbf{v})\varepsilon_{ij}(\textbf{v})|det(D\underline{\phi}^{-1})|d\textbf{x}
-\end{split}
-\end{equation}
-
-Now,
-\begin{equation}	\label{compliance}
-\begin{split}
-\mathbb{C}_{ijkl} \varepsilon_{kl} &= \mathbb{C}_{ijkl}\frac{1}{2}(u_{k,l}+u_{l,k})\\
- & =\frac{1}{2}\mathbb{C}_{ijkl}u_{k,l}+\frac{1}{2}\mathbb{C}_{ijlk}u_{l,k}\\
- & =\mathbb{C}_{ijkl}u_{k,l}
-\end{split}
-\end{equation}
-\begin{equation}
-\begin{split}
-a_E &= \int_{\Omega_0}\mathbb{C}_{ijkl}u_{k,l}(\textbf{u})u_{i,j}(\textbf{v})|det(D\underline{\phi}^{-1}|d\textbf{x}\\
-&= \int_{\Omega_0}\mathbb{C}_{ijkl}\frac{\partial u_k}{\partial\textbf{x}_m}(D\underline{\phi}^{-1})_{ml}\frac{\partial u_i}{\partial \textbf{x}_p}(D\phi^{-1})_{pj}|det(D\underline{\phi}^{-1})|d\textbf{x}\\
-\end{split}
-\end{equation}
-\begin{eqnarray}
-\Rightarrow \mathbb{C}_{ijkl}(D\underline{\phi}^{-1})_{ml}(D\underline{\phi}^{-1})_{pj}|det(D\underline{\phi}^{-1})| = \bar{\mathbb{C}}_{ipkm}\\
-\bar{\mathbb{C}}_{ijkl} = \mathbb{C}_{ipkm}(D\underline{\phi}^{-1})_{lm}(D\underline{\phi}^{-1})_{jp}|det(D\underline{\phi}^{-1})|
-\end{eqnarray}
-Treating $\underline{\phi}$ as a design variable is tedious.
-
-\subsubsection{Homogenization method}
+\end{figure}
+$E_{ijkl}(\e y)$ is assumed to satisfy strong ellipticity condition, i.e., there exists $m>0$ such that.
+\begin{gather}
+\sum_{i,j,k,l=1}^N E_{ijkl}^\varepsilon(x)\textbf{X}_{ij}\textbf{X}_{kl}\geq m\sum_{i,j=1}^N\textbf{X}_{ij}\textbf{X}_{ij} \qquad \forall \quad \textbf{X}_{ij}=\textbf{X}_{ji}
+\end{gather}
+Let us define
 \begin{equation}
 E_{ijkl}^\varepsilon (\textbf{x}) = E_{ijkl}(\textbf{x},\textbf{y}), \qquad \textbf{y} = \frac{\textbf{x}}{\varepsilon}
 \end{equation}
-The tensor $E_{ijkl}^\varepsilon$ is a material constant which satisfies the symmetry condition and is assumed to satisfy strong ellipticity condition for every $\textbf{x}$.
-\begin{gather}
-\Rightarrow E_{ijkl}^\varepsilon =E_{jikl}^\varepsilon =E_{ijlk}^\varepsilon =E_{klij}^\varepsilon\\
-E_{ijkl}^\varepsilon(\textbf{x})\textbf{X}_{ij}\textbf{X}_{kl}\geq m\textbf{X}_{ij}\textbf{X}_{ij} \qquad \text{for some } m>0 \text{ \& } \forall \quad \textbf{X}_{ij}=\textbf{X}_{ji}
-\end{gather}
-Let the domain$\Omega$ has a boundary $\Gamma$. Let $\textbf{f}$ be the body force acting on $\Omega$ and $\textbf{t}$ be the traction acting on $\Gamma_t$ part of the boundary $\Gamma$. Also, let $\Gamma_D$ be the part of boundary on which displacement is defined. Then the displacement $\textbf{u}^\varepsilon$ can be obtained as the solution to the following minimization problem
+%Therefore, eq \eqref{eq:cauchy1} becomes
+%\begin{equation}
+%\label{eq:cauchy1}
+%\fj{}{x_i}\bigg(E_{ijkl}^\varepsilon(\e x)(\fj{u_k^\varepsilon}{x_l}+\fj{u_l^\varepsilon}{x_k})\bigg) + f_j = 0
+%\end{equation}
+%Now, let us suppose there exist $\e u$ and $\e v$ which satisfy the periodic boundary conditions\par
+Let the domain $\Omega$ has a boundary $\Gamma$. Let $\textbf{f}$ be the body force acting on $\Omega$ and $\textbf{t}$ be the traction acting on $\Gamma_t$ part of the boundary $\Gamma$. Also, let $\Gamma_D$ be the part of boundary on which displacement is defined. Then the displacement $\textbf{u}^\varepsilon$ can be obtained as the solution to the following minimization problem
 \begin{align}
 \label{fem}
 \min_{\textbf{v}^\varepsilon\in U} \quad F^\varepsilon(\textbf{v}^\varepsilon),
 \end{align} 
 where $F^\varepsilon$ is total potential energy given as	
 \begin{eqnarray} \label{tpe}
-F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{v}^\varepsilon)\varepsilon_{ij}(\textbf{v}^\varepsilon)dx-\int_\Omega\textbf{f}\cdot\textbf{v}^\varepsilon dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^\varepsilon ds
+F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}(\e x)\epsilon_{kl}(\textbf{v}^\varepsilon)\epsilon_{ij}(\textbf{v}^\varepsilon)dx-\int_\Omega\textbf{f}\cdot\textbf{v}^\varepsilon dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^\varepsilon ds
 %F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}a^\varepsilon(\textbf{v}^\varepsilon, \textbf{v}^\varepsilon)-L(\textbf{v}^\varepsilon),\\
 %a^\varepsilon(\textbf{u},\textbf{v})=\int_\Omega E^\varepsilon_{ijkl}\varepsilon_{kl}(\textbf{u})\varepsilon_{ij}(\textbf{v})dx,\\
 %L(\textbf{v})=\int_\Omega\textbf{f}\cdot\textbf{v}dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}ds
@@ -475,108 +502,109 @@ and $\mathcal{U}$ is the set of admissible displacements defined such that
 where $\mathcal{G}$ is set of displacement defined along the boundary $\Gamma_D$.\\
 Let 
 \begin{align}
-\textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}_0(\textbf{x})+\varepsilon\textbf{v}_1(\textbf{x},\textbf{y}),\qquad \textbf{y}=\frac{\textbf{x}}{\varepsilon}.
+\textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}^0(\textbf{x})+\varepsilon\textbf{v}^1(\textbf{x},\textbf{y}),\qquad \textbf{y}=\frac{\textbf{x}}{\varepsilon}.
 \end{align}
 Using chain rule for functions in two variables\\
 \begin{equation}
 \begin{split}
-\frac{\partial f(\textbf{x}, \textbf{y(x)})}{\partial \textbf{x}} &= \frac{\partial f}{\partial \textbf{x}}+\frac{\partial f}{\partial \textbf{y}}\frac{\partial \textbf{y}}{\partial \textbf{x}}\\
+\frac{\partial f(\e x, \e y(\e x))}{\partial \textbf{x}} &= \frac{\partial f}{\partial \textbf{x}}+\frac{\partial f}{\partial \textbf{y}}\frac{\partial \textbf{y}}{\partial \textbf{x}}\\
 &=\frac{\partial f}{\partial \textbf{x}}+\frac{1}{\varepsilon}\frac{\partial f}{\partial \textbf{y}}
 \end{split}
 \end{equation}
 Using above two equations, we can write the linerized strain as
 \begin{equation}
 \begin{split}
-\epsilon_{ij}(\textbf{v}^\varepsilon(\textbf{x})) &= \frac{\partial (v_{0i}(\textbf{x})+\varepsilon v_{1i}(\textbf{x},\textbf{y}))}{\partial x_j}\\
-&=\frac{\partial v_{0i}}{\partial x_j}+\varepsilon\bigg\{\frac{\partial v_{1i}}{\partial x_j}+\frac{1}{\varepsilon}\frac{\partial v_{1i}}{\partial y_j}\bigg\}\\
-&\approx \frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j} \qquad \leftarrow \{ \varepsilon << 1\}
+\epsilon_{ij}(\textbf{v}^\varepsilon(\textbf{x})) &= \frac{\partial (v_{i}^0(\textbf{x})+\varepsilon v_{i}^1(\textbf{x},\textbf{y}))}{\partial x_j}\\
+&=\frac{\partial v_i^0}{\partial x_j}+\varepsilon\bigg\{\frac{\partial v_{i}^1}{\partial x_j}+\frac{1}{\varepsilon}\frac{\partial v_{i}^1}{\partial y_j}\bigg\}\\
+&\approx \frac{\partial v_{i}^0}{\partial x_j}+\frac{\partial v_{i}^1}{\partial y_j} &\qquad \{ \varepsilon << 1\}
 \end{split}
 \end{equation}
 Therefore, equation \eqref{tpe} can be written as 
 \begin{multline}
-F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}\bigg (\frac{\partial v_{0k}}{\partial x_l}+\frac{\partial v_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j}\bigg )dx\\
--\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds + \varepsilon R^\varepsilon(\textbf{v}_0, \textbf{v}_1)
+F^\varepsilon(\textbf{v}^\varepsilon) = \frac{1}{2}\int_\Omega E^\varepsilon_{ijkl}(\e x)\bigg (\frac{\partial v_{k}^0}{\partial x_l}+\frac{\partial v_{k}^1}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}^0}{\partial x_j}+\frac{\partial v_{i}^1}{\partial y_j}\bigg )dx\\
+-\int_\Omega\textbf{f}\cdot\textbf{v}^0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^0 ds + \varepsilon R^\varepsilon(\textbf{v}^0, \textbf{v}^1)
 \end{multline}
-Here, $R^\varepsilon$ is the contribution of $\varepsilon\textbf{v}_1$ in the calculation of energy from body force and traction.
-Using 
+Here, $R^\varepsilon$ is the contribution of $\varepsilon\textbf{v}^1$ in the calculation of energy from body force and traction.
+Using average operator 
 \begin{equation}
-\lim_{\varepsilon\rightarrow 0}\int_\Omega \Phi(x, x/\varepsilon)dx = \frac{1}{|Y|}\int_\Omega\int_Y \Phi(x,y)dydx,
+\Phi^\varepsilon(\e x) = \frac{1}{|Y|}\int_Y \Phi(\e x,\e y)dy,
 \end{equation}
+%\begin{equation}
+%\lim_{\varepsilon\rightarrow 0}\int_\Omega \Phi(x, x/\varepsilon)dx = \frac{1}{|Y|}\int_\Omega\int_Y \Phi(x,y)dydx,
+%\end{equation}
 we get,
 \begin{equation}
 \begin{split}
-\lim_{\varepsilon\rightarrow 0}\,F^\varepsilon(\textbf{v}^\varepsilon)&=F(\textbf{v}_0,\textbf{v}_1)\\
-&=\frac{1}{2|Y|}\int_\Omega\int_Y E_{ijkl}(x,y) \bigg (\frac{\partial v_{0k}}{\partial x_l}+\frac{\partial v_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}+\frac{\partial v_{1i}}{\partial y_j}\bigg )dy\,dx\\
-&\qquad-\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds 
+%\lim_{\varepsilon\rightarrow 0}
+\,F^\varepsilon(\textbf{v}^\varepsilon)&=F(\textbf{v}^0,\textbf{v}^1)\\
+&=\frac{1}{2|Y|}\int_\Omega\int_Y E_{ijkl}(\e x,\e y) \bigg (\frac{\partial v_{k}^0}{\partial x_l}+\frac{\partial v_{k}^1}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}^0}{\partial x_j}+\frac{\partial v_{i}^1}{\partial y_j}\bigg )dy\,dx\\
+&\qquad-\int_\Omega\textbf{f}\cdot\textbf{v}^0 dx - \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^0 ds 
 \end{split}
 \end{equation}
-A minimizer $\{\textbf{u}_0, \textbf{u}_1\}$ of the functional $F$, follow the following equations:
-
-\begin{equation}\label{first}
-\begin{aligned}
-&\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}\bigg ) dy\,dx\\
-&=\int_\Omega\textbf{f}\cdot\textbf{v}_0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds \qquad \text{for every } \textbf{v}_0
-\end{aligned}
-\end{equation}
-\begin{equation}
-\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}}{\partial x_j}\bigg ) dy\,dx = 0, \qquad \text{for every } \textbf{v}_1
-\end{equation}
-Now, from localizing $u_{1k}$
+Let $\e u^\varepsilon\{\textbf{u}^0, \textbf{u}_1\}$ be a minimizer of the functional $F$, then 
+\begin{eqnarray}
+\label{eq:functional1}
+%\begin{aligned}
+\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{k}^0}{\partial x_l}+\frac{\partial u_{k}^1}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}^0}{\partial x_j}\bigg ) dy\,dx = \int_\Omega\textbf{f}\cdot\textbf{v}^0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^0 ds &\forall \textbf{v}^0\\
+\label{eq:functional2}
+\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{k}^0}{\partial x_l}+\frac{\partial u_{k}^1}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}^1}{\partial x_j}\bigg ) dy\,dx = 0,  &\forall \textbf{v}^1
+%\end{aligned}
+\end{eqnarray}
+Let $u_{k}^1$ be a function of directional derivative of $u^0$ times the displacement of the base cell element in that direction.
 \begin{equation}\label{localization}
-u_{1k}(x,y)=-\chi^{pq}_k(y)\frac{\partial u_{0p}}{\partial x_q}(x),
+u_{k}^1(x,y)=-\chi^{pq}_k(y)\frac{\partial u_{p}^0}{\partial x_q}(x),
 \end{equation}
-\begin{align*}
-\Rightarrow &\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}-\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{0p}}{\partial x_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
-&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijkl}\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{0p}}{\partial x_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
-&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{0k}}{\partial x_l}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
-&\int_\Omega\int_Y \frac{\partial u_{0k}}{\partial x_l}\bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,dx=0\\
-&\int_\Omega\frac{\partial u_{0k}}{\partial x_l}dx\cdot\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy\,=0\\
-\end{align*}
+Then, eq \eqref{eq:functional2} becomes
 \begin{align}
-\Rightarrow &\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}}{\partial x_j} dy=0  \qquad \text{for k, l = 1 and 2,}
+%&\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{k}^0}{\partial x_l}-\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{p}^0}{\partial x_q}\bigg )\frac{\partial v^1_{i}}{\partial x_j} dy\,dx=0\\
+%&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijkl}\frac{\partial \chi^{pq}_k}{\partial y_l}\frac{\partial u_{p}^0}{\partial x_q}\bigg )\frac{\partial v_{i}^1}{\partial x_j} dy\,dx=0\\
+%&\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{k}^0}{\partial x_l}\bigg )\frac{\partial v_{i}^1}{\partial x_j} dy\,dx=0\\
+%&\int_\Omega\int_Y \frac{\partial u_{k}^0}{\partial x_l}\bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}^1}{\partial x_j} dy\,dx=0\\
+&\int_\Omega\frac{\partial u_{k}^0}{\partial x_l}dx\cdot\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}^1}{\partial x_j} dy\,=0\\
+&\Rightarrow \int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )\frac{\partial v_{i}^1}{\partial x_j} dy=0  \qquad \text{for k, l = 1 and 2,}
 \end{align}
 %if $x^{pq}$ satifies
 %\begin{equation}
 %\int_Y \bigg ( E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg ) \frac{\partial v_{1j}}{\partial y_i}\,dy=0 \qquad \text{for k, l = 1 and 2,} 
 %\end{equation}
-Similarly, substituting equation \eqref{localization} in \eqref{first} gives the homogenized equation.
+Similarly, substituting equation \eqref{localization} in \eqref{eq:functional1} gives the homogenized equation.
 \begin{align*}
-\text{LHS}&=\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{0k}}{\partial x_l}+\frac{\partial u_{1k}}{\partial y_l}\bigg )\bigg (\frac{\partial v_{0i}}{\partial x_j}\bigg ) dy\,dx\\
-&=\frac{1}{|Y|}\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{0k}}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{0k}}{\partial x_l}\bigg )\frac{\partial v_{0i}}{\partial x_j} dy\,dx\\
-&=\frac{1}{|Y|}\int_\Omega\Bigg \{\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )dy\Bigg \}\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}dx\\
-&=\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}\,dx
+\text{LHS}&=\frac{1}{|Y|}\int_\Omega\int_Y E_{ijkl}(x,y)\bigg (\frac{\partial u_{k}^0}{\partial x_l}+\frac{\partial u_{k}^1}{\partial y_l}\bigg )\bigg (\frac{\partial v_{i}^0}{\partial x_j}\bigg ) dy\,dx\\
+&=\frac{1}{|Y|}\int_\Omega\int_Y \bigg (E_{ijkl}\frac{\partial u_{k}^0}{\partial x_l}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial u_{k}^0}{\partial x_l}\bigg )\frac{\partial v_{i}^0}{\partial x_j} dy\,dx\\
+&=\frac{1}{|Y|}\int_\Omega\Bigg \{\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg )dy\Bigg \}\frac{\partial u_{k}^0}{\partial x_l}\frac{\partial v_{i}^0}{\partial x_j}dx\\
+&=\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{k}^0}{\partial x_l}\frac{\partial v_{i}^0}{\partial x_j}\,dx
 \end{align*}
 Homogenized equation
 \begin{equation}
-\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{0k}}{\partial x_l}\frac{\partial v_{0i}}{\partial x_j}\,dx = \int_\Omega\textbf{f}\cdot\textbf{v}_0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}_0 ds \qquad \text{for every } \textbf{v}_0
+\int_\Omega E^H_{ijkl}(x)\frac{\partial u_{k}^0}{\partial x_l}\frac{\partial v_{i}^0}{\partial x_j}\,dx = \int_\Omega\textbf{f}\cdot\textbf{v}^0 dx + \int_{\Gamma_t}\textbf{t}\cdot\textbf{v}^0 ds \qquad \text{for every } \textbf{v}^0
 \end{equation}
 where $E^H_{ijkl}(x)$ is
 \begin{equation}
 \boxed{E^H_{ijkl} = \frac{1}{|Y|}\int_Y \bigg (E_{ijkl}-E_{ijpq}\frac{\partial \chi^{kl}_p}{\partial y_q}\bigg ) dy}
 \end{equation}
-Now, Define
-\begin{eqnarray}
-a_H(\textbf{u},\textbf{v}) = \int_\Omega E^H_{ijkl}(\textbf{x})\frac{\partial u_k}{\partial x_l}\frac{\partial v_i}{\partial	x_j}\, dx,\\
-a_Y(\chi^{kl}, \textbf{v})=\int_Y E_{ijpq}(\textbf{x},\textbf{y})\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial v_i}{\partial y_j}\,dy,\\
-L^{kl}_Y(\textbf{v})=\int_Y E_{ijkl} \frac{\partial v_i}{\partial y_j}\, dy
-\end{eqnarray}
-At microscopic level, we have
-\begin{equation}\label{microscopic}
-a_Y(\chi^{kl}, \textbf{v}) = L_Y^{kl}(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_Y,
-\end{equation}
-At macroscopic level, we have
-\begin{equation}
-a_H(\textbf{u},\textbf{v}) = L(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_0
-\end{equation}
-where $\mathcal{U}_0$ is homogeneous case of $\mathcal{U}$, i.e., $\textbf{g}=0$.
+%Now, Define
+%\begin{eqnarray}
+%a_H(\textbf{u},\textbf{v}) = \int_\Omega E^H_{ijkl}(\textbf{x})\frac{\partial u_k}{\partial x_l}\frac{\partial v_i}{\partial	x_j}\, dx,\\
+%a_Y(\chi^{kl}, \textbf{v})=\int_Y E_{ijpq}(\textbf{x},\textbf{y})\frac{\partial \chi^{kl}_p}{\partial y_q}\frac{\partial v_i}{\partial y_j}\,dy,\\
+%L^{kl}_Y(\textbf{v})=\int_Y E_{ijkl} \frac{\partial v_i}{\partial y_j}\, dy
+%\end{eqnarray}
+%At microscopic level, we have
+%\begin{equation}\label{microscopic}
+%a_Y(\chi^{kl}, \textbf{v}) = L_Y^{kl}(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_Y,
+%\end{equation}
+%At macroscopic level, we have
+%\begin{equation}
+%a_H(\textbf{u},\textbf{v}) = L(\textbf{v})\qquad \forall \textbf{v}\in \mathcal{U}_0
+%\end{equation}
+%where $\mathcal{U}_0$ is homogeneous case of $\mathcal{U}$, i.e., $\textbf{g}=0$.
 \subsubsection{Implementation 2D Homogenization}
 Basic homogenization equation, 
 \begin{equation}
-u_{1i}(\textbf{x},\textbf{y}) = -\chi^{pq}_i\frac{\partial u_{0p}(\textbf{x})}{\partial x_q}
+u_{i}^1(\textbf{x},\textbf{y}) = -\chi^{pq}_i\frac{\partial u_{p}^0(\textbf{x})}{\partial x_q}
 \end{equation}
 Solve $\chi^{kl}_p$ from:
 \begin{equation}
-\int_Y \bigg ( E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg ) \frac{\partial v_{1i}}{\partial y_j}\,dy = 0
+\int_Y \bigg ( E_{ijkl} - E_{ijpq}\frac{\partial\chi^{kl}_p}{\partial y_q}\bigg ) \frac{\partial v_{i}^1}{\partial y_j}\,dy = 0
 \end{equation}
 Compute:
 \begin{equation}\label{homoE}
@@ -683,13 +711,15 @@ and eq. \eqref{Dhomo} becomes:
 \boxed{D^H_{11} = \frac{1}{|Y|}\int_Y\bigg (D_{11}-\textbf{d}_1^T\textbf{b}\Phi\bigg )\,dy
 }
 \end{equation}
+\subsection{Sensitivity Analysis}
 
-\newpage
-\section{Results}
+\subsection{Mesh Fitering}
+
+\subsection{Results}
 \cite{first}
 \cite{WEBSITE:1}
 
-
+\newpage
 \section{References}
 \bibliographystyle{plain}
 \bibliography{bib}
