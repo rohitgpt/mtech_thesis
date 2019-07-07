@@ -28,3 +28,68 @@
 	YEAR = "1988",
 	NOTE = "Accessed on 2012-11-11"
 }
+@article{grosser1971anatomy,
+  title={On the anatomy of Asian bamboos, with special reference to their vascular bundles},
+  author={Grosser, Dietger and Liese, Walter},
+  journal={Wood Science and technology},
+  volume={5},
+  number={4},
+  pages={290--312},
+  year={1971},
+  publisher={Springer}
+}
+@article{mwaikambo2006review,
+  title={Review of the history, properties and application of plant fibres},
+  author={Mwaikambo, L},
+  journal={African Journal of Science and Technology},
+  volume={7},
+  number={2},
+  pages={121},
+  year={2006}
+}
+@article{mannan2018stiffness,
+  title={Stiffness and toughness gradation of bamboo from a damage tolerance perspective},
+  author={Mannan, Sayyad and Parameswaran, Venkitanarayanan and Basu, Sumit},
+  journal={International Journal of Solids and Structures},
+  volume={143},
+  pages={274--286},
+  year={2018},
+  publisher={Elsevier}
+}
+@article{mannan2017correlations,
+  title={Correlations between axial stiffness and microstructure of a species of bamboo},
+  author={Mannan, Sayyad and Paul Knox, J and Basu, Sumit},
+  journal={Royal Society open science},
+  volume={4},
+  number={1},
+  pages={160412},
+  year={2017},
+  publisher={The Royal Society Publishing}
+}
+@article{ghavami2003bamboo,
+  title={Bamboo: functionally graded composite material},
+  author={Ghavami, K and Rodrigues, C de S and Paciornik, S},
+  year={2003},
+  publisher={ASIAN JOURNAL OF CIVIL ENGINEERING (BUILDING AND HOUSING)}
+}
+@article{amada1996mechanical,
+  title={The mechanical structures of bamboos in viewpoint of functionally gradient and composite materials},
+  author={Amada, Shigeyasu and Munekata, Tamotsu and Nagase, Yukito and Ichikawa, Yoshinobu and Kirigai, Atsushi and Zhifei, Yang},
+  journal={Journal of Composite Materials},
+  volume={30},
+  number={7},
+  pages={800--819},
+  year={1996},
+  publisher={Sage Publications Sage CA: Thousand Oaks, CA}
+}
+@article{gibson1995mechanical,
+  title={The mechanical properties of natural materials. II. Microstructures for mechanical efficiency},
+  author={Gibson, Lorna J and Ashby, Michael Farries and Karam, GN and Wegst, U and Shercliff, HR},
+  journal={Proceedings of the Royal Society of London. Series A: Mathematical and Physical Sciences},
+  volume={450},
+  number={1938},
+  pages={141--162},
+  year={1995},
+  publisher={The Royal Society London}
+}
+

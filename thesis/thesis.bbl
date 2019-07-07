@@ -1,14 +1,46 @@
 \begin{thebibliography}{1}
 
-\bibitem{first}
-John Doe.
-\newblock Title.
-\newblock {\em Journal}, 2017.
+\bibitem{amada1996mechanical}
+Shigeyasu Amada, Tamotsu Munekata, Yukito Nagase, Yoshinobu Ichikawa, Atsushi
+  Kirigai, and Yang Zhifei.
+\newblock The mechanical structures of bamboos in viewpoint of functionally
+  gradient and composite materials.
+\newblock {\em Journal of Composite Materials}, 30(7):800--819, 1996.
 
-\bibitem{WEBSITE:1}
-Intel.
-\newblock Example website.
-\newblock \url{http://example.com}, Dec 1988.
-\newblock Accessed on 2012-11-11.
+\bibitem{ghavami2003bamboo}
+K~Ghavami, C~de~S Rodrigues, and S~Paciornik.
+\newblock Bamboo: functionally graded composite material.
+\newblock 2003.
+
+\bibitem{gibson1995mechanical}
+Lorna~J Gibson, Michael~Farries Ashby, GN~Karam, U~Wegst, and HR~Shercliff.
+\newblock The mechanical properties of natural materials. ii. microstructures
+  for mechanical efficiency.
+\newblock {\em Proceedings of the Royal Society of London. Series A:
+  Mathematical and Physical Sciences}, 450(1938):141--162, 1995.
+
+\bibitem{grosser1971anatomy}
+Dietger Grosser and Walter Liese.
+\newblock On the anatomy of asian bamboos, with special reference to their
+  vascular bundles.
+\newblock {\em Wood Science and technology}, 5(4):290--312, 1971.
+
+\bibitem{mannan2018stiffness}
+Sayyad Mannan, Venkitanarayanan Parameswaran, and Sumit Basu.
+\newblock Stiffness and toughness gradation of bamboo from a damage tolerance
+  perspective.
+\newblock {\em International Journal of Solids and Structures}, 143:274--286,
+  2018.
+
+\bibitem{mannan2017correlations}
+Sayyad Mannan, J~Paul~Knox, and Sumit Basu.
+\newblock Correlations between axial stiffness and microstructure of a species
+  of bamboo.
+\newblock {\em Royal Society open science}, 4(1):160412, 2017.
+
+\bibitem{mwaikambo2006review}
+L~Mwaikambo.
+\newblock Review of the history, properties and application of plant fibres.
+\newblock {\em African Journal of Science and Technology}, 7(2):121, 2006.
 
 \end{thebibliography}

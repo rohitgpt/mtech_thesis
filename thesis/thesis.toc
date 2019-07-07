@@ -2,24 +2,23 @@
 \contentsline {section}{\numberline {2}Motivation}{4}{section.2}
 \contentsline {section}{\numberline {3}1D Simulation}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}Formulation}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Implementation}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.2}Implementation}{6}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Optimization Problem}{7}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Cell Size}{7}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}Results}{8}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Normal}{8}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Extreme}{8}{subsubsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.3}Height}{10}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.1}Extreme}{9}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Height}{10}{subsubsection.3.5.2}
 \contentsline {subsection}{\numberline {3.6}Conclusion}{11}{subsection.3.6}
-\contentsline {section}{\numberline {4}2D Simulation}{12}{section.4}
-\contentsline {subsection}{\numberline {4.1}Overview}{12}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Optimization Problem}{12}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Finite Element Analysis}{12}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Periodic Boundary Conditions}{13}{subsection.4.4}
-\contentsline {subsubsection}{\numberline {4.4.1}Penalty Method}{14}{subsubsection.4.4.1}
-\contentsline {subsection}{\numberline {4.5}Homogenization}{14}{subsection.4.5}
-\contentsline {subsubsection}{\numberline {4.5.1}Implementation}{17}{subsubsection.4.5.1}
-\contentsline {subsection}{\numberline {4.6}Sensitivity Analysis}{19}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Fitering}{20}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Procedure}{20}{subsection.4.8}
-\contentsline {subsection}{\numberline {4.9}Results}{21}{subsection.4.9}
-\contentsline {section}{\numberline {5}References}{22}{section.5}
+\contentsline {section}{\numberline {4}2D Simulation}{13}{section.4}
+\contentsline {subsection}{\numberline {4.1}Overview}{13}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Optimization Problem}{13}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Finite Element Analysis}{13}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Periodic Boundary Conditions}{14}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Penalty Method}{15}{subsubsection.4.4.1}
+\contentsline {subsection}{\numberline {4.5}Homogenization}{15}{subsection.4.5}
+\contentsline {subsubsection}{\numberline {4.5.1}Implementation}{18}{subsubsection.4.5.1}
+\contentsline {subsection}{\numberline {4.6}Sensitivity Analysis}{20}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Fitering}{21}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Procedure}{21}{subsection.4.8}
+\contentsline {subsection}{\numberline {4.9}Results}{22}{subsection.4.9}
+\contentsline {section}{\numberline {5}References}{23}{section.5}

@@ -1,4 +1,6 @@
 \documentclass[10pt]{article}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[shortlabels]{enumitem}
 \usepackage{bm}
@@ -10,30 +12,22 @@
 \usepackage{hyperref}
 \usepackage{textcomp, xspace}
 \usepackage[fleqn]{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{accents}
 \newcommand{\e}[1]{\textbf{#1}} 
 \newcommand{\fj}[2]{\frac{\partial #1}{\partial #2}} 
-%\newcommand{\e}{\textbf{}} 
 \begin{document}
 
-\title{Master's Thesis}
+\title{Designing structurally optimal composites using plant stem material and comparing to their natural counterpart. }
 \author{Rohit Gupta, Sumit Basu}
 
 \maketitle
 
 \tableofcontents
-
+\newpage
 \listoffigures
 
-%\listoftables
-
-%\begin{abstract}
-%Fill it.
-%\end{abstract}
 \newpage
 \section{Introduction}
 
@@ -41,11 +35,18 @@
 \section{Motivation}
 \newpage
 \section{1D Simulation}
-Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin [L.Y.Mwaikambo et al.]. Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction. [Plot showing the distribution of fibers.]\par 
-This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from [Mannan et al., L.Y.Mwaikambo et al.]. \par
+Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin.\cite{mwaikambo2006review} Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction (fig. \ref{fig:fibrebundle}).
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.35]{./Plots/normal/radialfibers.png}
+\caption{Sector of cross-section showing distribution of fibre bundles. \cite{grosser1971anatomy}}
+\label{fig:fibrebundle}
+\end{center}
+\end{figure}
+This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from \cite{mannan2018stiffness}\cite{mwaikambo2006review}. \par
 Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\par 
 \subsection{Formulation}
-Therefore, we frame a constrained problem, optimizing the radial distribution of two material, with properties corresponding to that of fibers and parenchyma, in an annular cross-section composites. The objective function to optimize is specific strength subjected to the constraints of maximum stress and maximum bending moment. The dimensions of the composites are kept the same as in [Mannan et al.]. Also, the limits of max bending moment and stress are taken from [Mannan et al.]. The general problem formulation is written as
+Therefore, we frame a constrained problem, optimizing the radial distribution of two material, with properties corresponding to that of fibers and parenchyma, in an annular cross-section composites. The objective function to optimize is specific strength subjected to the constraints of maximum stress and maximum bending moment. The dimensions of the composites are kept the same as in \cite{mannan2018stiffness}. Also, the limits of max bending moment and stress are taken from \cite{mannan2018stiffness}. The general problem formulation is written as
 \begin{equation*}
 \begin{aligned}
 & \underset{\chi}{\text{maximize}}
@@ -58,8 +59,12 @@ Therefore, we frame a constrained problem, optimizing the radial distribution of
 where, $\chi$ is the distribution of the two material in the domain whose inner radius is $r_i$ and outer radius is $r_o$.  $\sigma$ is the stress in the longitudinal direction and $M$ is the bending moment. \par
 \subsection{Implementation}
 Now, flexural rigidity is used as measure of strength which can be written as 
-\begin{wrapfigure}[5]{r}{0.2\textwidth}
+%\begin{wrapfigure}[lineheight]{position}{width}
+\begin{wrapfigure}[5]{r}{0.3\textwidth}
+\begin{center}
 \includegraphics[scale=0.3]{moment_annulus}
+\caption{Annulus with inner radius r1 and outer radius r2}
+\end{center}
 \end{wrapfigure}
 \begin{equation}
 \begin{split}
@@ -84,7 +89,12 @@ E(r) &= \chi_1(r) E_1 + \chi_2(r) E_2\\
 \end{equation}
 Here $\{E_1, \rho_1\}$ and $\{E_2, \rho_2\}$ are the material properties of the fibers and parenchyma respectively. $\chi_1$ and $\chi_2$ are the proportion of first and second material corresponding to fiber and parenchyma respectively.\par
 Assuming small deformation, from Euler Bernoulli Beam Theory, we get strain $\varepsilon_{xx}$ as\\
-Put Schematics for Beam Theory
+\begin{wrapfigure}[14]{r}{0.3\textwidth}
+\begin{center}
+\includegraphics[scale=0.15]{./Plots/normal/eb.png}
+\caption{Beam deformation}
+\end{center}
+\end{wrapfigure}
 \begin{equation}
 \begin{split}
 \varepsilon_{xx} &= \frac{\Delta x' - \Delta x}{\Delta x}\\
@@ -118,23 +128,21 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 \end{split}
 \end{equation}
 \subsection{Cell Size}
-For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{paper:mannan1}. \par
+For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{mannan2017correlations}. \par
 \begin{figure}[H]
 \begin{center}
 	\begin{tabular}{@{}c}
-	\subfloat{
+	\subfloat[]{
 	\includegraphics[scale=.3]{./Plots/cell/1.jpg}
 	}
 	\end{tabular}
-%	\hfill
 	\begin{tabular}{@{}c}
-	\subfloat{
-	\includegraphics[scale=1.5]{./Plots/cell/scheme.png}
+	\subfloat[]{
+	\includegraphics[scale=.7]{cell}
 	}
 	\end{tabular}
-	
-\caption{Cross-sectional micrograph showing the dimensions of typical parenchyma cell\label{fig:mannancell}
-\cite{paper:mannan1}}
+\caption{Cross-sectional micrograph showing the dimensions of typical parenchyma cell \cite{mannan2017correlations}}
+\label{fig:mannancell}
 \end{center}
 \end{figure}
 Parenchyma cells consists of cellular material and air packets. Assuming cell to be spherical, let $v_a$ be the volume of air and $v_p$ be the volume of cellular material. From fig. \ref{fig:mannancell}
@@ -152,21 +160,35 @@ Then
 \end{split}
 \end{equation}
 \subsection{Results}
-\subsubsection{Normal}
+Figure \ref{subfig-1:radial} shows the optimal distribution of two materials corresponding to fibers and parenchyma. The distribution of fibers is comparable to the distribution obtained analytically as well as verified experimentally by \hyperref[mannan2017correlations]{Mannan et. al.}\cite{mannan2017correlations}
+The variation of parenchyma on the other hand is relatively constant as the cellular material necessary for survival of the cells remains constant while progressively reduces their air content.
 \begin{figure}[H]
 \begin{center}
-%     \subfloat[First sub-figure\label{subfig-1:radial}]{%
-%		\includegraphics[scale=0.45]{./Plots/normal/a77_1.jpg}
-%     }
-%     \vfill
-%     \subfloat[First sub-figure\label{subfig-2:radial}]{%
-%       \includegraphics[scale=0.4]{./Plots/normal/b77.jpg}
-%     }
-	\includegraphics[scale=0.3]{./Plots/normal/a77_1.jpg}
-	\label{fig:radial}
-	\caption{Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m}
+     \subfloat[\label{subfig-1:radial}]{
+		\includegraphics[scale=0.26]{./Plots/normal/a77_1.jpg}
+     }
+     \subfloat[\label{subfig-2:radial}]{
+       \includegraphics[scale=0.36]{./Plots/normal/mnn.png}
+     }
+\caption{(a)Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m. (b) The variation of areal density $\rho(r)\mathbb{C}$ and the experimental data in dotted line where $D_i$ and $D_o$ are inner and outer diameters respectively. \cite{mannan2017correlations}}
+\label{fig:radial}
 \end{center}
 \end{figure}
+\par 
+Figure \ref{subfig-1:radial2} shows the distribution of fibres for different nodes and fig. \ref{subfig-2:radial2} shows the same for curved and straight sample. Again both of these look similar to the optimal distribution (fig. \ref{subfig-1:radial}). 
+\begin{figure}[H]
+\begin{center}
+     \subfloat[\label{subfig-1:radial2}]{%
+		\includegraphics[scale=0.36]{./Plots/normal/compositematerials.png}
+     }
+     \subfloat[\label{subfig-2:radial2}]{%
+       \includegraphics[scale=.28]{./Plots/normal/v.png}
+     }
+	\caption{Variation of volume fraction of the fibers with the non-dimensional distance from the inner surface.(a) For different nodes(n), Amada et. al. \cite{amada1996mechanical} (b) For different type of samples, Ghavami et. al. \cite{ghavami2003bamboo}}
+\label{fig:radial2}
+\end{center}
+\end{figure}
+
 \begin{figure}[H]
 \begin{center}
 	\includegraphics[scale=0.3]{./Plots/normal/b77.jpg}
@@ -184,9 +206,8 @@ It should be noted that we didn't have the experimental data for the set of cons
      \subfloat[\label{subfig-1:extreme1}]{%
 		\includegraphics[scale=0.24]{./Plots/extremes/a53_1.jpg}
      }
-     \hfill
      \subfloat[\label{subfig-2:extreme1}]{%
-       \includegraphics[scale=0.24]{./Plots/extremes/b53.jpg}
+       \includegraphics[scale=0.23]{./Plots/extremes/b53.jpg}
      }
 	\label{fig:extreme1}
 	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an annular rod with inner radius 90mm and outer radius 100mm with $\sigma_{max} = $ 150MPa and $M_{max} = $ 630 N-m}
@@ -195,12 +216,11 @@ It should be noted that we didn't have the experimental data for the set of cons
 
 \begin{figure}[H]
 \begin{center}
-     \subfloat[\label{subfig-1:extreme2}]{%
+     \subfloat[\label{subfig-1:extreme2}]{
 		\includegraphics[scale=0.24]{./Plots/extremes/a63_1.jpg}
      }
-     \hfill
-     \subfloat[\label{subfig-2:extreme2}]{%
-       \includegraphics[scale=.24]{./Plots/extremes/b63.jpg}
+     \subfloat[\label{subfig-2:extreme2}]{
+       \includegraphics[scale=.23]{./Plots/extremes/b63.jpg}
      }
 	\label{fig:extreme2}
 	\caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma_{max} = $ 24MPa and $M_{max} = $ 420 N-m}
@@ -221,15 +241,22 @@ R = \frac{EI}{M} = R_0\bigg(1-\frac{h^2}{L^2}\bigg)^{-1}\\
 \sigma = -\frac{Mr}{I} = \sigma_0\bigg(1-\frac{h^2}{L^2}\bigg)
 \end{eqnarray}
 Here $R_0$ and $\sigma_0$ are the minimum radius of curvature and maximum stress which occur at the base of the plant. 
+<>
 \begin{figure}[H]
 \begin{center}
-	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
+     \subfloat[\label{subfig-1:extreme2}]{
+		\includegraphics[scale=0.12]{./Plots/height/1.png}
+     }
+     \subfloat[\label{subfig-2:extreme2}]{
+		\includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
+     }
 	\label{fig:height}
-	\caption{Density variation with height and radius obtained for an annular rod with inner radius 12mm and outer radius 36mm}
+	\caption{(a) Schematic distribution of material density in young stem (on left) and old plant stem (on right). \cite{gibson1995mechanical} (b) Density variation with height and radius obtained for an annular rod with inner radius 12mm and outer radius 36mm.}
 \end{center}
 \end{figure}
 
 \subsection{Conclusion}
+Comparing with the previous experimentation and studies on bamboo, w
 Assuming axisymmetry, the radial distribution of constituent materials of bamboo is optimal for the constraints of maximum stress and bending moment that are applicable to bamboo under the loading conditions.
 
 \newpage
@@ -836,8 +863,6 @@ V_f;& otherwise
 \end{enumerate}
 
 \subsection{Results}
-\cite{first}
-\cite{WEBSITE:1}
 
 \newpage
 \section{References}

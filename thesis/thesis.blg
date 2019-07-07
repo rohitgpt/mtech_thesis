@@ -3,49 +3,49 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: bib.bib
-Warning--I didn't find a database entry for "paper:mannan1"
 Warning--I didn't find a database entry for "paper:simp"
 Warning--I didn't find a database entry for "paper:homogenization"
 Warning--I didn't find a database entry for "Book:Cook"
-You've used 2 entries,
+Warning--empty journal in ghavami2003bamboo
+You've used 7 entries,
             2118 wiz_defined-function locations,
-            515 strings with 4169 characters,
-and the built_in function-call counts, 443 in all, are:
-= -- 42
-> -- 14
+            553 strings with 5633 characters,
+and the built_in function-call counts, 2459 in all, are:
+= -- 236
+> -- 135
 < -- 0
-+ -- 6
-- -- 4
-* -- 18
-:= -- 85
-add.period$ -- 7
-call.type$ -- 2
-change.case$ -- 8
++ -- 55
+- -- 46
+* -- 201
+:= -- 430
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 44
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 17
-empty$ -- 40
-format.name$ -- 4
-if$ -- 90
+cite$ -- 8
+duplicate$ -- 76
+empty$ -- 174
+format.name$ -- 46
+if$ -- 484
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 1
-newline$ -- 14
-num.names$ -- 4
-pop$ -- 12
+int.to.str$ -- 7
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 14
+pop$ -- 34
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 37
 quote$ -- 0
-skip$ -- 13
+skip$ -- 50
 stack$ -- 0
-substring$ -- 10
-swap$ -- 2
+substring$ -- 164
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
-warning$ -- 0
-while$ -- 4
-width$ -- 3
-write$ -- 24
+type$ -- 28
+warning$ -- 1
+while$ -- 24
+width$ -- 8
+write$ -- 77
 (There were 4 warnings)

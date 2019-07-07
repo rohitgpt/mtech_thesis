@@ -6,20 +6,19 @@
 \BOOKMARK [2][-]{subsection.3.3}{Optimization Problem}{section.3}% 6
 \BOOKMARK [2][-]{subsection.3.4}{Cell Size}{section.3}% 7
 \BOOKMARK [2][-]{subsection.3.5}{Results}{section.3}% 8
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Normal}{subsection.3.5}% 9
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Extreme}{subsection.3.5}% 10
-\BOOKMARK [3][-]{subsubsection.3.5.3}{Height}{subsection.3.5}% 11
-\BOOKMARK [2][-]{subsection.3.6}{Conclusion}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{2D Simulation}{}% 13
-\BOOKMARK [2][-]{subsection.4.1}{Overview}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.2}{Optimization Problem}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.3}{Finite Element Analysis}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.4}{Periodic Boundary Conditions}{section.4}% 17
-\BOOKMARK [3][-]{subsubsection.4.4.1}{Penalty Method}{subsection.4.4}% 18
-\BOOKMARK [2][-]{subsection.4.5}{Homogenization}{section.4}% 19
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Implementation}{subsection.4.5}% 20
-\BOOKMARK [2][-]{subsection.4.6}{Sensitivity Analysis}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.7}{Fitering}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.8}{Procedure}{section.4}% 23
-\BOOKMARK [2][-]{subsection.4.9}{Results}{section.4}% 24
-\BOOKMARK [1][-]{section.5}{References}{}% 25
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Extreme}{subsection.3.5}% 9
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Height}{subsection.3.5}% 10
+\BOOKMARK [2][-]{subsection.3.6}{Conclusion}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{2D Simulation}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Overview}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Optimization Problem}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.3}{Finite Element Analysis}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.4}{Periodic Boundary Conditions}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Penalty Method}{subsection.4.4}% 17
+\BOOKMARK [2][-]{subsection.4.5}{Homogenization}{section.4}% 18
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Implementation}{subsection.4.5}% 19
+\BOOKMARK [2][-]{subsection.4.6}{Sensitivity Analysis}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.7}{Fitering}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.8}{Procedure}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.9}{Results}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{References}{}% 24
