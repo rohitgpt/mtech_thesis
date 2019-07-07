@@ -265,6 +265,13 @@ In the previous chapter, we discussed the optimality of the one-dimensional dist
 
 \subsection{Overview}
 First, an optimization problem is defined for minimizing the overall compliance of the structure with the constraints on volume. For calculating compliance ($\frac{1}{2}F^TU$), at every iteration, we find the displacement $U$ for given force $F$ and other boundary conditions on the macro domain. Displacements are determined by finite element analysis where the stiffness matrix for the macro domain elements is obtained by homogenization method. Each macro domain element is a called base cell and is further meshed to obtain the microstructure. To obtain the homogenized properties, another finite element analysis is done on this microdomain by applying periodic boundary conditions. It is the topology of this structure that we want to optimize. To achieve this, we link the optimality of the objective function to the topology of the microstructure through sensitivity analysis. For each element in the microdomain, a number is determined based on how critical is that element is for minimizing the objective function. After each iteration, the structure is updated based on the sensitivity numbers. This process is repeated until the volume constraint is achieved and the sensitivity numbers converge.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.28]{./Plots/opti/microstructure.png}
+\caption{Schematic showing a structure made of periodic microstructure.}
+\label{fig:cantilever}
+\end{center}
+\end{figure}
 
 \subsection{Optimization Problem}
 \begin{equation}
@@ -277,11 +284,14 @@ First, an optimization problem is defined for minimizing the overall compliance 
 \end{aligned}
 \end{equation}
 Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. 
-
-<Schematic of the cantilever beam>
-
-<Schematic of the microstructure>
-
+\cite{huang2013topology}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.2]{./Plots/opti/cant.png}
+\caption{Schematic of cantilever beam}
+\label{fig:cantilever}
+\end{center}
+\end{figure}
 \subsection{Finite Element Analysis} 
 The optimization problem defined in \eqref{eq:2dopt} requires the finite element analysis to be done on two scales, one for macrostructure and another for the base cell. For the microstructure, since the design variables can be either 0 or 1, Solid Isotropic Material with Penalization model\cite{paper:simp} is used for obtaining the material properties. Thus, the elasticity matrix can be written as
 \begin{equation}
@@ -364,10 +374,21 @@ v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
 \eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.\par
-<Put schemtics of bc for first, second case>\\
-<Put schemtics of bc for third case>\\
-<Put deformation plots for each>\\
-
+\begin{figure}[H]
+\begin{center}
+     \subfloat[\label{subfig-1:pbc}]{
+		\includegraphics[scale=0.3]{./Plots/pbc/pbc1}
+     }
+     \subfloat[\label{subfig-2:pbc}]{
+       \includegraphics[scale=.21]{./Plots/pbc/pbc1.png}
+     }
+     \subfloat[\label{subfig-3:pbc}]{
+       \includegraphics[scale=.28]{./Plots/pbc/pbc2.png}
+     }
+	\label{fig:pbc}
+	\caption{(a)Representative Base cell, (b)PBCs for $[1 0 0]^T$ and $[0 1 0]^T$ cases, (c)PBCs for $[0 0 1]^T$ case}
+\end{center}
+\end{figure}
 \subsubsection{Penalty Method}
 \label{sec:pbc}
 We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
@@ -394,6 +415,21 @@ If $[\bm\alpha]$ is null matrix, all constraints are ignored, else if $\alpha_i$
 \bigg([\e K]+\alpha[\e C]^T[\e C]\bigg)\{\e U\} = \{\e F\} + \alpha[\e C]^T\{\e Q\}
 \end{equation}
 Eq \eqref{eq:penalty1} has to be solved separately for the three cases of periodic boundary conditions.
+\begin{figure}[H]
+\begin{center}
+	\subfloat[\label{subfig-1:pbc1}]{
+		\includegraphics[trim=0cm 4cm 0cm 6cm,scale=.22]{./Plots/pbc/1}
+     }
+	\subfloat[\label{subfig-2:pbc1}]{
+		\includegraphics[trim=0cm 4cm 0cm 6cm,scale=.22]{./Plots/pbc/2}
+     }
+    \subfloat[\label{subfig-3:pbc1}]{
+		\includegraphics[trim=0cm 4cm 0cm 6cm,scale=.22]{./Plots/pbc/3}
+     }
+	\label{fig:pbc1}
+	\caption{Deformation of the base cell for the strain fields (a) $\epsilon = [1 0 0]^T$, (b) $\epsilon = [0 1 0]^T$, (c) $\epsilon = [0 0 1]^T$}
+\end{center}
+\end{figure}
 
 \subsection{Homogenization}
 The homogenization method is generally used to analyze the properties of composites with complex but periodic microstructure. The procedure replaces the composites with an equivalent homogeneous material. 
@@ -862,6 +898,18 @@ V_f;& otherwise
 \end{enumerate}
 
 \subsection{Results}
+\begin{figure}[H]
+\begin{center}
+     \subfloat[\label{subfig-1:results}]{
+		\includegraphics[scale=0.22]{./Plots/2d/1.jpg}
+     }
+     \subfloat[\label{subfig-2:results}]{
+		\includegraphics[scale=0.2]{./Plots/2d/c.png}
+     }
+	\label{fig:height}
+	\caption{(a) Optimized microstructure for L=40, H=20, (b) History of compliance throughout the optimization process}
+\end{center}
+\end{figure}
 
 \newpage
 \section{References}

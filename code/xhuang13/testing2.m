@@ -1,7 +1,7 @@
 function testing2()
-E = [1 0];
-nx=13;
-ny=13;
+E = [1 1e-4];
+nx=25;
+ny=25;
 delta = 0.02; %change in volume in every iteration
 rmin = min([7,ceil(nx/4),ceil(ny/4)]);     %for mesh independent filter
 a = 1; b = 1; %a, b for the shape function of elements in the macro FEM
@@ -33,10 +33,10 @@ x = design3(nx, ny);
 plot_fig(x, 1);
 % x(rand(), ran
 tic;
-u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E);
+u = microFEM(nx, ny, a/nx,b/ny,x,ke, b1, D, E)
 toc;
-Dh = homogenization(nx, ny, x, b1, u, D, E)
-toc;
+% Dh = homogenization(nx, ny, x, b1, u, D, E)
+% toc;
 % plot_asmb(x);
 end
 
@@ -63,15 +63,16 @@ end
 function plot_result(nx, ny, x, u)
 [X, Y] = meshgrid(1:nx+1, 1:ny+1);
 Y = flipud(Y);
-X1 = X + 1*reshape(u(1:2:size(u)), ny+1, nx+1);
-Y1 = Y + 1*reshape(u(2:2:size(u)), ny+1, nx+1);
+X1 = X + 5*reshape(u(1:2:size(u)), ny+1, nx+1);
+Y1 = Y + 5*reshape(u(2:2:size(u)), ny+1, nx+1);
 % disp(u);
 C = ones(ny+1, nx+1);
 C(1:ny, 1:nx) = 1-x;
 plot_fig(C, 5);
 figure(2);
 pcolor(X1, Y1, C);
-colormap(gray);
+map = [0.5 0.5 0.5; 1 1 1;];
+colormap(map);
 pause(.1);
 % plot(X,Y);
 end
@@ -134,7 +135,7 @@ for i=1:nx
 %     F(dof, :) = F(dof, :) + b1'*D;
   end
 end
-plot_fig(k, 2);
+% plot_fig(k, 2);
 % plot_fig(F, 3);
 z = hanging_nodes(x)
 % u1=pbc(nx, ny, a,b,k,[1,0,0]);
@@ -145,7 +146,7 @@ u2=new_pbc(nx, ny, a,b,z,k,F,[0,1,0]);
 u3=new_pbc(nx, ny, a,b,z,k,F,[0,0,1]);
 u = [u1 u2 u3];
 % plot_fig(u, 3);
-plot_result(nx, ny, x, u(:,2));
+plot_result(nx, ny, x, u(:,3));
 
 end
 
@@ -197,7 +198,7 @@ Q(l+1:l+length(un), :)    =0;
 C(sub2ind(size(C),l+1:l+length(un), un))   =1;     
 C(sub2ind(size(C),l+1:l+length(un), us))   =-1;    l=l+length(un);
 end
-fixeddofs = [fixeddofs, zerodofs];
+% fixeddofs = [fixeddofs, zerodofs];
 freedofs = setdiff(1:2*(nx+1)*(ny+1), fixeddofs);
 alpha=1e2;
 r = F*strain';

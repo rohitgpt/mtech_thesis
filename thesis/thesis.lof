@@ -20,4 +20,17 @@
 \contentsline {figure}{\numberline {10}{\ignorespaces (a) Schematic distribution of material density in young stem (on left) and old plant stem (on right) from Gibson et. al. \cite {gibson1995mechanical} (b) Density variation with height and radius obtained for an annular rod with inner radius 12mm and outer radius 36mm.\relax }}{11}{figure.caption.12}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{11}{subfigure.10.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{11}{subfigure.10.2}
-\contentsline {figure}{\numberline {11}{\ignorespaces Schematic for periodic structure and double scale modeling\relax }}{16}{figure.caption.13}
+\contentsline {figure}{\numberline {11}{\ignorespaces Schematic showing a structure made of periodic microstructure.\relax }}{13}{figure.caption.13}
+\contentsline {figure}{\numberline {12}{\ignorespaces Schematic of cantilever beam\relax }}{14}{figure.caption.14}
+\contentsline {figure}{\numberline {13}{\ignorespaces (a)Representative Base cell, (b)PBCs for $[1 0 0]^T$ and $[0 1 0]^T$ cases, (c)PBCs for $[0 0 1]^T$ case\relax }}{16}{figure.caption.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{16}{subfigure.13.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{16}{subfigure.13.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{16}{subfigure.13.3}
+\contentsline {figure}{\numberline {14}{\ignorespaces Deformation of the base cell for the strain fields (a) $\epsilon = [1 0 0]^T$, (b) $\epsilon = [0 1 0]^T$, (c) $\epsilon = [0 0 1]^T$\relax }}{17}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{17}{subfigure.14.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{17}{subfigure.14.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{17}{subfigure.14.3}
+\contentsline {figure}{\numberline {15}{\ignorespaces Schematic for periodic structure and double scale modeling\relax }}{17}{figure.caption.17}
+\contentsline {figure}{\numberline {16}{\ignorespaces (a) Optimized microstructure for L=40, H=20, (b) History of compliance throughout the optimization process\relax }}{23}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{23}{subfigure.16.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{23}{subfigure.16.2}
