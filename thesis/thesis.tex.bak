@@ -1,4 +1,6 @@
 \documentclass[10pt]{article}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
 \usepackage{bm}
 \usepackage[a4paper]{geometry}
 \usepackage{float}
@@ -136,11 +138,19 @@ For calculating parenchyma cell size, it is assumed that the cell thickness rema
 \end{center}
 \end{figure}
 Parenchyma cells consists of cellular material and air packets. Assuming cell to be spherical, let $v_a$ be the volume of air and $v_p$ be the volume of cellular material. From fig. \ref{fig:mannancell}
-
 \begin{equation*}
+\begin{split}
 v_a = \frac{4}{3}\pi r^3\\
-v_p = \frac{4}{3}\pi 
+v_p \approx 4\pi r^2t & (t<<r)\\ 
+\end{split}
 \end{equation*}
+Then
+\begin{equation}
+\begin{split}
+\frac{v_a}{v_p} = \frac{r}{3t}\\
+\Rightarrow r \approx 3t\frac{v_a}{v_p}
+\end{split}
+\end{equation}
 \subsection{Results}
 \subsubsection{Normal}
 \begin{figure}[H]
@@ -197,6 +207,7 @@ It should be noted that we didn't have the experimental data for the set of cons
 \end{center}
 \end{figure}
 \subsubsection{Height}
+It is assumed that the wind load on the bamboo stem is uniform, as it is similar to fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo.
 \begin{figure}[H]
 \begin{center}
 	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
@@ -319,6 +330,7 @@ Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and
 <Put deformation plots for each>\\
 
 \subsubsection{Penalty Method}
+\label{sec:pbc}
 We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
 \begin{equation*}
 [\textbf{C}]\{\textbf{U}\} = \{\textbf{Q}\}
@@ -761,6 +773,7 @@ Now, eq \eqref{eq:sensitivity} becomes
 \end{equation}
 Therefore, the elemental sensitivity numbers can be defined as
 \begin{equation}
+\label{eq:senanal}
 \begin{split}
 \alpha_j &= \frac{2M}{p}\frac{dC}{dx_j}\\
 &=\frac{x^{p-1}_j}{|Y_j|}\sum_{i=1}^M\e U_i^T\bigg (\int_{V_i} \textbf{B}^T\bigg[\int_{Y_j}\big (\e I-\e b\hat{\e u}_j\big)^T(\e D^1 - \e D^2)\big (\e I-\textbf{b}\hat{\e u}_j\big)\,dy_j\bigg]\textbf{B} dV_i\bigg )\e U_i
@@ -770,6 +783,7 @@ Here, both $M$ and $p$ are constant for the problem. Also, if the elements of th
 \subsection{Fitering}
 Topology optimization techniques often faces problems such as numerical instability consequences. These instabilities leads to checkerboard pattern in the topology, mesh dependency of the solution etc. To get rid off such problem, the technique of filtering is used. There are many filter that are being used in topology optimization problems. We have used a weighted mean sensitivity filter. The modified sensitivity numbers are 
 \begin{equation}
+\label{eq:wmfilter}
 \hat\alpha_j = \frac{\sum_{k=1}^{N}w(r_{jk})\alpha_k}{\sum_{k=1}^Nw(r_{jk})}
 \end{equation}
 where $r_{jk}$ is the euclidean distance between $j$th and $k$th element in the base cell. $w(r_{jk})$ is the weight assigned to the sensitivity number of $k$th element.
@@ -787,6 +801,26 @@ Further, to get gradual improvement in the topology, an average is taken with th
 \end{equation}
 
 \subsection{Procedure}
+The complete procedure for optimization is as follows
+\begin{enumerate}[start=1,label={Step \arabic*:}]
+\item Initialise the design variables $x_j$s, set parameters: filtering radius $r_0$, delta $\delta$. Define material properties, elasticity matrices $\e D$ and densities $\rho$.
+\item Find microscopic displacement field $\hat{\e u}$ using finite element analysis by applying \hyperref[sec:pbc]{periodic boundary conditions}.
+\item Find the homogenized elasticity matrix of the base cell by plugging the microscopic displacement field in \eqref{eq:dehomogenized2}.
+\item Determine the macroscopic displacement $\e U$ through \hyperref[eq:KM]{finite element analysis} using homogenized material properties $\e D^H$. Calculate compliance $C$ of structure using eq \eqref{eq:2dopt}.
+\item Do the \hyperref[eq:senanal]{sensitivity analysis} to find sensitivity numbers $\alpha_j$s
+\item Apply the \hyperref[eq:wmfilter]{weighted mean filter} to obtain filtered sensitivity numbers $\hat{\alpha_j}$s
+\item Determine the volume target for the current iteration as following
+\begin{equation}
+V^t_f = 
+\begin{cases}
+V^{t-1}_f(1-\delta);& V^{t-1}_f>V_f \text{ and } V^{t-1}_f(1-\delta) \leq V_f\\
+V^{t-1}_f(1+\delta);& V^{t-1}_f<V_f \text{ and } V^{t-1}_f(1+\delta) \geq V_f\\
+V_f;& otherwise
+\end{cases}
+\end{equation}
+\item Sort the filtered sensitivity numbers and set the design variable $x_j$s corresponding to the top $NV^t_f$ sensitivity numbers to $1$ and the other to $0$.
+\item Repeat steps 2 to 8 until the target volume is reached and the convergence criteria is met. In this thesis we have taken the determinant of sensitivity number matrix as the convergence criteria.
+\end{enumerate}
 
 \subsection{Results}
 \cite{first}
