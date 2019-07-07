@@ -207,17 +207,20 @@ It should be noted that we didn't have the experimental data for the set of cons
 \end{center}
 \end{figure}
 \subsubsection{Height}
-It is assumed that the wind load on the bamboo stem is uniform, as it is similar to fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo.Therefore, the bending moment as a function of height will 
+It is assumed that the wind load on the bamboo stem is uniform, as it is similar to a fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo. Therefore, the bending moment as a function of height can be expressed as
 \begin{equation}
 \begin{split}
-M &= Fx = qx\,dx &\qquad (q \text{ is the uniform loading})\\
-&= \int_{x}^Lqx\,dx = \frac{qx^2}{2}\bigg|^L_x = \frac{qL^2}{2}(1-\frac{x^2}{L^2})
+M &= Fx = qh\,dh &\qquad (q \text{ is the uniform loading})\\
+&= \int_{h}^Lqh\,dh = \frac{qh^2}{2}\bigg|^L_h = \frac{qL^2}{2}\bigg(1-\frac{h^2}{L^2}\bigg) = M_{max}\bigg(1-\frac{h^2}{L^2}\bigg)
 \end{split}
 \end{equation}
-Similarly, radius of curvature $R$ follows from
-\begin{equation}
-R = \frac{EI}{M}
-\end{equation}
+where $h$ is the height, $q$ is the uniform loading, $L$ is the total height of the bamboo. $L$ is assumed to be 10m.
+Similarly, radius of curvature $R$ and stress $\sigma$ follows
+\begin{eqnarray}
+R = \frac{EI}{M} = R_0\bigg(1-\frac{h^2}{L^2}\bigg)^{-1}\\
+\sigma = -\frac{Mr}{I} = \sigma_0\bigg(1-\frac{h^2}{L^2}\bigg)
+\end{eqnarray}
+Here $R_0$ and $\sigma_0$ are the minimum radius of curvature and maximum stress which occur at the base of the plant. 
 \begin{figure}[H]
 \begin{center}
 	\includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
