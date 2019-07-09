@@ -1,9 +1,11 @@
+%\documentclass[openright,twoside]{iitkthesis}
 \documentclass[10pt]{article}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage[shortlabels]{enumitem}
 \usepackage{bm}
+%\usepackage[top=25mm, outer=25mm, bottom=25mm, inner=35mm]{geometry}
 \usepackage[a4paper]{geometry}
 \usepackage{float}
 \usepackage{subfig}
@@ -18,6 +20,7 @@
 \newcommand{\e}[1]{\textbf{#1}} 
 \newcommand{\fj}[2]{\frac{\partial #1}{\partial #2}} 
 \begin{document}
+%\pagenumbering{roman}
 
 \title{Designing structurally optimal composites using plant stem material and comparing to their natural counterpart. }
 \author{Rohit Gupta, Sumit Basu}
@@ -28,8 +31,9 @@
 \newpage
 \listoffigures
 
-\newpage
+\clearpage
 \section{Introduction}
+%\pagenumbering{arabic}
 Functionally graded composites (FGCs) are generally designed with certain properties in focus. Two or more materials with contrasting and complementing properties are combined in a number of ways obtain a composite with unique combination of characteristics. Unlike man-made composites, natural materials (most of which can be classified as composites) are far more complex in structure and organisation and superior in properties. Natural material typically shows a hierarchical organisation of an array of simple chemical\cite{wegst2015bioinspired} . Such organisation can be seen at macroscale and all the way down to nanoscale. Creating structures with similar organisation is generally the goal behind studying functionally graded composites. \par
 Plant and tree stems are natural structure with a unique combination of strength and light weight. Natural material like bamboo are being tested as replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structure have gone through a lot of iteration during the process of evolution. All natural materials have been selected to be the best in their respective environment given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et. al. \cite{mwaikambo2006review} showed that there is strong relationship between the physical and mechanical properties of the stem and their fine microstructure. \par
 Silva et. al. \cite{silva2006modeling} have modelled bamboo as a functionally graded material which consists of lignin-carbohydrate complex and long cellulose fibres. Youssefian et. al. \cite{youssefian2015molecular} showed that fibres are mainly responsible for the strength while the ligin matrix captures air making the structure lighter.\par
@@ -287,7 +291,7 @@ First, an optimization problem is defined for minimizing the overall compliance 
 & & \sum_{j=1}^N V_j x_j - V_f = 0 \qquad \text{where }\quad x_j = \{0, 1\}
 \end{aligned}
 \end{equation}
-Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. Figure \ref{fig:cantilever} shows the two sample domains which will be used to test the solution.
+Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. Figure \ref{fig:cantilever}. shows the two sample domains which will be used to test the solution.
 
 \cite{huang2013topology}
 \begin{figure}[H]

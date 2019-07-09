@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  10 JUL 2019 04:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  10 JUL 2019 04:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -528,26 +528,26 @@ LaTeX Warning: Label `fig:cant1' multiply defined.
 )
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 22.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    ... okay on input line 22.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -627,7 +627,7 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring OFF on input line 20.
+Package hyperref Info: Link coloring OFF on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -637,20 +637,20 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count136
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 26.
+LaTeX Font Info:    Try loading font information for U+msa on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 26.
+LaTeX Font Info:    Try loading font information for U+msb on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -678,31 +678,33 @@ d parenchyma, (b)Radius of parenchyma
 \openout5 = `thesis.lof'.
 
  [2]
-Overfull \hbox (6.43224pt too wide) in paragraph at lines 34--34
+Overfull \hbox (6.43224pt too wide) in paragraph at lines 38--38
 \OT1/cmr/m/n/10 weight. Nat-u-ral ma-te-rial like bam-boo are be-ing tested as 
 re-place-ment for con-crete reinforcement[[]].
  []
 
 
-Overfull \hbox (7.16385pt too wide) in paragraph at lines 39--40
+Overfull \hbox (7.16385pt too wide) in paragraph at lines 43--44
 []\OT1/cmr/m/n/10 There have been many ap-pli-ca-tion of this method of two sca
 le topol-ogy op-ti-miza-tion [[]][[]][[]].
  []
 
-[3]
+[3
+
+]
 <./Plots/normal/radialfibers.png, id=257, 1101.11375pt x 339.2675pt>
 File: ./Plots/normal/radialfibers.png Graphic file (type png)
 <use ./Plots/normal/radialfibers.png>
-Package pdftex.def Info: ./Plots/normal/radialfibers.png  used on input line 45
+Package pdftex.def Info: ./Plots/normal/radialfibers.png  used on input line 49
 .
 (pdftex.def)             Requested size: 385.3956pt x 118.74539pt.
 <moment_annulus.pdf, id=265, 225.82854pt x 225.82854pt>
 File: moment_annulus.pdf Graphic file (type pdf)
 <use moment_annulus.pdf>
-Package pdftex.def Info: moment_annulus.pdf  used on input line 69.
+Package pdftex.def Info: moment_annulus.pdf  used on input line 73.
 (pdftex.def)             Requested size: 67.74908pt x 67.74908pt.
 
-Underfull \hbox (badness 5147) in paragraph at lines 65--72
+Underfull \hbox (badness 5147) in paragraph at lines 69--76
 \OT1/cmr/m/n/10 Now, flex-u-ral rigid-ity is used as mea-sure of strength which
  can be writ-ten as
  []
@@ -711,10 +713,10 @@ Underfull \hbox (badness 5147) in paragraph at lines 65--72
 <./Plots/normal/eb.png, id=273, 753.81625pt x 960.58875pt>
 File: ./Plots/normal/eb.png Graphic file (type png)
 <use ./Plots/normal/eb.png>
-Package pdftex.def Info: ./Plots/normal/eb.png  used on input line 98.
+Package pdftex.def Info: ./Plots/normal/eb.png  used on input line 102.
 (pdftex.def)             Requested size: 113.06755pt x 144.08209pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--101
+Underfull \hbox (badness 10000) in paragraph at lines 99--105
 
  []
 
@@ -722,35 +724,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 95--101
 <./Plots/cell/1.jpg, id=298, 542.025pt x 542.025pt>
 File: ./Plots/cell/1.jpg Graphic file (type jpg)
 <use ./Plots/cell/1.jpg>
-Package pdftex.def Info: ./Plots/cell/1.jpg  used on input line 141.
+Package pdftex.def Info: ./Plots/cell/1.jpg  used on input line 145.
 (pdftex.def)             Requested size: 162.60875pt x 162.60875pt.
 <cell.pdf, id=299, 225.82854pt x 225.82854pt>
 File: cell.pdf Graphic file (type pdf)
 <use cell.pdf>
-Package pdftex.def Info: cell.pdf  used on input line 146.
+Package pdftex.def Info: cell.pdf  used on input line 150.
 (pdftex.def)             Requested size: 158.07889pt x 158.07889pt.
  [6 <./Plots/cell/1.jpg> <./cell.pdf>]
 
 LaTeX Warning: Hyper reference `mannan2017correlations' on page 7 undefined on 
-input line 167.
+input line 171.
 
 <./Plots/normal/a77_1.jpg, id=316, 827.09pt x 620.3175pt>
 File: ./Plots/normal/a77_1.jpg Graphic file (type jpg)
 <use ./Plots/normal/a77_1.jpg>
-Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 173.
+Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 177.
 (pdftex.def)             Requested size: 215.03831pt x 161.27875pt.
 <./Plots/normal/mnn.png, id=317, 546.04pt x 472.76625pt>
 File: ./Plots/normal/mnn.png Graphic file (type png)
 <use ./Plots/normal/mnn.png>
-Package pdftex.def Info: ./Plots/normal/mnn.png  used on input line 176.
+Package pdftex.def Info: ./Plots/normal/mnn.png  used on input line 180.
 (pdftex.def)             Requested size: 196.57425pt x 170.19571pt.
 
-Overfull \hbox (6.6922pt too wide) in paragraph at lines 173--177
+Overfull \hbox (6.6922pt too wide) in paragraph at lines 177--181
  [][][] 
  []
 
 
-Overfull \hbox (1.30267pt too wide) in paragraph at lines 167--180
+Overfull \hbox (1.30267pt too wide) in paragraph at lines 171--184
 \OT1/cmr/m/n/10 Figure []5a[] shows the op-ti-mal dis-tri-bu-tion of two ma-te-
 ri-als cor-re-spond-ing to fibers and parenchyma.
  []
@@ -759,15 +761,15 @@ ri-als cor-re-spond-ing to fibers and parenchyma.
 File: ./Plots/normal/compositematerials.png Graphic file (type png)
 <use ./Plots/normal/compositematerials.png>
 Package pdftex.def Info: ./Plots/normal/compositematerials.png  used on input l
-ine 187.
+ine 191.
 (pdftex.def)             Requested size: 213.91904pt x 120.32945pt.
 <./Plots/normal/v.png, id=324, 710.655pt x 439.6425pt>
 File: ./Plots/normal/v.png Graphic file (type png)
 <use ./Plots/normal/v.png>
-Package pdftex.def Info: ./Plots/normal/v.png  used on input line 190.
+Package pdftex.def Info: ./Plots/normal/v.png  used on input line 194.
 (pdftex.def)             Requested size: 198.98204pt x 123.09906pt.
 
-Overfull \hbox (1.31406pt too wide) in paragraph at lines 187--191
+Overfull \hbox (1.31406pt too wide) in paragraph at lines 191--195
  [][][] 
  []
 
@@ -775,22 +777,22 @@ Overfull \hbox (1.31406pt too wide) in paragraph at lines 187--191
 <./Plots/normal/b77.jpg, id=341, 878.28125pt x 658.46pt>
 File: ./Plots/normal/b77.jpg Graphic file (type jpg)
 <use ./Plots/normal/b77.jpg>
-Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 198.
+Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 202.
 (pdftex.def)             Requested size: 263.4864pt x 197.53952pt.
  [8 <./Plots/normal/compositematerials.png> <./Plots/normal/v.png> <./Plots/nor
 mal/b77.jpg>]
 <./Plots/extremes/a53_1.jpg, id=346, 831.105pt x 618.31pt>
 File: ./Plots/extremes/a53_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a53_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 212.
+Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 216.
 (pdftex.def)             Requested size: 199.46927pt x 148.39743pt.
 <./Plots/extremes/b53.jpg, id=347, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b53.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b53.jpg>
-Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 215.
+Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 219.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Underfull \hbox (badness 1237) in paragraph at lines 217--217
+Underfull \hbox (badness 1237) in paragraph at lines 221--221
 []\OT1/cmr/m/n/10 Figure 8: |(a)Axisymmetric ra-dial dis-tri-bu-tion of fi-bres
  and parenchyma, (b)Radius of
  []
@@ -798,15 +800,15 @@ Underfull \hbox (badness 1237) in paragraph at lines 217--217
 <./Plots/extremes/a63_1.jpg, id=348, 820.06375pt x 617.30624pt>
 File: ./Plots/extremes/a63_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a63_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 225.
+Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 229.
 (pdftex.def)             Requested size: 196.81932pt x 148.15652pt.
 <./Plots/extremes/b63.jpg, id=349, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b63.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b63.jpg>
-Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 228.
+Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 232.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Underfull \hbox (badness 1237) in paragraph at lines 230--230
+Underfull \hbox (badness 1237) in paragraph at lines 234--234
 []\OT1/cmr/m/n/10 Figure 9: |(a)Axisymmetric ra-dial dis-tri-bu-tion of fi-bres
  and parenchyma, (b)Radius of
  []
@@ -816,15 +818,15 @@ Underfull \hbox (badness 1237) in paragraph at lines 230--230
 <./Plots/height/1.png, id=358, 1902.10625pt x 1701.35625pt>
 File: ./Plots/height/1.png Graphic file (type png)
 <use ./Plots/height/1.png>
-Package pdftex.def Info: ./Plots/height/1.png  used on input line 253.
+Package pdftex.def Info: ./Plots/height/1.png  used on input line 257.
 (pdftex.def)             Requested size: 228.2429pt x 204.15395pt.
 <./Plots/height/height.pdf, id=359, 597.23125pt x 845.1575pt>
 File: ./Plots/height/height.pdf Graphic file (type pdf)
 <use ./Plots/height/height.pdf>
-Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 256.
+Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 260.
 (pdftex.def)             Requested size: 193.36467pt x 247.00981pt.
 
-Overfull \hbox (16.68721pt too wide) in paragraph at lines 253--258
+Overfull \hbox (16.68721pt too wide) in paragraph at lines 257--262
  [][][][] 
  []
 
@@ -833,76 +835,76 @@ Overfull \hbox (16.68721pt too wide) in paragraph at lines 253--258
 File: ./Plots/opti/microstructure.png Graphic file (type png)
 <use ./Plots/opti/microstructure.png>
 Package pdftex.def Info: ./Plots/opti/microstructure.png  used on input line 27
-4.
+8.
 (pdftex.def)             Requested size: 238.89087pt x 146.42604pt.
  [12 <./Plots/opti/microstructure.png>]
 <./Plots/opti/cant.png, id=2393, 1054.94125pt x 759.83875pt>
 File: ./Plots/opti/cant.png Graphic file (type png)
 <use ./Plots/opti/cant.png>
-Package pdftex.def Info: ./Plots/opti/cant.png  used on input line 297.
+Package pdftex.def Info: ./Plots/opti/cant.png  used on input line 301.
 (pdftex.def)             Requested size: 179.33763pt x 129.17087pt.
 <./Plots/opti/mbb.png, id=2394, 1293.83376pt x 488.82625pt>
 File: ./Plots/opti/mbb.png Graphic file (type png)
 <use ./Plots/opti/mbb.png>
-Package pdftex.def Info: ./Plots/opti/mbb.png  used on input line 300.
+Package pdftex.def Info: ./Plots/opti/mbb.png  used on input line 304.
 (pdftex.def)             Requested size: 232.88002pt x 87.98492pt.
 
-Overfull \hbox (7.29729pt too wide) in paragraph at lines 297--301
+Overfull \hbox (7.29729pt too wide) in paragraph at lines 301--305
  [][][] 
  []
 
 
-LaTeX Warning: Citation `paper:simp' on page 13 undefined on input line 306.
+LaTeX Warning: Citation `paper:simp' on page 13 undefined on input line 310.
 
 
 LaTeX Warning: Citation `paper:homogenization' on page 13 undefined on input li
-ne 321.
+ne 325.
 
 [13 <./Plots/opti/cant.png> <./Plots/opti/mbb.png>]
 <./Plots/pbc/pbc1.pdf, id=2423, 464.02136pt x 439.78406pt>
 File: ./Plots/pbc/pbc1.pdf Graphic file (type pdf)
 <use ./Plots/pbc/pbc1.pdf>
-Package pdftex.def Info: ./Plots/pbc/pbc1.pdf  used on input line 391.
+Package pdftex.def Info: ./Plots/pbc/pbc1.pdf  used on input line 395.
 (pdftex.def)             Requested size: 139.20747pt x 131.93623pt.
 <./Plots/pbc/pbc1.png, id=2424, 679.53876pt x 663.47874pt>
 File: ./Plots/pbc/pbc1.png Graphic file (type png)
 <use ./Plots/pbc/pbc1.png>
-Package pdftex.def Info: ./Plots/pbc/pbc1.png  used on input line 394.
+Package pdftex.def Info: ./Plots/pbc/pbc1.png  used on input line 398.
 (pdftex.def)             Requested size: 142.70735pt x 139.33464pt.
 <./Plots/pbc/pbc2.png, id=2425, 493.845pt x 493.845pt>
 File: ./Plots/pbc/pbc2.png Graphic file (type png)
 <use ./Plots/pbc/pbc2.png>
-Package pdftex.def Info: ./Plots/pbc/pbc2.png  used on input line 397.
+Package pdftex.def Info: ./Plots/pbc/pbc2.png  used on input line 401.
 (pdftex.def)             Requested size: 138.27565pt x 138.27565pt.
 
-Overfull \hbox (21.93677pt too wide) in paragraph at lines 391--399
+Overfull \hbox (21.93677pt too wide) in paragraph at lines 395--403
  [][][][][][] 
  []
 
 [14]
 
-LaTeX Warning: Citation `Book:Cook' on page 15 undefined on input line 412.
+LaTeX Warning: Citation `Book:Cook' on page 15 undefined on input line 416.
 
 <./Plots/pbc/1.pdf, id=2438, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/1.pdf Graphic file (type pdf)
 <use ./Plots/pbc/1.pdf>
-Package pdftex.def Info: ./Plots/pbc/1.pdf  used on input line 432.
+Package pdftex.def Info: ./Plots/pbc/1.pdf  used on input line 436.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 <./Plots/pbc/2.pdf, id=2439, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/2.pdf Graphic file (type pdf)
 <use ./Plots/pbc/2.pdf>
-Package pdftex.def Info: ./Plots/pbc/2.pdf  used on input line 435.
+Package pdftex.def Info: ./Plots/pbc/2.pdf  used on input line 439.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 <./Plots/pbc/3.pdf, id=2440, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/3.pdf Graphic file (type pdf)
 <use ./Plots/pbc/3.pdf>
-Package pdftex.def Info: ./Plots/pbc/3.pdf  used on input line 438.
+Package pdftex.def Info: ./Plots/pbc/3.pdf  used on input line 442.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 [15 <./Plots/pbc/pbc1.pdf> <./Plots/pbc/pbc1.png> <./Plots/pbc/pbc2.png>]
 <./Plots/homo/2.jpg, id=2456, 962.59625pt x 962.59625pt>
 File: ./Plots/homo/2.jpg Graphic file (type jpg)
 <use ./Plots/homo/2.jpg>
-Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 566.
+Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 570.
 (pdftex.def)             Requested size: 192.51584pt x 192.51584pt.
 
 [16 <./Plots/pbc/1.pdf> <./Plots/pbc/2.pdf> <./Plots/pbc/3.pdf> <./Plots/homo/2
@@ -910,15 +912,15 @@ Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 566.
 <./Plots/2d/cant14020h.pdf, id=10091, 626.34pt x 597.23125pt>
 File: ./Plots/2d/cant14020h.pdf Graphic file (type pdf)
 <use ./Plots/2d/cant14020h.pdf>
-Package pdftex.def Info: ./Plots/2d/cant14020h.pdf  used on input line 916.
+Package pdftex.def Info: ./Plots/2d/cant14020h.pdf  used on input line 920.
 (pdftex.def)             Requested size: 205.00797pt x 204.74557pt.
 <./Plots/2d/mat14020h.pdf, id=10093, 626.34pt x 597.23125pt>
 File: ./Plots/2d/mat14020h.pdf Graphic file (type pdf)
 <use ./Plots/2d/mat14020h.pdf>
-Package pdftex.def Info: ./Plots/2d/mat14020h.pdf  used on input line 919.
+Package pdftex.def Info: ./Plots/2d/mat14020h.pdf  used on input line 923.
 (pdftex.def)             Requested size: 205.00797pt x 204.74557pt.
 
-Overfull \hbox (5.09557pt too wide) in paragraph at lines 916--920
+Overfull \hbox (5.09557pt too wide) in paragraph at lines 920--924
  [][][] 
  []
 
@@ -926,43 +928,43 @@ Overfull \hbox (5.09557pt too wide) in paragraph at lines 916--920
 <./Plots/2d/cant14020s.jpg, id=10110, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14020s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14020s.jpg  used on input line 929.
+Package pdftex.def Info: ./Plots/2d/cant14020s.jpg  used on input line 933.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant14020.jpg, id=10111, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14020.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14020.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14020.jpg  used on input line 932.
+Package pdftex.def Info: ./Plots/2d/cant14020.jpg  used on input line 936.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Overfull \hbox (5.08052pt too wide) in paragraph at lines 926--945
+Overfull \hbox (5.08052pt too wide) in paragraph at lines 930--949
  [] 
  []
 
 <./Plots/2d/cant12040s.jpg, id=10112, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant12040s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 953.
+Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 957.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant12040.jpg, id=10113, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant12040.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 956.
+Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 960.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Overfull \hbox (5.08052pt too wide) in paragraph at lines 950--969
+Overfull \hbox (5.08052pt too wide) in paragraph at lines 954--973
  [] 
  []
 
 File: ./Plots/2d/cant12040s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 977.
+Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 981.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 File: ./Plots/2d/cant12040.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 980.
+Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 984.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Overfull \hbox (5.08052pt too wide) in paragraph at lines 974--993
+Overfull \hbox (5.08052pt too wide) in paragraph at lines 978--997
  [] 
  []
 
@@ -971,30 +973,30 @@ Overfull \hbox (5.08052pt too wide) in paragraph at lines 974--993
 <./Plots/2d/mat14020s.jpg, id=10129, 878.28125pt x 658.46pt>
 File: ./Plots/2d/mat14020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/mat14020s.jpg>
-Package pdftex.def Info: ./Plots/2d/mat14020s.jpg  used on input line 1001.
+Package pdftex.def Info: ./Plots/2d/mat14020s.jpg  used on input line 1005.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/mat14020.jpg, id=10130, 878.28125pt x 658.46pt>
 File: ./Plots/2d/mat14020.jpg Graphic file (type jpg)
 <use ./Plots/2d/mat14020.jpg>
-Package pdftex.def Info: ./Plots/2d/mat14020.jpg  used on input line 1004.
+Package pdftex.def Info: ./Plots/2d/mat14020.jpg  used on input line 1008.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Overfull \hbox (5.08052pt too wide) in paragraph at lines 998--1016
+Overfull \hbox (5.08052pt too wide) in paragraph at lines 1002--1020
  [] 
  []
 
 <./Plots/2d/cant24020s.jpg, id=10131, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant24020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant24020s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant24020s.jpg  used on input line 1024.
+Package pdftex.def Info: ./Plots/2d/cant24020s.jpg  used on input line 1028.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant24020.jpg, id=10132, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant24020.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant24020.jpg>
-Package pdftex.def Info: ./Plots/2d/cant24020.jpg  used on input line 1027.
+Package pdftex.def Info: ./Plots/2d/cant24020.jpg  used on input line 1031.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
-Overfull \hbox (5.08052pt too wide) in paragraph at lines 1021--1038
+Overfull \hbox (5.08052pt too wide) in paragraph at lines 1025--1042
  [] 
  []
 
@@ -1008,12 +1010,12 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
  [26])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1045.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1049.
  [27]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1045.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1049.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1045.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1045.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1049.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1049.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: E772693D7B867EE0CE869B84043D5F84;1376.
@@ -1024,7 +1026,7 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1045.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1049.
  ) 
 Here is how much of TeX's memory you used:
  10260 strings out of 492982
@@ -1052,7 +1054,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (27 pages, 3551610 bytes).
+Output written on thesis.pdf (27 pages, 3551609 bytes).
 PDF statistics:
  10268 PDF objects out of 10688 (max. 8388607)
  5376 compressed objects within 54 object streams
