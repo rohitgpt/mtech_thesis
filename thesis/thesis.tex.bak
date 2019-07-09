@@ -30,9 +30,13 @@
 
 \newpage
 \section{Introduction}
-
-\newpage
-\section{Motivation}
+Functionally graded composites (FGCs) are generally designed with certain properties in focus. Two or more materials with contrasting and complementing properties are combined in a number of ways obtain a composite with unique combination of characteristics. Unlike man-made composites, natural materials (most of which can be classified as composites) are far more complex in structure and organisation and superior in properties. Natural material typically shows a hierarchical organisation of an array of simple chemical\cite{wegst2015bioinspired} . Such organisation can be seen at macroscale and all the way down to nanoscale. Creating structures with similar organisation is generally the goal behind studying functionally graded composites. \par
+Plant and tree stems are natural structure with a unique combination of strength and light weight. Natural material like bamboo are being tested as replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structure have gone through a lot of iteration during the process of evolution. All natural materials have been selected to be the best in their respective environment given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et. al. \cite{mwaikambo2006review} showed that there is strong relationship between the physical and mechanical properties of the stem and their fine microstructure. \par
+Silva et. al. \cite{silva2006modeling} have modelled bamboo as a functionally graded material which consists of lignin-carbohydrate complex and long cellulose fibres. Youssefian et. al. \cite{youssefian2015molecular} showed that fibres are mainly responsible for the strength while the ligin matrix captures air making the structure lighter.\par
+For studying plant stems, we have chosen bamboo as the candidate. Our approach is gradual meaning we will start with 1D simulation and go on to compare the 3D structure of bamboo with an equivalent but optimal functionally graded material composed of material with similar mechanical properties as that of the consituents of bamboo. In this thesis, however, 1D simulations and code for obtaining optimal 2D cellular structures will be discussed. \par
+On a macro level bamboo has an asymmetric distribution of material\cite{habibi2015asymmetric}. The aerial distribution of material across the cross-section can modelled in 1D. This is modelled as a nonlinear optimization problem \cite{svanberg2007mma} as discussed in the first chapter.
+For obtaining 2D models optimum FGCs, topology optimization\cite{bendsoe2009topology} with homogenization has been used. Sigmund et. al. \cite{sigmund1998numerical} tackled the problems of numerical instabilites associated with topology optimization problem such as mesh-dependent solution, checkboard pattern in the topology etc by developing mesh independency filters. Lazarov et. al. \cite{lazarov2011filters} studied a number of such filters. Papanicolau et. al. \cite{papanicolau1978asymptotic} and Sanchez et. al. \cite{sanchez1980non} developed the theory of a homogenization. This is based on the asymptotic expansion of the system response. Bendose et. al. \cite{bendsoe1988generating} developed the method of applying homogenization techniques to the problem of topology optimization at multi-scale. Zhang et. al. \cite{zhang2006scale} proposed a design element concept and compared with approach of asymptotic homogenization. Hassani et. al. \cite{hassani1998review} discussed the periodic boundary condition needed for the process of homogenization. \par 
+There have been many application of this method of two scale topology optimization \cite{huang2015topology}\cite{huang2011topological}\cite{niu2009optimum}. This method of optimization particularly suit our problem. Since the microstructure of bamboo consists of parenchyma cell and long fibres, i.e., a periodic cellular microstructure. This optimization approach is best suited for periodic structures. 
 \newpage
 \section{1D Simulation}
 Bamboo is a natural composite which is composed of fibers embedded in a matrix of parenchyma cells. Bamboo fibers are mainly composed of cellulose, hemicellulose and lignin.\cite{mwaikambo2006review} Fibers are spread out across the cross-section in a graded manner with higher density towards the periphery. Also, the size of parenchyma cells decreases along the radially outward direction as the air content reduces. This results in axisymmetric areal density variation in the radial direction (fig. \ref{fig:fibrebundle}).
@@ -283,12 +287,17 @@ First, an optimization problem is defined for minimizing the overall compliance 
 & & \sum_{j=1}^N V_j x_j - V_f = 0 \qquad \text{where }\quad x_j = \{0, 1\}
 \end{aligned}
 \end{equation}
-Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. 
+Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. Figure \ref{fig:ca
 \cite{huang2013topology}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.2]{./Plots/opti/cant.png}
-\caption{Schematic of cantilever beam}
+\subfloat[]{
+\includegraphics[scale=0.17]{./Plots/opti/cant.png}
+}
+\subfloat[]{
+\includegraphics[scale=0.18]{./Plots/opti/mbb.png}
+}
+\caption{Schematic of (a) cantilever beam and (b) MBB beam}
 \label{fig:cantilever}
 \end{center}
 \end{figure}
@@ -427,7 +436,7 @@ Eq \eqref{eq:penalty1} has to be solved separately for the three cases of period
 		\includegraphics[trim=0cm 4cm 0cm 6cm,scale=.22]{./Plots/pbc/3}
      }
 	\label{fig:pbc1}
-	\caption{Deformation of the base cell for the strain fields (a) $\epsilon = [1 0 0]^T$, (b) $\epsilon = [0 1 0]^T$, (c) $\epsilon = [0 0 1]^T$}
+	\caption{Deformation of the base cell for the strain fields (a) $\epsilon = [1\,0\,0]^T$, (b) $\epsilon = [0\,1\,0]^T$, (c) $\epsilon = [0\,0\,1]^T$}
 \end{center}
 \end{figure}
 
@@ -897,10 +906,139 @@ V_f;& otherwise
 \item Repeat steps 2 to 8 until the target volume is reached and the convergence criteria is met. In this thesis we have taken the determinant of sensitivity number matrix as the convergence criteria.
 \end{enumerate}
 
+
 \subsection{Results}
+\begin{figure}[H]
+\begin{center}
+	\subfloat[]{
+		\includegraphics[clip, trim=2cm 2cm 2cm 1cm, scale=0.4]{./Plots/2d/cant14020h}
+	}
+	\subfloat[]{
+		\includegraphics[clip, trim=2cm 2cm 2cm 1cm, scale=0.4]{./Plots/2d/mat14020h}
+     }
+\caption{Evolution of structure (a) Cantilever beam (40x20) (b) MBB beam (40x20)}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant14020s.jpg}
+	}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant14020.jpg}
+     }
+	\end{tabular}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		${
+		D^H = \begin{bmatrix}
+		0.3052&    0.0487&   0\\
+    		0.0487&    0.0927&   0\\
+	   	0&   0&    0.0504
+   		\end{bmatrix}}$
+   		}
+	\end{tabular}
+	\label{fig:cant1}
+	\caption{(a) Optimized base cell, (b) 3x3 arrangement of base cell, (c) $D^H$ matrix of the base cell for Cantilever beam of L=40, H=20 starting with design 1}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant12040s.jpg}
+	}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant12040.jpg}
+     }
+	\end{tabular}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		${
+		D^H = \begin{bmatrix}
+		0.1938&	0.0869&	0\\
+	    0.0869&	0.2239&	0\\
+	   	0&		0&		0.0943
+   		\end{bmatrix}}$
+   		}
+	\end{tabular}
+	\label{fig:cant1}
+	\caption{(a) Optimized base cell, (b) 3x3 arrangement of base cell, (c) $D^H$ matrix of the base cell for Cantilever beam of L=20, H=40 starting with design 1}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant12040s.jpg}
+	}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant12040.jpg}
+     }
+	\end{tabular}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		${
+		D^H = \begin{bmatrix}
+		0.1938&	0.0869&	0\\
+	    0.0869&	0.2239&	0\\
+	   	0&		0&		0.0943
+   		\end{bmatrix}}$
+   		}
+	\end{tabular}
+	\label{fig:cant1}
+	\caption{(a) Optimized base cell, (b) 3x3 arrangement of base cell, (c) $D^H$ matrix of the base cell for Cantilever beam of L=20, H=40 starting with design 1}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/mat14020s.jpg}
+	}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/mat14020.jpg}
+     }
+	\end{tabular}
+	\begin{tabular}{@{}c}
+		\subfloat[]{
+		${
+		D^H = \begin{bmatrix}
+	0.1871&    0.0620&    0.0011\\
+    0.0620&    0.2220&    0.0124\\
+    0.0011&    0.0124&    0.0660
+    	\end{bmatrix}}$}
+	\end{tabular}
+	\label{fig:cant1}
+	\caption{(a) Optimized base cell, (b) 3x3 arrangement of base cell, (c) $D^H$ matrix of the base cell for MBB beam of L=40, H=20 starting with design 1}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+	\begin{tabular}{@{}c}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant24020s.jpg}
+	}
+	\subfloat[]{
+		\includegraphics[scale=0.23]{./Plots/2d/cant24020.jpg}
+     }
+	\end{tabular}
+	\begin{tabular}{@{}c}
+		${
+		D^H = \begin{bmatrix}
+		0.3273&    0.0477&         0\\
+	    0.0477&    0.0547&         0\\
+         0&         0&    0.0608
+   		\end{bmatrix}}$
+	\end{tabular}
+	\label{fig:cant1}
+	\caption{(a) Optimized base cell, (b) 3x3 arrangement of base cell, (c) $D^H$ matrix of the base cell for Cantilever beam of L=40, H=20 starting with design 2}
+\end{center}
+\end{figure}
 
 \newpage
-\section{References}
 \bibliographystyle{plain}
 \bibliography{bib}
 \end{document}
