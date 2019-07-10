@@ -1,6 +1,6 @@
 function main(Problem)
 % opengl hardwarebasic
-opengl('save', 'software');
+% opengl('save', 'software');
 n=30;
 
 j=25;
@@ -47,25 +47,26 @@ t = 2.5;
 %%%        sum((r.^3).*(X(2:n+1)*E1 + X(n+2:2*n+1)*E2))
         dr = (r2/1000-r1/1000)/n;
 %%%       cur*M_min/(dr*pi)
-        f=figure('visible', 'off');
+        f=figure('Visible', 'off');
+%         set(f, 'Visible', 'off')
         plot(r*1000, X(2:n+1), 'b');
         axis([0 r2 0 1]);
         hold on;
         plot(r*1000, X(n+2:2*n+1),'r');
-        title({['\sigma_{max} = ' num2str(sigma/1000000) ' MPa Moment = ' num2str(M_min) ' N-m  \rho_1 = ' num2str(rho1)],...
-            'Normal'});
+        title(['\sigma_{max} = ' num2str(sigma/1000000) ' MPa Moment = ' num2str(M_min) ' N-m  \rho_1 = ' num2str(rho1)]);
         xlabel('Radius (in mm)');
         ylabel('Proportions of different material');
         legend({'First Material', 'Second Material'}, 'Location', 'northwest');
-        saveas(f, sprintf('a%d%d.jpg', i, j), 'jpeg');
-        savefig(sprintf('a%d%d', i, j));
-        pause(0.1);
         hold off;
+        savefig(['a', num2str(i), num2str(j)]);
+        saveas(f, ['a', num2str(i), num2str(j), '.jpg']);
+        pause(0.1);
 
 
 
 
-        g=figure('visible', 'off');
+        g=figure('Visible', 'off');
+%         set(g, 'Visible', 'off')
         ratio = (1-X(2:n+1)-X(n+2:2*n+1))./(X(n+2:2*n+1));
         plot(r*1000, 3*t*ratio);
 %         hold on;
@@ -73,8 +74,8 @@ t = 2.5;
         title(['Radius of Parenchyma cells'])
         xlabel('Culm Radius (in mm)')
         ylabel('Radius of Parenchyma cells (in um)');
-        saveas(g, sprintf('b%d%d.jpg', i, j), 'jpeg');
-        savefig(sprintf('b%d%d', i, j));
+        savefig(['b', num2str(i), num2str(j)]);
+        saveas(g, ['b', num2str(i), num2str(j), '.jpg']);
         pause(0.1);
 %         hold off;
     end

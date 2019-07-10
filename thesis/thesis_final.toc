@@ -6,8 +6,8 @@
 \contentsline {section}{\numberline {2.3}Optimization Problem}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Cell Size}{6}{section.2.4}
 \contentsline {section}{\numberline {2.5}Results}{7}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Predictions for few extra cases}{9}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Height}{10}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.1}Predictions for few extra cases}{10}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Height}{11}{subsection.2.5.2}
 \contentsline {section}{\numberline {2.6}Conclusion}{12}{section.2.6}
 \contentsline {chapter}{\numberline {3}2D Simulation}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Overview}{13}{section.3.1}
