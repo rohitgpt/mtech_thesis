@@ -58,6 +58,7 @@ t = 2.5;
         ylabel('Proportions of different material');
         legend({'First Material', 'Second Material'}, 'Location', 'northwest');
         saveas(f, sprintf('a%d%d.jpg', i, j), 'jpeg');
+        savefig(sprintf('a%d%d', i, j));
         pause(0.1);
         hold off;
 
@@ -66,13 +67,14 @@ t = 2.5;
 
         g=figure('visible', 'off');
         ratio = (1-X(2:n+1)-X(n+2:2*n+1))./(X(n+2:2*n+1));
-        plot(r*1000, 2*t*ratio);
+        plot(r*1000, 3*t*ratio);
 %         hold on;
 %         plot(r*1000, sqrt((1+ratio)*(19^2-16.5^2)));
         title(['Radius of Parenchyma cells'])
         xlabel('Culm Radius (in mm)')
         ylabel('Radius of Parenchyma cells (in um)');
         saveas(g, sprintf('b%d%d.jpg', i, j), 'jpeg');
+        savefig(sprintf('b%d%d', i, j));
         pause(0.1);
 %         hold off;
     end

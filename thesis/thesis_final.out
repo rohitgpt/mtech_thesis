@@ -1,0 +1,25 @@
+\BOOKMARK [0][-]{chapter*.5}{List of Figures}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
+\BOOKMARK [0][-]{chapter.2}{1D Simulation}{}% 3
+\BOOKMARK [1][-]{section.2.1}{Formulation}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.2}{Implementation}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.3}{Optimization Problem}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.4}{Cell Size}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.5}{Results}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.5.1}{Predictions for few extra cases}{section.2.5}% 9
+\BOOKMARK [2][-]{subsection.2.5.2}{Height}{section.2.5}% 10
+\BOOKMARK [1][-]{section.2.6}{Conclusion}{chapter.2}% 11
+\BOOKMARK [0][-]{chapter.3}{2D Simulation}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Overview}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{Optimization Problem}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{Finite Element Analysis}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{Periodic Boundary Conditions}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.4.1}{Penalty Method}{section.3.4}% 17
+\BOOKMARK [1][-]{section.3.5}{Homogenization}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.5.1}{Implementation}{section.3.5}% 19
+\BOOKMARK [1][-]{section.3.6}{Sensitivity Analysis}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.7}{Fitering}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.8}{Procedure}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.9}{Examples of optimized microstructures}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Summary and Future Work}{}% 24
+\BOOKMARK [0][-]{Item.12}{References}{}% 25

@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: thesis_final.aux
+The style file: plain.bst
+Database file #1: bib.bib
+Warning--I didn't find a database entry for "paper:simp"
+Warning--I didn't find a database entry for "paper:homogenization"
+Warning--I didn't find a database entry for "Book:Cook"
+Warning--empty journal in ghavami2003bamboo
+You've used 27 entries,
+            2118 wiz_defined-function locations,
+            673 strings with 9202 characters,
+and the built_in function-call counts, 9117 in all, are:
+= -- 895
+> -- 472
+< -- 1
++ -- 189
+- -- 158
+* -- 718
+:= -- 1575
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 158
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 296
+empty$ -- 669
+format.name$ -- 158
+if$ -- 1820
+int.to.chr$ -- 0
+int.to.str$ -- 27
+missing$ -- 29
+newline$ -- 138
+num.names$ -- 54
+pop$ -- 121
+preamble$ -- 1
+purify$ -- 133
+quote$ -- 0
+skip$ -- 197
+stack$ -- 0
+substring$ -- 621
+swap$ -- 27
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 104
+warning$ -- 1
+while$ -- 93
+width$ -- 29
+write$ -- 296
+(There were 4 warnings)
