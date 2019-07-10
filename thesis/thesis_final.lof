@@ -3,19 +3,19 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Sector of cross-section showing distribution of fibre bundles. \cite {grosser1971anatomy}\relax }}{3}{figure.caption.6}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Annulus with inner radius r1 and outer radius r2\relax }}{4}{figure.caption.7}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Beam deformation\relax }}{5}{figure.caption.8}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Cross-sectional micrograph showing the dimensions of typical parenchyma cell \cite {mannan2017correlations}\relax }}{6}{figure.caption.9}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{6}{subfigure.4.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{6}{subfigure.4.2}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces (a)Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma _{max} = $ 28MPa and $M_{max} = $ 580 N-m. (b) The variation of areal density $\rho (r)\mathbb {C}$ and the experimental data in dotted line where $D_i$ and $D_o$ are inner and outer diameters respectively. \cite {mannan2017correlations}\relax }}{7}{figure.caption.10}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{7}{subfigure.5.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{7}{subfigure.5.2}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Cross-sectional micrograph showing the dimensions of typical parenchyma cell \cite {mannan2017correlations}\relax }}{7}{figure.caption.9}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{7}{subfigure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{7}{subfigure.4.2}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces (a)Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma _{max} = $ 28MPa and $M_{max} = $ 580 N-m. (b) The variation of areal density $\rho (r)\mathbb {C}$ and the experimental data in dotted line where $D_i$ and $D_o$ are inner and outer diameters respectively. \cite {mannan2017correlations}\relax }}{8}{figure.caption.10}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{8}{subfigure.5.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{8}{subfigure.5.2}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Variation of volume fraction of the fibers with the non-dimensional distance from the inner surface.(a) For different nodes(n), Amada et. al. \cite {amada1996mechanical} (b) For different type of samples, Ghavami et. al. \cite {ghavami2003bamboo}\relax }}{8}{figure.caption.11}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{8}{subfigure.6.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{8}{subfigure.6.2}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Radius of parenchyma cell size obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma _{max} = $ 28MPa and $M_{max} = $ 580 N-m\relax }}{8}{figure.caption.12}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces (a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an annular rod with inner radius 90mm and outer radius 100mm with $\sigma _{max} = $ 150MPa and $M_{max} = $ 630 N-m\relax }}{9}{figure.caption.13}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{9}{subfigure.8.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{9}{subfigure.8.2}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Radius of parenchyma cell size obtained for an annular rod with inner radius 12mm and outer radius 36mm with $\sigma _{max} = $ 28MPa and $M_{max} = $ 580 N-m\relax }}{9}{figure.caption.12}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces (a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an annular rod with inner radius 90mm and outer radius 100mm with $\sigma _{max} = $ 150MPa and $M_{max} = $ 630 N-m\relax }}{10}{figure.caption.13}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{10}{subfigure.8.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{10}{subfigure.8.2}
 \contentsline {figure}{\numberline {2.9}{\ignorespaces (a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma _{max} = $ 24MPa and $M_{max} = $ 420 N-m\relax }}{10}{figure.caption.14}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{10}{subfigure.9.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{10}{subfigure.9.2}
@@ -27,7 +27,7 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Schematic of (a) cantilever beam and (b) MBB beam\relax }}{15}{figure.caption.17}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{15}{subfigure.2.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{15}{subfigure.2.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces (a)Representative Base cell, (b)PBCs for $[1 0 0]^T$ and $[0 1 0]^T$ cases, (c)PBCs for $[0 0 1]^T$ case\relax }}{17}{figure.caption.18}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces (a)Representative Base cell, (b)PBCs for $[1\tmspace +\thinmuskip {.1667em}0\tmspace +\thinmuskip {.1667em}0]^T$ and $[0\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}0]^T$ cases, (c)PBCs for $[0\tmspace +\thinmuskip {.1667em}0\tmspace +\thinmuskip {.1667em}1]^T$ case\relax }}{17}{figure.caption.18}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{17}{subfigure.3.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{17}{subfigure.3.2}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{17}{subfigure.3.3}

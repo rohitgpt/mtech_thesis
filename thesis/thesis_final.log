@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  10 JUL 2019 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  10 JUL 2019 17:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -759,7 +759,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [14]
 Chapter 1.
-[1
+
+Underfull \vbox (badness 1024) has occurred while \output is active []
+
+ [1
 
 
 ]
@@ -774,31 +777,34 @@ Chapter 2.
 <./Plots/normal/radialfibers.png, id=334, 1101.11375pt x 339.2675pt>
 File: ./Plots/normal/radialfibers.png Graphic file (type png)
 <use ./Plots/normal/radialfibers.png>
-Package pdftex.def Info: ./Plots/normal/radialfibers.png  used on input line 91
+Package pdftex.def Info: ./Plots/normal/radialfibers.png  used on input line 92
 .
 (pdftex.def)             Requested size: 385.3956pt x 118.74539pt.
 
-Overfull \hbox (10.59792pt too wide) in paragraph at lines 96--96
+Overfull \hbox (10.59792pt too wide) in paragraph at lines 97--99
 []\OT1/cmr/m/n/10.95 This can be mod-eled as the dis-tri-bu-tion of two ma-te-r
 i-als, and air (cap-tured in parenchyma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
+
  []
 
 [3
 
  <./Plots/normal/radialfibers.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
+
+ []
+
 <moment_annulus.pdf, id=347, 225.82854pt x 225.82854pt>
 File: moment_annulus.pdf Graphic file (type pdf)
 <use moment_annulus.pdf>
-Package pdftex.def Info: moment_annulus.pdf  used on input line 115.
+Package pdftex.def Info: moment_annulus.pdf  used on input line 116.
 (pdftex.def)             Requested size: 67.74908pt x 67.74908pt.
 
-Underfull \hbox (badness 1436) in paragraph at lines 111--118
-\OT1/cmr/m/n/10.95 Now, flex-u-ral rigid-ity is used as mea-sure of strength wh
-ich can be writ-ten as
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2057) has occurred while \output is active []
 
 
 
@@ -808,13 +814,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4 <./moment_annulus.pdf>]
-<./Plots/normal/eb.png, id=358, 753.81625pt x 960.58875pt>
+<./Plots/normal/eb.png, id=356, 753.81625pt x 960.58875pt>
 File: ./Plots/normal/eb.png Graphic file (type png)
 <use ./Plots/normal/eb.png>
-Package pdftex.def Info: ./Plots/normal/eb.png  used on input line 144.
+Package pdftex.def Info: ./Plots/normal/eb.png  used on input line 151.
 (pdftex.def)             Requested size: 113.06755pt x 144.08209pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--147
+Underfull \hbox (badness 10000) in paragraph at lines 146--154
 
  []
 
@@ -832,13 +838,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/cell/1.jpg, id=379, 542.025pt x 542.025pt>
 File: ./Plots/cell/1.jpg Graphic file (type jpg)
 <use ./Plots/cell/1.jpg>
-Package pdftex.def Info: ./Plots/cell/1.jpg  used on input line 187.
+Package pdftex.def Info: ./Plots/cell/1.jpg  used on input line 195.
 (pdftex.def)             Requested size: 162.60875pt x 162.60875pt.
 <cell.pdf, id=380, 225.82854pt x 225.82854pt>
 File: cell.pdf Graphic file (type pdf)
 <use cell.pdf>
-Package pdftex.def Info: cell.pdf  used on input line 192.
+Package pdftex.def Info: cell.pdf  used on input line 200.
 (pdftex.def)             Requested size: 158.07889pt x 158.07889pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--205
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -846,43 +860,47 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6 <./Plots/cell/1.jpg> <./cell.pdf>]
+[6]
 
 LaTeX Warning: Hyper reference `mannan2017correlations' on page 7 undefined on 
-input line 213.
+input line 221.
 
-<./Plots/normal/a77_1.jpg, id=397, 827.09pt x 620.3175pt>
+<./Plots/normal/a77_1.jpg, id=392, 827.09pt x 620.3175pt>
 File: ./Plots/normal/a77_1.jpg Graphic file (type jpg)
 <use ./Plots/normal/a77_1.jpg>
-Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 219.
+Package pdftex.def Info: ./Plots/normal/a77_1.jpg  used on input line 227.
 (pdftex.def)             Requested size: 215.03831pt x 161.27875pt.
-<./Plots/normal/mnn.png, id=398, 546.04pt x 472.76625pt>
+<./Plots/normal/mnn.png, id=393, 546.04pt x 472.76625pt>
 File: ./Plots/normal/mnn.png Graphic file (type png)
 <use ./Plots/normal/mnn.png>
-Package pdftex.def Info: ./Plots/normal/mnn.png  used on input line 222.
+Package pdftex.def Info: ./Plots/normal/mnn.png  used on input line 230.
 (pdftex.def)             Requested size: 196.57425pt x 170.19571pt.
-<./Plots/normal/compositematerials.png, id=404, 594.22pt x 334.24875pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7 <./Plots/cell/1.jpg> <./cell.pdf>]
+<./Plots/normal/compositematerials.png, id=410, 594.22pt x 334.24875pt>
 File: ./Plots/normal/compositematerials.png Graphic file (type png)
 <use ./Plots/normal/compositematerials.png>
 Package pdftex.def Info: ./Plots/normal/compositematerials.png  used on input l
-ine 233.
+ine 240.
 (pdftex.def)             Requested size: 213.91904pt x 120.32945pt.
-<./Plots/normal/v.png, id=405, 710.655pt x 439.6425pt>
+<./Plots/normal/v.png, id=411, 710.655pt x 439.6425pt>
 File: ./Plots/normal/v.png Graphic file (type png)
 <use ./Plots/normal/v.png>
-Package pdftex.def Info: ./Plots/normal/v.png  used on input line 236.
+Package pdftex.def Info: ./Plots/normal/v.png  used on input line 243.
 (pdftex.def)             Requested size: 198.98204pt x 123.09906pt.
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7 <./Plots/normal/a77_1.jpg> <./Plots/normal/mnn.png>]
-<./Plots/normal/b77.jpg, id=423, 878.28125pt x 658.46pt>
+<./Plots/normal/b77.jpg, id=418, 878.28125pt x 658.46pt>
 File: ./Plots/normal/b77.jpg Graphic file (type jpg)
 <use ./Plots/normal/b77.jpg>
-Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 245.
+Package pdftex.def Info: ./Plots/normal/b77.jpg  used on input line 252.
 (pdftex.def)             Requested size: 263.4864pt x 197.53952pt.
 
 
@@ -891,27 +909,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8 <./Plots/normal/compositematerials.png> <./Plots/normal/v.png> <./Plots/norm
-al/b77.jpg>]
+[8 <./Plots/normal/a77_1.jpg> <./Plots/normal/mnn.png> <./Plots/normal/composit
+ematerials.png> <./Plots/normal/v.png>]
 <./Plots/extremes/a53_1.jpg, id=428, 831.105pt x 618.31pt>
 File: ./Plots/extremes/a53_1.jpg Graphic file (type jpg)
 <use ./Plots/extremes/a53_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 259.
+Package pdftex.def Info: ./Plots/extremes/a53_1.jpg  used on input line 266.
 (pdftex.def)             Requested size: 199.46927pt x 148.39743pt.
 <./Plots/extremes/b53.jpg, id=429, 878.28125pt x 658.46pt>
 File: ./Plots/extremes/b53.jpg Graphic file (type jpg)
 <use ./Plots/extremes/b53.jpg>
-Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 262.
-(pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
-<./Plots/extremes/a63_1.jpg, id=430, 820.06375pt x 617.30624pt>
-File: ./Plots/extremes/a63_1.jpg Graphic file (type jpg)
-<use ./Plots/extremes/a63_1.jpg>
-Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 272.
-(pdftex.def)             Requested size: 196.81932pt x 148.15652pt.
-<./Plots/extremes/b63.jpg, id=431, 878.28125pt x 658.46pt>
-File: ./Plots/extremes/b63.jpg Graphic file (type jpg)
-<use ./Plots/extremes/b63.jpg>
-Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 275.
+Package pdftex.def Info: ./Plots/extremes/b53.jpg  used on input line 269.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -923,19 +931,41 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9 <./Plots/extremes/a53_1.jpg> <./Plots/extremes/b53.jpg>]
-<./Plots/height/1.png, id=438, 1902.10625pt x 1701.35625pt>
+[9 <./Plots/normal/b77.jpg>]
+<./Plots/extremes/a63_1.jpg, id=434, 820.06375pt x 617.30624pt>
+File: ./Plots/extremes/a63_1.jpg Graphic file (type jpg)
+<use ./Plots/extremes/a63_1.jpg>
+Package pdftex.def Info: ./Plots/extremes/a63_1.jpg  used on input line 279.
+(pdftex.def)             Requested size: 196.81932pt x 148.15652pt.
+<./Plots/extremes/b63.jpg, id=435, 878.28125pt x 658.46pt>
+File: ./Plots/extremes/b63.jpg Graphic file (type jpg)
+<use ./Plots/extremes/b63.jpg>
+Package pdftex.def Info: ./Plots/extremes/b63.jpg  used on input line 282.
+(pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10 <./Plots/extremes/a53_1.jpg> <./Plots/extremes/b53.jpg> <./Plots/extremes/a
+63_1.jpg> <./Plots/extremes/b63.jpg>]
+<./Plots/height/1.png, id=444, 1902.10625pt x 1701.35625pt>
 File: ./Plots/height/1.png Graphic file (type png)
 <use ./Plots/height/1.png>
-Package pdftex.def Info: ./Plots/height/1.png  used on input line 300.
+Package pdftex.def Info: ./Plots/height/1.png  used on input line 307.
 (pdftex.def)             Requested size: 228.2429pt x 204.15395pt.
-<./Plots/height/height.pdf, id=439, 597.23125pt x 845.1575pt>
+<./Plots/height/height.pdf, id=445, 597.23125pt x 845.1575pt>
 File: ./Plots/height/height.pdf Graphic file (type pdf)
 <use ./Plots/height/height.pdf>
-Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 303.
+Package pdftex.def Info: ./Plots/height/height.pdf  used on input line 310.
 (pdftex.def)             Requested size: 193.36467pt x 247.00981pt.
 
-Overfull \hbox (9.4162pt too wide) in paragraph at lines 300--305
+Overfull \hbox (9.4162pt too wide) in paragraph at lines 307--312
  [][][][] 
  []
 
@@ -949,33 +979,38 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./Plots/extremes/a63_1.jpg> <./Plots/extremes/b63.jpg>]
+[11 <./Plots/height/height.pdf> <./Plots/height/1.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11 <./Plots/height/height.pdf> <./Plots/height/1.png>] [12
-
-]
+[12]
 Chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--322
+
+ []
+
 <./Plots/opti/microstructure.png, id=2471, 853.1875pt x 522.95375pt>
 File: ./Plots/opti/microstructure.png Graphic file (type png)
 <use ./Plots/opti/microstructure.png>
 Package pdftex.def Info: ./Plots/opti/microstructure.png  used on input line 32
-0.
+7.
 (pdftex.def)             Requested size: 238.89087pt x 146.42604pt.
-[13]
+[13
+
+]
 <./Plots/opti/cant.png, id=2478, 1054.94125pt x 759.83875pt>
 File: ./Plots/opti/cant.png Graphic file (type png)
 <use ./Plots/opti/cant.png>
-Package pdftex.def Info: ./Plots/opti/cant.png  used on input line 343.
+Package pdftex.def Info: ./Plots/opti/cant.png  used on input line 350.
 (pdftex.def)             Requested size: 179.33763pt x 129.17087pt.
 <./Plots/opti/mbb.png, id=2479, 1293.83376pt x 488.82625pt>
 File: ./Plots/opti/mbb.png Graphic file (type png)
 <use ./Plots/opti/mbb.png>
-Package pdftex.def Info: ./Plots/opti/mbb.png  used on input line 346.
+Package pdftex.def Info: ./Plots/opti/mbb.png  used on input line 353.
 (pdftex.def)             Requested size: 232.88002pt x 87.98492pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -989,11 +1024,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [14 <./Plots/opti/microstructure.png>]
 
-LaTeX Warning: Citation `paper:simp' on page 15 undefined on input line 352.
+LaTeX Warning: Citation `paper:simp' on page 15 undefined on input line 359.
 
 
 LaTeX Warning: Citation `paper:homogenization' on page 15 undefined on input li
-ne 367.
+ne 374.
 
 
 Underfull \vbox (badness 2875) has occurred while \output is active []
@@ -1016,25 +1051,30 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/pbc/pbc1.pdf, id=2524, 464.02136pt x 439.78406pt>
 File: ./Plots/pbc/pbc1.pdf Graphic file (type pdf)
 <use ./Plots/pbc/pbc1.pdf>
-Package pdftex.def Info: ./Plots/pbc/pbc1.pdf  used on input line 437.
+Package pdftex.def Info: ./Plots/pbc/pbc1.pdf  used on input line 444.
 (pdftex.def)             Requested size: 139.20747pt x 131.93623pt.
 <./Plots/pbc/pbc1.png, id=2525, 679.53876pt x 663.47874pt>
 File: ./Plots/pbc/pbc1.png Graphic file (type png)
 <use ./Plots/pbc/pbc1.png>
-Package pdftex.def Info: ./Plots/pbc/pbc1.png  used on input line 440.
+Package pdftex.def Info: ./Plots/pbc/pbc1.png  used on input line 447.
 (pdftex.def)             Requested size: 142.70735pt x 139.33464pt.
 <./Plots/pbc/pbc2.png, id=2526, 493.845pt x 493.845pt>
 File: ./Plots/pbc/pbc2.png Graphic file (type png)
 <use ./Plots/pbc/pbc2.png>
-Package pdftex.def Info: ./Plots/pbc/pbc2.png  used on input line 443.
+Package pdftex.def Info: ./Plots/pbc/pbc2.png  used on input line 450.
 (pdftex.def)             Requested size: 138.27565pt x 138.27565pt.
 
-Overfull \hbox (15.29909pt too wide) in paragraph at lines 437--445
+Overfull \hbox (15.29909pt too wide) in paragraph at lines 444--452
  [][][][][][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 437--454
+
+ []
+
+
+Underfull \vbox (badness 2573) has occurred while \output is active []
 
 
 
@@ -1045,22 +1085,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [17 <./Plots/pbc/pbc1.pdf> <./Plots/pbc/pbc1.png> <./Plots/pbc/pbc2.png>]
 
-LaTeX Warning: Citation `Book:Cook' on page 18 undefined on input line 458.
+LaTeX Warning: Citation `Book:Cook' on page 18 undefined on input line 465.
 
 <./Plots/pbc/1.pdf, id=2539, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/1.pdf Graphic file (type pdf)
 <use ./Plots/pbc/1.pdf>
-Package pdftex.def Info: ./Plots/pbc/1.pdf  used on input line 478.
+Package pdftex.def Info: ./Plots/pbc/1.pdf  used on input line 485.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 <./Plots/pbc/2.pdf, id=2540, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/2.pdf Graphic file (type pdf)
 <use ./Plots/pbc/2.pdf>
-Package pdftex.def Info: ./Plots/pbc/2.pdf  used on input line 481.
+Package pdftex.def Info: ./Plots/pbc/2.pdf  used on input line 488.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 <./Plots/pbc/3.pdf, id=2541, 597.23125pt x 845.1575pt>
 File: ./Plots/pbc/3.pdf Graphic file (type pdf)
 <use ./Plots/pbc/3.pdf>
-Package pdftex.def Info: ./Plots/pbc/3.pdf  used on input line 484.
+Package pdftex.def Info: ./Plots/pbc/3.pdf  used on input line 491.
 (pdftex.def)             Requested size: 131.39127pt x 123.33897pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1076,7 +1116,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/homo/2.jpg, id=2550, 962.59625pt x 962.59625pt>
 File: ./Plots/homo/2.jpg Graphic file (type jpg)
 <use ./Plots/homo/2.jpg>
-Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 612.
+Package pdftex.def Info: ./Plots/homo/2.jpg  used on input line 619.
 (pdftex.def)             Requested size: 192.51584pt x 192.51584pt.
 
 Underfull \vbox (badness 1867) has occurred while \output is active []
@@ -1157,22 +1197,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/2d/cant14020h.pdf, id=10202, 626.34pt x 597.23125pt>
 File: ./Plots/2d/cant14020h.pdf Graphic file (type pdf)
 <use ./Plots/2d/cant14020h.pdf>
-Package pdftex.def Info: ./Plots/2d/cant14020h.pdf  used on input line 962.
+Package pdftex.def Info: ./Plots/2d/cant14020h.pdf  used on input line 969.
 (pdftex.def)             Requested size: 205.00797pt x 204.74557pt.
 <./Plots/2d/mat14020h.pdf, id=10204, 626.34pt x 597.23125pt>
 File: ./Plots/2d/mat14020h.pdf Graphic file (type pdf)
 <use ./Plots/2d/mat14020h.pdf>
-Package pdftex.def Info: ./Plots/2d/mat14020h.pdf  used on input line 965.
+Package pdftex.def Info: ./Plots/2d/mat14020h.pdf  used on input line 972.
 (pdftex.def)             Requested size: 205.00797pt x 204.74557pt.
 <./Plots/2d/cant14020s.jpg, id=10208, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14020s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14020s.jpg  used on input line 976.
+Package pdftex.def Info: ./Plots/2d/cant14020s.jpg  used on input line 983.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant14020.jpg, id=10209, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14020.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14020.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14020.jpg  used on input line 979.
+Package pdftex.def Info: ./Plots/2d/cant14020.jpg  used on input line 986.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
 
@@ -1185,22 +1225,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/2d/cant12040s.jpg, id=10226, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant12040s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 1000.
+Package pdftex.def Info: ./Plots/2d/cant12040s.jpg  used on input line 1007.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant12040.jpg, id=10227, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant12040.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant12040.jpg>
-Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 1003.
+Package pdftex.def Info: ./Plots/2d/cant12040.jpg  used on input line 1010.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant14040s.jpg, id=10228, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14040s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14040s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14040s.jpg  used on input line 1024.
+Package pdftex.def Info: ./Plots/2d/cant14040s.jpg  used on input line 1031.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant14040.jpg, id=10229, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant14040.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant14040.jpg>
-Package pdftex.def Info: ./Plots/2d/cant14040.jpg  used on input line 1027.
+Package pdftex.def Info: ./Plots/2d/cant14040.jpg  used on input line 1034.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1216,22 +1256,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <./Plots/2d/mat14020s.jpg, id=10237, 878.28125pt x 658.46pt>
 File: ./Plots/2d/mat14020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/mat14020s.jpg>
-Package pdftex.def Info: ./Plots/2d/mat14020s.jpg  used on input line 1048.
+Package pdftex.def Info: ./Plots/2d/mat14020s.jpg  used on input line 1055.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/mat14020.jpg, id=10238, 878.28125pt x 658.46pt>
 File: ./Plots/2d/mat14020.jpg Graphic file (type jpg)
 <use ./Plots/2d/mat14020.jpg>
-Package pdftex.def Info: ./Plots/2d/mat14020.jpg  used on input line 1051.
+Package pdftex.def Info: ./Plots/2d/mat14020.jpg  used on input line 1058.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant24020s.jpg, id=10239, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant24020s.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant24020s.jpg>
-Package pdftex.def Info: ./Plots/2d/cant24020s.jpg  used on input line 1071.
+Package pdftex.def Info: ./Plots/2d/cant24020s.jpg  used on input line 1078.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 <./Plots/2d/cant24020.jpg, id=10240, 878.28125pt x 658.46pt>
 File: ./Plots/2d/cant24020.jpg Graphic file (type jpg)
 <use ./Plots/2d/cant24020.jpg>
-Package pdftex.def Info: ./Plots/2d/cant24020.jpg  used on input line 1074.
+Package pdftex.def Info: ./Plots/2d/cant24020.jpg  used on input line 1081.
 (pdftex.def)             Requested size: 202.00044pt x 151.44261pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1266,7 +1306,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
  [33])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1105.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1112.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1275,10 +1315,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [34]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1105.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1112.
  (./thesis_final.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1105.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1105.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1112.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1112.
 
 Package rerunfilecheck Info: File `thesis_final.out' has not changed.
 (rerunfilecheck)             Checksum: B39C1E695A7EA326386586E793D64FA5;1516.
@@ -1289,12 +1329,12 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1105.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1112.
  ) 
 Here is how much of TeX's memory you used:
  10900 strings out of 492982
  163168 string characters out of 6134896
- 267966 words of memory out of 5000000
+ 267969 words of memory out of 5000000
  13993 multiletter control sequences out of 15000+600000
  19236 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1318,7 +1358,7 @@ dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_final.pdf (48 pages, 3779668 bytes).
+Output written on thesis_final.pdf (48 pages, 3780134 bytes).
 PDF statistics:
  10401 PDF objects out of 10688 (max. 8388607)
  5482 compressed objects within 55 object streams

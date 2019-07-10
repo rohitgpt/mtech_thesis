@@ -46,6 +46,7 @@
 \end{dedication}
 
 \begin{abstract}
+Natural structures have very complex structure and organisation of materials. This gives them much higher structural strength and other physical properties than the properties of their constituents components. In this thesis, we have tried to compare this structural arrangement of material with the optimal organisation of the constituent materials of the plant stem under the similar loading constraint. Bamboo is particularly used for its structural strength to weight ratio. First, the optimality of radial distribution of material along a cross-section is discussed. Next, we will discuss the development of the code for obtaining optimal 2D double-scale structures made of periodic microstructures for the given boundary conditions.
 \end{abstract}
 
 \begin{acknowledgments}
@@ -75,8 +76,8 @@ Rohit Gupta
 \clearpage
 \chapter{Introduction}
 \pagenumbering{arabic}
-Functionally graded composites (FGCs) are generally designed with certain properties in focus. Two or more materials with contrasting and complementing properties are combined in a number of ways obtain a composite with unique combination of characteristics. Unlike man-made composites, natural materials (most of which can be classified as composites) are far more complex in structure and organisation and superior in properties. Natural material typically shows a hierarchical organisation of an array of simple chemical\cite{wegst2015bioinspired} . Such organisation can be seen at macroscale and all the way down to nanoscale. Creating structures with similar organisation is generally the goal behind studying functionally graded composites. \par
-Plant and tree stems are natural structure with a unique combination of strength and light weight. Natural material like bamboo are being tested as replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structure have gone through a lot of iteration during the process of evolution. All natural materials have been selected to be the best in their respective environment given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et. al. \cite{mwaikambo2006review} showed that there is strong relationship between the physical and mechanical properties of the stem and their fine microstructure. \par
+Functionally graded composites (FGCs) are generally designed with certain properties in focus. Two or more materials with contrasting and complementing properties are combined in a number of ways obtain a composite with unique combination of characteristics. Unlike man-made composites, natural materials (most of which can be classified as composites) are far more complex in structure and organisation and superior in properties. Natural material typically shows a hierarchical organisation of an array of simple chemical\cite{wegst2015bioinspired} . Such organisation can be seen at macroscale and all the way down to nanoscale. Creating structures with similar organisation is generally the goal behind studying functionally graded composites. \\
+Plant and tree stems are natural structure with a unique combination of strength and light weight. Natural material like bamboo are being tested as replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structure have gone through a lot of iteration during the process of evolution. All natural materials have been selected to be the best in their respective environment given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et. al. \cite{mwaikambo2006review} showed that there is strong relationship between the physical and mechanical properties of the stem and their fine microstructure. \\
 Silva et. al. \cite{silva2006modeling} have modelled bamboo as a functionally graded material which consists of lignin-carbohydrate complex and long cellulose fibres. Youssefian et. al. \cite{youssefian2015molecular} showed that fibres are mainly responsible for the strength while the ligin matrix captures air making the structure lighter.\par
 For studying plant stems, we have chosen bamboo as the candidate. Our approach is gradual meaning we will start with 1D simulation and go on to compare the 3D structure of bamboo with an equivalent but optimal functionally graded material composed of material with similar mechanical properties as that of the consituents of bamboo. In this thesis, however, 1D simulations and code for obtaining optimal 2D cellular structures will be discussed. \par
 On a macro level bamboo has an asymmetric distribution of material\cite{habibi2015asymmetric}. The aerial distribution of material across the cross-section can modelled in 1D. This is modelled as a nonlinear optimization problem \cite{svanberg2007mma} as discussed in the first chapter.
@@ -93,8 +94,8 @@ Bamboo is a natural composite which is composed of fibers embedded in a matrix o
 \label{fig:fibrebundle}
 \end{center}
 \end{figure}
-This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from \cite{mannan2018stiffness}\cite{mwaikambo2006review}. \par
-Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\par 
+This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from \cite{mannan2018stiffness}\cite{mwaikambo2006review}. \\
+Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\\ 
 \section{Formulation}
 Therefore, we frame a constrained problem, optimizing the radial distribution of two material, with properties corresponding to that of fibers and parenchyma, in an annular cross-section composites. The objective function to optimize is specific strength subjected to the constraints of maximum stress and maximum bending moment. The dimensions of the composites are kept the same as in \cite{mannan2018stiffness}. Also, the limits of max bending moment and stress are taken from \cite{mannan2018stiffness}. The general problem formulation is written as
 \begin{equation*}
@@ -106,16 +107,22 @@ Therefore, we frame a constrained problem, optimizing the radial distribution of
 & & & M \leq M_{max}
 \end{aligned}
 \end{equation*}
-where, $\chi$ is the distribution of the two material in the domain whose inner radius is $r_i$ and outer radius is $r_o$.  $\sigma$ is the stress in the longitudinal direction and $M$ is the bending moment. \par
+where, $\chi$ is the distribution of the two material in the domain whose inner radius is $r_i$ and outer radius is $r_o$.  $\sigma$ is the stress in the longitudinal direction and $M$ is the bending moment. \\
 \section{Implementation}
 Now, flexural rigidity is used as measure of strength which can be written as 
 %\begin{wrapfigure}[lineheight]{position}{width}
-\begin{wrapfigure}[5]{r}{0.3\textwidth}
+\begin{figure}
 \begin{center}
 \includegraphics[scale=0.3]{moment_annulus}
 \caption{Annulus with inner radius r1 and outer radius r2}
 \end{center}
-\end{wrapfigure}
+\end{figure}
+%5]{r}{0.3\textwidth}
+%\begin{center}
+%\includegraphics[scale=0.3]{moment_annulus}
+%\caption{Annulus with inner radius r1 and outer radius r2}
+%\end{center}
+%\end{wrapfigure}
 \begin{equation}
 \begin{split}
 EI(r) &= \underset{R}{\iint}E(r)y^2\,dA = \int_{r_1}^{r_2}\int_0^{2\pi} E(r)(r\sin\theta)^2(rdrd\theta)\\
@@ -137,7 +144,7 @@ E(r) &= \chi_1(r) E_1 + \chi_2(r) E_2\\
 \rho(r) &= \chi_1(r) \rho_1 + \chi_2(r) \rho_2
 \end{split}
 \end{equation}
-Here $\{E_1, \rho_1\}$ and $\{E_2, \rho_2\}$ are the material properties of the fibers and parenchyma respectively. $\chi_1$ and $\chi_2$ are the proportion of first and second material corresponding to fiber and parenchyma respectively.\par
+Here $\{E_1, \rho_1\}$ and $\{E_2, \rho_2\}$ are the material properties of the fibers and parenchyma respectively. $\chi_1$ and $\chi_2$ are the proportion of first and second material corresponding to fiber and parenchyma respectively.\\
 Assuming small deformation, from Euler Bernoulli Beam Theory, we get strain $\varepsilon_{xx}$ as\\
 \begin{wrapfigure}[14]{r}{0.3\textwidth}
 \begin{center}
@@ -168,8 +175,9 @@ M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta & \text{Fo
 &=\pi\int_{r_i}^{r_o}\frac{r^3 E(r)}{R}\,dr
 \end{split}
 \end{equation}
+
 \section{Optimization Problem}
-Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes
+Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes\\
 \begin{equation}
 \begin{split}
 \underset{\chi}{max} \quad& \frac{\sum^{r_o}_{r_i}E(r)r^3}{\sum^{r_o}_{r_i}\rho(r)r}\\
@@ -178,7 +186,7 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 \end{split}
 \end{equation}
 \section{Cell Size}
-For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{mannan2017correlations}. \par
+For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{mannan2017correlations}. \\
 \begin{figure}[H]
 \begin{center}
 	\begin{tabular}{@{}c}
@@ -224,7 +232,6 @@ The variation of parenchyma on the other hand is relatively constant as the cell
 \label{fig:radial}
 \end{center}
 \end{figure}
-\par 
 Figure \ref{subfig-1:radial2} shows the distribution of fibres for different nodes and fig. \ref{subfig-2:radial2} shows the same for curved and straight sample. Again both of these look similar to the optimal distribution (fig. \ref{subfig-1:radial}). 
 \begin{figure}[H]
 \begin{center}
@@ -249,7 +256,7 @@ Figure \ref{fig:cellsize} shows the change in size of parenchyma cells along the
 \end{figure}
 
 \subsection{Predictions for few extra cases}
-We have also obtained results for different types of bamboos, like bamboos with large cross-sectional diameter but thin annular cross-section and bamboos with small diameter but solid cross section with no hollow center.\par
+We have also obtained results for different types of bamboos, like bamboos with large cross-sectional diameter but thin annular cross-section and bamboos with small diameter but solid cross section with no hollow center.\\
 It should be noted that we didn't have the experimental data for the set of constraint for these cases of bamboos. To obtain these constraints we first provide a rough estimate using the Euler Bernoulli beam equation. Then if the obtained variation of parenchyma cell size goes beyond what is generally observed in nature that set of constraints are rejected and the optimization problem is solved for a new set of sequentially generated constraints. This process is repeated untill a variation of cell size consistent with nature is observed. 
 
 \begin{figure}[H]
@@ -311,7 +318,7 @@ Comparing with the previous experimentation and studies on bamboo, we can say th
 
 \chapter{2D Simulation}
 In the previous chapter, we discussed the optimality of the one-dimensional distribution of the given material of the bamboo for some constraints. To discuss the optimality of the structure originating from this one-dimensional distribution, we will first develop a process for generating optimal structures using topology optimization and finite element methods. Once, we have a sense of what an optimal structure for the given material and loading constraint, we can compare them with the structures found in natural bamboo and be able to comment on its optimality. So, in this chapter, we will discuss the topology optimization of the microstructure for the given constraints on macro-structure.
-\par
+\\
 
 \section{Overview}
 First, an optimization problem is defined for minimizing the overall compliance of the structure with the constraints on volume. For calculating compliance ($\frac{1}{2}F^TU$), at every iteration, we find the displacement $U$ for given force $F$ and other boundary conditions on the macro domain. Displacements are determined by finite element analysis where the stiffness matrix for the macro domain elements is obtained by homogenization method. Each macro domain element is a called base cell and is further meshed to obtain the microstructure. To obtain the homogenized properties, another finite element analysis is done on this microdomain by applying periodic boundary conditions. It is the topology of this structure that we want to optimize. To achieve this, we link the optimality of the objective function to the topology of the microstructure through sensitivity analysis. For each element in the microdomain, a number is determined based on how critical is that element is for minimizing the objective function. After each iteration, the structure is updated based on the sensitivity numbers. This process is repeated until the volume constraint is achieved and the sensitivity numbers converge.
@@ -371,7 +378,7 @@ where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}
 \end{equation} 
 
 \section{Periodic Boundary Conditions}
-The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[\epsilon_{11}, \epsilon_{22}, 2\epsilon_{12}] = [1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields.\par
+The process of homogenization requires the displacements corresponding to uniform strain fields, i.e., $[\epsilon_{11}, \epsilon_{22}, 2\epsilon_{12}] = [1, 0, 0]^T, [0, 1, 0]^T, [0, 0, 1]^T$. Periodic boundary conditions are needed to solve the finite element problem for uniform strain fields.\\
 If $u$ and $v$ are the components of displacements in $p_1$ and $p_2$ directions respectively, then from periodicity, we have
 %\begin{eqnarray}
 %\label{eq:periodicity1}
@@ -409,7 +416,7 @@ v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
 \eqref{eq:fbc2} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
-\par
+\\
 Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
 \begin{eqnarray}
 \label{eq:symmetryq1u}
@@ -429,7 +436,7 @@ u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
 v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.\par
+\eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.\\
 \begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:pbc}]{
@@ -442,7 +449,7 @@ Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and
        \includegraphics[scale=.28]{./Plots/pbc/pbc2.png}
      }
 	\label{fig:pbc}
-	\caption{(a)Representative Base cell, (b)PBCs for $[1 0 0]^T$ and $[0 1 0]^T$ cases, (c)PBCs for $[0 0 1]^T$ case}
+	\caption{(a)Representative Base cell, (b)PBCs for $[1\,0\,0]^T$ and $[0\,1\,0]^T$ cases, (c)PBCs for $[0\,0\,1]^T$ case}
 \end{center}
 \end{figure}
 \subsection{Penalty Method}
