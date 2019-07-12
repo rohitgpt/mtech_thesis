@@ -11,7 +11,7 @@
 \usepackage{wrapfig}
 \usepackage{pdfpages}
 \usepackage[font=small,labelfont=bf]{caption}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{textcomp, xspace}
 \usepackage[fleqn]{amsmath}
 \usepackage{cancel}
@@ -68,12 +68,11 @@ Rohit Gupta
 \newpage
 \listoffigures
 
-\printnomenclature
 \clearpage
 \chapter{Introduction}
 \pagenumbering{arabic}
 Functionally graded composites (FGCs) are generally designed with certain properties in focus. Two or more materials with contrasting and complementing properties are combined in several ways obtain a composite with a unique combination of characteristics. Unlike man-made composites, natural materials (most of which can be classified as composites) are far more complex in structure and organization and superior in properties. Natural material typically shows a hierarchical organization of an array of simple chemical\cite{wegst2015bioinspired} . Such organization can be seen at the macroscale and down to the nanoscale. Creating structures with similar organization is generally the goal behind studying functionally graded composites. \\
-Plant and tree stems are natural structures with their unique combination of strength and lightweight. Natural materials like bamboo are being tested as a replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structures have gone through many iterations during the process of evolution. All natural materials have been selected to be the best in their respective environment, given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et al. \cite{mwaikambo2006review} showed that there is a strong relationship between the physical and mechanical properties of the stem and their fine microstructure. \\
+Plant and tree stems are natural structures with their unique combination of strength and lightweight. Natural materials like bamboo are being tested as a replacement for concrete reinforcement\cite{bhalla2008bamboo}. These structures have gone through many iterations during the process of evolution. All natural materials have been selected to be the best in their respective environment, given the availability of resources\cite{nogata1995intelligent}. Most of the natural material perform better then man-made materials on performance matrices such as $\frac{E^{1/2}}{\rho}$ etc.\cite{ashby1995mechanical}\cite{gibson1995mechanical}. Mwaikambo et al. \cite{mwaikambo2006review} studied the relationship between the physical and mechanical properties of the stem and their fine microstructure. \\
 Silva et al. \cite{silva2006modeling} have modeled bamboo as a functionally graded material which consists of lignin-carbohydrate complex and long cellulose fibers. Youssefian et al. \cite{youssefian2015molecular} showed that fibers are mainly responsible for the strength while the ligin matrix captures air making the structure lighter.\par
 For studying plant stems, we have chosen bamboo as the candidate. Our approach is gradual, meaning we will start with 1D simulation and go on to compare the 3D structure of bamboo with an equivalent but optimal functionally graded material composed of materials with similar mechanical properties as that of the constituents of bamboo. In this thesis, however, 1D simulations and code for obtaining optimal 2D cellular structures will be discussed. \par
 On a macro level, bamboo has an asymmetric distribution of material\cite{habibi2015asymmetric}. The aerial distribution of material across the cross-section can be modeled in 1D. This is modeled as a nonlinear optimization problem \cite{svanberg2007mma}, as discussed in the first chapter.
@@ -154,7 +153,7 @@ Therefore, using constitutive relation, we get $\sigma_{xx}$ as
 \sigma_{xx} = E\varepsilon_{xx} = \frac{E}{R}y
 \end{equation}
 \begin{equation}\label{stress_eb}
-\sigma = \frac{E}{R}r\sin\theta \quad (\because y = r\sin\theta)
+\sigma = \frac{E}{R}r\sin\theta \qquad (y = r\sin\theta)
 \end{equation}
 Now, moment can be written as
 \begin{equation}\label{moment_eb}
@@ -245,6 +244,35 @@ Experimental data on constraints of maximum stress and maximum bending moment we
 \end{figure}
 Figure \ref{fig:cellsize} shows the change in the size of parenchyma cells along the radially outward direction. This result matches with the trend observed in actual bamboos. Initially, there is the inner wall where the cells are densely packed with less air trapped in them, and therefore, the cell size is small. As we move towards the middle of the radius, more space is being taken up by the life-supporting parenchyma cells. Here these cells attain the maximum size. Further along the radius, the structural forces increase promoting the rise of fibre bundles, and the parenchyma cells give up their air content thus reducing in size. This trend can also be seen in fig. \ref{fig:fibrebundle}.
 
+\subsection{Height}
+It is assumed that the wind load on the bamboo stem is uniform, as it is similar to a fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo. Therefore, the bending moment as a function of height can be expressed as
+\begin{equation}
+\begin{split}
+M &= Fx = qh\,dh \qquad (q \text{ is the uniform loading})\\
+&= \int_{h}^Lqh\,dh = \frac{qh^2}{2}\bigg|^L_h = \frac{qL^2}{2}\bigg(1-\frac{h^2}{L^2}\bigg) = M_{max}\bigg(1-\frac{h^2}{L^2}\bigg)
+\end{split}
+\end{equation}
+where $h$ is the height, $q$ is the uniform loading, $L$ is the total height of the bamboo. $L$ is assumed to be 10m.
+Similarly, radius of curvature $R$ and stress $\sigma$ follows
+\begin{eqnarray}
+R = \frac{EI}{M} = R_0\bigg(1-\frac{h^2}{L^2}\bigg)^{-1}\\
+\sigma = -\frac{Mr}{I} = \sigma_0\bigg(1-\frac{h^2}{L^2}\bigg)
+\end{eqnarray}
+Here $R_0$ and $\sigma_0$ are the minimum radius of curvature and maximum stress which occur at the base of the plant. 
+\begin{figure}[H]
+\begin{center}
+     \subfloat[\label{subfig-1:extreme2}]{
+        \includegraphics[scale=0.12]{./Plots/height/1.png}
+     }
+     \subfloat[\label{subfig-2:extreme2}]{
+        \includegraphics[clip, trim=1cm 1cm 1cm 1cm, scale=0.4]{./Plots/height/height.pdf}
+     }
+    \label{fig:height}
+    \caption{(a) Schematic distribution of material density in young stem (on left) and old plant stem (on right) from Gibson et. al. \cite{gibson1995mechanical} (b) Density variation with height and non-dimensional distance from the inner surface.}
+\end{center}
+\end{figure}
+As the height, increases the bending moment and maximum stress due to wind reduces resulting in the lesser density of fibres in the center. This is also reflected in the optimum material distribution with height as shown in fig. \ref{subfig-1:extreme2}.
+
 \subsection{Predictions for few extra cases}
 We have also obtained results for different types of bamboos, like bamboos with large cross-sectional diameter but thin annular cross-section and bamboos with small diameter but solid cross-section with no hollow center.\\
 The experimental data of the set of constraint for these cases of bamboos was not available. To obtain these constraints, we first provide a rough estimate using the Euler Bernoulli beam equation. Then if the obtained variation of parenchyma cell size goes beyond what is generally observed in nature that set of constraints are rejected, and the optimization problem is solved for a new set of sequentially generated constraints. This process is repeated until a variation of cell size consistent with nature is observed. 
@@ -274,34 +302,7 @@ The experimental data of the set of constraint for these cases of bamboos was no
     \caption{(a)Axisymmetric radial distribution of fibres and parenchyma, (b)Radius of parenchyma cell size obtained for an solid rod with radius 20mm with $\sigma_{max} = $ 24MPa and $M_{max} = $ 420 N-m}
 \end{center}
 \end{figure}
-\subsection{Height}
-It is assumed that the wind load on the bamboo stem is uniform, as it is similar to a fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo. Therefore, the bending moment as a function of height can be expressed as
-\begin{equation}
-\begin{split}
-M &= Fx = qh\,dh \qquad (q \text{ is the uniform loading})\\
-&= \int_{h}^Lqh\,dh = \frac{qh^2}{2}\bigg|^L_h = \frac{qL^2}{2}\bigg(1-\frac{h^2}{L^2}\bigg) = M_{max}\bigg(1-\frac{h^2}{L^2}\bigg)
-\end{split}
-\end{equation}
-where $h$ is the height, $q$ is the uniform loading, $L$ is the total height of the bamboo. $L$ is assumed to be 10m.
-Similarly, radius of curvature $R$ and stress $\sigma$ follows
-\begin{eqnarray}
-R = \frac{EI}{M} = R_0\bigg(1-\frac{h^2}{L^2}\bigg)^{-1}\\
-\sigma = -\frac{Mr}{I} = \sigma_0\bigg(1-\frac{h^2}{L^2}\bigg)
-\end{eqnarray}
-Here $R_0$ and $\sigma_0$ are the minimum radius of curvature and maximum stress which occur at the base of the plant. 
-<>
-\begin{figure}[H]
-\begin{center}
-     \subfloat[\label{subfig-1:extreme2}]{
-        \includegraphics[scale=0.12]{./Plots/height/1.png}
-     }
-     \subfloat[\label{subfig-2:extreme2}]{
-        \includegraphics[clip, trim=2cm 5cm 2cm 3cm, scale=0.4]{./Plots/height/height.pdf}
-     }
-    \label{fig:height}
-    \caption{(a) Schematic distribution of material density in young stem (on left) and old plant stem (on right) from Gibson et. al. \cite{gibson1995mechanical} (b) Density variation with height and radius obtained for an annular rod with inner radius 12mm and outer radius 36mm.}
-\end{center}
-\end{figure}
+We predict that if these types of bamboos follow the predicted cell size variation as in fig. \ref{subfig-2:extreme1} and fig. \ref{subfig-2:extreme2}, the areal density distribution of lignin matrix and the fibres will follow the trends shown in fig. \ref{subfig-1:extreme1} and fig. \ref{subfig-1:extreme2} respectively.
 
 \section{Conclusion}
 Comparing with the previous experimentation and studies on bamboo, we can say that the radial distribution of constituent materials of bamboo is optimal for the constraints of maximum stress and bending moment that apply to bamboo under the loading conditions. Also, from the results obtained for the variation of material density with height, our results are similar and lie somewhere between a young and an old plant stem. 
@@ -438,15 +439,15 @@ Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and
 \end{figure}
 \subsection{Penalty Method}
 \label{sec:pbc}
-We have used the penalty method to enforce the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
+We have used the penalty method to apply the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
 \begin{equation*}
 [\textbf{C}]\{\textbf{U}\} = \{\textbf{Q}\}
 \end{equation*}
-where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let us define $\{\textbf{t}\}$ as
+where $[\textbf{C}]$ and $\{\textbf{Q}\}$ are constants. Let $\{\textbf{t}\}$ be the difference between $[\textbf{C}]\{\textbf{U}\}$ and $\{\textbf{Q}\}$ 
 \begin{equation*}
 \{\textbf{t}\} = [\textbf{C}]\{\textbf{U}\} - \{\textbf{Q}\}
 \end{equation*}
-such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by augmenting the potential energy function\cite{Book:Cook} $\Pi$ with a \textit{penalty function} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is a diagonal matrix of penalty numbers. Thus, potential energy function becomes
+such that $\{\textbf{t}\} = \{\textbf{0}\}$ implies that the constraints are satisfied. Any non-negative values of $\{\textbf{t}\}$ must be penalized to minimize the violation of constraints. This is achieved by modifying the potential energy function\cite{cook2007concepts} $\frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}$, where $[\bm\alpha]$ is penalty number matrix. Thus, potential energy function becomes
 \begin{equation}
 \bm\Pi = \frac{1}{2}\{\e U\}^T[\e K]\{\e U\} - \{\e U\}^T\{\e F\} + \frac{1}{2}\{\textbf{t}\}^T[\bm\alpha]\{\textbf{t}\}
 \end{equation}

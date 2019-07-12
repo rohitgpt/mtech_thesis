@@ -255,5 +255,9 @@
   year={2009},
   publisher={Springer}
 }
-
-
+@book{cook2007concepts,
+  title={Concepts and applications of finite element analysis},
+  author={Cook, Robert D and others},
+  year={2007},
+  publisher={John Wiley \& Sons}
+}
