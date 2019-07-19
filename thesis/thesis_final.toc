@@ -17,8 +17,8 @@
 \contentsline {subsection}{\numberline {3.4.1}Penalty Method}{19}{subsection.3.4.1}
 \contentsline {section}{\numberline {3.5}Homogenization}{21}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Implementation}{24}{subsection.3.5.1}
-\contentsline {section}{\numberline {3.6}Sensitivity Analysis}{26}{section.3.6}
-\contentsline {section}{\numberline {3.7}Fitering}{27}{section.3.7}
+\contentsline {section}{\numberline {3.6}Sensitivity Analysis}{27}{section.3.6}
+\contentsline {section}{\numberline {3.7}Fitering}{28}{section.3.7}
 \contentsline {section}{\numberline {3.8}Procedure}{28}{section.3.8}
 \contentsline {section}{\numberline {3.9}Examples of optimized microstructures}{29}{section.3.9}
 \contentsline {chapter}{\numberline {4}Summary and Future Work}{33}{chapter.4}

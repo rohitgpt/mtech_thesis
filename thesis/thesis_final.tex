@@ -89,6 +89,7 @@ Bamboo is a natural composite which is composed of fibers embedded in a matrix o
 \label{fig:fibrebundle}
 \end{center}
 \end{figure}
+
 This can be modeled as the distribution of two materials, and air (captured in parenchyma cells). First material being the denser and stiffer fibers and second material being the parenchyma cellular material excluding air. The properties of fibers and parenchyma are taken from \cite{mannan2018stiffness}\cite{mwaikambo2006review}. \\
 Bamboo, like any other living organism, is a result of an evolutionary process. Survival of the fittest means that bamboo species is nature's best solution for some natural condition lead to the existence of bamboo. Bamboo grows tall up to 20m to rise above the other competing plantation. With such a slender structure, bending load due to high-speed tropical winds are a significant constraint which the evolution had overcome. Bamboo has a very high specific strength, which is also the desired attribute in industrial applications. It is desired to develop composites with high stiffness and lower weight.\\ 
 \section{Formulation}
@@ -380,27 +381,27 @@ v(p_1, p_2) = v(p_1+P_1, p_2) = v(p_1, p_2+P_2) = v(p_1+P_1, p_2+P_2).
 \end{equation}
 For cases $[1, 0, 0]^T$ and $[0, 1, 0]^T$, from symmetry of loading and geometry w.r.t. $q_1$, we have
 \begin{eqnarray}
-\label{eq:symmetryq1u}
+\label{eq:symmetryq1u1}
 u(p_1, p_2^0) = u(p_1, p_2^0+P_2),\\
-\label{eq:symmetryq1}
+\label{eq:symmetryq11}
 v(p_1, p_2^0) = -v(p_1, p_2^0+P_2).
 \end{eqnarray}
 Similarly, using the symmetry about $q_2$, we have
 \begin{eqnarray}
-\label{eq:symmetryq2}
+\label{eq:symmetryq21}
 u(p_1^0, p_2) = -u(p_1^0+P_1, p_2),\\
-\label{eq:symmetryq2v}
+\label{eq:symmetryq2v1}
 v(p_1^0, p_2) = v(p_1^0+P_1, p_2).
 \end{eqnarray}
-From eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, and \eqref{eq:periodicity}, we get
+From eqs \eqref{eq:periodicity}, \eqref{eq:symmetryq11}, and \eqref{eq:symmetryq21}  we get
 \begin{eqnarray}
-\label{eq:fbc1}
+\label{eq:fbc11}
 u(p_1^0, p_2) = u(p_1^0+P_1, p_2) = 0,\\
-\label{eq:fbc2}
+\label{eq:fbc21}
 v(p_1, p_2^0) = v(p_1, p_2^0+P_2) = 0.
 \end{eqnarray}
-Eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, \eqref{eq:fbc1} and 
-\eqref{eq:fbc2} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
+Eqs \eqref{eq:symmetryq1u1}, \eqref{eq:symmetryq2v1}, \eqref{eq:fbc11} and 
+\eqref{eq:fbc21} are the required periodic boundary conditions for strain fields $[1, 0, 0]^T$ and $[0, 1, 0]^T$.
 \\
 Now, For the case of $[0, 0, 1]^T$, loading is anti-symmetric and geometry is symmetric w.r.t. $q_1$ and $q_2$, as a result, we have
 \begin{eqnarray}
@@ -413,11 +414,11 @@ u(p_1^0, p_2) = u(p_1^0+P_1, p_2),\\
 \label{eq:symmetryq2v}
 v(p_1^0, p_2) = -v(p_1^0+P_1, p_2).
 \end{eqnarray}
-From eqs \eqref{eq:symmetryq1u}, \eqref{eq:symmetryq2v}, and \eqref{eq:periodicity}, we get
+From \eqref{eq:periodicity}, eqs \eqref{eq:symmetryq1u}, and \eqref{eq:symmetryq2v}, we get
 \begin{eqnarray}
-\label{eq:fbc2}
-u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
 \label{eq:fbc1}
+u(p_1, p_2^0) = u(p_1, p_2^0+P_2) = 0,\\
+\label{eq:fbc2}
 v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
@@ -513,7 +514,7 @@ and $\mathcal{U}$ is the set of admissible displacements defined such that
 \mathcal{U} = \{\textbf{v} = v_i\textbf{e}_i :\, v_i\in H^1(\Omega) \text{ and } \textbf{v}\in\mathcal{G} \text{ on } \Gamma_D\}
 \end{equation}
 where $\mathcal{G}$ is set of displacement defined along the boundary $\Gamma_D$.\\
-Let 
+Using asymptotic expansion of $\e v^\varepsilon(\e x)$
 \begin{align}
 \textbf{v}^\varepsilon(\textbf{x}) = \textbf{v}^0(\textbf{x})+\varepsilon\textbf{v}^1(\textbf{x},\textbf{y}),\qquad \textbf{y}=\frac{\textbf{x}}{\varepsilon}.
 \end{align}
@@ -608,7 +609,13 @@ E^H_{2211} = &\frac{1}{|Y|}\int_Y\bigg ( E_{2211} - E_{2211}\frac{\partial \chi^
 %\\
 %E^H_{1211} = &-\frac{1}{|Y|}\int_Y\bigg (E_{1212}\frac{\partial \chi^{11}_1}{\partial y_2} + E_{1221}\frac{\partial \chi^{11}_2}{\partial y_1}\bigg )\,dy
 \end{eqnarray}
-Let $\chi^{11} = \hat{\e u}^1, \chi^{22} = \hat u^2, \chi^{12} = \hat u^3$ and $E_{1111} = D_{11}, E_{2222} = D_{22}, E_{1212} = D_{66}, E_{1122} = E_{2211} = D_{12}$. Then eq \eqref{eq:homogenized2} becomes
+Similarly,
+\begin{eqnarray}
+\label{eq:homogenized4}
+E^H_{1122} = &\frac{1}{|Y|}\int_Y\bigg ( E_{1122} - E_{1111}\frac{\partial \chi^{22}_1}{\partial y_1} - E_{1122}\frac{\partial \chi^{22}_2}{\partial y_2}\bigg )\,dy\\
+E^H_{2222} = &\frac{1}{|Y|}\int_Y\bigg ( E_{2222} - E_{2211}\frac{\partial \chi^{22}_1}{\partial y_1} - E_{2222}\frac{\partial \chi^{22}_2}{\partial y_2}\bigg )\,dy
+\end{eqnarray}
+Let $\chi^{11} = \hat{\e u}^1, \chi^{22} = \hat{\e u^2}, \chi^{12} = \hat{\e u^3}$ and $E_{1111} = D_{11}, E_{2222} = D_{22}, E_{1212} = D_{66}, E_{1122} = E_{2211} = D_{12}$. Then eq \eqref{eq:homogenized2} becomes
 \begin{equation}
 \label{eq:dehomogenized}
 \begin{split}
@@ -891,6 +898,28 @@ Figures \ref{fig:cant14020}-\ref{fig:cant14040} show the optimized microstructur
     \label{fig:cant2}
 \end{center}
 \end{figure}
+%\begin{figure}[H]
+%\begin{center}
+%    \begin{tabular}{@{}c}
+%    \subfloat[]{
+%        \includegraphics[scale=0.23]{./Plots/2d/cant24020s.jpg}
+%    }
+%    \subfloat[]{
+%        \includegraphics[scale=0.23]{./Plots/2d/cant24020.jpg}
+%     }
+%    \end{tabular}
+%    \begin{tabular}{@{}c}
+%        ${
+%        D^H = \begin{bmatrix}
+%        0.2839&    0.0544&         0\\
+%    0.0544&    0.1485&         0\\
+%         0&         0&    0.0605
+%           \end{bmatrix}}$
+%    \end{tabular}
+%    \caption{(a) Optimized base cell, (b) 3x3 arrangement of the base cell, (c) $D^H$ matrix of the base cell for Cantilever beam of L=40, H=20 starting with design 2}
+%    \label{fig:cant2}
+%\end{center}
+%\end{figure}
 \chapter{Summary and Future Work}
 This thesis studies the optimality of the 1D distribution of material and provides the tools for generating the 2D structure with optimal cellular microstructures. To be able to answer the question of structural optimality of the plant stems, this work needs to be expanded to generating similar structures in 3D. Apart from that, other improvements that can be done are :
 \begin{enumerate}
