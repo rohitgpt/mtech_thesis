@@ -41,21 +41,20 @@
 \makecertificate
 
 \begin{dedication}
-\textit{Dedicated to my family and friends.} 
+\textit{Dedicated to my mother and father.} 
 \end{dedication}
 
 \begin{abstract}
-Natural structures have a very complex structure and organization of materials. This gives them much higher structural strength and other physical properties than the properties of their constituents components. In this thesis, the structural arrangement of material is compared with the optimal organization of the constituent materials of the plant stem under a similar loading constraint. Bamboo is particularly used for its structural strength to weight ratio. First, the optimality of the radial distribution of material along a cross-section is discussed. Next, we will discuss the development of the code for obtaining optimal 2D double-scale structures made of periodic microstructures for the given boundary conditions.
+Natural structures have a very complex structure and organization of materials. This gives them much higher structural strength and other physical properties than the properties of their constituents components. In this thesis, the structural arrangement of material is compared with the optimal organization of the constituent materials of the plant stem under a similar loading constraint. Bamboo is particularly used for its structural strength to weight ratio. We first discuss the optimality of the radial distribution of material along a cross-section. Then, we discuss the development of the code for generating optimal 2D double-scale structures composed of periodic microstructures for the given boundary conditions.
 \end{abstract}
 
 \begin{acknowledgments}
 
 I take this opportunity to thank everyone who has helped me directly or indirectly in achieving this goal. 
 
-With immense pleasure, I express my sincere gratitude, regards, and thanks to my thesis supervisors, Dr. Sumit Basu for their excellent guidance, invaluable suggestions, continuous support and encouragement during the tenure of this thesis work. It has been a great pleasure to work with them. 
+With immense pleasure, I express my sincere gratitude, regards, and thanks to my thesis supervisor, Dr. Sumit Basu for his excellent guidance, invaluable suggestions, continuous support and encouragement during the tenure of this thesis work. It has been a great learning experience to work with them. 
 
-Last, but not least, I would like to thank my family for their throughout support and encouragement. It was because of their guidance that I pursued mechanical engineering and have no words to give my gratitude. 
-
+Last, but not least, I would like to thank my family for their throughout support and encouragement.
 \begin{flushright}
 Rohit Gupta
 \\Department of Mechanical Engineering
@@ -97,7 +96,7 @@ Therefore, we frame a constrained problem, optimizing the radial distribution of
 \begin{equation*}
 \begin{aligned}
 & \underset{\chi}{\text{maximize}}
-& & strength(\chi) \\
+& & specific\,\,\,strength(\chi) \\
 & \text{subject to}
 & & \sigma(r) \leq \sigma_{max} &\quad \forall r \in [r_i, r_o]\\
 & & & M \leq M_{max}
@@ -109,7 +108,7 @@ Now, flexural rigidity is used as measure of strength which can be written as
 %\begin{wrapfigure}[lineheight]{position}{width}
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.3]{moment_annulus}
+\includegraphics[scale=0.5]{moment_annulus}
 \caption{Annulus with inner radius r1 and outer radius r2}
 \end{center}
 \end{figure}
@@ -122,7 +121,7 @@ EI(r) &= \underset{R}{\iint}E(r)y^2\,dA = \int_{r_1}^{r_2}\int_0^{2\pi} E(r)(r\s
 Therefore, specific flexural rigidity will be written as
 \begin{equation}\label{objective_eb}
 \begin{split}
-strength(\chi) &=\frac{EI}{\rho}\\
+specific\,\,\,strength(\chi) &=\frac{EI}{\rho}\\
 &=\frac{\pi\sum^{r_o}_{r_i}E(r)r^3\Delta r}{2\pi r\sum^{r_o}_{r_i}\rho(r)\Delta r}\\
 &=\frac{\sum^{r_o}_{r_i}E(r)r^3}{2 \sum^{r_o}_{r_i}\rho(r)r}
 \end{split}
@@ -165,9 +164,8 @@ M &= \int_{r_i}^{r_o}\int_0^{2\pi}\sigma(r)r^2 sin\theta\,dr\,d\theta & \text{Fo
 &=\pi\int_{r_i}^{r_o}\frac{r^3 E(r)}{R}\,dr
 \end{split}
 \end{equation}
-
 \section{Optimization Problem}
-Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes\\
+Using \eqref{objective_eb}, \eqref{stress_eb}, \eqref{moment_eb}, the optimization problem becomes
 \begin{equation}
 \begin{split}
 \underset{\chi}{max} \quad& \frac{\sum^{r_o}_{r_i}E(r)r^3}{\sum^{r_o}_{r_i}\rho(r)r}\\
@@ -177,6 +175,7 @@ s.t. \quad& \frac{rE(r)}{R}\leq \sigma_{max} \quad \forall r \in [r_i, r_o]\\
 \end{equation}
 \section{Cell Size}
 For calculating parenchyma cell size, it is assumed that the cell thickness remains constant as we move from inner radius to the outer radius. The cell thickness has been determined from the dimensions given in Figure 4(a) in \cite{mannan2017correlations}. \\
+\vspace{-1cm}
 \begin{figure}[H]
 \begin{center}
     \begin{tabular}{@{}c}
@@ -211,11 +210,18 @@ Then
 Figure \ref{subfig-1:radial} shows the optimal distribution of two materials corresponding to fibers and parenchyma. The distribution of fibers is comparable to the experimental results obtained by Ghavami et al. \cite{ghavami2003bamboo} in fig \ref{subfig-2:radial} and Amada et al. \cite{amada1996mechanical} in fig. \ref{subfig-1:radial2}. The variation of parenchyma on the other hand is relatively constant as the cellular material necessary for survival of the cells remains constant while progressively reduces their air content.
 \begin{figure}[H]
 \begin{center}
-     \subfloat[\label{subfig-1:radial}]{
-%        \includegraphics[clip, trim=1cm 1cm 1cm 1cm,scale=0.3]{./Plots/normal/a77.pdf}
-        \includegraphics[clip, trim=2cm 3cm 2cm 4cm,scale=0.48]{./Plots/normal/a77_1.pdf}
-     }
-     \vfill
+\includegraphics[clip, trim=2cm 3cm 2cm 4cm,scale=0.48]{./Plots/normal/a77_1.pdf}
+\caption{Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod    with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m.}
+\label{subfig-1:radial}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+%     \subfloat[\label{subfig-1:radial}]{
+%%        \includegraphics[clip, trim=1cm 1cm 1cm 1cm,scale=0.3]{./Plots/normal/a77.pdf}
+%        \includegraphics[clip, trim=2cm 3cm 2cm 4cm,scale=0.48]{./Plots/normal/a77_1.pdf}
+%     }
+%     \vfill
      \subfloat[\label{subfig-2:radial}]{
        \includegraphics[scale=.48]{./Plots/normal/v.png}
      }
@@ -223,7 +229,7 @@ Figure \ref{subfig-1:radial} shows the optimal distribution of two materials cor
      \subfloat[\label{subfig-1:radial2}]{%
         \includegraphics[scale=0.6]{./Plots/normal/compositematerials.png}
      }
-\caption{(a)Axisymmetric radial distribution of fibres and parenchyma obtained for an annular rod    with inner radius 12mm and outer radius 36mm with $\sigma_{max} = $ 28MPa and $M_{max} = $ 580 N-m. Variation of volume fraction of the fibers with the non-dimensional distance from the inner surface.(b) For different type of samples, Ghavami et. al. \cite{ghavami2003bamboo}, (c) For different nodes(n), Amada et. al. \cite{amada1996mechanical} }
+\caption{Variation of volume fraction of the fibers with the non-dimensional distance from the inner surface.(b) For different type of samples, Ghavami et. al. \cite{ghavami2003bamboo}, (c) For different nodes(n), Amada et. al. \cite{amada1996mechanical} }
 \label{fig:radial}
 \end{center}
 \end{figure}
@@ -244,7 +250,7 @@ Experimental data on constraints of maximum stress and maximum bending moment we
 \end{center}
 \end{figure}
 Figure \ref{fig:cellsize} shows the change in the size of parenchyma cells along the radially outward direction. This result matches with the trend observed in actual bamboos. Initially, there is the inner wall where the cells are densely packed with less air trapped in them, and therefore, the cell size is small. As we move towards the middle of the radius, more space is being taken up by the life-supporting parenchyma cells. Here these cells attain the maximum size. Further along the radius, the structural forces increase promoting the rise of fibre bundles, and the parenchyma cells give up their air content thus reducing in size. This trend can also be seen in fig. \ref{fig:fibrebundle}.
-
+\clearpage
 \subsection{Height}
 It is assumed that the wind load on the bamboo stem is uniform, as it is similar to a fluid flow over a surface which achieves uniform flow at a height much less than the typical height of the bamboo. Therefore, the bending moment as a function of height can be expressed as
 \begin{equation}
@@ -260,13 +266,14 @@ R = \frac{EI}{M} = R_0\bigg(1-\frac{h^2}{L^2}\bigg)^{-1}\\
 \sigma = -\frac{Mr}{I} = \sigma_0\bigg(1-\frac{h^2}{L^2}\bigg)
 \end{eqnarray}
 Here $R_0$ and $\sigma_0$ are the minimum radius of curvature and maximum stress which occur at the base of the plant. 
+\vspace{-1cm}
 \begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:extreme2}]{
         \includegraphics[scale=0.12]{./Plots/height/1.png}
      }
      \subfloat[\label{subfig-2:extreme2}]{
-        \includegraphics[clip, trim=1cm 1cm 1cm 1cm, scale=0.4]{./Plots/height/height.pdf}
+        \includegraphics[clip, trim=1cm 1cm 1cm 1cm, scale=0.33]{./Plots/height/height.pdf}
      }
     \label{fig:height}
     \caption{(a) Schematic distribution of material density in young stem (on left) and old plant stem (on right) from Gibson et. al. \cite{gibson1995mechanical} (b) Density variation with height and non-dimensional distance from the inner surface.}
@@ -334,7 +341,6 @@ First, an optimization problem is defined for minimizing the overall compliance 
 \end{equation}
 Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the macrostructure, $V_f$ is the specified volume fraction, $V_j$ is the volume of $j$th element of the base cell which has a total of $N$ elements. $x_j$ are the design variables represent the relative density. Element is made of material 1 for $x_j=1$ and material 2 for $x_j=0$. Figure \ref{fig:cantilever}. shows the two sample domains which will be used to test the solution.
 
-\cite{huang2013topology}
 \begin{figure}[H]
 \begin{center}
 \subfloat[]{
@@ -343,12 +349,13 @@ Here, $\textbf{F}$ is the applied load, $\textbf{U}$ is the displacement of the 
 \subfloat[]{
 \includegraphics[scale=0.18]{./Plots/opti/mbb.png}
 }
-\caption{Schematic of (a) cantilever beam and (b) MBB beam}
+\caption{Schematic of (a) cantilever beam and (b) MBB beam\cite{huang2013topology}
+}
 \label{fig:cantilever}
 \end{center}
 \end{figure}
 \section{Finite Element Analysis} 
-The optimization problem defined in \eqref{eq:2dopt} requires the finite element analysis to be done on two scales, one for macrostructure and another for the base cell. For the microstructure, since the design variables can be either 0 or 1, Solid Isotropic Material with Penalization model\cite{paper:simp} is used for obtaining the material properties. Thus, the elasticity matrix can be written as
+The optimization problem defined in \eqref{eq:2dopt} requires the finite element analysis to be done on two scales, one for macrostructure and another for the base cell. For the microstructure, since the design variables can be either 0 or 1, Solid Isotropic Material with Penalization model\cite{bendsoe1999material} is used for obtaining the material properties. Thus, the elasticity matrix can be written as
 \begin{equation}
 \label{eq:simp}
 \textbf{D} = x_j^p\textbf{D}^1 + (1-x_j^p)\textbf{D}^2
@@ -363,7 +370,7 @@ where $\textbf{K}$ is the assembled stiffness matrix for the macrostructure whos
 \label{eq:KM}
 \textbf{K}_i =  \int_{V_i} \textbf{B}_i^T\textbf{D}_i^H\textbf{B}_i dV_i
 \end{equation} 
-where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}_i^H$ is the homogenized elasticity matrix calculated from the finite analysis of the base cell. The homogenization process\cite{paper:homogenization} is discussed in the subsequent chapters. In this study, all base cells are assumed to be identical and therefore, equation \eqref{eq:KM} can be simplified as
+where $\textbf{B}_i$ is the elemental strain-displacement matrix and $\textbf{D}_i^H$ is the homogenized elasticity matrix calculated from the finite analysis of the base cell. The homogenization process\cite{bendsoe1988generating} is discussed in the subsequent chapters. In this study, all base cells are assumed to be identical and therefore, equation \eqref{eq:KM} can be simplified as
 \begin{equation}
 \label{eq:KM1}
 \textbf{K}_i =  \int_{V_i} \textbf{B}^T\textbf{D}^H\textbf{B} dV_i
@@ -423,6 +430,7 @@ v(p_1^0, p_2) = v(p_1^0+P_1, p_2) = 0.
 \end{eqnarray}
 Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and 
 \eqref{eq:fbc2} are the required periodic boundary conditions for strain field $[0, 0, 1]^T$.\\
+\vspace{-1cm}
 \begin{figure}[H]
 \begin{center}
      \subfloat[\label{subfig-1:pbc}]{
@@ -438,6 +446,7 @@ Eqs \eqref{eq:symmetryq1}, \eqref{eq:symmetryq2}, \eqref{eq:fbc1} and
     \caption{(a)Representative Base cell, (b)PBCs for $[1\,0\,0]^T$ and $[0\,1\,0]^T$ cases, (c)PBCs for $[0\,0\,1]^T$ case}
 \end{center}
 \end{figure}
+\vspace{-1cm}
 \subsection{Penalty Method}
 \label{sec:pbc}
 We have used the penalty method to apply the above discussed boundary conditions. Let these conditions on the displacements $\{\e U\}$ can be written as
@@ -464,6 +473,7 @@ If $[\bm\alpha]$ is null matrix, all constraints are ignored, else if $\alpha_i$
 \bigg([\e K]+\alpha[\e C]^T[\e C]\bigg)\{\e U\} = \{\e F\} + \alpha[\e C]^T\{\e Q\}
 \end{equation}
 Eq \eqref{eq:penalty1} has to be solved separately for the three cases of periodic boundary conditions.
+\vspace{-1cm}
 \begin{figure}[H]
 \begin{center}
     \subfloat[\label{subfig-1:pbc1}]{
@@ -492,6 +502,7 @@ Now, the structure is Y-periodic, therefore we have, $E_{ijkl}(\e y) =E_{jikl}(\
     \caption{Schematic for periodic structure and double scale modeling}
 \end{center}
 \end{figure}
+\vspace{-0.5cm}
 $E_{ijkl}(\e y)$ is assumed to satisfy strong ellipticity condition, i.e., there exists $m>0$ such that.
 \begin{gather}
 \sum_{i,j,k,l=1}^N E_{ijkl}^\varepsilon(x)\textbf{X}_{ij}\textbf{X}_{kl}\geq m\sum_{i,j=1}^N\textbf{X}_{ij}\textbf{X}_{ij} \qquad \forall \quad \textbf{X}_{ij}=\textbf{X}_{ji}
@@ -929,7 +940,7 @@ This thesis studies the optimality of the 1D distribution of material and provid
 
 \end{enumerate}
 \begin{singlespace}
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \addcontentsline{toc}{chapter}{References}
 \bibliography{bib}
 \end{singlespace}

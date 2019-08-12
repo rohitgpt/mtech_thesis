@@ -1,50 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: thesis_final.aux
-The style file: plain.bst
+The style file: unsrt.bst
 Database file #1: bib.bib
-Warning--I didn't find a database entry for "paper:simp"
-Warning--I didn't find a database entry for "paper:homogenization"
 Warning--empty journal in ghavami2003bamboo
-You've used 28 entries,
-            2118 wiz_defined-function locations,
-            675 strings with 9295 characters,
-and the built_in function-call counts, 9365 in all, are:
-= -- 917
-> -- 485
+You've used 29 entries,
+            1791 wiz_defined-function locations,
+            629 strings with 8946 characters,
+and the built_in function-call counts, 6563 in all, are:
+= -- 589
+> -- 303
 < -- 1
-+ -- 194
-- -- 162
-* -- 729
-:= -- 1619
-add.period$ -- 84
-call.type$ -- 28
-change.case$ -- 161
++ -- 112
+- -- 83
+* -- 502
+:= -- 1077
+add.period$ -- 87
+call.type$ -- 29
+change.case$ -- 26
 chr.to.int$ -- 0
-cite$ -- 29
-duplicate$ -- 308
-empty$ -- 691
-format.name$ -- 162
-if$ -- 1873
+cite$ -- 30
+duplicate$ -- 261
+empty$ -- 631
+format.name$ -- 83
+if$ -- 1408
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 31
-newline$ -- 143
-num.names$ -- 56
-pop$ -- 129
+int.to.str$ -- 29
+missing$ -- 32
+newline$ -- 148
+num.names$ -- 29
+pop$ -- 50
 preamble$ -- 1
-purify$ -- 136
+purify$ -- 0
 quote$ -- 0
-skip$ -- 205
+skip$ -- 96
 stack$ -- 0
-substring$ -- 626
-swap$ -- 28
+substring$ -- 507
+swap$ -- 29
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 106
+type$ -- 0
 warning$ -- 1
-while$ -- 95
-width$ -- 30
-write$ -- 306
-(There were 3 warnings)
+while$ -- 70
+width$ -- 31
+write$ -- 317
+(There was 1 warning)

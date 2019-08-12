@@ -1,19 +1,19 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.15)  10 JUL 2019 11:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.20)  30 JUL 2019 10:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**iitkthesis.tex
+**bib.tex
 
 ! Emergency stop.
-<*> iitkthesis.tex
-                  
+<*> bib.tex
+           
 *** (job aborted, file error in nonstop mode)
 
  
 Here is how much of TeX's memory you used:
  3 strings out of 492982
- 112 string characters out of 6134896
- 53909 words of memory out of 5000000
+ 105 string characters out of 6134896
+ 53920 words of memory out of 5000000
  3671 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191

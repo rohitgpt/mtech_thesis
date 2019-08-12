@@ -1,46 +1,28 @@
 \begin{thebibliography}{10}
 
+\bibitem{grosser1971anatomy}
+Dietger Grosser and Walter Liese.
+\newblock On the anatomy of asian bamboos, with special reference to their
+  vascular bundles.
+\newblock {\em Wood Science and technology}, 5(4):290--312, 1971.
+
+\bibitem{mannan2017correlations}
+Sayyad Mannan, J~Paul~Knox, and Sumit Basu.
+\newblock Correlations between axial stiffness and microstructure of a species
+  of bamboo.
+\newblock {\em Royal Society open science}, 4(1):160412, 2017.
+
+\bibitem{ghavami2003bamboo}
+K~Ghavami, C~de~S Rodrigues, and S~Paciornik.
+\newblock Bamboo: functionally graded composite material.
+\newblock 2003.
+
 \bibitem{amada1996mechanical}
 Shigeyasu Amada, Tamotsu Munekata, Yukito Nagase, Yoshinobu Ichikawa, Atsushi
   Kirigai, and Yang Zhifei.
 \newblock The mechanical structures of bamboos in viewpoint of functionally
   gradient and composite materials.
 \newblock {\em Journal of Composite Materials}, 30(7):800--819, 1996.
-
-\bibitem{ashby1995mechanical}
-Michael~Farries Ashby, LJ~Gibson, U~Wegst, and R~Olive.
-\newblock The mechanical properties of natural materials. i. material property
-  charts.
-\newblock {\em Proceedings of the Royal Society of London. Series A:
-  Mathematical and Physical Sciences}, 450(1938):123--140, 1995.
-
-\bibitem{bendsoe2009topology}
-Martin~P Bends{\o}e.
-\newblock {\em Topology optimization}.
-\newblock Springer, 2009.
-
-\bibitem{bendsoe1988generating}
-Martin~Philip Bends{\o}e and Noboru Kikuchi.
-\newblock Generating optimal topologies in structural design using a
-  homogenization method.
-\newblock {\em Computer methods in applied mechanics and engineering},
-  71(2):197--224, 1988.
-
-\bibitem{bhalla2008bamboo}
-Suresh Bhalla, Supratic Gupta, Puttagunta Sudhakar, and Rupali Suresh.
-\newblock Bamboo as green alternative to concrete and steel for modern
-  structures.
-\newblock {\em J. Environ. Res. Dev}, 3(2), 2008.
-
-\bibitem{cook2007concepts}
-Robert~D Cook et~al.
-\newblock {\em Concepts and applications of finite element analysis}.
-\newblock John Wiley \& Sons, 2007.
-
-\bibitem{ghavami2003bamboo}
-K~Ghavami, C~de~S Rodrigues, and S~Paciornik.
-\newblock Bamboo: functionally graded composite material.
-\newblock 2003.
 
 \bibitem{gibson1995mechanical}
 Lorna~J Gibson, Michael~Farries Ashby, GN~Karam, U~Wegst, and HR~Shercliff.
@@ -49,11 +31,50 @@ Lorna~J Gibson, Michael~Farries Ashby, GN~Karam, U~Wegst, and HR~Shercliff.
 \newblock {\em Proceedings of the Royal Society of London. Series A:
   Mathematical and Physical Sciences}, 450(1938):141--162, 1995.
 
-\bibitem{grosser1971anatomy}
-Dietger Grosser and Walter Liese.
-\newblock On the anatomy of asian bamboos, with special reference to their
-  vascular bundles.
-\newblock {\em Wood Science and technology}, 5(4):290--312, 1971.
+\bibitem{huang2013topology}
+X~Huang, SW~Zhou, YM~Xie, and Q~Li.
+\newblock Topology optimization of microstructures of cellular materials and
+  composites for macrostructures.
+\newblock {\em Computational Materials Science}, 67:397--407, 2013.
+
+\bibitem{wegst2015bioinspired}
+Ulrike~GK Wegst, Hao Bai, Eduardo Saiz, Antoni~P Tomsia, and Robert~O Ritchie.
+\newblock Bioinspired structural materials.
+\newblock {\em Nature materials}, 14(1):23, 2015.
+
+\bibitem{bhalla2008bamboo}
+Suresh Bhalla, Supratic Gupta, Puttagunta Sudhakar, and Rupali Suresh.
+\newblock Bamboo as green alternative to concrete and steel for modern
+  structures.
+\newblock {\em J. Environ. Res. Dev}, 3(2), 2008.
+
+\bibitem{nogata1995intelligent}
+Fumio Nogata and Hideaki Takahashi.
+\newblock Intelligent functionally graded material: bamboo.
+\newblock {\em Composites Engineering}, 5(7):743--751, 1995.
+
+\bibitem{ashby1995mechanical}
+Michael~Farries Ashby, LJ~Gibson, U~Wegst, and R~Olive.
+\newblock The mechanical properties of natural materials. i. material property
+  charts.
+\newblock {\em Proceedings of the Royal Society of London. Series A:
+  Mathematical and Physical Sciences}, 450(1938):123--140, 1995.
+
+\bibitem{mwaikambo2006review}
+L~Mwaikambo.
+\newblock Review of the history, properties and application of plant fibres.
+\newblock {\em African Journal of Science and Technology}, 7(2):121, 2006.
+
+\bibitem{silva2006modeling}
+Em{\'\i}lio Carlos~Nelli Silva, Matthew~C Walters, and Glaucio~H Paulino.
+\newblock Modeling bamboo as a functionally graded material: lessons for the
+  analysis of affordable materials.
+\newblock {\em Journal of Materials Science}, 41(21):6991--7004, 2006.
+
+\bibitem{youssefian2015molecular}
+Sina Youssefian and Nima Rahbar.
+\newblock Molecular origin of strength and stiffness in bamboo fibrils.
+\newblock {\em Scientific reports}, 5:11116, 2015.
 
 \bibitem{habibi2015asymmetric}
 Meisam~K Habibi, Arash~T Samaei, Behnam Gheshlaghi, Jian Lu, and Yang Lu.
@@ -61,30 +82,21 @@ Meisam~K Habibi, Arash~T Samaei, Behnam Gheshlaghi, Jian Lu, and Yang Lu.
   hierarchical structure: underlying mechanisms.
 \newblock {\em Acta biomaterialia}, 16:178--186, 2015.
 
-\bibitem{hassani1998review}
-Behrooz Hassani and E~Hinton.
-\newblock A review of homogenization and topology opimization ii—analytical
-  and numerical solution of homogenization equations.
-\newblock {\em Computers \& structures}, 69(6):719--738, 1998.
+\bibitem{svanberg2007mma}
+Krister Svanberg.
+\newblock Mma and gcmma-two methods for nonlinear optimization.
+\newblock {\em vol}, 1:1--15, 2007.
 
-\bibitem{huang2011topological}
-X~Huang, A~Radman, and YM~Xie.
-\newblock Topological design of microstructures of cellular materials for
-  maximum bulk or shear modulus.
-\newblock {\em Computational Materials Science}, 50(6):1861--1870, 2011.
+\bibitem{bendsoe2009topology}
+Martin~P Bends{\o}e.
+\newblock {\em Topology optimization}.
+\newblock Springer, 2009.
 
-\bibitem{huang2013topology}
-X~Huang, SW~Zhou, YM~Xie, and Q~Li.
-\newblock Topology optimization of microstructures of cellular materials and
-  composites for macrostructures.
-\newblock {\em Computational Materials Science}, 67:397--407, 2013.
-
-\bibitem{huang2015topology}
-Xiaodong Huang, Shiwei Zhou, Guangyong Sun, Guangyao Li, and Yi~Min Xie.
-\newblock Topology optimization for microstructures of viscoelastic composite
-  materials.
-\newblock {\em Computer Methods in Applied Mechanics and Engineering},
-  283:503--516, 2015.
+\bibitem{sigmund1998numerical}
+Ole Sigmund and Joakim Petersson.
+\newblock Numerical instabilities in topology optimization: a survey on
+  procedures dealing with checkerboards, mesh-dependencies and local minima.
+\newblock {\em Structural optimization}, 16(1):68--75, 1998.
 
 \bibitem{lazarov2011filters}
 Boyan~Stefanov Lazarov and Ole Sigmund.
@@ -92,35 +104,6 @@ Boyan~Stefanov Lazarov and Ole Sigmund.
   equations.
 \newblock {\em International Journal for Numerical Methods in Engineering},
   86(6):765--781, 2011.
-
-\bibitem{mannan2018stiffness}
-Sayyad Mannan, Venkitanarayanan Parameswaran, and Sumit Basu.
-\newblock Stiffness and toughness gradation of bamboo from a damage tolerance
-  perspective.
-\newblock {\em International Journal of Solids and Structures}, 143:274--286,
-  2018.
-
-\bibitem{mannan2017correlations}
-Sayyad Mannan, J~Paul~Knox, and Sumit Basu.
-\newblock Correlations between axial stiffness and microstructure of a species
-  of bamboo.
-\newblock {\em Royal Society open science}, 4(1):160412, 2017.
-
-\bibitem{mwaikambo2006review}
-L~Mwaikambo.
-\newblock Review of the history, properties and application of plant fibres.
-\newblock {\em African Journal of Science and Technology}, 7(2):121, 2006.
-
-\bibitem{niu2009optimum}
-Bin Niu, Jun Yan, and Gengdong Cheng.
-\newblock Optimum structure with homogeneous optimum cellular material for
-  maximum fundamental frequency.
-\newblock {\em Structural and Multidisciplinary Optimization}, 39(2):115, 2009.
-
-\bibitem{nogata1995intelligent}
-Fumio Nogata and Hideaki Takahashi.
-\newblock Intelligent functionally graded material: bamboo.
-\newblock {\em Composites Engineering}, 5(7):743--751, 1995.
 
 \bibitem{papanicolau1978asymptotic}
 G~Papanicolau, A~Bensoussan, and J-L Lions.
@@ -132,32 +115,12 @@ Enrique S{\'a}nchez-Palencia.
 \newblock Non-homogeneous media and vibration theory.
 \newblock {\em Lecture notes in physics}, 127, 1980.
 
-\bibitem{sigmund1998numerical}
-Ole Sigmund and Joakim Petersson.
-\newblock Numerical instabilities in topology optimization: a survey on
-  procedures dealing with checkerboards, mesh-dependencies and local minima.
-\newblock {\em Structural optimization}, 16(1):68--75, 1998.
-
-\bibitem{silva2006modeling}
-Em{\'\i}lio Carlos~Nelli Silva, Matthew~C Walters, and Glaucio~H Paulino.
-\newblock Modeling bamboo as a functionally graded material: lessons for the
-  analysis of affordable materials.
-\newblock {\em Journal of Materials Science}, 41(21):6991--7004, 2006.
-
-\bibitem{svanberg2007mma}
-Krister Svanberg.
-\newblock Mma and gcmma-two methods for nonlinear optimization.
-\newblock {\em vol}, 1:1--15, 2007.
-
-\bibitem{wegst2015bioinspired}
-Ulrike~GK Wegst, Hao Bai, Eduardo Saiz, Antoni~P Tomsia, and Robert~O Ritchie.
-\newblock Bioinspired structural materials.
-\newblock {\em Nature materials}, 14(1):23, 2015.
-
-\bibitem{youssefian2015molecular}
-Sina Youssefian and Nima Rahbar.
-\newblock Molecular origin of strength and stiffness in bamboo fibrils.
-\newblock {\em Scientific reports}, 5:11116, 2015.
+\bibitem{bendsoe1988generating}
+Martin~Philip Bends{\o}e and Noboru Kikuchi.
+\newblock Generating optimal topologies in structural design using a
+  homogenization method.
+\newblock {\em Computer methods in applied mechanics and engineering},
+  71(2):197--224, 1988.
 
 \bibitem{zhang2006scale}
 Weihong Zhang and Shiping Sun.
@@ -165,5 +128,47 @@ Weihong Zhang and Shiping Sun.
   structures.
 \newblock {\em International Journal for numerical methods in Engineering},
   68(9):993--1011, 2006.
+
+\bibitem{hassani1998review}
+Behrooz Hassani and E~Hinton.
+\newblock A review of homogenization and topology opimization ii—analytical
+  and numerical solution of homogenization equations.
+\newblock {\em Computers \& structures}, 69(6):719--738, 1998.
+
+\bibitem{huang2015topology}
+Xiaodong Huang, Shiwei Zhou, Guangyong Sun, Guangyao Li, and Yi~Min Xie.
+\newblock Topology optimization for microstructures of viscoelastic composite
+  materials.
+\newblock {\em Computer Methods in Applied Mechanics and Engineering},
+  283:503--516, 2015.
+
+\bibitem{huang2011topological}
+X~Huang, A~Radman, and YM~Xie.
+\newblock Topological design of microstructures of cellular materials for
+  maximum bulk or shear modulus.
+\newblock {\em Computational Materials Science}, 50(6):1861--1870, 2011.
+
+\bibitem{niu2009optimum}
+Bin Niu, Jun Yan, and Gengdong Cheng.
+\newblock Optimum structure with homogeneous optimum cellular material for
+  maximum fundamental frequency.
+\newblock {\em Structural and Multidisciplinary Optimization}, 39(2):115, 2009.
+
+\bibitem{mannan2018stiffness}
+Sayyad Mannan, Venkitanarayanan Parameswaran, and Sumit Basu.
+\newblock Stiffness and toughness gradation of bamboo from a damage tolerance
+  perspective.
+\newblock {\em International Journal of Solids and Structures}, 143:274--286,
+  2018.
+
+\bibitem{bendsoe1999material}
+Martin~P Bends{\o}e and Ole Sigmund.
+\newblock Material interpolation schemes in topology optimization.
+\newblock {\em Archive of applied mechanics}, 69(9-10):635--654, 1999.
+
+\bibitem{cook2007concepts}
+Robert~D Cook et~al.
+\newblock {\em Concepts and applications of finite element analysis}.
+\newblock John Wiley \& Sons, 2007.
 
 \end{thebibliography}
